@@ -4,16 +4,6 @@
 
 Một câu chuyện vui để bắt đầu bài học về **Hàm (Functions)**.
 
-## 🎯 Mục tiêu tuần này
-
-Sau tuần này, bạn sẽ:
-
-- Định nghĩa và gọi hàm với `def`
-- Hiểu **tham số**, **đối số** và `return`
-- Dùng **tham số mặc định** và **keyword arguments`
-- Hiểu phạm vi biến (**scope**): `local` và `global`
-- Viết **docstring** chuyên nghiệp
-
 ## 1. Một ván trốn tìm bắt đầu quá rối
 
 Chiều xuống bên bờ ao, gió thổi xào xạc qua đám cỏ. Dế nhảy tót lên một phiến đá, mắt long lanh:
