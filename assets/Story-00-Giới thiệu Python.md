@@ -222,4 +222,4 @@ Và đôi khi, trong hành trình học tập,
 
 ---
 
-__Repo gợi ý: dùng bài này như một lời chào mở đầu cho hành trình học Python vui vẻ, gần gũi và dễ nhớ._
+_Đây là lời chào mở đầu cho hành trình học Python: vui vẻ, gần gũi và đủ nhẹ nhàng để ai cũng có thể bắt đầu._
