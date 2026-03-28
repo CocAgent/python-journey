@@ -222,4 +222,4 @@ Và đôi khi, trong hành trình học tập,
 
 ---
 
-_Repo gợi ý: dùng bài này như một lời chào mở đầu cho hành trình học Python vui vẻ, gần gũi và dễ nhớ._
+__Repo gợi ý: dùng bài này như một lời chào mở đầu cho hành trình học Python vui vẻ, gần gũi và dễ nhớ._
