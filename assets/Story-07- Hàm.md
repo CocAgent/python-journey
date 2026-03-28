@@ -383,4 +383,4 @@ Bác Rùa bật cười hiền hậu:
 > **Scope giúp ta biết biến sống ở đâu.**  
 > **Docstring là lời giải thích tử tế cho người đến sau.**
 
-🐸 Đây là lời chào mở đầu cho hành trình học Python: vui vẻ, gần gũi và đủ nhẹ nhàng để ai cũng có thể bắt đầu. 🦗
+🐸🐢🦗
