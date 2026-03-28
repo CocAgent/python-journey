@@ -222,4 +222,4 @@ Và đôi khi, trong hành trình học tập,
 
 ---
 
-_🐸 Đây là lời chào mở đầu cho hành trình học Python: vui vẻ, gần gũi và đủ nhẹ nhàng để ai cũng có thể bắt đầu._
+_🐸 Đây là lời chào mở đầu cho hành trình học Python: vui vẻ, gần gũi và đủ nhẹ nhàng để ai cũng có thể bắt đầu. 🦗_
