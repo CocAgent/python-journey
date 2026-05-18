@@ -14,6 +14,7 @@ Chạy file này bằng: python ex01_hello.py
 # TODO 2: In ra tên của bạn trên một dòng riêng
 # Viết code ở đây:
 print("Xin chào,Mình Là Trần Đức Phương!")
+print("Xin chào,Mình Là Trần Đức Phương!")
 
 # TODO 3: In ra 3 điều bạn thích, mỗi điều trên một dòng
 # Ví dụ:
