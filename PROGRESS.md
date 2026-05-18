@@ -15,12 +15,12 @@
 - [x] Commit & push lên GitHub
 
 ### Tuần 02: Biến & Kiểu dữ liệu
-- [ ] Đọc README tuần 2
-- [ ] Hoàn thành `ex01_variables.py` — Khai báo biến
-- [ ] Hoàn thành `ex02_type_conversion.py` — Chuyển đổi kiểu
-- [ ] Hoàn thành `ex03_input_calc.py` — Máy tính nhận input
-- [ ] 🚀 Mini-Project: Thẻ sinh viên tự động
-- [ ] Commit & push lên GitHub
+- [x] Đọc README tuần 2
+- [x] Hoàn thành `ex01_variables.py` — Khai báo biến
+- [x] Hoàn thành `ex02_type_conversion.py` — Chuyển đổi kiểu
+- [x] Hoàn thành `ex03_input_calc.py` — Máy tính nhận input
+- [x] 🚀 Mini-Project: Thẻ sinh viên tự động
+- [x] Commit & push lên GitHub
 
 ### Tuần 03: Câu lệnh điều kiện
 - [ ] Đọc README tuần 3
