@@ -1,10 +1,18 @@
-# Tuần 01: Hello Python 🐍
+# 🐍 Tuần 01: Hello Python
 
 > *"Mọi chuyên gia đều từng là người mới bắt đầu." — Helen Hayes*
 
+## 👩‍💻 Giới thiệu
+
+Xin chào, mình là **Nguyễn Thị Tuyết Nhi**.  
+Đây là tuần học đầu tiên trong hành trình học Python của mình.  
+Mục tiêu là làm quen với ngôn ngữ Python, luyện tập tư duy lập trình và xây dựng nền tảng cho các dự án sau này.
+
+---
+
 ## 🎯 Mục tiêu tuần này
 
-Sau tuần này, bạn sẽ:
+Sau tuần này, mình sẽ:
 
 - Cài đặt Python và VS Code trên máy tính
 - Viết và chạy chương trình Python đầu tiên
@@ -12,13 +20,18 @@ Sau tuần này, bạn sẽ:
 - Sử dụng Python như máy tính: `+` `-` `*` `/` `//` `%` `**`
 - Viết comment để ghi chú code
 
+---
+
 ## 📖 Kiến thức cần nắm
 
-print(), comments (#), phép tính cơ bản, Python REPL
+- `print()`
+- Comments (`#`)
+- Phép tính cơ bản
+- Python REPL
 
-Chi tiết xem tại [`notes.md`](notes.md)
+---
 
-## ✍️ Bài tập
+## ✍️ Bài tập thực hành
 
 Mở thư mục `exercises/` và hoàn thành theo thứ tự:
 
@@ -26,27 +39,40 @@ Mở thư mục `exercises/` và hoàn thành theo thứ tự:
 2. **`ex02_calculator.py`** — Máy tính đơn giản
 3. **`ex03_input.py`** — Trò chuyện với người dùng
 
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
+> 💡 Mỗi file đều có hướng dẫn TODO để dễ thực hành.
 
-## 🚀 Mini-Project: ASCII Art Generator
+---
 
-Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dùng nhập vào
+## 🚀 Mini Project
 
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
+### ASCII Art Generator
 
-## 📚 Đọc thêm
+Tạo chương trình in hình ASCII bằng Python từ tên người dùng nhập vào.
 
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 1: Programming as a way of thinking | [Đọc](https://allendowney.github.io/ThinkPython/chap01.html) |
-| Python Crash Course | Chapter 1: Getting Started | [Đọc](https://github.com/ehmatthes/pcc_3e) |
+---
+
+## 📚 Tài liệu tham khảo
+
+| Nguồn | Nội dung |
+|:------|:----------|
+| Think Python | Chương 1 |
+| Python Crash Course | Getting Started |
+
+---
 
 ## ✅ Checklist cuối tuần
 
-- [ ] Đọc notes.md
+- [ ] Đọc lý thuyết Python cơ bản
 - [ ] Hoàn thành `ex01_hello.py`
 - [ ] Hoàn thành `ex02_calculator.py`
 - [ ] Hoàn thành `ex03_input.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- [ ] Hoàn thành Mini Project
+- [ ] Upload code lên GitHub
+- [ ] Commit và cập nhật README
+
+---
+
+## 🌐 GitHub
+
+GitHub của mình:  
+https://github.com/nhi243862-hub

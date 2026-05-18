@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuyết Nhi - Python Journey</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #ffd166;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      background: white;
+      color: #1e3c72;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .github {
+      margin-top: 30px;
+    }
+
+    .github a {
+      text-decoration: none;
+      color: white;
+      background: #ff4d6d;
+      padding: 12px 24px;
+      border-radius: 10px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .github a:hover {
+      background: #ff1e4d;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>👩‍💻 Nguyễn Thị Tuyết Nhi</h1>
+    <h2>Python Developer Beginner</h2>
+
+    <p>
+      Xin chào! Mình là Tuyết Nhi 🌸<br>
+      Hiện tại mình đang học lập trình Python và khám phá thế giới công nghệ.
+      Mình yêu thích việc tạo ra các dự án nhỏ, học GitHub và phát triển kỹ năng lập trình mỗi ngày.
+    </p>
+
+    <h2>🚀 Kỹ năng đang học</h2>
+
+    <div class="skills">
+      <div class="skill">Python</div>
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">GitHub</div>
+      <div class="skill">VS Code</div>
+    </div>
+
+    <div class="github">
+      <a href="https://github.com/nhi243862-hub" target="_blank">
+        🌐 Xem GitHub của tôi
+      </a>
+    </div>
+
+    <footer>
+      © 2026 - Python Journey by Tuyết Nhi 🐍
+    </footer>
+  </div>
+</body>
+</html>
