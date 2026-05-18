@@ -23,3 +23,4 @@ Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dù
 
 ## Nộp bài
 Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 01"`
+Đã đọc file này
