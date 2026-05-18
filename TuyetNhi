@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+    <div class="skills">
+      <div class="skill">Python</div>
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">GitHub</div>
+      <div class="skill">VS Code</div>
+      <div class="skill">JavaScript</div>
+    </div>
+
+    <h2 style="margin-top:40px;">📚 Hành trình học tập</h2>
+
+    <p>
+      Mình bắt đầu học lập trình với mong muốn hiểu cách các phần mềm và website hoạt động.
+      Ban đầu mọi thứ khá khó khăn, nhưng càng học mình càng cảm thấy thú vị.
+      Mỗi ngày mình đều cố gắng học thêm một chút về Python, GitHub và phát triển web.
+    </p>
+
+    <p>
+      Mình thích thực hành thông qua các bài tập nhỏ như:
+    </p>
+
+    <div class="skills">
+      <div class="skill">Máy tính Python</div>
+      <div class="skill">ASCII Art</div>
+      <div class="skill">Mini Projects</div>
+      <div class="skill">GitHub Projects</div>
+      <div class="skill">Web cá nhân</div>
+    </div>
+
+    <h2 style="margin-top:40px;">🎯 Mục tiêu của mình</h2>
+
+    <p>
+      Trong tương lai mình muốn trở thành một lập trình viên chuyên nghiệp,
+      có thể tạo ra các ứng dụng hữu ích và làm việc trong môi trường công nghệ.
+      Ngoài ra mình cũng muốn cải thiện kỹ năng thiết kế giao diện và phát triển phần mềm.
+    </p>
+
+    <h2 style="margin-top:40px;">💡 Sở thích</h2>
+
+    <p>
+      Ngoài lập trình, mình còn thích nghe nhạc, khám phá công nghệ mới,
+      chỉnh sửa giao diện website và học hỏi thêm nhiều kỹ năng mới.
+    </p>
+
+    <h2 style="margin-top:40px;">🌐 GitHub</h2>
+
+    <p>
+      Đây là nơi mình lưu trữ các dự án học tập và bài tập Python:
+    </p>
+
+    <div class="github">
+      <a href="https://github.com/nhi243862-hub" target="_blank">
+        🚀 Xem GitHub của tôi
+      </a>
+    </div>
+
+    <footer>
+      © 2026 - Python Journey by Tuyết Nhi 🐍
+    </footer>
+  </div>
+</body>
+</html>
