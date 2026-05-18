@@ -8,7 +8,7 @@ Lời giải Bài tập 01: Hello Python! 🐍
 print("Hello, World!")
 
 # TODO 2
-print("Nguyễn Văn Minh")
+print("Nguyễn Tấn Vũ")
 
 # TODO 3
 print("Tôi thích ăn phở")
@@ -22,10 +22,10 @@ print("*   *")
 print("*****")
 
 # TODO 5 (Ví dụ: HI)
-print("H   H  III")
-print("H   H   I")
-print("HHHHH   I")
-print("H   H   I")
-print("H   H  III")
+print("HHHHH   III")
+print("H        I")
+print("HHHHH    I")
+print("H        I")
+print("HHHHH   III")
 
 print("\n🎉 Chúc mừng! Bạn đã hoàn thành bài tập đầu tiên!")
