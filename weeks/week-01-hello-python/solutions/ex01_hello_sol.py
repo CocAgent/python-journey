@@ -8,7 +8,7 @@ Lời giải Bài tập 01: Hello Python! 🐍
 print("Hello, World!")
 
 # TODO 2
-print("Nguyễn Văn Minh")
+print("Au Duong Tam")
 
 # TODO 3
 print("Tôi thích ăn phở")
