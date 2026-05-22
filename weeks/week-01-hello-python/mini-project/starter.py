@@ -23,25 +23,26 @@ Chạy: python starter.py
 # TODO: In dòng dưới bằng ╚═══╝
 
 # Gợi ý: Dùng str.center(width) để căn giữa
+ten = input("Nhập tên của bạn: ")
 line1 = "Xin chào"
-line2 = f"{name}!"
+line2 = f"{ten}!"
 line3 = "🐍 Python 🐍"
 
 width = max(len(line1), len(line2), len(line3)) + 10
 # Bước 1: Hỏi tên người dùng
-ten = input("Nhập tên của bạn: ")
+
 
 # Bước 2: Tính độ rộng khung
-width = len(ten) + 4
+
 
 # Bước 3: In khung trên
-print("╔" + "═" * width + "╗")
+
 
 # Bước 4: In nội dung
-print("║" + ten.center(width) + "║")
+
 
 # Bước 5: In khung dưới
-print("╚" + "═" * width + "╝")
+
 
 print("╔" + "═" * width + "╗")
 print(f"║{line1.center(width)}║")
