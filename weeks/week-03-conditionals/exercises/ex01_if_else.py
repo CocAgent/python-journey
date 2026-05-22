@@ -9,7 +9,8 @@ Mục tiêu: Viết câu lệnh điều kiện đúng cú pháp
 # 13-17: "Thiếu niên"
 # 18-64: "Người lớn"
 # >= 65: "Người cao tuổi"
-
+print("Nhập tuổi: ")
+age = int(input())  
 
 # TODO 2: Nhập điểm (0-10), xếp loại:
 # >= 9: Xuất sắc, >= 8: Giỏi, >= 6.5: Khá, >= 5: TB, < 5: Yếu
