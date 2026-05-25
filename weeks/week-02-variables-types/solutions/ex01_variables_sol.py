@@ -10,7 +10,7 @@ print(f"tuoi = {tuoi}, type: {type(tuoi)}")
 print(f"diem_tb = {diem_tb}, type: {type(diem_tb)}")
 print(f"dang_hoc = {dang_hoc}, type: {type(dang_hoc)}")
 
-# TODO 2
+# TODO2
 a = 10
 b = 20
 a, b = b, a
