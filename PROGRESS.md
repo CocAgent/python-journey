@@ -23,24 +23,24 @@
 - [x] Commit & push lên GitHub
 
 ### Tuần 03: Câu lệnh điều kiện
-- [ ] Đọc README tuần 3
-- [ ] Hoàn thành `ex01_if_else.py` — if/elif/else cơ bản
-- [ ] Hoàn thành `ex02_logical.py` — Toán tử logic
-- [ ] Hoàn thành `ex03_nested.py` — Điều kiện lồng nhau
-- [ ] 🚀 Mini-Project: Máy tính điểm GPA
-- [ ] Commit & push lên GitHub
+- [x] Đọc README tuần 3
+- [x] Hoàn thành `ex01_if_else.py` — if/elif/else cơ bản
+- [x] Hoàn thành `ex02_logical.py` — Toán tử logic
+- [x] Hoàn thành `ex03_nested.py` — Điều kiện lồng nhau
+- [x] 🚀 Mini-Project: Máy tính điểm GPA
+- [x] Commit & push lên GitHub
 
 ---
 
 ## 🔵 Giai đoạn 2: Dữ liệu & Cấu trúc
 
 ### Tuần 04: Chuỗi (Strings)
-- [ ] Đọc README tuần 4
-- [ ] Hoàn thành `ex01_indexing.py` — Indexing & slicing
-- [ ] Hoàn thành `ex02_methods.py` — Phương thức chuỗi
-- [ ] Hoàn thành `ex03_fstrings.py` — f-string formatting
-- [ ] 🚀 Mini-Project: Text Analyzer
-- [ ] Commit & push lên GitHub
+- [x] Đọc README tuần 4
+- [x] Hoàn thành `ex01_indexing.py` — Indexing & slicing
+- [x] Hoàn thành `ex02_methods.py` — Phương thức chuỗi
+- [x] Hoàn thành `ex03_fstrings.py` — f-string formatting
+- [x] 🚀 Mini-Project: Text Analyzer
+- [x] Commit & push lên GitHub
 
 ### Tuần 05: List & Tuple
 - [ ] Đọc README tuần 5
