@@ -5,7 +5,7 @@ so_text = "42"
 so = int(so_text) + 8
 print(f"{so_text} + 8 = {so}")  # 50
 
-# TODO 2
+# TODO2
 pi = 3.14159
 print(f"int({pi}) = {int(pi)}")  # 3
 
