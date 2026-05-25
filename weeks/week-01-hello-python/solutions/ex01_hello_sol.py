@@ -5,27 +5,27 @@ Lời giải Bài tập 01: Hello Python! 🐍
 """
 
 # TODO 1
-print("Hello, World!")
+print("Ah yo,what's up bro ?")
 
 # TODO 2
-print("Nguyễn Văn Minh")
+print("Tôi tên là: Lê Hoàng Hòa")
 
 # TODO 3
-print("Tôi thích ăn phở")
+print("Tôi thích chơi game")
 print("Tôi thích nghe nhạc")
-print("Tôi thích code Python")
+print("Tôi thích code game")
 
 # TODO 4
-print("*****")
-print("*   *")
-print("*   *")
-print("*****")
+print("tôi")
+print("kkkkk*")
+print("*sdbfbs*")
+print("sdfbsz")
 
 # TODO 5 (Ví dụ: HI)
-print("H   H  III")
-print("H   H   I")
-print("HHHHH   I")
-print("H   H   I")
-print("H   H  III")
+print("Hi")
+print("HI")
+print("HI")
+print("HI")
+print("HI")
 
 print("\n🎉 Chúc mừng! Bạn đã hoàn thành bài tập đầu tiên!")

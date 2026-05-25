@@ -2,7 +2,7 @@
 Bài tập 01: Hello Python! 🐍
 ================================
 Mục tiêu: Làm quen với hàm print()
-
+xcvzxzx
 Hãy hoàn thành các TODO bên dưới.
 Chạy file này bằng: python ex01_hello.py
 """
