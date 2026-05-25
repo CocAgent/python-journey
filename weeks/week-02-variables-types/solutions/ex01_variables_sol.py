@@ -1,9 +1,9 @@
 """Lời giải Bài tập 01: Biến trong Python"""
 
 # TODO 1
-ten = "Nguyễn An"
+ten = "Bùi Tấn Phát"
 tuoi = 20
-diem_tb = 8.5
+diem_tb = 8
 dang_hoc = True
 print(f"ten = {ten}, type: {type(ten)}")
 print(f"tuoi = {tuoi}, type: {type(tuoi)}")
@@ -24,5 +24,5 @@ x *= 2;    print(f"x *= 2   → {x}")   # 240
 x //= 7;   print(f"x //= 7  → {x}")  # 34
 
 # TODO 4
-ho, ten, tuoi = "Nguyễn", "An", 20
+ho, ten, tuoi = "Bùi", "Phát", 20
 print(f"Họ tên: {ho} {ten}, {tuoi} tuổi")
