@@ -24,7 +24,7 @@ print("Nguyen Minh Tri")
 print("Tôi thích ăn phở")
 print("Tôi thích nghe nhạc")
 print("Tôi thích code python")
-
+print(2222)
 # TODO 4: In ra một hình chữ nhật bằng dấu *
 # Kết quả mong muốn:
 # *****
