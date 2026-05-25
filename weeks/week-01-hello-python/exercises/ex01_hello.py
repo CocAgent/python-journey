@@ -45,8 +45,8 @@ print("*****")
 # Viết code ở đây:
 
 
-"""================================
-Bài tập 01: Hello Python! 🐍
+#"""================================
+#Bài tập 01: Hello Python! 🐍
 # TODO 1: In ra dòng chữ "Hello, World!"
 print("Hello, World!")
 
