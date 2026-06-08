@@ -42,10 +42,10 @@ Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
 
 ## ✅ Checklist cuối tuần
 
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_variables.py`
-- [ ] Hoàn thành `ex02_type_conversion.py`
-- [ ] Hoàn thành `ex03_input_calc.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- [x] Đọc notes.md
+- [x] Hoàn thành `ex01_variables.py`
+- [x] Hoàn thành `ex02_type_conversion.py`
+- [x] Hoàn thành `ex03_input_calc.py`
+- [x] Hoàn thành Mini-Project
+- [x] Commit code lên GitHub
+- [x] Đánh dấu trong PROGRESS.md

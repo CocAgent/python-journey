@@ -10,15 +10,16 @@ Chạy: python starter.py
 ten = input("Nhập tên của bạn: ")
 
 # Bước 2: Tính độ rộng khung
-# TODO: Tính width dựa trên len(ten)
+# Tính width dựa trên len(ten), đảm bảo khung tối thiểu rộng 20 ký tự
+width = max(len(ten) + 8, 20)
 
 # Bước 3: In khung trên
-# TODO: In dòng trên bằng ╔═══╗
+print("╔" + "═" * width + "╗")
 
 # Bước 4: In nội dung
-# TODO: In tên trong khung, căn giữa
+print("║" + "Xin chào".center(width) + "║")
+print("║" + ten.upper().center(width) + "║")
+print("║" + "🐍 Python 🐍".center(width) + "║")
 
 # Bước 5: In khung dưới
-# TODO: In dòng dưới bằng ╚═══╝
-
-# Gợi ý: Dùng str.center(width) để căn giữa
+print("╚" + "═" * width + "╝")
