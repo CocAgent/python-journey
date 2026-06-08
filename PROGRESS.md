@@ -43,20 +43,20 @@
 - [x] Commit & push lên GitHub
 
 ### Tuần 05: List & Tuple
-- [ ] Đọc README tuần 5
-- [ ] Hoàn thành `ex01_lists.py` — Tạo và thao tác list
-- [ ] Hoàn thành `ex02_slicing.py` — Slicing & comprehension
-- [ ] Hoàn thành `ex03_tuples.py` — Tuple & unpacking
-- [ ] 🚀 Mini-Project: Quản lý Todo List
-- [ ] Commit & push lên GitHub
+- [x] Đọc README tuần 5
+- [x] Hoàn thành `ex01_lists.py` — Tạo và thao tác list
+- [x] Hoàn thành `ex02_slicing.py` — Slicing & comprehension
+- [x] Hoàn thành `ex03_tuples.py` — Tuple & unpacking
+- [x] 🚀 Mini-Project: Quản lý Todo List
+- [x] Commit & push lên GitHub
 
 ### Tuần 06: Vòng lặp
-- [ ] Đọc README tuần 6
-- [ ] Hoàn thành `ex01_for_loop.py` — Vòng lặp for
-- [ ] Hoàn thành `ex02_while_loop.py` — Vòng lặp while
-- [ ] Hoàn thành `ex03_patterns.py` — In hoa văn
-- [ ] 🚀 Mini-Project: Pattern Printer
-- [ ] Commit & push lên GitHub
+- [x] Đọc README tuần 6
+- [x] Hoàn thành `ex01_for_loop.py` — Vòng lặp for
+- [x] Hoàn thành `ex02_while_loop.py` — Vòng lặp while
+- [x] Hoàn thành `ex03_patterns.py` — In hoa văn
+- [x] 🚀 Mini-Project: Pattern Printer
+- [x] Commit & push lên GitHub
 
 ### Tuần 07: Hàm (Functions)
 - [ ] Đọc README tuần 7
