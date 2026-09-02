@@ -136,3 +136,18 @@ Máy sinh số ngẫu nhiên 1-100, người đoán, máy báo cao/thấp đến
 > 1. **Thứ tự elif** quan trọng — kiểm tra từ trên xuống, dừng ở điều kiện đầu tiên đúng
 > 2. **and trước or** — dùng ngoặc khi kết hợp để code rõ ràng hơn
 > 3. **Falsy values**: 0, '', [], None, False — có thể dùng trực tiếp trong if
+
+## Guard-style input validation
+
+Validate trước khi tính giúp happy path dễ đọc:
+
+```python
+def classify_score(score: float) -> str:
+    if score < 0 or score > 10:
+        return "invalid"
+    if score >= 8:
+        return "good"
+    return "keep practicing"
+```
+
+Tuần này tập trung vào điều kiện; Week 11 sẽ sở hữu exception handling.

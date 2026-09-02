@@ -1,43 +1,29 @@
-"""Lời giải Bài tập 01: if/elif/else cơ bản"""
+"""Official solutions for ordered conditionals."""
 
-# TODO 1
-tuoi = int(input("Nhập tuổi: "))
-if tuoi < 13:
-    print("Thiếu nhi")
-elif tuoi <= 17:
-    print("Thiếu niên")
-elif tuoi <= 64:
-    print("Người lớn")
-else:
-    print("Người cao tuổi")
 
-# TODO 2
-diem = float(input("Nhập điểm (0-10): "))
-if diem >= 9:
-    print("Xuất sắc")
-elif diem >= 8:
-    print("Giỏi")
-elif diem >= 6.5:
-    print("Khá")
-elif diem >= 5:
-    print("Trung bình")
-else:
-    print("Yếu")
+def age_group(age: int) -> str:
+    if age < 13:
+        return "Thiếu nhi"
+    if age < 18:
+        return "Thiếu niên"
+    if age < 65:
+        return "Người lớn"
+    return "Người cao tuổi"
 
-# TODO 3
-nam = int(input("Nhập năm: "))
-if (nam % 4 == 0 and nam % 100 != 0) or (nam % 400 == 0):
-    print(f"{nam} là năm nhuận")
-else:
-    print(f"{nam} không phải năm nhuận")
 
-# TODO 4
-a = float(input("Số thứ nhất: "))
-b = float(input("Số thứ hai: "))
-c = float(input("Số thứ ba: "))
-if a >= b and a >= c:
-    print(f"Số lớn nhất: {a}")
-elif b >= a and b >= c:
-    print(f"Số lớn nhất: {b}")
-else:
-    print(f"Số lớn nhất: {c}")
+def classify_score(score: float) -> str:
+    if score < 0 or score > 10:
+        return "Không hợp lệ"
+    if score >= 9:
+        return "Xuất sắc"
+    if score >= 8:
+        return "Giỏi"
+    if score >= 6.5:
+        return "Khá"
+    if score >= 5:
+        return "Trung bình"
+    return "Yếu"
+
+
+def is_leap_year(year: int) -> bool:
+    return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
