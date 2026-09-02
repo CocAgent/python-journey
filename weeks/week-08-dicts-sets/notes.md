@@ -1,118 +1,166 @@
-# Tuần 08 — Dictionary và Set
+# Week 08 — Dictionaries, Sets và Data Modeling
 
-> **Python Journey** — Khóa học Python cơ bản cho người mới bắt đầu  
-> Thời lượng: 2h lý thuyết + 2h thực hành
+Week 07 giúp ta đặt behavior trong function. Week 08 tập trung vào data mà
+function nhận: dữ liệu có cấu trúc giúp code diễn đạt đúng bài toán hơn.
 
----
+## 1. Vì sao cần `dict`?
 
-## 🎯 Mục Tiêu Tuần Này
-
-Sau buổi học, bạn có thể:
-- Tạo và thao tác dictionary (dict)
-- Duyệt dict với keys(), values(), items()
-- Dùng set và các phép toán tập hợp
-- Chọn đúng cấu trúc dữ liệu cho bài toán
-
----
-
-## 1. Dictionary — Dữ Liệu Theo Cặp Key-Value
+Một list phù hợp khi vị trí mang ý nghĩa. Một `dict` phù hợp khi mỗi giá trị có
+một tên rõ ràng:
 
 ```python
-# Dict lưu dữ liệu theo cặp key: value
-hoc_sinh = {
-    "ten": "Nguyễn An",
-    "tuoi": 20,
-    "diem": 8.5,
-    "la_sinh_vien": True
+student = {"name": "An", "score": 8.5, "active": True}
+```
+
+Các key `name`, `score`, `active` làm data tự mô tả tốt hơn `["An", 8.5, True]`.
+
+## 2. Tạo, đọc và cập nhật
+
+```python
+student = {"name": "An", "score": 8.5}
+print(student["name"])
+print(student.get("level", "beginner"))
+
+student["score"] = 9.0
+student["city"] = "Đà Nẵng"
+```
+
+`data[key]` phù hợp khi key bắt buộc phải có. `data.get(key, default)` phù hợp
+khi key là tùy chọn hoặc cần một safe default rõ nghĩa.
+
+## 3. Duyệt dictionary
+
+```python
+scores = {"Python": 9, "Git": 8, "Debug": 7}
+
+for topic in scores.keys():
+    print(topic)
+
+for score in scores.values():
+    print(score)
+
+for topic, score in scores.items():
+    print(f"{topic}: {score}")
+```
+
+Membership trên dict kiểm tra **key**:
+
+```python
+if "Python" in scores:
+    print("Đã có điểm Python")
+```
+
+## 4. `set` cho uniqueness và membership
+
+Set không giữ phần tử trùng:
+
+```python
+actions = {"left", "right", "wait", "wait"}
+print(actions)
+print("wait" in actions)
+```
+
+Các phép toán đơn giản trả lời câu hỏi về hai nhóm:
+
+```python
+group_a = {"dict", "set", "loop"}
+group_b = {"set", "function", "loop"}
+
+print(group_a | group_b)  # tất cả
+print(group_a & group_b)  # phần chung
+print(group_a - group_b)  # chỉ có ở A
+```
+
+Set phù hợp để kiểm tra membership hoặc loại trùng. Nếu thứ tự quan trọng, cần
+giữ list và dùng set phụ để theo dõi phần tử đã thấy.
+
+## 5. Nested data
+
+Data thực tế thường chứa nhiều tầng:
+
+```python
+learner = {
+    "name": "An",
+    "skills": ["functions", "dicts"],
+    "progress": {"week": 8, "completed": 7},
 }
 
-# Truy cập
-print(hoc_sinh["ten"])            # Nguyễn An
-print(hoc_sinh.get("diem"))       # 8.5
-print(hoc_sinh.get("sdt", "N/A")) # N/A (giá trị mặc định nếu key không tồn tại)
-
-# Thêm / Cập nhật
-hoc_sinh["sdt"] = "0901234567"   # Thêm key mới
-hoc_sinh["tuoi"] = 21            # Cập nhật key có sẵn
-
-# Xóa
-del hoc_sinh["sdt"]              # Xóa theo key
-tuoi = hoc_sinh.pop("tuoi")     # Xóa và lấy giá trị
-
-# Kiểm tra key
-print("ten" in hoc_sinh)         # True
-print("sdt" in hoc_sinh)         # False
+print(learner["progress"]["week"])
 ```
 
-## 2. Duyệt Dictionary
+Đọc từ ngoài vào trong: lấy `progress`, rồi lấy `week`. Chỉ thêm tầng lồng nhau
+khi tầng đó thể hiện một nhóm dữ liệu có ý nghĩa.
+
+## 6. Data model khác behavior
+
+```text
+data model = chương trình lưu những gì và liên hệ giữa chúng
+behavior   = function đọc hoặc thay đổi data như thế nào
+```
 
 ```python
-soluong = {"tao": 5, "cam": 3, "chuoi": 8}
+task = {"title": "Học dict", "tags": ["python"], "done": False}
 
-# Duyệt keys (mặc định)
-for key in soluong:
-    print(key)
 
-# Duyệt values
-for value in soluong.values():
-    print(value)
-
-# Duyệt cả hai — Pythonic nhất
-for fruit, qty in soluong.items():
-    print(f"{fruit}: {qty} quả")
-
-# Dict comprehension
-gia = {"tao": 15000, "cam": 12000, "chuoi": 8000}
-gia_usd = {fruit: round(price / 25000, 2) for fruit, price in gia.items()}
-print(gia_usd)
+def mark_done(item: dict) -> dict:
+    updated = item.copy()
+    updated["done"] = True
+    return updated
 ```
 
-## 3. Set — Tập Hợp Không Trùng Lặp
+Dict là model. `mark_done` là behavior. Tách hai ý này giúp ta debug từng phần.
+
+## 7. Structured bot state
+
+```text
+COURSE TEACHING MODEL
+NOT VUACOC PRODUCTION CONTRACT
+```
+
+Local Arena truyền một state nhỏ từ góc nhìn của bot:
 
 ```python
-# Set: không có thứ tự, không trùng lặp
-mau_sac = {"đỏ", "xanh", "vàng", "đỏ"}  # "đỏ" tự động bị xóa trùng
-print(mau_sac)  # {'đỏ', 'xanh', 'vàng'}
-
-# Thêm / Xóa
-mau_sac.add("tím")
-mau_sac.discard("vàng")  # Không lỗi nếu không tồn tại
-
-# Phép toán tập hợp
-a = {1, 2, 3, 4}
-b = {3, 4, 5, 6}
-print(a | b)   # Hợp: {1, 2, 3, 4, 5, 6}
-print(a & b)   # Giao: {3, 4}
-print(a - b)   # Hiệu: {1, 2}
-print(a ^ b)   # Đối xứng: {1, 2, 5, 6}
-
-# Ứng dụng: xóa trùng lặp trong list
-co_trung = [1, 2, 2, 3, 3, 3, 4]
-khong_trung = list(set(co_trung))
-print(khong_trung)  # [1, 2, 3, 4]
+state = {
+    "turn": 2,
+    "max_turns": 6,
+    "position": 1,
+    "opponent_position": 3,
+    "goal": 4,
+    "min_position": 0,
+    "max_position": 4,
+}
 ```
 
-## 4. Bài Tập
+Đây chỉ là schema giảng dạy của Python Journey. Nó không mô tả production
+state, action, API hay runtime của VuaCóc.
 
-### Bài 1 — Từ điển Anh-Việt (Dễ)
+## 8. Structured state → heuristic decision
+
+Heuristic là một nhóm rule đơn giản, đọc được, không bảo đảm tối ưu:
+
 ```python
-# Xây dựng từ điển, tra cứu từ, thêm từ mới
-tu_dien = {"hello": "xin chào", "world": "thế giới"}
+LOCAL_ACTIONS = {"left", "right", "wait"}
+
+
+def choose_action(state: dict[str, int]) -> str:
+    position = state.get("position", 0)
+    goal = state.get("goal", position)
+
+    if position == goal:
+        return "wait"
+    if position < goal:
+        return "right"
+    return "left"
 ```
 
-### Bài 2 — Đếm từ (Trung bình)
-Đếm số lần xuất hiện của mỗi từ trong một câu văn.
+Rule nên có thứ tự ưu tiên rõ và luôn trả action thuộc course-local set.
 
-### Bài 3 — Phân tích lớp học (Trung bình)
-Dùng dict lưu điểm nhiều môn của học sinh, tính thống kê.
+## 9. Cách luyện tập
 
-### Bài 4 — Tìm từ chung (Thử thách)
-Tìm tất cả từ xuất hiện trong cả hai đoạn văn bản dùng set.
+Với mỗi model:
 
----
-
-## 🔑 Những Điều Quan Trọng Nhất Tuần Này
-
-> 1. **dict.get(key, default)** tốt hơn dict[key] khi key có thể không tồn tại
-> 2. **.items()** là cách Pythonic nhất để duyệt dict
-> 3. **set** giải quyết bài toán xóa trùng lặp trong một dòng code
+1. viết ra câu hỏi chương trình cần trả lời;
+2. chọn key và kiểu collection vừa đủ;
+3. thử normal case, boundary case và key tùy chọn bị thiếu;
+4. kiểm tra output, sửa model hoặc behavior nếu cần;
+5. giải thích decision rồi commit evidence.

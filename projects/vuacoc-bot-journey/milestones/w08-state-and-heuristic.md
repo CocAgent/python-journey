@@ -42,3 +42,18 @@ actions hoặc protocol thật của VuaCóc.
 - Có normal state, boundary state và state thiếu dữ liệu theo course contract.
 - Replay cho thấy state trước, action và state sau transition.
 - Commit mô tả năng lực mới so với W07.
+
+Chạy official learning check từ repository root:
+
+```bash
+python weeks/week-08-dicts-sets/checks/check_solutions.py
+```
+
+Sau khi đưa heuristic của bạn vào `student_bot/bot.py`, chạy một local match:
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/cli.py --bot-a student --bot-b wait --replay
+```
+
+Match hoàn tất và action hợp lệ là evidence cho milestone này; không yêu cầu bot
+phải thắng.

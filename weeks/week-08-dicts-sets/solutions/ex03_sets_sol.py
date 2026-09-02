@@ -1,30 +1,42 @@
-"""Lời giải Bài tập 03: Set & Phép toán tập hợp"""
-# TODO 1
-hk1 = {"Toán", "Văn", "Anh", "Lý", "Hóa"}
-hk2 = {"Toán", "Văn", "Anh", "Sinh", "Sử"}
-print(f"Cả 2 kỳ: {hk1 & hk2}")
-print(f"Chỉ kỳ 1: {hk1 - hk2}")
-print(f"Chỉ kỳ 2: {hk2 - hk1}")
-print(f"Tất cả: {hk1 | hk2}")
+"""Official solution 03: sets and membership."""
 
-# TODO 2
-words = ["apple", "banana", "apple", "cherry", "banana", "date"]
-seen = set()
-unique = []
-for w in words:
-    if w not in seen:
-        seen.add(w)
-        unique.append(w)
-print(unique)
 
-# TODO 3
-s1 = set(input("Câu 1: ").lower().split())
-s2 = set(input("Câu 2: ").lower().split())
-print(f"Từ chung: {s1 & s2}")
-print(f"Chỉ câu 1: {s1 - s2}")
-print(f"Chỉ câu 2: {s2 - s1}")
+def phan_tich_mon_hoc(
+    semester_one: set[str], semester_two: set[str]
+) -> dict[str, set[str]]:
+    """Return four useful comparisons between two subject sets."""
+    return {
+        "common": semester_one & semester_two,
+        "only_one": semester_one - semester_two,
+        "only_two": semester_two - semester_one,
+        "all": semester_one | semester_two,
+    }
 
-# TODO 4
-a = input("Chuỗi 1: ").lower().replace(" ", "")
-b = input("Chuỗi 2: ").lower().replace(" ", "")
-print("Anagram!" if sorted(a) == sorted(b) else "Không phải anagram")
+
+def loai_trung_giu_thu_tu(words: list[str]) -> list[str]:
+    """Remove duplicates while preserving first-seen order."""
+    seen: set[str] = set()
+    unique: list[str] = []
+    for word in words:
+        if word not in seen:
+            seen.add(word)
+            unique.append(word)
+    return unique
+
+
+def tu_chung(first: str, second: str) -> set[str]:
+    """Return lowercase words shared by both strings."""
+    first_words = set(first.lower().split())
+    second_words = set(second.lower().split())
+    return first_words & second_words
+
+
+def la_anagram(first: str, second: str) -> bool:
+    """Compare normalized character sequences including duplicate counts."""
+    normalized_first = first.lower().replace(" ", "")
+    normalized_second = second.lower().replace(" ", "")
+    return sorted(normalized_first) == sorted(normalized_second)
+
+
+if __name__ == "__main__":
+    print(loai_trung_giu_thu_tu(["dict", "set", "dict"]))

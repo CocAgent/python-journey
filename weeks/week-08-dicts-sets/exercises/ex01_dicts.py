@@ -1,29 +1,33 @@
-"""
-Bài tập 01: Dictionary cơ bản 📖
-==================================
-Mục tiêu: Tạo, truy cập, sửa đổi dict
-"""
-
-# TODO 1: Tạo dict lưu thông tin sinh viên
-# Keys: "ten", "tuoi", "diem", "lop"
-# In ra từng giá trị bằng cả dict["key"] và dict.get("key")
+"""Exercise 01: đọc, cập nhật và duyệt dictionary."""
 
 
-# TODO 2: Cho danh sách điểm:
-# diem = {"Toán": 8, "Văn": 7, "Anh": 9, "Lý": 6, "Hóa": 8}
-# a) Thêm môn "Sinh": 7
-# b) Sửa điểm "Văn" thành 8
-# c) Xóa môn "Hóa"
-# d) In ra tên và điểm từng môn (dùng items())
-# e) Tính điểm trung bình
-diem = {"Toán": 8, "Văn": 7, "Anh": 9, "Lý": 6, "Hóa": 8}
+def cap_nhat_diem(
+    scores: dict[str, float], subject: str, score: float
+) -> dict[str, float]:
+    """Trả một dict mới có điểm được thêm hoặc cập nhật."""
+    # TODO: copy scores, cập nhật subject rồi return bản mới.
+    return scores.copy()
 
 
-# TODO 3: Dict comprehension
-# Tạo dict bình phương: {1: 1, 2: 4, 3: 9, ..., 10: 100}
-# Lọc chỉ giữ số chẵn: {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+def diem_trung_binh(scores: dict[str, float]) -> float:
+    """Trả điểm trung bình, hoặc 0.0 nếu dict rỗng."""
+    # TODO: dùng values() và xử lý boundary case dict rỗng.
+    return 0.0
 
 
-# TODO 4 (Thử thách): Đếm tần suất ký tự trong chuỗi
-# Nhập chuỗi, đếm số lần xuất hiện mỗi ký tự
-# "hello" → {"h": 1, "e": 1, "l": 2, "o": 1}
+def dem_tan_suat(text: str) -> dict[str, int]:
+    """Đếm tần suất ký tự, bỏ qua khoảng trắng."""
+    # TODO: dùng .get(character, 0) khi cập nhật count.
+    return {}
+
+
+def main() -> None:
+    """Chạy starter với data mẫu."""
+    scores = {"Toán": 8.0, "Văn": 7.0, "Anh": 9.0}
+    print(cap_nhat_diem(scores, "Văn", 8.0))
+    print(diem_trung_binh(scores))
+    print(dem_tan_suat("hello"))
+
+
+if __name__ == "__main__":
+    main()
