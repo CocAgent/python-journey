@@ -1,51 +1,18 @@
-# Tuần 11: Xử lý lỗi (Exceptions) 🛡️
+# Tuần 11 — Exceptions · Tracebacks · Debugging · Defensive coding
 
-> *"Chương trình tốt không phải không có lỗi — mà là xử lý lỗi tốt." — Unknown*
+Tuần này bạn đọc lỗi trước khi sửa, bắt đúng lỗi dự kiến và để programming bug
+tiếp tục hiện rõ.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- đọc exception type, message và vị trí cuối traceback;
+- phân biệt expected bad input với programming bug;
+- dùng `try/except` cho exception cụ thể và `raise` khi contract bị vi phạm;
+- áp dụng `Reproduce → Read traceback → Isolate → Fix → Re-test`;
+- phân biệt strategy loss với software defect trong bot local.
 
-- Hiểu exception là gì và tại sao cần xử lý
-- Dùng `try/except/else/finally` đúng cách
-- Bắt nhiều loại exception khác nhau
-- Tạo custom exception
-- Viết chương trình robust, không crash bất ngờ
+Đi theo [notes](notes.md), [examples](examples/), [exercises](exercises/),
+[hints](hints.md), [machine check](checks/README.md) và
+[mini-project](mini-project/README.md).
 
-## 📖 Kiến thức cần nắm
-
-try/except/else/finally, ValueError, TypeError, FileNotFoundError, raise, custom exception
-
-Chi tiết xem tại [`notes.md`](notes.md)
-
-## ✍️ Bài tập
-
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
-
-1. **`ex01_try_except.py`** — Bắt lỗi cơ bản
-2. **`ex02_multiple.py`** — Nhiều loại exception
-3. **`ex03_custom.py`** — Custom exception
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Robust Calculator 🔒
-
-Máy tính chống crash: xử lý mọi input sai, chia cho 0, overflow
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Python Docs | Errors and Exceptions | [Đọc](https://docs.python.org/3/tutorial/errors.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_try_except.py`
-- [ ] Hoàn thành `ex02_multiple.py`
-- [ ] Hoàn thành `ex03_custom.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+Không dùng `except Exception: pass` để tạo cảm giác “robust”.

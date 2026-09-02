@@ -2,6 +2,7 @@
 
 import json
 
+import pytest
 from baselines.forward_bot import choose_action as forward_bot
 from baselines.wait_bot import choose_action as wait_bot
 from local_arena.arena import run_match
@@ -52,6 +53,14 @@ def test_saved_replay_can_be_loaded_and_inspected(tmp_path) -> None:
 
     assert loaded["format"] == FORMAT_LABEL
     assert len(loaded["turns"]) == len(result.turns)
+
+
+def test_malformed_replay_is_rejected(tmp_path) -> None:
+    source = tmp_path / "malformed.json"
+    source.write_text('{"format": "unknown", "turns": []}', encoding="utf-8")
+
+    with pytest.raises(ValueError, match="Unknown replay format"):
+        load_replay(source)
 
 
 def test_concise_summary_contains_each_required_turn_field() -> None:
