@@ -1,51 +1,32 @@
-# Tuần 05: List & Tuple 📋
+# Tuần 05 — Lists · Tuples · Mutability · Unpacking
 
-> *"Dữ liệu có cấu trúc tốt là nền tảng của mọi chương trình." — Unknown*
+Tuần này bạn chọn list cho collection có thể thay đổi và tuple cho một nhóm giá
+trị cố định, đồng thời quan sát khác biệt giữa alias và copy.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- tạo, đọc, cập nhật, thêm và xóa phần tử list;
+- dùng indexing và slicing;
+- tạo tuple, packing và unpacking;
+- giải thích list mutable và tuple immutable;
+- phân biệt hai tên cùng trỏ một list với shallow copy độc lập.
 
-- Tạo và thao tác list: `append`, `insert`, `remove`, `pop`, `sort`
-- Dùng indexing và slicing trên list
-- Viết list comprehension — cách Pythonic xử lý list
-- Hiểu tuple và khi nào dùng tuple thay list
-- Kết hợp list với `if` để lọc dữ liệu
+Comprehensions được học có hệ thống ở Week 06.
 
-## 📖 Kiến thức cần nắm
+## Learning path
 
-list, append/insert/remove/pop/sort, slicing, list comprehension, tuple, unpacking
+```text
+README → notes → examples → exercises → hints
+       → machine check → collection workflow → evidence
+```
 
-Chi tiết xem tại [`notes.md`](notes.md)
+Đi theo [`notes.md`](notes.md), [`examples/`](examples/),
+[`exercises/`](exercises/), [`hints.md`](hints.md),
+[machine check](checks/README.md) và [mini-project](mini-project/README.md).
 
-## ✍️ Bài tập
+## Evidence
 
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
-
-1. **`ex01_lists.py`** — Tạo và thao tác list
-2. **`ex02_slicing.py`** — Cắt và biến đổi list
-3. **`ex03_tuples.py`** — Tuple và unpacking
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Quản lý Todo List ✅
-
-App todo terminal: thêm/xóa/đánh dấu hoàn thành/hiển thị danh sách
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 9: Lists | [Đọc](https://allendowney.github.io/ThinkPython/chap09.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_lists.py`
-- [ ] Hoàn thành `ex02_slicing.py`
-- [ ] Hoàn thành `ex03_tuples.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- output `Week 05 solution checks: PASS`;
+- một ví dụ alias thay đổi cùng list;
+- một ví dụ copy không thay đổi source;
+- tuple unpacking và một collection workflow đã chạy.
