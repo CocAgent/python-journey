@@ -1,144 +1,187 @@
 # 📊 Python Journey — Bảng theo dõi tiến trình
 
-> Đánh dấu `[x]` mỗi khi hoàn thành một mục. Commit file này lên GitHub để lưu tiến trình!
+> Đánh dấu `[x]` khi hoàn thành. File này là **learner tracker**, không phải nguồn curriculum. Curriculum canonical nằm trong [`SYLLABUS.md`](SYLLABUS.md).
+
+## Learning loop
+
+```text
+Learn → Build → Test → Debug → Improve → Commit → Prove
+```
 
 ---
 
-## 🟢 Giai đoạn 1: Khởi đầu
+# 🟢 Giai đoạn 1 — Khởi đầu
 
-### Tuần 01: Hello Python
-- [ ] Đọc README tuần 1
-- [ ] Hoàn thành `ex01_hello.py` — In lời chào
-- [ ] Hoàn thành `ex02_calculator.py` — Phép tính cơ bản
-- [ ] Hoàn thành `ex03_input.py` — Nhập từ bàn phím
-- [ ] 🚀 Mini-Project: ASCII Art Generator
-- [ ] Commit & push lên GitHub
+## Tuần 01 — Environment · REPL · Terminal · Git/GitHub · Hello Python
 
-### Tuần 02: Biến & Kiểu dữ liệu
-- [ ] Đọc README tuần 2
-- [ ] Hoàn thành `ex01_variables.py` — Khai báo biến
-- [ ] Hoàn thành `ex02_type_conversion.py` — Chuyển đổi kiểu
-- [ ] Hoàn thành `ex03_input_calc.py` — Máy tính nhận input
-- [ ] 🚀 Mini-Project: Thẻ sinh viên tự động
-- [ ] Commit & push lên GitHub
+- [ ] Chuẩn bị Python >= 3.12
+- [ ] Chạy được Python từ terminal
+- [ ] Dùng REPL và chạy file `.py`
+- [ ] Viết chương trình đầu tiên
+- [ ] Đọc được một lỗi cơ bản thay vì bỏ qua
+- [ ] Commit tiến độ lên GitHub
 
-### Tuần 03: Câu lệnh điều kiện
-- [ ] Đọc README tuần 3
-- [ ] Hoàn thành `ex01_if_else.py` — if/elif/else cơ bản
-- [ ] Hoàn thành `ex02_logical.py` — Toán tử logic
-- [ ] Hoàn thành `ex03_nested.py` — Điều kiện lồng nhau
-- [ ] 🚀 Mini-Project: Máy tính điểm GPA
-- [ ] Commit & push lên GitHub
+## Tuần 02 — Variables · Types · Input/Output
 
----
+- [ ] Dùng biến và tên rõ nghĩa
+- [ ] Phân biệt `int`, `float`, `str`, `bool`
+- [ ] Dùng `input()` và type conversion
+- [ ] Xử lý một trường hợp input sai
+- [ ] Hoàn thành bài tập/mini-project tuần
+- [ ] Commit tiến độ
 
-## 🔵 Giai đoạn 2: Dữ liệu & Cấu trúc
+## Tuần 03 — Conditionals · Boolean · Input validation
 
-### Tuần 04: Chuỗi (Strings)
-- [ ] Đọc README tuần 4
-- [ ] Hoàn thành `ex01_indexing.py` — Indexing & slicing
-- [ ] Hoàn thành `ex02_methods.py` — Phương thức chuỗi
-- [ ] Hoàn thành `ex03_fstrings.py` — f-string formatting
-- [ ] 🚀 Mini-Project: Text Analyzer
-- [ ] Commit & push lên GitHub
-
-### Tuần 05: List & Tuple
-- [ ] Đọc README tuần 5
-- [ ] Hoàn thành `ex01_lists.py` — Tạo và thao tác list
-- [ ] Hoàn thành `ex02_slicing.py` — Slicing & comprehension
-- [ ] Hoàn thành `ex03_tuples.py` — Tuple & unpacking
-- [ ] 🚀 Mini-Project: Quản lý Todo List
-- [ ] Commit & push lên GitHub
-
-### Tuần 06: Vòng lặp
-- [ ] Đọc README tuần 6
-- [ ] Hoàn thành `ex01_for_loop.py` — Vòng lặp for
-- [ ] Hoàn thành `ex02_while_loop.py` — Vòng lặp while
-- [ ] Hoàn thành `ex03_patterns.py` — In hoa văn
-- [ ] 🚀 Mini-Project: Pattern Printer
-- [ ] Commit & push lên GitHub
-
-### Tuần 07: Hàm (Functions)
-- [ ] Đọc README tuần 7
-- [ ] Hoàn thành `ex01_basic_func.py` — Hàm cơ bản
-- [ ] Hoàn thành `ex02_params.py` — Tham số nâng cao
-- [ ] Hoàn thành `ex03_scope.py` — Scope & module hóa
-- [ ] 🚀 Mini-Project: Math Toolkit
-- [ ] Commit & push lên GitHub
-
-### Tuần 08: Dictionary & Set
-- [ ] Đọc README tuần 8
-- [ ] Hoàn thành `ex01_dicts.py` — Dictionary cơ bản
-- [ ] Hoàn thành `ex02_nested_dicts.py` — Dict lồng nhau
-- [ ] Hoàn thành `ex03_sets.py` — Set & tập hợp
-- [ ] 🚀 Mini-Project: Word Counter
-- [ ] Commit & push lên GitHub
+- [ ] Dùng `if/elif/else`
+- [ ] Dùng toán tử so sánh và logic
+- [ ] Hiểu truthy/falsy ở mức cơ bản
+- [ ] Validate input trước khi xử lý
+- [ ] Hoàn thành bài tập/mini-project tuần
+- [ ] Commit tiến độ
 
 ---
 
-## 🏆 Tuần 09: Dự án giữa kỳ
-- [ ] Chọn đề tài (Quiz / Expense / Adventure)
-- [ ] Lên kế hoạch và phác thảo cấu trúc
-- [ ] Code chức năng chính
-- [ ] Test và sửa bug
-- [ ] Viết README cho project
-- [ ] Commit & push lên GitHub
+# 🔵 Giai đoạn 2 — Dữ liệu & tư duy chương trình
+
+## Tuần 04 — Strings · Text processing · Regex mini-lab
+
+- [ ] Indexing và slicing
+- [ ] String methods quan trọng
+- [ ] f-string
+- [ ] Biết khi string methods là đủ
+- [ ] Hoàn thành regex mini-lab cơ bản
+- [ ] Hoàn thành Text Analyzer hoặc bài tương đương
+
+## Tuần 05 — Lists · Tuples · Mutability · Unpacking
+
+- [ ] CRUD trên list
+- [ ] Slicing
+- [ ] Tuple và unpacking
+- [ ] Hiểu mutable vs immutable
+- [ ] Dùng comprehension đơn giản khi phù hợp
+- [ ] Hoàn thành mini-project tuần
+
+## Tuần 06 — Loops · enumerate · zip · comprehensions
+
+- [ ] `for`
+- [ ] `while`
+- [ ] `break` / `continue`
+- [ ] `enumerate()`
+- [ ] `zip()`
+- [ ] Hoàn thành bài toán lặp có cấu trúc
+
+## Tuần 07 — Functions · Decomposition · Scope · Type hints
+
+- [ ] `def`, `return`, parameters
+- [ ] Default arguments
+- [ ] Scope
+- [ ] Chia bài toán thành các hàm nhỏ
+- [ ] Dùng type hints cơ bản
+- [ ] Giải thích được vì sao type hints không phải runtime validation
+- [ ] Hoàn thành utility toolkit
+
+## Tuần 08 — Dict · Set · Nested data · Data modeling
+
+- [ ] Dictionary cơ bản
+- [ ] Nested data
+- [ ] Set operations
+- [ ] Chọn cấu trúc dữ liệu phù hợp với bài toán
+- [ ] Mô hình dữ liệu trước khi nghĩ đến class
+- [ ] Hoàn thành mini-project tuần
 
 ---
 
-## 🟣 Giai đoạn 3: Python thực tế
+# 🏆 Tuần 09 — Midterm Project
 
-### Tuần 10: File I/O
-- [ ] Đọc README tuần 10
-- [ ] Hoàn thành `ex01_read_write.py` — Đọc/ghi file
-- [ ] Hoàn thành `ex02_csv_data.py` — Xử lý CSV
-- [ ] Hoàn thành `ex03_json_data.py` — Đọc/ghi JSON
-- [ ] 🚀 Mini-Project: Contact Book
-- [ ] Commit & push lên GitHub
-
-### Tuần 11: Xử lý lỗi
-- [ ] Đọc README tuần 11
-- [ ] Hoàn thành `ex01_try_except.py` — try/except cơ bản
-- [ ] Hoàn thành `ex02_multiple.py` — Nhiều loại exception
-- [ ] Hoàn thành `ex03_custom.py` — Custom exception
-- [ ] 🚀 Mini-Project: Robust Calculator
-- [ ] Commit & push lên GitHub
-
-### Tuần 12: Modules & Packages
-- [ ] Đọc README tuần 12
-- [ ] Hoàn thành `ex01_stdlib.py` — Module chuẩn
-- [ ] Hoàn thành `ex02_custom_module.py` — Tạo module riêng
-- [ ] Hoàn thành `ex03_packages.py` — pip & venv
-- [ ] 🚀 Mini-Project: Password Generator
-- [ ] Commit & push lên GitHub
-
-### Tuần 13: OOP cơ bản
-- [ ] Đọc README tuần 13
-- [ ] Hoàn thành `ex01_classes.py` — Class đầu tiên
-- [ ] Hoàn thành `ex02_methods.py` — Methods & đóng gói
-- [ ] Hoàn thành `ex03_design.py` — Thiết kế class
-- [ ] 🚀 Mini-Project: Hệ thống thư viện
-- [ ] Commit & push lên GitHub
-
-### Tuần 14: OOP nâng cao
-- [ ] Đọc README tuần 14
-- [ ] Hoàn thành `ex01_inheritance.py` — Kế thừa
-- [ ] Hoàn thành `ex02_override.py` — Override & super()
-- [ ] Hoàn thành `ex03_polymorphism.py` — Đa hình
-- [ ] 🚀 Mini-Project: Hệ thống ngân hàng
-- [ ] Commit & push lên GitHub
+- [ ] Chọn vấn đề và phạm vi
+- [ ] Phác thảo dữ liệu
+- [ ] Chia logic thành hàm
+- [ ] Hoàn thành luồng chính
+- [ ] Thử input bất thường
+- [ ] Viết README ngắn
+- [ ] Có Git history hợp lý
+- [ ] Demo và giải thích được code
 
 ---
 
-## 🎓 Tuần 15: Dự án cuối khóa
-- [ ] Chọn đề tài
-- [ ] Thiết kế cấu trúc project
-- [ ] Code chức năng chính
-- [ ] Testing và bug fixes
-- [ ] Viết README chuyên nghiệp
-- [ ] Demo và nộp bài
-- [ ] Commit & push lên GitHub
+# 🟣 Giai đoạn 3 — Viết chương trình đáng tin cậy
+
+## Tuần 10 — File · pathlib · CSV · JSON
+
+- [ ] Đọc/ghi text file
+- [ ] Dùng context manager
+- [ ] Dùng `pathlib`
+- [ ] Đọc/ghi CSV
+- [ ] Đọc/ghi JSON
+- [ ] Xử lý file chưa tồn tại hoặc dữ liệu lỗi hợp lý
+
+## Tuần 11 — Exceptions · Tracebacks · Debugging · Defensive coding
+
+- [ ] `try/except/else/finally`
+- [ ] `raise`
+- [ ] Đọc traceback
+- [ ] Xác định failing line
+- [ ] Tạo minimal failing input
+- [ ] Sửa bug rồi re-test
+- [ ] Không dùng bare `except:`
+
+## Tuần 12 — Testing with pytest
+
+- [ ] Hiểu automated test dùng để làm gì
+- [ ] Viết `assert`
+- [ ] Viết test function với `pytest`
+- [ ] Dùng Arrange → Act → Assert
+- [ ] Test normal case
+- [ ] Test edge case
+- [ ] Test invalid input
+- [ ] Đọc test failure và sửa implementation
+
+## Tuần 13 — Modules · Packages · Dependencies · CLI · API/HTTP
+
+- [ ] Import module chuẩn
+- [ ] Tạo module riêng
+- [ ] Hiểu package ở mức cơ bản
+- [ ] Dùng venv + `python -m pip`
+- [ ] Hiểu vai trò của `pyproject.toml`
+- [ ] Nhận CLI argument cơ bản
+- [ ] Gọi HTTP GET
+- [ ] Đọc status code và JSON response
+- [ ] Xử lý network error/timeout ở mức cơ bản
+
+## Tuần 14 — OOP Essentials · Composition · Basic inheritance
+
+- [ ] Tạo class và object
+- [ ] Dùng `__init__`
+- [ ] Viết instance methods
+- [ ] Dùng `__str__`
+- [ ] Biết khi nào class có lợi
+- [ ] Hiểu composition
+- [ ] Chỉ dùng inheritance khi quan hệ mô hình phù hợp
 
 ---
 
-> 🎉 **Hoàn thành toàn bộ?** Chúc mừng! Tiếp theo: [python-mastery](https://github.com/CocAgent/python-mastery)
+# 🎓 Tuần 15 — Capstone Project
+
+Tham chiếu yêu cầu chính thức: [`FINAL_PROJECT.md`](FINAL_PROJECT.md).
+
+- [ ] Chọn vấn đề và chốt phạm vi
+- [ ] Có ít nhất 4 chức năng có ý nghĩa
+- [ ] Phân rã code hợp lý
+- [ ] Xử lý lỗi và edge cases
+- [ ] Có tests có ý nghĩa
+- [ ] README đầy đủ
+- [ ] Git history rõ
+- [ ] Hoàn thành `AI_USAGE.md`
+- [ ] Demo 5–8 phút
+- [ ] Giải thích được quyết định thiết kế và bug đã sửa
+
+---
+
+## Hoàn thành
+
+- [ ] Tôi có thể xây một chương trình Python nhỏ đáng tin cậy
+- [ ] Tôi có thể test và debug thay vì chỉ đoán
+- [ ] Tôi giải thích được code mình viết
+- [ ] Tôi sẵn sàng chọn bước tiếp theo: Python Mastery / DSA / Data Python
+
+> 🎉 **Hoàn thành toàn bộ?** Chúc mừng — bạn đã hoàn thành Python Journey.

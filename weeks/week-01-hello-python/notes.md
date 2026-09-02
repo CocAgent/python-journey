@@ -57,7 +57,7 @@ So sánh với ngôn ngữ khác khó đọc hơn nhiều.
 
 **Bước 1**: Truy cập [python.org/downloads](https://python.org/downloads)
 
-**Bước 2**: Tải Python 3.11 hoặc mới hơn (phiên bản có chữ "Latest")
+**Bước 2**: Tải Python 3.12 hoặc mới hơn (phiên bản có chữ "Latest")
 
 **Bước 3**: Chạy file cài đặt
 > ⚠️ **Quan trọng**: Tích chọn **"Add Python to PATH"** trước khi nhấn Install!
@@ -66,7 +66,7 @@ So sánh với ngôn ngữ khác khó đọc hơn nhiều.
 ```bash
 # Mở Command Prompt (Windows) hoặc Terminal (Mac/Linux)
 python --version
-# Kết quả mong đợi: Python 3.11.x hoặc cao hơn
+# Kết quả mong đợi: Python 3.12.x hoặc cao hơn
 ```
 
 ### 2.2 Cài VS Code (Editor)

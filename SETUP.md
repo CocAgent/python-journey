@@ -4,14 +4,14 @@
 
 ### Windows
 1. Truy cập [python.org/downloads](https://python.org/downloads)
-2. Tải Python 3.11 hoặc mới hơn
+2. Tải Python 3.12 hoặc mới hơn
 3. **Quan trọng**: Tích chọn **"Add Python to PATH"** khi cài đặt
 4. Xác nhận: mở Command Prompt → `python --version`
 
 ### macOS
 ```bash
 # Dùng Homebrew (khuyến nghị)
-brew install python@3.11
+brew install python@3.12
 
 # Xác nhận
 python3 --version
@@ -20,7 +20,7 @@ python3 --version
 ### Linux (Ubuntu/Debian)
 ```bash
 sudo apt update
-sudo apt install python3.11 python3.11-venv python3-pip
+sudo apt install python3.12 python3.12-venv python3-pip
 python3 --version
 ```
 
@@ -80,6 +80,6 @@ python-journey/
 
 **Permission denied trên macOS/Linux?** → Thêm `sudo` trước lệnh cài đặt
 
-**VS Code không nhận Python?** → Ctrl+Shift+P → "Python: Select Interpreter" → Chọn Python 3.11
+**VS Code không nhận Python?** → Ctrl+Shift+P → "Python: Select Interpreter" → Chọn Python 3.12
 
 **Lỗi encoding khi in tiếng Việt?** → Thêm `# -*- coding: utf-8 -*-` ở đầu file, hoặc dùng `encoding="utf-8"` khi đọc/ghi file
