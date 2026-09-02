@@ -363,6 +363,17 @@ Các yếu tố này chỉ có giá trị khi chúng làm thiết kế tốt hơ
 
 ---
 
+## VuaCóc Bot Journey — Flagship Capstone Track
+
+[VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md) là flagship track
+để người học phát triển cùng một bot từ Week 07 đến Week 15. Đây là một lựa
+chọn nổi bật, không phải đề tài bắt buộc duy nhất.
+
+Track này dùng toàn bộ yêu cầu, checklist và rubric canonical trong file này.
+Nó không tạo rubric riêng hoặc thay đổi tiêu chí capstone.
+
+---
+
 ## 13. Đề tài gợi ý
 
 ### A. Personal Expense Tracker 💰

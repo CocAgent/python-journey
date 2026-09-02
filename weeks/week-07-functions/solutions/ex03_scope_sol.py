@@ -1,47 +1,38 @@
-"""Lời giải Bài tập 03: Scope & Module hóa"""
+"""Official solution for Exercise 03 — local scope."""
 
-# TODO 1
-x = 10
-def thay_doi():
-    x = 20  # local x, không ảnh hưởng global x
-    print(f"Trong hàm: x = {x}")  # 20
 
-thay_doi()
-print(f"Ngoài hàm: x = {x}")  # 10 — global x không đổi
+def them_ghi_chu(danh_sach: list[str], noi_dung: str) -> bool:
+    """Thêm ghi chú hợp lệ và báo thao tác có thành công hay không."""
+    ghi_chu = noi_dung.strip()
+    if not ghi_chu:
+        return False
+    danh_sach.append(ghi_chu)
+    return True
 
-# TODO 2
-def them_ghi_chu(danh_sach, noi_dung):
-    danh_sach.append(noi_dung)
-    print(f"Đã thêm: {noi_dung}")
 
-def xem_ghi_chu(danh_sach):
-    if not danh_sach:
-        print("Chưa có ghi chú nào.")
-        return
-    for i, gc in enumerate(danh_sach, 1):
-        print(f"{i}. {gc}")
+def tim_ghi_chu(danh_sach: list[str], tu_khoa: str) -> list[str]:
+    """Trả về các ghi chú chứa từ khóa, không phân biệt hoa thường."""
+    tu_khoa_thuong = tu_khoa.lower()
+    ket_qua = []
+    for ghi_chu in danh_sach:
+        if tu_khoa_thuong in ghi_chu.lower():
+            ket_qua.append(ghi_chu)
+    return ket_qua
 
-def tim_ghi_chu(danh_sach, tu_khoa):
-    ket_qua = [gc for gc in danh_sach if tu_khoa.lower() in gc.lower()]
-    if ket_qua:
-        for gc in ket_qua:
-            print(f"  - {gc}")
-    else:
-        print("Không tìm thấy.")
 
-def menu():
-    notes = []
-    while True:
-        print("\n1. Thêm  2. Xem  3. Tìm  4. Thoát")
-        choice = input("Chọn: ")
-        if choice == "1":
-            them_ghi_chu(notes, input("Nội dung: "))
-        elif choice == "2":
-            xem_ghi_chu(notes)
-        elif choice == "3":
-            tim_ghi_chu(notes, input("Từ khóa: "))
-        elif choice == "4":
-            break
+def dem_ghi_chu(danh_sach: list[str]) -> int:
+    """Trả về số ghi chú trong list được truyền vào."""
+    return len(danh_sach)
+
+
+def main() -> None:
+    """Chạy ví dụ với state local."""
+    ghi_chu_cua_toi: list[str] = []
+    them_ghi_chu(ghi_chu_cua_toi, "Học return")
+    them_ghi_chu(ghi_chu_cua_toi, "Luyện scope")
+    print(tim_ghi_chu(ghi_chu_cua_toi, "scope"))
+    print(f"Số ghi chú: {dem_ghi_chu(ghi_chu_cua_toi)}")
+
 
 if __name__ == "__main__":
-    menu()
+    main()
