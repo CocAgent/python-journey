@@ -1,55 +1,100 @@
 # Tuần 01 — Environment · REPL · Terminal · Git/GitHub · Hello Python 🐍
 
-> *"Mọi chuyên gia đều từng là người mới bắt đầu." — Helen Hayes*
+> Học công cụ đủ dùng, viết chương trình đầu tiên, kiểm chứng rồi lưu bằng chứng.
 
-## 🎯 Mục tiêu tuần này
+## Mục tiêu tuần
 
-Sau tuần này, bạn sẽ:
+Sau Week 01, bạn có thể:
 
-- Phân biệt vai trò của Python, VS Code, Git, GitHub, notebook cloud và coding agent
-- Chuẩn bị Python >= 3.12, VS Code, terminal và Git
-- Dùng Python REPL và chạy file `.py` từ terminal
-- Viết và chạy chương trình Python đầu tiên
-- Hiểu hàm `print()` và cách hiển thị thông tin
-- Sử dụng Python như máy tính: `+` `-` `*` `/` `//` `%` `**`
-- Viết comment để ghi chú code
-- Tạo commit đầu tiên và dùng GitHub làm bằng chứng học tập
+- phân biệt Python, interpreter/runtime, VS Code, terminal, Git và GitHub;
+- chọn standard path thay vì cài mọi công cụ;
+- kiểm tra Python >= 3.12 và Git từ terminal;
+- dùng Python REPL và chạy file `.py`;
+- sử dụng `print()`, comment và biểu thức số học cơ bản;
+- đọc thông tin lỗi đầu tiên thay vì bỏ qua;
+- tạo commit có ý nghĩa và đưa bằng chứng lên GitHub.
 
-## 📖 Thứ tự học
+## Thứ tự học
 
-1. [`lesson-01-python-ecosystem-and-environment.md`](lesson-01-python-ecosystem-and-environment.md) — bản đồ hệ sinh thái Python, môi trường local/cloud, VS Code, terminal, Git/GitHub và Codex
-2. [`notes.md`](notes.md) — `print()`, comments (`#`), phép tính cơ bản, Python REPL và chương trình đầu tiên
+1. **Environment map** — đọc
+   [`lesson-01-python-ecosystem-and-environment.md`](lesson-01-python-ecosystem-and-environment.md).
+2. **Setup nếu cần** — làm theo [`SETUP.md`](../../SETUP.md) khi Python, VS Code,
+   Python extension, terminal hoặc Git chưa sẵn sàng.
+3. **Python fundamentals** — đọc [`notes.md`](notes.md).
+4. **Exercises** — hoàn thành ba file trong [`exercises/`](exercises/).
+5. **Mini-project** — xây ASCII Art Generator theo
+   [`mini-project/README.md`](mini-project/README.md).
+6. **Commit evidence** — review thay đổi, commit tiến độ và push lên GitHub.
 
-## ✍️ Bài tập
+> Đã có Python 3.12+ và Git? Bạn có thể bỏ qua thao tác cài đặt, nhưng vẫn cần
+> hiểu environment map và chạy các lệnh kiểm tra.
 
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
+## Standard path của Week 01
 
-1. **`ex01_hello.py`** — In lời chào sáng tạo
-2. **`ex02_calculator.py`** — Máy tính đơn giản
-3. **`ex03_input.py`** — Trò chuyện với người dùng
+```text
+Python >= 3.12
+VS Code + Python extension
+Terminal
+Git
+GitHub
+```
 
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
+Jupyter, Colab, Kaggle, Anaconda/Miniconda và Codex là tùy chọn. Không cần cài
+các công cụ này để hoàn thành Week 01.
 
-## 🚀 Mini-Project: ASCII Art Generator
+## Bài tập
 
-Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dùng nhập vào
+Mở thư mục [`exercises/`](exercises/) và hoàn thành theo thứ tự:
 
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
+1. [`ex01_hello.py`](exercises/ex01_hello.py) — in lời chào sáng tạo.
+2. [`ex02_calculator.py`](exercises/ex02_calculator.py) — dùng Python để tính toán.
+3. [`ex03_input.py`](exercises/ex03_input.py) — trò chuyện với người dùng.
 
-## 📚 Đọc thêm
+Mỗi file có TODO hướng dẫn. Hãy tự làm trước khi xem [`solutions/`](solutions/).
 
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 1: Programming as a way of thinking | [Đọc](https://allendowney.github.io/ThinkPython/chap01.html) |
-| Python Crash Course | Chapter 1: Getting Started | [Đọc](https://github.com/ehmatthes/pcc_3e) |
+## Mini-project — ASCII Art Generator
 
-## ✅ Checklist cuối tuần
+Tạo chương trình nhận tên người dùng và in một hình ASCII có ý nghĩa.
 
-- [ ] Hoàn thành Buổi 1: bản đồ hệ sinh thái và kiểm tra môi trường
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_hello.py`
-- [ ] Hoàn thành `ex02_calculator.py`
-- [ ] Hoàn thành `ex03_input.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+Yêu cầu và starter nằm tại
+[`mini-project/README.md`](mini-project/README.md).
+
+## Commit evidence
+
+Trước khi commit:
+
+```bash
+git status
+git diff
+```
+
+Chỉ stage file bạn đã chủ động thay đổi. Dùng message mô tả kết quả, ví dụ:
+
+```bash
+git commit -m "feat: complete Week 01 Python exercises"
+```
+
+Nếu repository đã cấu hình remote, push branch học tập của bạn lên GitHub.
+Không commit secret, virtual environment hoặc file tạm.
+
+## Đọc thêm
+
+| Nguồn | Nội dung |
+|---|---|
+| [Think Python — Chapter 1](https://allendowney.github.io/ThinkPython/chap01.html) | Programming as a way of thinking |
+| [Python Tutorial](https://docs.python.org/3/tutorial/) | Tài liệu Python chính thức |
+| [Git documentation](https://git-scm.com/doc) | Khái niệm và command Git |
+
+## Checklist cuối tuần
+
+- [ ] Hiểu bản đồ công cụ và standard path.
+- [ ] Python 3.12+ và Git chạy được từ terminal.
+- [ ] Xác định được Python executable.
+- [ ] Đọc `notes.md`.
+- [ ] Hoàn thành `ex01_hello.py`.
+- [ ] Hoàn thành `ex02_calculator.py`.
+- [ ] Hoàn thành `ex03_input.py`.
+- [ ] Hoàn thành mini-project.
+- [ ] Review thay đổi trước khi commit.
+- [ ] Commit và push bằng chứng lên GitHub.
+- [ ] Cập nhật [`PROGRESS.md`](../../PROGRESS.md).
