@@ -9,7 +9,10 @@ python-requires = ">=3.12"
 
 [tool.pytest.ini_options]
 addopts = "-ra -q"
-testpaths = ["tests"]
+testpaths = [
+    "tests",
+    "projects/vuacoc-bot-journey/tests",
+]
 
 [tool.ruff]
 target-version = "py312"

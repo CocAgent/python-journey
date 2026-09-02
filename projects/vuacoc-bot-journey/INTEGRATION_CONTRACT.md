@@ -4,11 +4,16 @@
 VUACOC_RUNTIME_CONTRACT = UNVERIFIED
 ARENA_ADAPTER = DESIGN_ONLY
 PRODUCTION_INTEGRATION = NO
+LOCAL_ARENA_IMPLEMENTED = YES
 ```
 
 Tài liệu này là ledger các câu hỏi cần đo từ nguồn chính thức hoặc code/runtime
 thật. `NOT_MEASURED` không phải placeholder implementation và không cho phép
 suy đoán contract.
+
+Local Arena implementation dùng contract riêng trong
+[`local_arena/CONTRACT.md`](local_arena/CONTRACT.md). Sự tồn tại của local arena
+không cung cấp bằng chứng cho bất kỳ production ledger item nào bên dưới.
 
 ## STATE_SCHEMA
 
