@@ -63,3 +63,7 @@ Lưu lại:
 - output khi chạy mini-project;
 - commit chứa bài làm với message có ý nghĩa;
 - một ghi chú ngắn về lỗi bạn đã gặp và cách bạn sửa lỗi.
+
+## VuaCóc Bot Journey
+
+Week 07 milestone: [Function Bot](../../projects/vuacoc-bot-journey/milestones/w07-function-bot.md).
