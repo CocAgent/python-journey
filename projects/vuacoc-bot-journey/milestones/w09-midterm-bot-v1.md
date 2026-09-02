@@ -30,3 +30,20 @@ nghĩa. Nó không phải legal-action contract của VuaCóc.
 - Kết quả với cả ba baseline được ghi riêng, không gộp thành win percentage bắt buộc.
 - Người học giải thích behavior và xác định ít nhất một known weakness.
 - Git history cho thấy các bước build, debug và improve.
+
+Chạy reference evaluator từ repository root:
+
+```bash
+python weeks/week-09-midterm-project/reference/evaluate_baselines.py
+```
+
+Kiểm tra reference artifacts:
+
+```bash
+python weeks/week-09-midterm-project/checks/check_midterm_reference.py
+```
+
+Evidence cho mỗi baseline gồm opponent, result, turn count, một observed
+strength và một observed weakness. Dùng
+[`evidence-template.md`](../../../weeks/week-09-midterm-project/evidence-template.md)
+để ghi commit SHA, bug đã sửa, known weakness và next improvement.
