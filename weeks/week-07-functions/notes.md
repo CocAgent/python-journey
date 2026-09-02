@@ -1,150 +1,171 @@
-# Tuần 07 — Hàm (Functions) — Tái Sử Dụng Code
+# Week 07 — Functions
 
-> **Python Journey** — Khóa học Python cơ bản cho người mới bắt đầu  
-> Thời lượng: 2h lý thuyết + 2h thực hành
+Functions không chỉ là cú pháp `def`. Một function đặt tên cho một công việc,
+nhận input và tạo output để ta có thể hiểu, dùng lại và kiểm tra từng phần của
+chương trình.
 
----
+## 1. Vì sao cần function?
 
-## 🎯 Mục Tiêu Tuần Này
-
-Sau buổi học, bạn có thể:
-- Định nghĩa và gọi hàm với def
-- Hiểu tham số, đối số và return value
-- Dùng tham số mặc định và keyword arguments
-- Hiểu phạm vi biến (scope)
-- Viết docstring chuyên nghiệp
-
----
-
-## 1. Định Nghĩa và Gọi Hàm
+Code lặp lại khó sửa vì một thay đổi phải được thực hiện ở nhiều nơi:
 
 ```python
-# Hàm cơ bản
-def chao(ten):
-    print(f"Xin chào, {ten}!")
-
-chao("An")      # Xin chào, An!
-chao("Bình")    # Xin chào, Bình!
-
-# Hàm có return
-def tinh_dien_tich(dai, rong):
-    return dai * rong
-
-dt = tinh_dien_tich(5, 3)
-print(f"Diện tích: {dt} m²")   # 15 m²
-
-# Hàm không có return trả về None
-def in_khong_tra_ve():
-    print("Hello")
-
-ket_qua = in_khong_tra_ve()
-print(ket_qua)   # None
+print("Xin chào An")
+print("Xin chào Bình")
 ```
 
-## 2. Các Loại Tham Số
+Đưa logic lặp vào function giúp ta chỉ cần định nghĩa hành vi một lần:
 
 ```python
-# Tham số mặc định (phải đặt SAU tham số bắt buộc)
-def gioi_thieu(ten, tuoi=18, thanh_pho="Hà Nội"):
-    print(f"Tôi là {ten}, {tuoi} tuổi, ở {thanh_pho}")
+def greet(name: str) -> str:
+    return f"Xin chào {name}"
 
-gioi_thieu("An")                      # Dùng mặc định
-gioi_thieu("Bình", 25)               # Ghi đè tuổi
-gioi_thieu("Châu", thanh_pho="HCM")  # Keyword argument
 
-# *args — số lượng tham số không xác định
-def tinh_tong(*numbers):
-    return sum(numbers)
-
-print(tinh_tong(1, 2, 3))         # 6
-print(tinh_tong(1, 2, 3, 4, 5))   # 15
-
-# **kwargs — keyword arguments không xác định
-def in_thong_tin(**info):
-    for key, value in info.items():
-        print(f"{key}: {value}")
-
-in_thong_tin(ten="An", tuoi=25, thanh_pho="HCM")
+print(greet("An"))
+print(greet("Bình"))
 ```
 
-## 3. Trả Về Nhiều Giá Trị
+## 2. Định nghĩa và gọi function
 
 ```python
-def thong_ke(numbers):
-    return min(numbers), max(numbers), sum(numbers) / len(numbers)
+def greet(name: str) -> str:
+    """Tạo lời chào cho một người."""
+    return f"Xin chào {name}"
 
-nho, lon, tb = thong_ke([7, 9, 5, 8])
-print(f"Min: {nho}, Max: {lon}, TB: {tb:.1f}")
-# Min: 5, Max: 9, TB: 7.2
+
+message = greet("An")
 ```
 
-## 4. Phạm Vi Biến (Scope)
+- `name` trong phần định nghĩa là **parameter**.
+- `"An"` trong lời gọi là **argument**.
+- Docstring ngắn mô tả contract khi tên hàm chưa nói đủ ý.
+
+## 3. `return` khác `print`
+
+```text
+print  = hiển thị dữ liệu cho người dùng
+return = trả dữ liệu về caller
+```
+
+Một hàm chỉ `print` kết quả khó ghép vào bước tiếp theo:
 
 ```python
-x = 10       # Biến global
-
-def ham():
-    y = 20   # Biến local — chỉ sống trong hàm
-    print(x) # Đọc global được
-    print(y)
-
-ham()
-print(x)     # 10
-# print(y)   # NameError — y không tồn tại ở đây
-
-# Thay đổi global (hạn chế dùng — gây khó debug)
-def tang_x():
-    global x
-    x += 1
-
-tang_x()
-print(x)  # 11
+def show_total(price: float, quantity: int) -> None:
+    print(price * quantity)
 ```
 
-## 5. Docstring — Tài Liệu Hàm
+Một hàm `return` kết quả cho phép caller tiếp tục tính toán hoặc kiểm tra:
 
 ```python
-def tinh_bmi(can_nang: float, chieu_cao: float) -> float:
-    """
-    Tính chỉ số BMI (Body Mass Index).
+def calculate_total(price: float, quantity: int) -> float:
+    return price * quantity
 
-    Args:
-        can_nang: Cân nặng tính bằng kilogram (kg)
-        chieu_cao: Chiều cao tính bằng mét (m)
 
-    Returns:
-        Chỉ số BMI làm tròn 2 chữ số thập phân
-
-    Raises:
-        ValueError: Nếu can_nang hoặc chieu_cao <= 0
-
-    Example:
-        >>> tinh_bmi(70, 1.75)
-        22.86
-    """
-    if can_nang <= 0 or chieu_cao <= 0:
-        raise ValueError("Cân nặng và chiều cao phải > 0")
-    return round(can_nang / chieu_cao ** 2, 2)
+total = calculate_total(25_000, 2)
+print(f"Tổng: {total:,.0f} đ")
 ```
 
-## 6. Bài Tập
+## 4. Parameter, argument và default parameter
 
-### Bài 1 — Bộ công cụ toán (Dễ)
-Viết 5 hàm: tinh_chu_vi_hinh_tron, tinh_dien_tich_hinh_tron, doi_do_c_sang_f, doi_do_f_sang_c, tinh_luy_thua.
+```python
+def build_greeting(name: str, prefix: str = "Xin chào") -> str:
+    return f"{prefix} {name}"
 
-### Bài 2 — Xử lý chuỗi (Trung bình)
-Hàm clean_text: xóa khoảng trắng thừa, viết hoa chữ đầu mỗi từ, đếm từ.
 
-### Bài 3 — Hàm thống kê (Trung bình)
-Hàm thong_ke(numbers) trả về dict với min, max, mean, median.
+print(build_greeting("An"))
+print(build_greeting("Bình", "Chào buổi sáng"))
+```
 
-### Bài 4 — Hàm đệ quy (Thử thách)
-Viết hàm đệ quy: giai_thua(n), fibonacci(n), luy_thua(base, exp).
+Default parameter phù hợp khi có một lựa chọn phổ biến và rõ nghĩa. Đừng thêm
+quá nhiều default chỉ để tránh suy nghĩ về contract của hàm.
 
----
+## 5. Decomposition — chia bài toán thành các bước nhỏ
 
-## 🔑 Những Điều Quan Trọng Nhất Tuần Này
+Một chương trình tính hóa đơn có thể được chia theo luồng:
 
-> 1. **Hàm tốt làm đúng một việc** — nếu dài hơn 20 dòng, cân nhắc tách nhỏ
-> 2. **Luôn viết docstring** — code không có tài liệu là code khó bảo trì
-> 3. **Tránh dùng global** — truyền qua tham số và return là cách Pythonic
+```text
+input → validate → calculate → format → output
+```
+
+```python
+def is_valid_quantity(quantity: int) -> bool:
+    return quantity > 0
+
+
+def calculate_total(price: float, quantity: int) -> float:
+    return price * quantity
+
+
+def format_total(total: float) -> str:
+    return f"{total:,.0f} đ"
+```
+
+Mỗi hàm có một trách nhiệm. Khi kết quả sai, ta có thể kiểm tra từng bước thay
+vì đoán lỗi trong một khối code lớn.
+
+## 6. Scope
+
+Biến được tạo trong hàm có **local scope** và chỉ tồn tại trong hàm đó:
+
+```python
+def add_tax(subtotal: float) -> float:
+    tax = subtotal * 0.1
+    return subtotal + tax
+```
+
+`tax` là biến local. Caller chỉ nhận giá trị được `return`.
+
+Global state có thể khiến kết quả phụ thuộc vào thứ tự chạy và khó debug. Thay
+vì sửa một biến global, hãy truyền dữ liệu qua parameter và nhận kết quả qua
+`return`.
+
+## 7. Type hints cơ bản
+
+```python
+def calculate_total(price: float, quantity: int) -> float:
+    return price * quantity
+```
+
+Type hints giúp người đọc và công cụ hiểu **ý định** của hàm. Chúng cũng đóng
+vai trò như một phần của contract và tài liệu.
+
+> Type hints help humans and tools understand intent. Python does not
+> automatically enforce these annotations at runtime.
+
+Python vẫn là ngôn ngữ dynamic: annotation không tự ép kiểu và không tự
+validate input. Nếu chương trình cần validation, ta phải viết logic validation
+riêng.
+
+## 8. Decision function — cây cầu nhỏ tới agent
+
+Một agent đơn giản có thể được nhìn như một decision function:
+
+```text
+state → choose_action(state) → action
+```
+
+```python
+def choose_action(state: str) -> str:
+    if state == "danger":
+        return "defend"
+    if state == "opportunity":
+        return "advance"
+    return "wait"
+```
+
+```text
+TEACHING MODEL
+NOT VUACOC PRODUCTION CONTRACT
+```
+
+Ví dụ chỉ minh họa input → decision → output. Nó không mô tả state, action,
+API hay runtime chính thức của VuaCóc.
+
+## 9. Cách luyện tập
+
+Với mỗi bài:
+
+1. đọc contract và ví dụ;
+2. viết phiên bản nhỏ nhất chạy được;
+3. thử normal case và boundary case;
+4. đọc lỗi, xác định bước sai và sửa;
+5. chạy lại rồi commit bằng chứng.

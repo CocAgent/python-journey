@@ -1,45 +1,29 @@
-"""Lời giải Bài tập 01: Hàm cơ bản"""
+"""Official solution for Exercise 01 — functions and return values."""
+
 import math
 
-# TODO 1
-def chao(ten):
-    print(f"Xin chào, {ten}!")
 
-chao("An"); chao("Bình"); chao("Châu")
+def chao(ten: str) -> str:
+    """Trả về lời chào cho ``ten``."""
+    return f"Xin chào {ten}!"
 
-# TODO 2
-def tinh_dien_tich_hinh_tron(ban_kinh):
-    return math.pi * ban_kinh ** 2
 
-for r in [5, 7, 10]:
-    print(f"r={r}: S={tinh_dien_tich_hinh_tron(r):.2f}")
+def tinh_dien_tich_hinh_tron(ban_kinh: float) -> float:
+    """Trả về diện tích hình tròn."""
+    return math.pi * ban_kinh**2
 
-# TODO 3
-def la_so_chan(n):
-    return n % 2 == 0
 
-def la_so_nguyen_to(n):
-    if n < 2:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+def la_so_chan(so: int) -> bool:
+    """Trả về True khi ``so`` là số chẵn."""
+    return so % 2 == 0
 
-for n in [2, 3, 4, 7, 10, 13]:
-    print(f"{n}: chẵn={la_so_chan(n)}, nguyên tố={la_so_nguyen_to(n)}")
 
-# TODO 4
-def tinh_thong_ke(numbers):
-    return min(numbers), max(numbers), sum(numbers)/len(numbers), sum(numbers)
+def main() -> None:
+    """Chạy một vài ví dụ có output quan sát được."""
+    print(chao("An"))
+    print(f"Diện tích r=5: {tinh_dien_tich_hinh_tron(5):.2f}")
+    print(f"4 là số chẵn: {la_so_chan(4)}")
 
-mi, ma, tb, tg = tinh_thong_ke([7, 9, 5, 8, 10])
-print(f"Min={mi}, Max={ma}, TB={tb:.1f}, Tổng={tg}")
 
-# TODO 5
-def tinh_giai_thua(n):
-    if n <= 1:
-        return 1
-    return n * tinh_giai_thua(n - 1)
-
-print(f"5! = {tinh_giai_thua(5)}")
+if __name__ == "__main__":
+    main()
