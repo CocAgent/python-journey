@@ -1,31 +1,25 @@
-"""Lời giải Bài tập 02: Chuyển đổi kiểu dữ liệu"""
+"""Official solution: explicit type conversion."""
 
-# TODO 1
-so_text = "42"
-so = int(so_text) + 8
-print(f"{so_text} + 8 = {so}")  # 50
 
-# TODO 2
-pi = 3.14159
-print(f"int({pi}) = {int(pi)}")  # 3
+def parse_whole_number(text: str) -> int:
+    """Convert numeric text to an integer."""
+    return int(text)
 
-# TODO 3
-print(f"bool(0) = {bool(0)}")          # False
-print(f"bool(1) = {bool(1)}")          # True
-print(f'bool("") = {bool("")}')        # False
-print(f'bool("hello") = {bool("hello")}')  # True
-print(f"bool([]) = {bool([])}")        # False
-print(f"bool([1,2]) = {bool([1,2])}")  # True
 
-# TODO 4
-chieu_cao = float(input("Chiều cao (m): "))
-can_nang = float(input("Cân nặng (kg): "))
-bmi = can_nang / (chieu_cao ** 2)
-print(f"BMI = {bmi:.1f}")
+def calculate_bmi(weight: float, height: float) -> float:
+    """Return BMI rounded to one decimal place."""
+    return round(weight / height**2, 1)
 
-# TODO 5
-tong_giay = int(input("Nhập số giây: "))
-gio = tong_giay // 3600
-phut = (tong_giay % 3600) // 60
-giay = tong_giay % 60
-print(f"{tong_giay} giây = {gio} giờ {phut} phút {giay} giây")
+
+def seconds_to_parts(total_seconds: int) -> tuple[int, int, int]:
+    """Split seconds into hours, minutes and seconds."""
+    hours = total_seconds // 3600
+    minutes = total_seconds % 3600 // 60
+    seconds = total_seconds % 60
+    return hours, minutes, seconds
+
+
+if __name__ == "__main__":
+    print(parse_whole_number("42"))
+    print(calculate_bmi(70, 1.75))
+    print(seconds_to_parts(3661))
