@@ -9,7 +9,7 @@
 
 **Learning loop:** `Learn → Build → Test → Debug → Improve → Commit → Prove`
 
-**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md) https://vuacoc.com/
+**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md)🏆 https://vuacoc.com/
 
 ---
 
