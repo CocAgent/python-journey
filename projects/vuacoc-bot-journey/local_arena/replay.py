@@ -29,6 +29,20 @@ def save_replay(result: MatchResult, destination: Path) -> Path:
     return destination
 
 
+def load_replay(source: Path) -> dict[str, object]:
+    """Load and validate a course-local replay JSON object."""
+    data = json.loads(source.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Replay must be a JSON object")
+    if data.get("format") != FORMAT_LABEL:
+        raise ValueError("Unknown replay format")
+    if data.get("production_compatibility") != PRODUCTION_LABEL:
+        raise ValueError("Replay compatibility label is missing")
+    if not isinstance(data.get("turns"), list):
+        raise ValueError("Replay turns must be a list")
+    return data
+
+
 def concise_summary(result: MatchResult) -> str:
     """Return a short human-readable replay summary."""
     lines = [

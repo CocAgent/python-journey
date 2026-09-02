@@ -9,6 +9,7 @@ from local_arena.replay import (
     FORMAT_LABEL,
     PRODUCTION_LABEL,
     concise_summary,
+    load_replay,
     replay_data,
     save_replay,
 )
@@ -41,6 +42,16 @@ def test_replay_can_be_saved_after_match(tmp_path) -> None:
     assert len(saved["turns"]) == len(result.turns)
     assert saved["format"] == FORMAT_LABEL
     assert saved["production_compatibility"] == PRODUCTION_LABEL
+
+
+def test_saved_replay_can_be_loaded_and_inspected(tmp_path) -> None:
+    result = run_match(forward_bot, wait_bot)
+    destination = save_replay(result, tmp_path / "replay.json")
+
+    loaded = load_replay(destination)
+
+    assert loaded["format"] == FORMAT_LABEL
+    assert len(loaded["turns"]) == len(result.turns)
 
 
 def test_concise_summary_contains_each_required_turn_field() -> None:
