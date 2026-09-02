@@ -1,28 +1,31 @@
-"""
-Bài tập 03: Set & Phép toán tập hợp 🔢
-=========================================
-Mục tiêu: Dùng set cho bài toán tập hợp
-"""
-
-# TODO 1: Tạo 2 set: môn học kỳ 1 và kỳ 2
-# hk1 = {"Toán", "Văn", "Anh", "Lý", "Hóa"}
-# hk2 = {"Toán", "Văn", "Anh", "Sinh", "Sử"}
-# Tìm: môn cả 2 kỳ, chỉ kỳ 1, chỉ kỳ 2, tất cả các môn
-hk1 = {"Toán", "Văn", "Anh", "Lý", "Hóa"}
-hk2 = {"Toán", "Văn", "Anh", "Sinh", "Sử"}
+"""Exercise 03: uniqueness, membership và set operations."""
 
 
-# TODO 2: Loại bỏ trùng lặp từ list bằng set
-# words = ["apple", "banana", "apple", "cherry", "banana", "date"]
-# In ra các từ duy nhất (giữ thứ tự)
-words = ["apple", "banana", "apple", "cherry", "banana", "date"]
+def phan_tich_mon_hoc(
+    semester_one: set[str], semester_two: set[str]
+) -> dict[str, set[str]]:
+    """Trả các nhóm common, only_one, only_two và all."""
+    # TODO: dùng intersection, difference và union.
+    return {}
 
 
-# TODO 3: Nhập 2 câu từ người dùng
-# Tìm: từ chung, từ chỉ có ở câu 1, từ chỉ có ở câu 2
+def loai_trung_giu_thu_tu(words: list[str]) -> list[str]:
+    """Loại từ trùng nhưng giữ thứ tự xuất hiện đầu tiên."""
+    # TODO: dùng một set seen và một list result.
+    return []
 
 
-# TODO 4 (Thử thách): Kiểm tra 2 chuỗi có phải anagram không
-# Anagram: cùng bộ ký tự, khác thứ tự
-# "listen" & "silent" → True
-# "hello" & "world" → False
+def tu_chung(first: str, second: str) -> set[str]:
+    """Trả các từ lowercase xuất hiện trong cả hai câu."""
+    # TODO: biến mỗi câu thành set rồi lấy phần giao.
+    return set()
+
+
+def la_anagram(first: str, second: str) -> bool:
+    """Kiểm tra hai chuỗi có cùng ký tự và số lần xuất hiện."""
+    # TODO: normalize khoảng trắng và chữ hoa trước khi so sánh.
+    return False
+
+
+if __name__ == "__main__":
+    print(loai_trung_giu_thu_tu(["dict", "set", "dict"]))

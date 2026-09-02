@@ -1,28 +1,33 @@
-"""Lời giải Bài tập 01: Dictionary cơ bản"""
-# TODO 1
-sv = {"ten": "An", "tuoi": 20, "diem": 8.5, "lop": "12A1"}
-for key in sv:
-    print(f'{key}: {sv[key]} (get: {sv.get(key)})')
+"""Official solution 01: dictionary basics."""
 
-# TODO 2
-diem = {"Toán": 8, "Văn": 7, "Anh": 9, "Lý": 6, "Hóa": 8}
-diem["Sinh"] = 7
-diem["Văn"] = 8
-del diem["Hóa"]
-for mon, d in diem.items():
-    print(f"{mon}: {d}")
-tb = sum(diem.values()) / len(diem)
-print(f"TB: {tb:.1f}")
 
-# TODO 3
-squares = {i: i**2 for i in range(1, 11)}
-evens = {k: v for k, v in squares.items() if k % 2 == 0}
-print(squares)
-print(evens)
+def cap_nhat_diem(
+    scores: dict[str, float], subject: str, score: float
+) -> dict[str, float]:
+    """Return a copied dictionary with one updated score."""
+    updated = scores.copy()
+    updated[subject] = score
+    return updated
 
-# TODO 4
-text = input("Nhập chuỗi: ")
-freq = {}
-for ch in text:
-    freq[ch] = freq.get(ch, 0) + 1
-print(freq)
+
+def diem_trung_binh(scores: dict[str, float]) -> float:
+    """Return the average score, or zero for an empty dictionary."""
+    if not scores:
+        return 0.0
+    return sum(scores.values()) / len(scores)
+
+
+def dem_tan_suat(text: str) -> dict[str, int]:
+    """Count non-space characters without changing their case."""
+    frequency: dict[str, int] = {}
+    for character in text:
+        if not character.isspace():
+            frequency[character] = frequency.get(character, 0) + 1
+    return frequency
+
+
+if __name__ == "__main__":
+    sample = {"Toán": 8.0, "Văn": 7.0}
+    print(cap_nhat_diem(sample, "Văn", 8.0))
+    print(diem_trung_binh(sample))
+    print(dem_tan_suat("hello"))

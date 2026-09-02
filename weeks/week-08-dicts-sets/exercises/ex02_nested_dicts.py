@@ -1,29 +1,32 @@
-"""
-Bài tập 02: Dict lồng nhau 🪆
-================================
-Mục tiêu: Xử lý dữ liệu phức tạp với nested dict
-"""
-
-# TODO 1: Tạo dict lưu thông tin lớp học
-# lop = {
-#     "An":  {"tuoi": 20, "diem": [8, 9, 7]},
-#     "Bình": {"tuoi": 21, "diem": [7, 6, 8]},
-#     "Châu": {"tuoi": 20, "diem": [9, 9, 10]},
-# }
-# a) In điểm trung bình mỗi học sinh
-# b) Tìm học sinh có điểm TB cao nhất
-# c) Thêm học sinh "Dũng" với tuổi 22, điểm [6, 7, 8]
+"""Exercise 02: đọc và biến đổi nested data."""
 
 
-# TODO 2: Quản lý sản phẩm
-# Tạo dict products với ít nhất 3 sản phẩm
-# Mỗi sản phẩm có: ten, gia, so_luong
-# Viết hàm: tong_gia_tri_kho(products) → tổng giá × số lượng
+def diem_trung_binh(student: dict[str, object]) -> float:
+    """Tính trung bình list scores trong một student model."""
+    # TODO: lấy scores, tính average và xử lý list rỗng.
+    return 0.0
 
 
-# TODO 3 (Thử thách): Danh bạ điện thoại
-# Tạo dict danh bạ, viết các hàm:
-# - them_lien_he(ten, sdt)
-# - tim_lien_he(tu_khoa) → tìm theo tên
-# - xoa_lien_he(ten)
-# - hien_thi_tat_ca()
+def hoc_sinh_tot_nhat(classroom: dict[str, dict[str, object]]) -> str:
+    """Trả tên learner có điểm trung bình cao nhất."""
+    # TODO: duyệt items() và tái sử dụng diem_trung_binh().
+    return ""
+
+
+def tong_gia_tri_kho(products: dict[str, dict[str, object]]) -> float:
+    """Tính tổng price nhân quantity của mọi product."""
+    # TODO: đọc từng product từ values().
+    return 0.0
+
+
+def main() -> None:
+    """Chạy starter với một classroom nhỏ."""
+    classroom = {
+        "An": {"age": 20, "scores": [8, 9, 7]},
+        "Bình": {"age": 21, "scores": [7, 6, 8]},
+    }
+    print(hoc_sinh_tot_nhat(classroom))
+
+
+if __name__ == "__main__":
+    main()

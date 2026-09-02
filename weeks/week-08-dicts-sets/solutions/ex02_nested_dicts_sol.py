@@ -1,27 +1,39 @@
-"""Lời giải Bài tập 02: Dict lồng nhau"""
-# TODO 1
-lop = {
-    "An":   {"tuoi": 20, "diem": [8, 9, 7]},
-    "Bình": {"tuoi": 21, "diem": [7, 6, 8]},
-    "Châu": {"tuoi": 20, "diem": [9, 9, 10]},
-}
-best_name, best_avg = "", 0
-for ten, info in lop.items():
-    avg = sum(info["diem"]) / len(info["diem"])
-    print(f"{ten}: TB = {avg:.1f}")
-    if avg > best_avg:
-        best_name, best_avg = ten, avg
-print(f"Cao nhất: {best_name} ({best_avg:.1f})")
+"""Official solution 02: nested dictionaries."""
 
-lop["Dũng"] = {"tuoi": 22, "diem": [6, 7, 8]}
 
-# TODO 2
-products = {
-    "p1": {"ten": "Laptop", "gia": 15000000, "so_luong": 10},
-    "p2": {"ten": "Chuột", "gia": 200000, "so_luong": 50},
-    "p3": {"ten": "Bàn phím", "gia": 500000, "so_luong": 30},
-}
-def tong_gia_tri_kho(products):
-    return sum(p["gia"] * p["so_luong"] for p in products.values())
+def diem_trung_binh(student: dict[str, object]) -> float:
+    """Return the average of a student's numeric score list."""
+    scores = student.get("scores", [])
+    if not isinstance(scores, list) or not scores:
+        return 0.0
+    return sum(scores) / len(scores)
 
-print(f"Tổng giá trị kho: {tong_gia_tri_kho(products):,} VNĐ")
+
+def hoc_sinh_tot_nhat(classroom: dict[str, dict[str, object]]) -> str:
+    """Return the name with the highest average, or empty string."""
+    best_name = ""
+    best_average = -1.0
+    for name, student in classroom.items():
+        average = diem_trung_binh(student)
+        if average > best_average:
+            best_name = name
+            best_average = average
+    return best_name
+
+
+def tong_gia_tri_kho(products: dict[str, dict[str, object]]) -> float:
+    """Return total price multiplied by quantity for all products."""
+    total = 0.0
+    for product in products.values():
+        price = product.get("price", 0)
+        quantity = product.get("quantity", 0)
+        total += float(price) * int(quantity)
+    return total
+
+
+if __name__ == "__main__":
+    classroom = {
+        "An": {"age": 20, "scores": [8, 9, 7]},
+        "Bình": {"age": 21, "scores": [7, 6, 8]},
+    }
+    print(hoc_sinh_tot_nhat(classroom))

@@ -1,51 +1,76 @@
-# Tuần 08: Dictionary & Set 📖
+# Tuần 08 — Dict · Set · Nested Data · Data Modeling
 
-> *"Chọn đúng cấu trúc dữ liệu giải quyết được nửa bài toán." — Unknown*
+Tuần này bạn dùng cấu trúc dữ liệu để mô tả một trạng thái nhỏ, sau đó biến
+trạng thái đó thành một quyết định có thể giải thích. Learning loop tiếp tục:
 
-## 🎯 Mục tiêu tuần này
+```text
+Learn → Build → Test → Debug → Improve → Commit → Prove
+```
 
-Sau tuần này, bạn sẽ:
+## Mục tiêu
 
-- Tạo và thao tác dictionary (dict)
-- Duyệt dict với `keys()`, `values()`, `items()`
-- Dùng set và các phép toán tập hợp
-- Dict lồng nhau — dữ liệu phức tạp
-- Chọn đúng cấu trúc dữ liệu cho bài toán
+Sau Week 08, bạn có thể:
 
-## 📖 Kiến thức cần nắm
+- tạo, đọc và cập nhật giá trị trong `dict`;
+- duyệt `keys()`, `values()` và `items()`;
+- dùng membership để kiểm tra key hoặc phần tử;
+- dùng `set` để loại trùng và thực hiện phép hợp, giao, hiệu đơn giản;
+- đọc dữ liệu lồng nhau gồm `dict` và `list`;
+- chọn cấu trúc dữ liệu phù hợp cho một state nhỏ;
+- phân biệt data model với behavior xử lý data;
+- dùng `.get()` khi key có thể thiếu;
+- biến structured state thành một heuristic decision;
+- mở rộng decision function Week 07 sang course-local bot state.
 
-dict, get(), keys/values/items, set, union/intersection/difference, dict comprehension
+## Prerequisites
 
-Chi tiết xem tại [`notes.md`](notes.md)
+Bạn nên hoàn thành Week 01–07, đặc biệt là loop, function, `return`, scope và
+decision function.
 
-## ✍️ Bài tập
+## Thứ tự học
 
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
+1. Đọc [`notes.md`](notes.md).
+2. Chạy lần lượt năm file trong [`examples/`](examples/).
+3. Làm bốn bài trong [`exercises/`](exercises/).
+4. Mở [`hints.md`](hints.md) theo từng tầng nếu bị kẹt.
+5. Chạy [machine check](checks/README.md) cho official solutions.
+6. Hoàn thành [Decision Dashboard](mini-project/README.md).
+7. Commit kết quả và lưu bằng chứng.
 
-1. **`ex01_dicts.py`** — Tạo và thao tác dictionary
-2. **`ex02_nested_dicts.py`** — Dict lồng nhau
-3. **`ex03_sets.py`** — Set và phép toán tập hợp
+## Learning path
 
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
+```text
+README → notes → examples → exercises → hints
+       → machine checks → mini-project → evidence
+```
 
-## 🚀 Mini-Project: Word Counter 📊
+## Checklist
 
-Đếm tần suất từ trong văn bản, tìm top-N từ, hiển thị biểu đồ thanh ASCII
+- [ ] Tôi đọc và cập nhật được một `dict`.
+- [ ] Tôi duyệt được key, value và cặp key-value.
+- [ ] Tôi dùng `set` cho uniqueness và membership.
+- [ ] Tôi đọc được nested data.
+- [ ] Tôi giải thích được data model mình chọn.
+- [ ] Tôi viết được heuristic từ structured state.
+- [ ] Tôi chạy machine check.
+- [ ] Tôi hoàn thành mini-project.
+- [ ] Tôi commit kết quả.
 
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
+## Evidence
 
-## 📚 Đọc thêm
+Lưu lại:
 
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 10: Dictionaries | [Đọc](https://allendowney.github.io/ThinkPython/chap10.html) |
+- output `Week 08 solution checks: PASS`;
+- output của một normal state và một boundary state;
+- output khi chạy mini-project;
+- commit chứa bài làm;
+- một ghi chú về data-modeling decision và một lỗi bạn đã sửa.
 
-## ✅ Checklist cuối tuần
+## VuaCóc Bot Journey
 
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_dicts.py`
-- [ ] Hoàn thành `ex02_nested_dicts.py`
-- [ ] Hoàn thành `ex03_sets.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+Week 08 milestone: [State + Heuristic](../../projects/vuacoc-bot-journey/milestones/w08-state-and-heuristic.md).
+
+```text
+COURSE TEACHING MODEL
+NOT VUACOC PRODUCTION CONTRACT
+```
