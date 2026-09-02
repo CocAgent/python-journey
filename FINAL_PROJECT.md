@@ -1,661 +1,508 @@
-# FINAL PROJECT — Lập trình Python
+# Dự án cuối khóa — Python Journey 🎓
 
-> **Môn:** Lập trình Python &nbsp;|&nbsp; **GV:** TVS  
-> **Hình thức:** Cá nhân hoặc nhóm 2 người  
-> **Ngôn ngữ:** Python (, compile được bằng `g++ -std=Python`)  
-> **Yêu cầu tối thiểu:** Áp dụng **ít nhất 3** cấu trúc dữ liệu đã học
+> **Capstone Project**  
+> Xây dựng một chương trình Python hoàn chỉnh để chứng minh rằng bạn có thể **phân tích vấn đề, tổ chức code, kiểm thử, xử lý lỗi và cải tiến chương trình**.
 
 ---
 
-## Mục lục
+## 1. Mục tiêu
 
-- [Yêu cầu chung](#yêu-cầu-chung)
-- [Gợi ý đề tài](#gợi-ý-đề-tài)
-- [Hướng dẫn làm từng bước](#hướng-dẫn-làm-từng-bước)
-- [Tiêu chí chấm điểm](#tiêu-chí-chấm-điểm)
-- [Cách nộp bài qua GitHub](#cách-nộp-bài-qua-github)
-- [Prompt AI hỗ trợ](#prompt-ai-hỗ-trợ)
+Dự án cuối khóa không kiểm tra việc ghi nhớ cú pháp.
+
+Bạn cần chứng minh rằng mình có thể thực hiện một vòng phát triển chương trình nhỏ:
+
+```text
+Vấn đề
+   ↓
+Thiết kế
+   ↓
+Viết code
+   ↓
+Chạy thử
+   ↓
+Test
+   ↓
+Debug
+   ↓
+Cải tiến
+   ↓
+Giải thích
+```
+
+Sau dự án, bạn cần có khả năng:
+
+- chia vấn đề thành các phần nhỏ;
+- tổ chức chương trình bằng hàm và module;
+- lựa chọn cấu trúc dữ liệu Python phù hợp;
+- lưu và đọc dữ liệu khi cần;
+- xử lý input sai và các lỗi có thể dự đoán;
+- kiểm thử logic chính;
+- đọc traceback và sửa lỗi;
+- viết code dễ đọc;
+- sử dụng Git/GitHub;
+- giải thích được các quyết định quan trọng trong code.
 
 ---
 
-## Yêu cầu chung
+## 2. Nguyên tắc thiết kế
 
-### Bắt buộc
+Dự án được đánh giá theo **chất lượng giải pháp**, không theo số lượng kỹ thuật được sử dụng.
 
-- [ ] Chạy được bằng `g++ -std=Python` — không lỗi compile
-- [ ] Có **Menu** điều hướng toàn bộ chức năng
-- [ ] Áp dụng **>= 3 cấu trúc dữ liệu**: Linked List / Stack / Queue / BST / Graph / Heap
-- [ ] Tách file rõ ràng: `.h` khai báo — `.py` cài đặt — `main.py` điều khiển
-- [ ] Có **README.md** giải thích ứng dụng và cách chạy
-- [ ] Có **ít nhất 5 test case** kiểm thử các chức năng chính
+Không bắt buộc:
 
-### Không được phép
+- số lượng class;
+- inheritance;
+- sử dụng mọi cấu trúc dữ liệu;
+- thư viện bên ngoài;
+- giao diện đồ họa;
+- số lượng dòng code.
 
-- Submit code do AI viết hoàn toàn mà không hiểu
-- Sao chép code của nhóm khác
-
-> **Lưu ý:** Buổi bảo vệ, giảng viên sẽ hỏi trực tiếp về bất kỳ dòng code nào.  
-> Nếu không giải thích được → điểm bị trừ theo mức độ.
+> **Giải pháp đơn giản, đúng và dễ hiểu tốt hơn giải pháp phức tạp không cần thiết.**
 
 ---
 
-## Gợi ý đề tài
+## 3. Yêu cầu chức năng
 
-Chọn **1 trong 8 đề tài** bên dưới, hoặc tự đề xuất đề tài riêng (cần được duyệt trước).
+Dự án phải giải quyết một vấn đề rõ ràng và có ít nhất **4 chức năng có ý nghĩa**.
+
+Ví dụ với Expense Tracker:
+
+```text
+1. Thêm giao dịch
+2. Xem giao dịch
+3. Tính tổng chi tiêu
+4. Lọc theo danh mục
+5. Lưu dữ liệu
+```
+
+Các thao tác như `Thoát`, `In menu`, `In tiêu đề` không được tính là chức năng nghiệp vụ.
 
 ---
 
-### Đề tài 1 — Hệ thống Quản lý Thư Viện
+## 4. Yêu cầu Python
 
-**Mô tả:** Ứng dụng quản lý sách, độc giả và lịch sử mượn trả.
+### Functions
 
-**Cấu trúc dữ liệu sử dụng:**
+Logic chính phải được chia thành các hàm có trách nhiệm rõ ràng.
 
-| Cấu trúc | Vai trò |
-|----------|---------|
-| BST | Lưu trữ sách, tìm kiếm theo mã/tên — O(log n) |
-| Queue | Danh sách chờ mượn khi sách hết |
-| Stack | Lịch sử thao tác — hỗ trợ Undo |
-| Linked List | Danh sách độc giả |
+```python
+def add_transaction(...):
+    ...
 
-**Chức năng chính:**
+def calculate_total(...):
+    ...
 
-```
-1. Thêm / Xóa / Sửa thông tin sách
-2. Tìm kiếm sách theo mã hoặc tên (BST)
-3. Mượn sách → tự động vào Queue nếu sách đang được mượn
-4. Trả sách → cập nhật trạng thái, thông báo người chờ tiếp theo
-5. Xem lịch sử mượn/trả (Stack — có thể Undo thao tác cuối)
-6. Thống kê: sách được mượn nhiều nhất, độc giả tích cực nhất
-7. Lưu/Đọc dữ liệu từ file .txt
+def load_data(...):
+    ...
+
+def save_data(...):
+    ...
 ```
 
-**Prompt AI để bắt đầu:**
+Không viết toàn bộ chương trình trong một hàm `main()` rất dài.
+
+### Data structures
+
+Sử dụng cấu trúc phù hợp:
+
+```text
+list
+dict
+set
+tuple
 ```
-"Tôi muốn build Hệ thống Quản lý Thư Viện bằng Python .
-Thiết kế struct Book và struct Reader cho tôi.
-Tại sao nên dùng BST cho danh sách sách thay vì mảng?"
+
+Không cần cố sử dụng tất cả.
+
+Bạn cần giải thích được tại sao cấu trúc đã chọn phù hợp với bài toán.
+
+### Files và dữ liệu
+
+Khi ứng dụng cần lưu trạng thái, có thể sử dụng:
+
+```text
+JSON
+CSV
+text file
 ```
+
+Ưu tiên `pathlib` khi làm việc với đường dẫn.
+
+### Exceptions
+
+Xử lý hợp lý các trường hợp như:
+
+- file chưa tồn tại;
+- input sai kiểu;
+- dữ liệu thiếu;
+- giá trị không hợp lệ;
+- JSON lỗi.
+
+Không dùng:
+
+```python
+except:
+    pass
+```
+
+để che lỗi.
+
+### Modules
+
+Khi chương trình lớn dần, nên tách trách nhiệm:
+
+```text
+project/
+├── main.py
+└── src/
+    ├── storage.py
+    ├── models.py
+    └── utils.py
+```
+
+### OOP
+
+Class chỉ nên được dùng khi giúp mô hình hóa bài toán rõ hơn.
+
+OOP và inheritance **không phải yêu cầu bắt buộc**.
+
+Không tạo class chỉ để đủ tiêu chí chấm điểm.
 
 ---
 
-### Đề tài 2 — Mini Google Maps (Tìm đường )
+## 5. Kiểm thử
 
-**Mô tả:** Bản đồ đơn giản dạng text, tìm đường ngắn nhất giữa các địa điểm.
+Dự án phải có ít nhất **5 test có ý nghĩa** cho logic chính.
 
-**Cấu trúc dữ liệu sử dụng:**
+Nên kiểm tra cả:
 
-| Cấu trúc | Vai trò |
-|----------|---------|
-| Graph (Adjacency List) | Lưu mạng lưới đường đi |
-| Priority Queue (Min-Heap) | Dijkstra tìm đường ngắn nhất |
-| Stack | Truy vết và in lại đường đi |
-| Queue | BFS tìm đường ít điểm nhất |
-
-**Chức năng chính:**
-
-```
-1. Tải bản đồ từ file .txt (danh sách cạnh + trọng số)
-2. Hiển thị bản đồ dạng ASCII hoặc danh sách kết nối
-3. Tìm đường ngắn nhất giữa 2 điểm (Dijkstra)
-4. Tìm đường qua ít điểm nhất (BFS)
-5. Thêm / Xóa địa điểm hoặc tuyến đường
-6. Tìm tất cả địa điểm có thể đến từ điểm A (DFS)
-7. Kiểm tra bản đồ có bị ngắt kết nối không
+```text
+normal case
+boundary case
+empty input
+invalid input
+unexpected data
 ```
 
-**Prompt AI để bắt đầu:**
+Ví dụ:
+
+```python
+def test_calculate_total():
+    ...
+
+def test_empty_transactions():
+    ...
+
+def test_negative_amount_rejected():
+    ...
 ```
-"Tôi muốn build Mini Google Maps bằng Python .
-Giải thích tại sao Dijkstra cần Min-Heap (Priority Queue).
-Thiết kế struct Edge và Graph cho tôi."
-```
+
+Mục tiêu của test là phát hiện hành vi sai, không phải chỉ tạo ra kết quả PASS.
 
 ---
 
-### Đề tài 3 — Hệ thống Đặt Vé (Rạp chiếu phim / Xe khách)
+## 6. Debugging
 
-**Mô tả:** Quản lý ghế ngồi, đặt vé, hủy vé và danh sách chờ.
+Trước khi nộp, hãy chủ động thử các tình huống:
 
-**Cấu trúc dữ liệu sử dụng:**
+- file không tồn tại;
+- danh sách rỗng;
+- nhập chữ thay vì số;
+- nhập giá trị không hợp lệ;
+- dữ liệu bị thiếu;
+- dữ liệu JSON sai định dạng.
 
-| Cấu trúc | Vai trò |
-|----------|---------|
-| BST | Lưu danh sách khách hàng, tìm kiếm nhanh |
-| Priority Queue | Danh sách chờ ưu tiên (VIP, người cao tuổi) |
-| Stack | Lịch sử giao dịch — hỗ trợ hủy vé |
-| 2D Array / Linked List | Sơ đồ ghế ngồi |
+Mục tiêu không phải chương trình “không bao giờ lỗi”.
 
-**Chức năng chính:**
-
-```
-1. Hiển thị sơ đồ ghế (trống / đã đặt) dạng ASCII
-2. Đặt vé — tự động vào Priority Queue nếu hết chỗ
-3. Hủy vé — Stack ghi lại, tự động cấp cho người chờ tiếp theo
-4. Tìm kiếm khách hàng theo tên hoặc mã (BST)
-5. Xuất danh sách đã đặt vé
-6. Thống kê: số ghế còn trống, doanh thu
-```
-
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build hệ thống đặt vé rạp chiếu phim bằng Python.
-Tại sao cần Priority Queue cho danh sách chờ?
-Thiết kế struct Seat và struct Customer cho tôi."
-```
+Mục tiêu là bạn **biết tìm nguyên nhân và xử lý những lỗi hợp lý**.
 
 ---
 
-### Đề tài 4 — Trình Quản Lý File (Mini File Explorer)
+## 7. Cấu trúc dự án đề nghị
 
-**Mô tả:** Mô phỏng hệ thống file/thư mục dạng cây thư mục.
-
-**Cấu trúc dữ liệu sử dụng:**
-
-| Cấu trúc | Vai trò |
-|----------|---------|
-| Tree (N-ary) | Cây thư mục — mỗi node là folder/file |
-| Stack | Navigation lịch sử (Back/Forward) |
-| Queue | BFS duyệt toàn bộ thư mục |
-| Linked List | Danh sách file trong một thư mục |
-
-**Chức năng chính:**
-
-```
-1. Hiển thị cây thư mục dạng ASCII (giống lệnh tree)
-2. Tạo / Xóa / Đổi tên folder và file
-3. Di chuyển giữa thư mục (cd, ls, pwd)
-4. Back / Forward bằng Stack lịch sử
-5. Tìm kiếm file theo tên (DFS hoặc BFS)
-6. Tính tổng dung lượng của một thư mục (Post-order traversal)
-7. Lưu/Đọc cấu trúc từ file .txt
+```text
+my-project/
+├── README.md
+├── main.py
+├── src/
+│   ├── __init__.py
+│   ├── models.py
+│   ├── storage.py
+│   └── utils.py
+├── tests/
+│   └── test_core.py
+├── data/
+│   └── .gitkeep
+└── AI_USAGE.md
 ```
 
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build Mini File Explorer bằng Python .
-Giải thích tại sao hệ thống file dùng cấu trúc cây.
-Thiết kế struct FileNode cho folder và file."
-```
+Cấu trúc có thể đơn giản hơn nếu project nhỏ.
+
+Không tạo file hoặc module không cần thiết.
 
 ---
 
-### Đề tài 5 — Ứng Dụng Flashcard Học Ngoại Ngữ
+## 8. README
 
-**Mô tả:** App ôn từ vựng theo thuật toán Spaced Repetition.
+README của project phải trả lời được:
 
-**Cấu trúc dữ liệu sử dụng:**
+1. Project giải quyết vấn đề gì?
+2. Có những chức năng nào?
+3. Chạy như thế nào?
+4. Test như thế nào?
+5. Các file/module chính có vai trò gì?
+6. Những quyết định thiết kế quan trọng là gì?
 
-| Cấu trúc | Vai trò |
-|----------|---------|
-| BST | Lưu từ điển, tìm kiếm theo từ |
-| Priority Queue | Spaced Repetition — từ khó được ôn sớm hơn |
-| Queue | Flashcard queue trong mỗi phiên học |
-| Stack | Undo — quay lại thẻ vừa trả lời |
-
-**Chức năng chính:**
-
-```
-1. Thêm / Xóa / Sửa flashcard (từ + nghĩa + ví dụ)
-2. Phiên học: hiển thị từ, nhập nghĩa, tự chấm đúng/sai
-3. Spaced Repetition: từ trả lời sai → ưu tiên ôn sớm hơn
-4. Tìm kiếm từ trong từ điển (BST)
-5. Thống kê: tỷ lệ đúng, từ hay quên nhất
-6. Lưu tiến độ học ra file
-```
-
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build app học từ vựng Spaced Repetition bằng Python .
-Giải thích thuật toán Spaced Repetition đơn giản nhất.
-Tại sao Priority Queue phù hợp để implement nó?"
-```
-
----
-
-### Đề tài 6 — Trình Soạn Thảo Biểu Thức Toán Học
-
-**Mô tả:** Nhập biểu thức toán học, parse, tính giá trị, vẽ cây.
-
-**Cấu trúc dữ liệu sử dụng:**
-
-| Cấu trúc | Vai trò |
-|----------|---------|
-| Stack | Shunting-Yard: Infix → Postfix |
-| Binary Tree | Expression Tree lưu cấu trúc biểu thức |
-| Queue | Token queue trong quá trình parse |
-
-**Chức năng chính:**
-
-```
-1. Nhập biểu thức dạng Infix: (3 + 4) * 2 - 1
-2. Chuyển sang Postfix (RPN): 3 4 + 2 * 1 -
-3. Tính giá trị biểu thức
-4. Vẽ Expression Tree dạng ASCII
-5. In 3 dạng: Infix / Prefix / Postfix từ cây
-6. Hỗ trợ biến: gán x=5 rồi tính x^2 + 2*x + 1
-7. Lịch sử tính toán (Stack)
-```
-
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build Expression Parser bằng Python .
-Giải thích thuật toán Shunting-Yard bằng ví dụ cụ thể.
-Tại sao dùng 2 Stack để chuyển Infix sang Postfix?"
-```
-
----
-
-### Đề tài 7 — Game Mê Cung (Maze Game)
-
-**Mô tả:** Tạo mê cung ngẫu nhiên, giải bằng thuật toán, cho người chơi tự giải.
-
-**Cấu trúc dữ liệu sử dụng:**
-
-| Cấu trúc | Vai trò |
-|----------|---------|
-| 2D Array / Graph | Lưu cấu trúc mê cung |
-| Stack | DFS giải mê cung + Backtracking |
-| Queue | BFS tìm đường ngắn nhất |
-| Priority Queue | A* nếu có thêm trọng số |
-
-**Chức năng chính:**
-
-```
-1. Tạo mê cung ngẫu nhiên bằng DFS (Recursive Backtracker)
-2. Hiển thị mê cung ASCII trên terminal
-3. Người chơi tự giải bằng phím W/A/S/D
-4. Tự động giải bằng BFS (đường ngắn nhất)
-5. Tự động giải bằng DFS (hiển thị backtrack)
-6. So sánh: BFS vs DFS — đường nào ngắn hơn?
-7. Điều chỉnh độ khó (kích thước mê cung)
-```
-
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build Maze Game bằng Python .
-Giải thích thuật toán Recursive Backtracker để tạo mê cung.
-Tại sao BFS đảm bảo tìm đường ngắn nhất trong maze?"
-```
-
----
-
-### Đề tài 8 — Hệ thống Gợi Ý (Recommendation Engine)
-
-**Mô tả:** Gợi ý sản phẩm / bài hát / phim dựa trên lịch sử người dùng.
-
-**Cấu trúc dữ liệu sử dụng:**
-
-| Cấu trúc | Vai trò |
-|----------|---------|
-| Graph | Mạng quan hệ người dùng — item |
-| BST | Lưu catalog sản phẩm, tìm kiếm nhanh |
-| Priority Queue | Xếp hạng gợi ý theo điểm relevance |
-| Hash Map (unordered_map) | Lưu lịch sử tương tác |
-
-**Chức năng chính:**
-
-```
-1. Thêm người dùng và danh mục sản phẩm/bài hát/phim
-2. Ghi lại hành động: like, rating, xem lại
-3. Gợi ý dựa trên: "người dùng tương tự cũng thích..."
-4. Gợi ý dựa trên: "item tương tự với item bạn đã thích"
-5. Tìm kiếm item trong catalog (BST)
-6. Hiển thị Top-N gợi ý có điểm cao nhất
-7. Xuất báo cáo: item phổ biến nhất, người dùng hoạt động nhất
-```
-
-**Prompt AI để bắt đầu:**
-```
-"Tôi muốn build Recommendation Engine đơn giản bằng Python .
-Giải thích Collaborative Filtering theo cách đơn giản nhất.
-Tại sao Graph phù hợp để lưu quan hệ user-item?"
-```
-
----
-
-## Hướng dẫn làm từng bước
-
-### Tuần 1 — Lên ý tưởng & Thiết kế
-
-**Ngày 1-2: Chọn đề tài và nghiên cứu**
-
-- [ ] Đọc kỹ mô tả đề tài, chọn đề tài phù hợp sở thích
-- [ ] Dùng prompt AI để hiểu sâu hơn về cấu trúc dữ liệu sẽ dùng
-- [ ] Vẽ tay sơ đồ kiến trúc ứng dụng (không cần máy tính)
-
-```
-Prompt — NGHIÊN CỨU:
-"Tôi chọn đề tài [TÊN ĐỀ TÀI]. Trước khi code,
-giải thích tại sao [CẤU TRÚC DỮ LIỆU X] phù hợp
-cho bài toán [MÔ TẢ VẤN ĐỀ].
-So sánh với ít nhất 1 cấu trúc khác không phù hợp bằng."
-```
-
-**Ngày 3-4: Thiết kế kỹ thuật**
-
-- [ ] Xác định tất cả `struct` và `class` cần dùng
-- [ ] Liệt kê tất cả hàm: tên + input + output + mô tả ngắn
-- [ ] Phác thảo Menu và luồng chương trình
-
-```
-Prompt — THIẾT KẾ:
-"Tôi làm [TÊN ĐỀ TÀI] bằng Python .
-Đây là sơ đồ kiến trúc tôi vẽ tay: [mô tả].
-Thiết kế các struct cần dùng và danh sách hàm.
-KHÔNG viết code — chỉ thiết kế interface."
-```
-
-**Ngày 5: Tạo repo GitHub và khung project**
+Ví dụ:
 
 ```bash
-# Tạo repo trên github.com trước, sau đó:
-git clone https://github.com/username/TenProject.git
-cd TenProject
-
-# Tạo cấu trúc thư mục
-mkdir -p src tests docs
-
-# Tạo file khung (rỗng)
-touch src/main.py src/structures.h src/functions.py
-touch README.md tests/test_cases.py
-
-git add .
-git commit -m "chore: khoi tao project structure"
-git push
+python main.py
 ```
 
----
-
-### Tuần 2 — Implement cấu trúc dữ liệu
-
-**Mục tiêu:** Hoàn thành tất cả struct và hàm cơ bản.
-
-**Thứ tự khuyến nghị:**
-
-```
-Ngày 1: Implement struct + KhoiTao + hàm thêm dữ liệu
-Ngày 2: Implement hàm tìm kiếm + xóa
-Ngày 3: Implement hàm duyệt + xuất dữ liệu
-Ngày 4: Kết nối các cấu trúc với nhau
-Ngày 5: Test và debug từng hàm
-```
-
-**Sau mỗi hàm hoàn thành, commit ngay:**
+và khi khóa học đã học pytest:
 
 ```bash
-git add src/functions.py
-git commit -m "feat: implement [TenHam] - [mo ta ngan]"
-# Ví dụ:
-git commit -m "feat: implement BSTInsert - them nut de quy"
-git commit -m "feat: implement Dijkstra - tim duong ngan nhat"
-git push
-```
-
-**Prompt khi bị stuck:**
-
-```
-Prompt — DEBUG:
-"Hàm [TÊN HÀM] của tôi bị lỗi:
-Code: [paste code]
-Lỗi: [mô tả lỗi / error message]
-Tôi nghĩ nguyên nhân là: [phỏng đoán]
-
-Xác nhận đúng/sai và hỏi tôi câu hỏi
-để tự tìm ra cách sửa. Không sửa hộ."
+pytest
 ```
 
 ---
 
-### Tuần 3 — Hoàn thiện & Nâng cao
+## 9. Git và GitHub
 
-**Ngày 1-2: Xây dựng Menu và kết nối chức năng**
+Không nên chỉ có một commit cuối cùng.
 
-- [ ] Implement `Menu()` đầy đủ
-- [ ] Kết nối tất cả chức năng vào `main.py`
-- [ ] Test toàn bộ luồng từ đầu đến cuối
+Ví dụ lịch sử tốt:
 
-**Ngày 3: Thêm tính năng nâng cao**
-
-- [ ] Lưu/Đọc dữ liệu từ file `.txt`
-- [ ] Xử lý input lỗi (người dùng nhập sai)
-- [ ] Thêm màu sắc terminal (tùy chọn)
-
-**Ngày 4: Viết test cases**
-
-```py
-// tests/test_cases.py — Viết ít nhất 5 test
-void test_them_du_lieu()   { /* ... */ }
-void test_tim_kiem()       { /* ... */ }
-void test_xoa_du_lieu()    { /* ... */ }
-void test_edge_cases()     { /* ... */ }  // Input rỗng, trùng lặp
-void test_hieu_nang()      { /* ... */ }  // Test với n = 1000
+```text
+feat: add transaction input
+feat: save transactions to json
+test: cover expense calculations
+fix: reject invalid amount
+docs: complete project readme
 ```
 
-**Ngày 5: Viết README và chuẩn bị bảo vệ**
-
-README của project cần có:
-
-```markdown
-## Tên ứng dụng
-Mô tả ngắn gọn.
-
-## Cấu trúc dữ liệu sử dụng
-- BST: dùng để... vì...
-- Queue: dùng để... vì...
-- ...
-
-## Compile và chạy
-g++ -std=Python src/main.py src/functions.py -o app && ./app
-
-## Chức năng
-1. ...
-2. ...
-
-## Test cases
-Mô tả 5 test case chính.
-
-## Cấu trúc file
-src/
-  main.py       — Menu và điều khiển
-  structures.h   — Khai báo struct + nguyên mẫu hàm
-  functions.py  — Cài đặt chi tiết
-```
+Commit nên phản ánh quá trình xây dựng và sửa chương trình.
 
 ---
 
-### Tuần 4 — Hoàn thiện & Nộp bài
+## 10. Sử dụng AI có trách nhiệm
 
-**Checklist trước khi nộp:**
+AI có thể hỗ trợ:
 
+- giải thích traceback;
+- giải thích khái niệm;
+- gợi ý test case;
+- review code;
+- gợi ý cách chia nhỏ vấn đề;
+- giải thích tại sao một cách làm chưa đúng.
+
+Không chấp nhận:
+
+- sinh toàn bộ project rồi nộp nguyên trạng;
+- nộp code mà người học không hiểu;
+- che giấu lỗi bằng output do AI tạo.
+
+Tạo file:
+
+```text
+AI_USAGE.md
 ```
-Kỹ thuật:
-□ Compile không lỗi, không warning nghiêm trọng
-□ Chạy đúng tất cả chức năng trong menu
-□ Xử lý được input sai (không bị crash)
-□ >= 3 cấu trúc dữ liệu được áp dụng đúng
-□ File được tách đúng: .h / .py / main.py
 
-Tài liệu:
-□ README.md đầy đủ (mô tả + compile + chức năng)
-□ Comment trong code giải thích các đoạn khó
-□ Commit history rõ ràng trên GitHub
+và trả lời ba câu:
 
-Chuẩn bị bảo vệ:
-□ Giải thích được tại sao chọn cấu trúc đó
-□ Giải thích được Big-O của các hàm chính
-□ Demo chạy được trên máy giảng viên
-□ Trả lời được: "Nếu thêm tính năng X thì sửa ở đâu?"
-```
+1. Tôi đã dùng AI cho những việc gì?
+2. Tôi đã tự viết hoặc thay đổi phần nào?
+3. Tôi kiểm chứng câu trả lời của AI bằng cách nào?
 
-**Push bài hoàn chỉnh:**
-
-```bash
-git add .
-git commit -m "feat: complete project - [ten de tai]"
-git tag v1.0
-git push origin main --tags
-```
+Sử dụng AI không bị trừ điểm khi người học **hiểu và kiểm chứng sản phẩm của mình**.
 
 ---
 
-## Tiêu chí chấm điểm
+## 11. Demo và bảo vệ
 
-| Tiêu chí | Điểm | Mô tả |
-|----------|------|-------|
-| **Chức năng hoạt động** | 30đ | Tất cả menu chạy đúng, không crash |
-| **Cấu trúc dữ liệu** | 25đ | Áp dụng đúng >= 3 CTDL, có lý do chọn |
-| **Chất lượng code** | 20đ | Tách file, đặt tên rõ, có comment |
-| **Test cases** | 10đ | >= 5 test, bao gồm edge cases |
-| **README & Git history** | 10đ | README đầy đủ, commit có ý nghĩa |
-| **Bảo vệ** | 5đ | Giải thích được code và lựa chọn thiết kế |
+Thời gian đề nghị: **5–8 phút**.
 
-### Điểm cộng
+Trình bày:
 
-| Tính năng nâng cao | Điểm cộng |
-|--------------------|-----------|
-| Lưu/Đọc file hoạt động tốt | +2đ |
-| Visualization ASCII đẹp | +1đ |
-| Đề xuất đề tài riêng sáng tạo | +2đ |
-| Hỗ trợ nhiều cấu trúc dữ liệu (>= 4) | +2đ |
+```text
+1. Vấn đề
+2. Giải pháp
+3. Demo
+4. Một quyết định thiết kế
+5. Một lỗi đã gặp
+6. Cách kiểm thử
+7. Điều muốn cải tiến
+```
+
+Bạn cần giải thích được code mình nộp.
 
 ---
 
-## Cách nộp bài qua GitHub
+## 12. Rubric — 10 điểm
 
-### Bước 1 — Clone repo môn học về máy
+| Tiêu chí | Điểm |
+|---|:---:|
+| Chức năng và tính đúng đắn | 3.0 |
+| Phân rã và thiết kế chương trình | 1.5 |
+| Xử lý lỗi và edge cases | 1.0 |
+| Testing | 1.5 |
+| Chất lượng code | 1.0 |
+| README và Git | 1.0 |
+| Hiểu và bảo vệ sản phẩm | 1.0 |
+| **Tổng** | **10.0** |
 
-```bash
-git clone https://github.com/CocAgent/DSALab-HIT.git
-cd DSALab-HIT
-```
+Không có điểm riêng cho:
 
-### Bước 2 — Tạo thư mục bài nộp
+- số lượng class;
+- inheritance;
+- số dòng code;
+- số thư viện;
+- số lượng file.
 
-Tạo đúng theo cấu trúc sau trong thư mục `Labs_sv/`:
-
-```
-Labs_sv/
-└── MSSV_HoTen_DeTai/        ← đặt tên theo mẫu này
-    ├── src/
-    │   ├── main.py
-    │   ├── structures.h
-    │   └── functions.py
-    ├── tests/
-    │   └── test_cases.py
-    ├── docs/
-    │   └── bao_cao.pdf       ← tuỳ chọn
-    └── README.md
-```
-
-Ví dụ: `Labs_sv/21IT001_NguyenVanA_ThuVien/`
-
-### Bước 3 — Đẩy bài lên
-
-```bash
-# Tạo thư mục đúng tên
-mkdir -p Labs_sv/MSSV_HoTen_DeTai/src
-mkdir -p Labs_sv/MSSV_HoTen_DeTai/tests
-
-# Copy toàn bộ code vào thư mục vừa tạo, sau đó:
-git add Labs_sv/MSSV_HoTen_DeTai/
-git commit -m "submit: MSSV_HoTen - [Ten De Tai]"
-git push origin main
-```
-
-### Bước 4 — Kiểm tra bài đã lên chưa
-
-Vào link sau để xác nhận thư mục đã xuất hiện:
-
-```
-https://github.com/CocAgent/DSALab-HIT/tree/main/Labs_sv
-```
-
-### Nộp đúng 2 thứ
-
-```
-1. Thư mục trên GitHub: Labs_sv/MSSV_HoTen_DeTai/
-2. Gửi link thư mục cho giảng viên qua email hoặc LMS
-   Ví dụ: https://github.com/CocAgent/DSALab-HIT/tree/main/Labs_sv/21IT001_NguyenVanA_ThuVien
-```
-
-> **Lưu ý:** Nếu chưa có quyền push, tạo **Pull Request** từ fork của bạn về repo chính.
-
-### Convention commit message (bắt buộc)
-
-```bash
-git commit -m "feat: them chuc nang [ten chuc nang]"
-git commit -m "fix: sua loi [mo ta loi]"
-git commit -m "refactor: cai thien [phan code]"
-git commit -m "test: them test case cho [ten ham]"
-git commit -m "docs: cap nhat README"
-```
+Các yếu tố này chỉ có giá trị khi chúng làm thiết kế tốt hơn.
 
 ---
 
-## Prompt AI hỗ trợ
+## 13. Đề tài gợi ý
 
-### Khi bắt đầu đề tài
+### A. Personal Expense Tracker 💰
 
-```
-"Tôi chọn đề tài [TÊN ĐỀ TÀI] cho môn DSA Python.
-Phân tích bài toán này:
-1. Thao tác nào được thực hiện nhiều nhất?
-2. Cấu trúc dữ liệu nào tối ưu nhất cho thao tác đó? Tại sao?
-3. Trade-off nào tôi phải chấp nhận với lựa chọn này?"
-```
+Chức năng:
 
-### Khi thiết kế struct
+- thêm giao dịch;
+- xem giao dịch;
+- phân loại;
+- tính tổng;
+- tìm/lọc;
+- lưu dữ liệu.
 
-```
-"Tôi cần thiết kế struct cho [ĐỐI TƯỢNG] trong ứng dụng [TÊN APP].
-Các thông tin cần lưu: [liệt kê].
-Gợi ý cách thiết kế struct Python tốt nhất.
-Giải thích tại sao dùng pointer thay vì value ở một số trường."
-```
+Edge cases:
 
-### Khi không biết implement thế nào
-
-```
-"Tôi cần implement [CHỨC NĂNG] cho ứng dụng [TÊN APP].
-Tôi đã biết cách dùng [CẤU TRÚC DỮ LIỆU].
-Mô tả thuật toán bằng pseudocode (không code Python).
-Sau đó hỏi tôi có hiểu không trước khi đưa code."
-```
-
-### Khi review code trước khi nộp
-
-```
-"Review toàn bộ project của tôi trước khi nộp:
-[paste code hoặc mô tả]
-
-Kiểm tra:
-1. Có lỗi logic nào không?
-2. Có memory leak không?
-3. Edge cases nào tôi chưa xử lý?
-4. Nếu giảng viên hỏi 'tại sao dùng X thay vì Y',
-   tôi trả lời thế nào?"
-```
-
-### Khi chuẩn bị bảo vệ
-
-```
-"Mock bảo vệ đồ án với tôi. Đề tài: [TÊN ĐỀ TÀI].
-Cấu trúc dữ liệu dùng: [liệt kê].
-
-Đóng vai giảng viên khó tính, hỏi tôi:
-- Tại sao chọn cấu trúc này?
-- Big-O của hàm quan trọng nhất?
-- Nếu n = 1,000,000 thì ứng dụng còn chạy được không?
-- Điểm yếu nhất của thiết kế này là gì?"
-```
+- số tiền không hợp lệ;
+- file chưa tồn tại;
+- JSON lỗi;
+- danh sách rỗng.
 
 ---
 
-> *"Ứng dụng tốt nhất không phải là ứng dụng có nhiều tính năng nhất,  
-> mà là ứng dụng bạn hiểu từng dòng code và tự hào khi demo."*
+### B. Notes / Knowledge Manager 📝
+
+Chức năng:
+
+- tạo ghi chú;
+- xem;
+- sửa;
+- xóa;
+- tìm theo từ khóa;
+- lọc theo tag;
+- lưu dữ liệu.
+
+Edge cases:
+
+- tiêu đề rỗng;
+- ID không tồn tại;
+- tag trùng;
+- file dữ liệu lỗi.
 
 ---
 
-**Chúc các bạn hoàn thành project thành công!**  
-Mọi thắc mắc: liên hệ giảng viên qua email hoặc đặt câu hỏi trên GitHub Issues của repo môn học.
+### C. Quiz / Learning App 🧠
+
+Chức năng:
+
+- đọc câu hỏi;
+- hiển thị câu hỏi;
+- nhận câu trả lời;
+- chấm điểm;
+- báo cáo;
+- lưu lịch sử hoặc high score.
+
+Edge cases:
+
+- file câu hỏi rỗng;
+- answer không hợp lệ;
+- câu hỏi thiếu đáp án;
+- không có câu hỏi.
+
+---
+
+## 14. Dự án tự chọn
+
+Bạn được khuyến khích giải quyết một vấn đề thực tế của chính mình.
+
+Một đề tài phù hợp khi:
+
+- nằm trong phạm vi Python Journey;
+- hoàn thành được trong thời gian quy định;
+- có dữ liệu hoặc trạng thái rõ ràng;
+- có logic có thể kiểm thử;
+- bạn có thể giải thích toàn bộ code.
+
+Không cần chọn dự án lớn.
+
+Capstone nhằm chứng minh **nền tảng Python vững chắc**, không phải xây hệ thống phức tạp nhất.
+
+---
+
+## 15. Checklist trước khi nộp
+
+### Chức năng
+
+- [ ] Chương trình chạy được
+- [ ] Có ít nhất 4 chức năng có ý nghĩa
+- [ ] Luồng chính hoạt động đúng
+
+### Code
+
+- [ ] Logic được chia thành hàm/module hợp lý
+- [ ] Tên biến và hàm rõ ràng
+- [ ] Không có code thừa lớn
+- [ ] Không dùng bare `except:`
+
+### Testing
+
+- [ ] Có ít nhất 5 test có ý nghĩa
+- [ ] Có edge cases
+- [ ] Tests chạy được
+
+### Tài liệu
+
+- [ ] Có README.md
+- [ ] Có hướng dẫn chạy
+- [ ] Có hướng dẫn test
+- [ ] Có AI_USAGE.md
+
+### Git
+
+- [ ] Có lịch sử commit hợp lý
+- [ ] Không commit secret hoặc file tạm
+
+### Hiểu sản phẩm
+
+- [ ] Giải thích được các hàm chính
+- [ ] Giải thích được lựa chọn dữ liệu
+- [ ] Giải thích được một bug đã sửa
+- [ ] Giải thích được các test quan trọng
+
+---
+
+# Hoàn thành Python Journey
+
+Mục tiêu cuối cùng là chuyển từ:
+
+> “Tôi đã học cú pháp Python.”
+
+sang:
+
+> **“Tôi có thể dùng Python để giải quyết một vấn đề, kiểm chứng chương trình và giải thích tại sao giải pháp hoạt động.”**
+
+Đây là nền tảng để tiếp tục với:
+
+- **Python Mastery**
+- **DSA with Python**
+- **Data Python**
+- các hướng ứng dụng Python khác.
+
+---
+
+> **Build it. Test it. Understand it. Improve it.**
