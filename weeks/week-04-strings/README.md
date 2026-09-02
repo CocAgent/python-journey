@@ -1,51 +1,35 @@
-# Tuần 04: Chuỗi (Strings) 🔤
+# Tuần 04 — Strings · Text Processing · Regex Mini-lab
 
-> *"Trong lập trình, xử lý chuỗi là kỹ năng bạn dùng mỗi ngày." — Unknown*
+Tuần này bạn chuẩn hóa và phân tích text bằng string methods, rồi dùng regex
+chỉ khi text có pattern cần mô tả.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- indexing, slicing và f-string;
+- `strip`, `split`, `join`, `replace`, `find`, `count`;
+- text normalization;
+- phân biệt khi string methods là đủ và khi regex hữu ích;
+- dùng raw string, `re.search`, `re.findall`, `re.fullmatch` với pattern nhỏ.
 
-- Truy cập từng ký tự với indexing (chỉ mục dương & âm)
-- Cắt chuỗi con với slicing `[start:end:step]`
-- Dùng thành thạo ≥10 phương thức chuỗi quan trọng
-- Định dạng chuỗi đẹp với f-string
-- Kiểm tra và thao tác chuỗi từ `input()`
+## Learning path
 
-## 📖 Kiến thức cần nắm
+```text
+README → notes → examples → exercises → hints
+       → regex mini-lab → machine check → Text Analyzer → evidence
+```
 
-Indexing, slicing, upper/lower/strip/split/join/replace/find, f-string, in
+Đọc [`notes.md`](notes.md), chạy [`examples/`](examples/), hoàn thành bốn
+[`exercises/`](exercises/), xem [`hints.md`](hints.md), chạy
+[machine check](checks/README.md), rồi làm [Text Analyzer](mini-project/README.md).
 
-Chi tiết xem tại [`notes.md`](notes.md)
+## Boundary
 
-## ✍️ Bài tập
+Pattern email, phone hoặc code trong tuần này là deliberately simplified
+teaching pattern, không phải universal validation standard.
 
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
+## Evidence
 
-1. **`ex01_indexing.py`** — Indexing và slicing chuỗi
-2. **`ex02_methods.py`** — Phương thức chuỗi thông dụng
-3. **`ex03_fstrings.py`** — Định dạng với f-string
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Text Analyzer 📝
-
-Phân tích văn bản: đếm từ, ký tự, câu, tìm từ xuất hiện nhiều nhất
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 8: Strings | [Đọc](https://allendowney.github.io/ThinkPython/chap08.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_indexing.py`
-- [ ] Hoàn thành `ex02_methods.py`
-- [ ] Hoàn thành `ex03_fstrings.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- output `Week 04 solution checks: PASS`;
+- một case string methods đủ dùng;
+- một case regex giúp tìm nhiều pattern;
+- normal, no-match và invalid-format cases.

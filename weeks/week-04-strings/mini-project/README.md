@@ -1,18 +1,15 @@
-# Text Analyzer 📝
+# Mini-project — Text Analyzer
 
-Phân tích văn bản chi tiết.
+Chuẩn hóa một đoạn text và tạo thống kê có thể nhìn thấy.
 
 ## Yêu cầu
-1. Nhập đoạn văn bản (hoặc đọc từ file)
-2. Đếm: số ký tự, số từ, số câu
-3. Tìm từ dài nhất, từ ngắn nhất
-4. Đếm tần suất mỗi từ → in top 5 từ xuất hiện nhiều nhất
-5. In thống kê tổng hợp
 
-## Gợi ý
-- Dùng `split()` để tách từ
-- Dùng `lower()` trước khi đếm
-- Dùng dict để đếm tần suất
+- dùng `strip`, `lower`, `split`, `join`;
+- đếm ký tự, từ và số lần một keyword xuất hiện;
+- dùng regex để trích simple course codes như `PJ-101`;
+- xử lý text rỗng;
+- không đọc file ở Week 04.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 04"`
+```bash
+python weeks/week-04-strings/mini-project/starter.py
+```
