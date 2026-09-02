@@ -1,4 +1,4 @@
-# Tuần 01: Hello Python 🐍
+# Tuần 01 — Environment · REPL · Terminal · Git/GitHub · Hello Python 🐍
 
 > *"Mọi chuyên gia đều từng là người mới bắt đầu." — Helen Hayes*
 
@@ -6,17 +6,19 @@
 
 Sau tuần này, bạn sẽ:
 
-- Cài đặt Python và VS Code trên máy tính
+- Phân biệt vai trò của Python, VS Code, Git, GitHub, notebook cloud và coding agent
+- Chuẩn bị Python >= 3.12, VS Code, terminal và Git
+- Dùng Python REPL và chạy file `.py` từ terminal
 - Viết và chạy chương trình Python đầu tiên
 - Hiểu hàm `print()` và cách hiển thị thông tin
 - Sử dụng Python như máy tính: `+` `-` `*` `/` `//` `%` `**`
 - Viết comment để ghi chú code
+- Tạo commit đầu tiên và dùng GitHub làm bằng chứng học tập
 
-## 📖 Kiến thức cần nắm
+## 📖 Thứ tự học
 
-print(), comments (#), phép tính cơ bản, Python REPL
-
-Chi tiết xem tại [`notes.md`](notes.md)
+1. [`lesson-01-python-ecosystem-and-environment.md`](lesson-01-python-ecosystem-and-environment.md) — bản đồ hệ sinh thái Python, môi trường local/cloud, VS Code, terminal, Git/GitHub và Codex
+2. [`notes.md`](notes.md) — `print()`, comments (`#`), phép tính cơ bản, Python REPL và chương trình đầu tiên
 
 ## ✍️ Bài tập
 
@@ -43,6 +45,7 @@ Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
 
 ## ✅ Checklist cuối tuần
 
+- [ ] Hoàn thành Buổi 1: bản đồ hệ sinh thái và kiểm tra môi trường
 - [ ] Đọc notes.md
 - [ ] Hoàn thành `ex01_hello.py`
 - [ ] Hoàn thành `ex02_calculator.py`
