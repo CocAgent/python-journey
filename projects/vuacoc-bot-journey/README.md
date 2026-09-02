@@ -27,6 +27,25 @@ Learning loop xuyên suốt:
 Learn → Build → Test → Debug → Improve → Commit → Prove
 ```
 
+## Course-local Line Arena
+
+Implementation local biến hành trình thành evidence chạy được:
+
+```text
+Student Bot → Local Arena → Baseline Bots → Match → Replay → Evaluation
+```
+
+- [Local Arena](local_arena/README.md) sở hữu match loop và teaching contract.
+- [Baseline bots](baselines/README.md) cung cấp đúng ba policy minh bạch.
+- [Student Bot](student_bot/README.md) là starter xuyên khóa.
+
+```text
+COURSE_LOCAL_ARENA = YES
+VUACOC_PRODUCTION_COMPATIBILITY = NOT_CLAIMED
+NETWORK_CALLS = 0
+SECRETS = 0
+```
+
 ## Hành trình W07–W15
 
 | Week | Milestone | Điều bot học thêm |

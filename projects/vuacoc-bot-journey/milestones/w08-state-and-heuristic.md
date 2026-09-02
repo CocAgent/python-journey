@@ -6,8 +6,8 @@
 
 ## Milestone
 
-Nâng state chuỗi của W07 thành dữ liệu có cấu trúc. Bot đọc một vài field cần
-thiết và dùng heuristic ngắn, có thứ tự ưu tiên rõ.
+Nâng safe default của W07 thành reasoning từ structured course-local state. Bot
+đọc một vài field cần thiết và dùng heuristic ngắn, có thứ tự ưu tiên rõ.
 
 ```text
 TEACHING MODEL — NOT VUACOC PRODUCTION CONTRACT
@@ -15,9 +15,13 @@ TEACHING MODEL — NOT VUACOC PRODUCTION CONTRACT
 
 ```python
 teaching_state = {
-    "status": "danger",
-    "energy": 3,
-    "available_actions": {"defend", "wait"},
+    "position": 1,
+    "opponent_position": 3,
+    "goal": 4,
+    "turn": 2,
+    "max_turns": 6,
+    "min_position": 0,
+    "max_position": 4,
 }
 ```
 
@@ -27,7 +31,7 @@ actions hoặc protocol thật của VuaCóc.
 ## Learning moves
 
 1. Chọn field thật sự cần cho quyết định.
-2. Dùng `set` để biểu diễn teaching actions không trùng.
+2. Dùng `set` để biểu diễn local actions không trùng khi cần validate.
 3. Viết heuristic từ đơn giản đến cụ thể.
 4. Trả action thuộc teaching action set.
 
@@ -36,4 +40,5 @@ actions hoặc protocol thật của VuaCóc.
 - State có cấu trúc và được giải thích.
 - Heuristic có rules đọc được, không phụ thuộc thứ tự dictionary.
 - Có normal state, boundary state và state thiếu dữ liệu theo course contract.
+- Replay cho thấy state trước, action và state sau transition.
 - Commit mô tả năng lực mới so với W07.

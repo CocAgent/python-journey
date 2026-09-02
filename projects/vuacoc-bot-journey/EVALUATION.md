@@ -4,6 +4,25 @@ Evaluation giúp người học trả lời không chỉ “bot thắng bao nhi�
 có đúng, đáng tin cậy và giải thích được không?”. Mọi tiêu chí ở đây áp dụng
 cho course/local environment.
 
+## Course-local metrics
+
+Các metric sau được báo riêng, không gộp thành một aggregate score:
+
+```text
+MATCH_COMPLETION_RATE
+LEGAL_ACTION_RATE
+BASELINE_RESULTS
+KNOWN_FAILURE_COUNT
+```
+
+- `MATCH_COMPLETION_RATE`: tỷ lệ match kết thúc bằng result rõ ràng.
+- `LEGAL_ACTION_RATE`: tỷ lệ action thuộc local set `left/right/wait`.
+- `BASELINE_RESULTS`: kết quả riêng khi gặp WaitBot, ForwardBot và CautiousBot.
+- `KNOWN_FAILURE_COUNT`: số weakness hoặc failure còn được ghi nhận.
+
+Đây là course-local evidence. Không metric nào là Elo, Glicko hoặc production
+rating của VuaCóc.
+
 ## 1. Correctness
 
 - Bot trả action thuộc teaching action set.
