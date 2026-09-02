@@ -1,287 +1,344 @@
-# Tuần 01 — Cài Đặt Môi Trường & Chương Trình Đầu Tiên
+# Tuần 01 — Python fundamentals và chương trình đầu tiên
 
-> **Python Journey** — Khóa học Python cơ bản cho người mới bắt đầu  
-> Thời lượng: 2h lý thuyết + 2h thực hành
+> **Python Journey** · Python >= 3.12 · Học qua chạy, quan sát và sửa lỗi
 
----
+Phần cài đặt thuộc [`SETUP.md`](../../SETUP.md). Bản đồ công cụ thuộc
+[`lesson-01-python-ecosystem-and-environment.md`](lesson-01-python-ecosystem-and-environment.md).
 
-## 🎯 Mục Tiêu Tuần Này
+## Mục tiêu
 
-Sau buổi học, bạn có thể:
-- Cài đặt Python và VS Code trên máy tính của mình
-- Giải thích Python là gì và tại sao nên học
-- Viết và chạy chương trình Python đầu tiên
-- Hiểu sự khác biệt giữa `print()` và biểu thức
-- Dùng Python như một chiếc máy tính thông minh
+Sau phần fundamentals, bạn có thể:
 
----
+- dùng Python REPL để thử biểu thức;
+- tạo và chạy file `.py` từ terminal;
+- hiển thị dữ liệu bằng `print()`;
+- dùng các phép toán số học cơ bản;
+- viết comment có ích;
+- phân biệt code, output và traceback;
+- đọc ba lỗi đầu tiên: `SyntaxError`, `NameError` và `IndentationError`.
 
-## 1. Python Là Gì? Tại Sao Học?
+## 1. Code Python được chạy như thế nào?
 
-### 1.1 Python Là Ngôn Ngữ Lập Trình
-
-Hãy tưởng tượng bạn muốn ra lệnh cho máy tính làm gì đó — tính toán, sắp xếp dữ liệu, gửi email tự động. Máy tính không hiểu tiếng Việt hay tiếng Anh, nhưng nó hiểu **ngôn ngữ lập trình**. Python là một trong những ngôn ngữ đó.
-
-**Điều đặc biệt của Python**: Cú pháp gần với tiếng Anh tự nhiên, dễ đọc, dễ học hơn hầu hết các ngôn ngữ khác.
+File Python là source code dạng văn bản:
 
 ```python
-# Ví dụ: Python đọc như tiếng Anh
-if tuoi >= 18:
-    print("Bạn đã đủ tuổi lái xe")
+print("Hello, Python Journey!")
 ```
 
-So sánh với ngôn ngữ khác khó đọc hơn nhiều.
+Interpreter đọc file và thực hiện từng lệnh:
 
-### 1.2 Python Dùng Để Làm Gì?
-
-| Lĩnh vực | Ví dụ thực tế |
-|---------|-------------|
-| **Data Science / AI** | ChatGPT, các mô hình AI đều dùng Python |
-| **Web Development** | Instagram, Pinterest xây bằng Django (Python) |
-| **Automation** | Tự động điền form, scrape dữ liệu, gửi báo cáo |
-| **Khoa học** | NASA, CERN dùng Python phân tích dữ liệu |
-| **Tài chính** | Phân tích cổ phiếu, trading bot |
-
-### 1.3 Tại Sao Python Phổ Biến Nhất?
-
-- **Dễ học**: Người mới có thể viết code chạy được trong 30 phút
-- **Cộng đồng lớn**: Hàng triệu người, hàng triệu thư viện có sẵn
-- **Lương cao**: Developer Python thuộc nhóm lương cao nhất
-- **Đa năng**: Một ngôn ngữ, muôn vàn ứng dụng
-
----
-
-## 2. Cài Đặt Môi Trường
-
-### 2.1 Cài Python
-
-**Bước 1**: Truy cập [python.org/downloads](https://python.org/downloads)
-
-**Bước 2**: Tải Python 3.12 hoặc mới hơn (phiên bản có chữ "Latest")
-
-**Bước 3**: Chạy file cài đặt
-> ⚠️ **Quan trọng**: Tích chọn **"Add Python to PATH"** trước khi nhấn Install!
-
-**Bước 4**: Xác nhận cài đặt thành công:
-```bash
-# Mở Command Prompt (Windows) hoặc Terminal (Mac/Linux)
-python --version
-# Kết quả mong đợi: Python 3.12.x hoặc cao hơn
+```text
+source code
+    ↓
+Python interpreter
+    ↓
+output hoặc traceback
 ```
 
-### 2.2 Cài VS Code (Editor)
+Trong Week 01, bạn làm việc theo vòng ngắn:
 
-**VS Code** (Visual Studio Code) là phần mềm soạn thảo code — như Microsoft Word nhưng dành cho lập trình viên.
-
-1. Tải tại [code.visualstudio.com](https://code.visualstudio.com)
-2. Cài đặt bình thường (Next → Next → Finish)
-3. Mở VS Code → Extensions (biểu tượng ô vuông bên trái) → Tìm "Python" → Install
-
-### 2.3 Cấu Trúc Thư Mục Dự Án
-
-```
-python-journey/           ← Thư mục gốc của bạn
-├── week-01/
-│   ├── hello.py          ← File Python đầu tiên
-│   └── calculator.py
-├── week-02/
-└── ...
+```text
+Viết → Chạy → Quan sát → Sửa → Chạy lại
 ```
 
-Tạo thư mục này trên máy tính của bạn ngay bây giờ!
+## 2. Python REPL
 
----
+REPL là môi trường tương tác:
 
-## 3. Chương Trình Python Đầu Tiên
-
-### 3.1 Tạo File và Chạy
-
-1. Mở VS Code
-2. File → New File → Lưu với tên `hello.py`
-3. Gõ đoạn code sau:
-
-```python
-# Đây là comment — Python bỏ qua dòng này
-# Comment giúp giải thích code cho người đọc
-
-print("Xin chào thế giới!")
-print("Tôi đang học Python!")
-print("Tuần 1 — bắt đầu hành trình!")
+```text
+Read → Eval → Print → Loop
 ```
 
-4. Nhấn **Ctrl+F5** (hoặc nút ▶ góc trên phải) để chạy
-
-**Kết quả:**
-```
-Xin chào thế giới!
-Tôi đang học Python!
-Tuần 1 — bắt đầu hành trình!
-```
-
-🎉 **Chúc mừng!** Bạn vừa viết chương trình Python đầu tiên!
-
-### 3.2 Hàm `print()` — In Ra Màn Hình
-
-`print()` là lệnh yêu cầu Python hiển thị nội dung ra màn hình.
-
-```python
-# In văn bản (dùng dấu nháy đơn hoặc kép đều được)
-print("Xin chào!")
-print('Xin chào!')
-
-# In số
-print(42)
-print(3.14)
-
-# In nhiều thứ cùng lúc (ngăn cách bằng dấu phẩy)
-print("Tuổi của tôi:", 25)
-print("Pi xấp xỉ:", 3.14)
-
-# In dòng trống
-print()
-
-# Thay đổi ký tự ngăn cách (mặc định là dấu cách)
-print("Python", "rất", "thú vị", sep="-")
-# Kết quả: Python-rất-thú vị
-
-# Không xuống dòng sau khi in
-print("Dòng 1 ", end="")
-print("tiếp tục ở đây")
-# Kết quả: Dòng 1 tiếp tục ở đây
-```
-
-### 3.3 Python Như Máy Tính
-
-Bạn có thể dùng Python trực tiếp để tính toán — không cần viết file:
+Mở REPL bằng command Python hoạt động trên máy:
 
 ```bash
-# Mở Python Interactive Shell
 python
 ```
 
+Trên Windows có thể là:
+
+```powershell
+py
+```
+
+Trên macOS/Linux thường là:
+
+```bash
+python3
+```
+
+Dấu nhắc `>>>` cho biết Python đang chờ một biểu thức hoặc lệnh:
+
 ```python
-# Trong Python shell (dấu >>> là dấu nhắc lệnh)
 >>> 2 + 3
 5
->>> 10 - 4
-6
->>> 3 * 7
-21
->>> 20 / 4
-5.0
->>> 2 ** 10       # 2 mũ 10
-1024
->>> 17 % 5        # Phần dư của 17 ÷ 5
-2
->>> 17 // 5       # Chia lấy phần nguyên
-3
+>>> 10 * 4
+40
+>>> "Py" + "thon"
+'Python'
 ```
 
-**Thứ tự ưu tiên phép tính** (giống toán học):
+Thoát REPL:
+
 ```python
->>> 2 + 3 * 4       # Nhân trước, cộng sau
-14
->>> (2 + 3) * 4     # Ngoặc tính trước
-20
+>>> exit()
 ```
 
----
+### Khi nào dùng REPL?
 
-## 4. Comments — Ghi Chú Trong Code
+Dùng REPL để:
 
-Comments là những dòng Python bỏ qua khi chạy. Dùng để:
-- Giải thích code
-- Ghi nhớ ý tưởng
-- Tắt tạm thời một đoạn code
+- thử một biểu thức nhỏ;
+- kiểm tra kết quả phép tính;
+- quan sát kiểu hoặc giá trị;
+- khám phá nhanh một hàm.
+
+Dùng file `.py` khi muốn lưu, chạy lại, review và commit chương trình.
+
+## 3. Chương trình đầu tiên
+
+Tạo file `hello.py`:
 
 ```python
-# Đây là comment một dòng
-
-# Tính diện tích hình chữ nhật
-# Công thức: chiều dài × chiều rộng
-print(5 * 3)  # In ra: 15
-
-"""
-Đây là comment nhiều dòng
-Thường dùng để mô tả
-chức năng của một đoạn code lớn
-"""
-print("Code vẫn chạy bình thường")
+print("Xin chào thế giới!")
+print("Tôi đang học Python.")
+print("Week 01 — bắt đầu hành trình!")
 ```
 
-> 💡 **Thói quen tốt**: Viết comment TRƯỚC khi viết code — giải thích bạn định làm gì, rồi mới code. Điều này giúp tư duy rõ ràng hơn.
+Chạy từ terminal:
 
----
+```bash
+python hello.py
+```
 
-## 5. Lỗi Thường Gặp Tuần Này
+Dùng `py hello.py` trên Windows hoặc `python3 hello.py` trên macOS/Linux nếu
+đó là command Python đã được bạn xác nhận trong setup.
 
-### Lỗi 1: SyntaxError — Sai cú pháp
+Kết quả:
+
+```text
+Xin chào thế giới!
+Tôi đang học Python.
+Week 01 — bắt đầu hành trình!
+```
+
+Ba thành phần cần phân biệt:
+
+- **code** nằm trong `hello.py`;
+- **command** yêu cầu interpreter chạy file;
+- **output** là nội dung chương trình hiển thị.
+
+## 4. Hàm `print()`
+
+`print()` yêu cầu Python hiển thị giá trị ra standard output.
+
+### In văn bản và số
 
 ```python
-# ❌ Sai — thiếu dấu nháy đóng
+print("Xin chào!")
+print(42)
+print(3.14)
+```
+
+Văn bản cần đặt trong dấu nháy. Số không cần dấu nháy.
+
+### In nhiều giá trị
+
+```python
+name = "An"
+age = 18
+
+print("Tên:", name)
+print("Tuổi:", age)
+```
+
+`print()` tự thêm khoảng trắng giữa các đối số.
+
+### `sep` và `end`
+
+```python
+print("Python", "Journey", sep="-")
+print("Dòng một", end=" | ")
+print("vẫn cùng dòng")
+```
+
+Kết quả:
+
+```text
+Python-Journey
+Dòng một | vẫn cùng dòng
+```
+
+### In dòng trống
+
+```python
+print("Phần 1")
+print()
+print("Phần 2")
+```
+
+## 5. Python như một máy tính
+
+Các toán tử số học cơ bản:
+
+| Toán tử | Ý nghĩa | Ví dụ | Kết quả |
+|---|---|---|---|
+| `+` | cộng | `2 + 3` | `5` |
+| `-` | trừ | `10 - 4` | `6` |
+| `*` | nhân | `3 * 7` | `21` |
+| `/` | chia | `20 / 4` | `5.0` |
+| `//` | chia lấy phần nguyên | `17 // 5` | `3` |
+| `%` | chia lấy dư | `17 % 5` | `2` |
+| `**` | lũy thừa | `2 ** 10` | `1024` |
+
+Thứ tự ưu tiên giống toán học:
+
+```python
+print(2 + 3 * 4)      # 14
+print((2 + 3) * 4)    # 20
+```
+
+Dùng ngoặc khi muốn ý định rõ ràng.
+
+### Biểu thức và câu lệnh
+
+Biểu thức tạo ra một giá trị:
+
+```python
+2 + 3
+"Py" + "thon"
+```
+
+Lệnh yêu cầu Python làm một việc:
+
+```python
+print(2 + 3)
+```
+
+Trong REPL, giá trị biểu thức được hiển thị tự động. Trong file `.py`, hãy dùng
+`print()` nếu muốn thấy giá trị.
+
+## 6. Comment
+
+Comment một dòng bắt đầu bằng `#`:
+
+```python
+# Tính diện tích sàn
+length = 8
+width = 5
+print(length * width)  # đơn vị: mét vuông
+```
+
+Comment tốt giải thích ý định hoặc lý do. Không cần lặp lại điều code đã nói:
+
+```python
+# Không hữu ích: cộng 2 và 3
+print(2 + 3)
+```
+
+Chuỗi ba dấu nháy là string literal, thường dùng cho docstring; nó không phải
+cú pháp comment nhiều dòng:
+
+```python
+def greet():
+    """Trả về lời chào mặc định."""
+    return "Xin chào!"
+```
+
+Ở Week 01, ưu tiên comment `#` ngắn và rõ.
+
+## 7. Đọc lỗi đầu tiên
+
+Khi chương trình thất bại, Python thường cho biết:
+
+1. file và dòng gây lỗi;
+2. dòng code liên quan;
+3. loại lỗi;
+4. mô tả ngắn.
+
+Đừng chỉ đọc dòng đầu. Hãy bắt đầu từ loại lỗi và dòng cuối của traceback.
+
+### `SyntaxError` — code sai cú pháp
+
+```python
 print("Xin chào)
+```
 
-# ✅ Đúng
+Dấu nháy chưa được đóng. Sửa:
+
+```python
 print("Xin chào")
 ```
 
-### Lỗi 2: NameError — Gọi thứ chưa tồn tại
+### `NameError` — tên chưa tồn tại
 
 ```python
-# ❌ Sai — Python (chữ hoa) không phải tên hàm
 Print("Xin chào")
-
-# ✅ Đúng — print viết thường
-print("Xin chào")
 ```
 
-### Lỗi 3: IndentationError — Thụt đầu dòng sai
+Python phân biệt chữ hoa và chữ thường. Tên đúng là:
 
 ```python
-# ❌ Sai — có thụt đầu dòng thừa
-    print("Xin chào")
-
-# ✅ Đúng — không thụt đầu dòng ở cấp này
 print("Xin chào")
 ```
 
-> 💡 **Mẹo đọc lỗi**: Khi có lỗi, Python luôn cho bạn biết:
-> - **Dòng số mấy** bị lỗi
-> - **Loại lỗi** là gì  
-> - **Mô tả** lỗi ngắn gọn
->
-> Đọc kỹ thông báo lỗi trước khi hỏi — thường câu trả lời đã có sẵn trong đó!
+### `IndentationError` — thụt lề không hợp lệ
 
----
-
-## 6. Bài Tập Thực Hành
-
-### Bài 1 — Tự giới thiệu (Dễ)
-Viết chương trình in ra thông tin của bạn:
-```
-Tên: [Tên của bạn]
-Tuổi: [Tuổi của bạn]
-Thành phố: [Thành phố của bạn]
-Lý do học Python: [...]
+```python
+    print("Xin chào")
 ```
 
-### Bài 2 — Máy tính cơ bản (Dễ)
-Viết code tính và in ra kết quả:
-- Tổng của 123 và 456
-- Tích của 17 và 38
-- 2 mũ 8
-- Phần dư của 100 chia 7
+Ở cấp đầu file, bỏ phần thụt lề không có lý do:
 
-### Bài 3 — Hình chữ nhật (Trung bình)
-Một căn phòng dài 8m, rộng 5m, cao 3m. Tính và in ra:
-- Diện tích sàn
-- Chu vi sàn
-- Diện tích tường (không tính trần và sàn)
-- Thể tích phòng
-
-### Bài 4 — Vẽ hình bằng ký tự (Thử thách)
-Dùng `print()` vẽ một ngôi nhà như thế này:
+```python
+print("Xin chào")
 ```
+
+### Vòng debug nhập môn
+
+```text
+Reproduce → Đọc lỗi → Xác định dòng → Sửa một việc → Chạy lại
+```
+
+Một lần chạy lỗi không phải thất bại học tập. Traceback là dữ liệu giúp bạn tìm
+nguyên nhân.
+
+## 8. Bài luyện tập ngắn
+
+### Bài 1 — Tự giới thiệu
+
+In bốn dòng:
+
+```text
+Tên: ...
+Thành phố: ...
+Mục tiêu học Python: ...
+Công cụ đang dùng: ...
+```
+
+### Bài 2 — Tính toán
+
+Tính và in:
+
+- tổng của 123 và 456;
+- tích của 17 và 38;
+- 2 mũ 8;
+- phần dư của 100 chia 7.
+
+### Bài 3 — Hình chữ nhật
+
+Một phòng dài 8 m, rộng 5 m, cao 3 m. Tính:
+
+- diện tích sàn;
+- chu vi sàn;
+- diện tích bốn bức tường;
+- thể tích phòng.
+
+### Bài 4 — ASCII art
+
+Dùng nhiều lệnh `print()` để vẽ một hình đơn giản:
+
+```text
     *
    ***
   *****
@@ -290,41 +347,35 @@ Dùng `print()` vẽ một ngôi nhà như thế này:
    |||
 ```
 
----
+## 9. Bài tập và mini-project của repository
 
-## 7. Dự Án Tuần 1 — Card Giới Thiệu Bản Thân
+Bài tập có starter:
 
-Tạo file `business_card.py` in ra card giới thiệu chuyên nghiệp:
+- [`ex01_hello.py`](exercises/ex01_hello.py);
+- [`ex02_calculator.py`](exercises/ex02_calculator.py);
+- [`ex03_input.py`](exercises/ex03_input.py).
 
-```
-╔══════════════════════════════════════╗
-║         NGUYỄN VĂN A                ║
-║         Python Developer             ║
-╠══════════════════════════════════════╣
-║  📧 Email: email@example.com         ║
-║  📱 Phone: 0123-456-789              ║
-║  🌐 GitHub: github.com/yourname      ║
-╚══════════════════════════════════════╝
-         "Hành trình ngàn dặm
-          bắt đầu từ một bước chân"
-```
+Hãy tự làm trước khi xem [`solutions/`](solutions/).
 
-*Gợi ý: Dùng nhiều lệnh `print()`, mỗi lệnh in một dòng của card.*
+Mini-project:
+[`ASCII Art Generator`](mini-project/README.md).
 
----
+## 10. Tự kiểm tra
 
-## 📚 Tài Liệu Tham Khảo
+Trước khi kết thúc Week 01, hãy tự trả lời:
 
-| Tài liệu | Mô tả |
-|---------|-------|
-| [docs.python.org](https://docs.python.org/3/) | Tài liệu chính thức Python |
-| [python.org/shell](https://www.python.org/shell/) | Python shell online (không cần cài) |
-| [Real Python — Beginners Guide](https://realpython.com/python-first-steps/) | Hướng dẫn bước đầu |
+- REPL khác file `.py` như thế nào?
+- `print()` nhận một hay nhiều giá trị?
+- `/` khác `//` như thế nào?
+- `%` trả về gì?
+- Vì sao string cần dấu nháy?
+- Comment tốt nên giải thích điều gì?
+- Ba thông tin nào trong traceback giúp tìm lỗi?
 
----
+## Điều quan trọng nhất
 
-## 🔑 Những Điều Quan Trọng Nhất Tuần Này
-
-> 1. **`print()`** là cách Python nói chuyện với bạn — dùng nó thật nhiều lúc mới học
-> 2. **Comment** không phải xa xỉ — đó là thói quen của lập trình viên giỏi
-> 3. **Đọc thông báo lỗi** — Python luôn chỉ cho bạn vấn đề ở đâu, hãy tận dụng
+1. **Chạy code thường xuyên.** Đừng viết quá nhiều trước lần chạy đầu tiên.
+2. **Quan sát output.** Kết quả là bằng chứng, không phải cảm giác.
+3. **Đọc traceback.** Loại lỗi và dòng lỗi thường chỉ đường sửa.
+4. **Giữ code đơn giản.** Week 01 ưu tiên hiểu rõ hơn kỹ thuật phức tạp.
+5. **Commit tiến độ.** Git history ghi lại quá trình học, không chỉ kết quả cuối.
