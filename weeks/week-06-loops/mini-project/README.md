@@ -1,21 +1,14 @@
-# Pattern Printer 🎨
+# Mini-project — Iteration Report
 
-In các hoa văn hình học đẹp mắt.
+Tạo báo cáo đánh số cho các chủ đề và điểm tự đánh giá.
 
 ## Yêu cầu
-1. Menu chọn hoa văn: Tam giác, Kim cương, Cây thông, Spiral
-2. Nhập kích thước
-3. In hoa văn bằng ký tự tùy chọn
 
-## Mẫu Cây thông (n=5)
-```
-    *
-   ***
-  *****
- *******
-*********
-   |||
-```
+- dùng `zip(..., strict=True)` để ghép hai list;
+- dùng `enumerate(..., start=1)` để đánh số;
+- dùng comprehension đơn giản để lấy các điểm đạt từ 8 trở lên;
+- in output có thể dùng làm evidence.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 06"`
+```bash
+python weeks/week-06-loops/mini-project/starter.py
+```
