@@ -40,3 +40,13 @@ VUACOC_RUNTIME_CONTRACT = UNVERIFIED
 - CLI local hoặc contract local có nhãn teaching-only.
 - Bot core tests vẫn chạy không cần adapter.
 - Các câu hỏi production chưa đo được trỏ tới `INTEGRATION_CONTRACT.md`.
+
+## Offline learning path
+
+    CLI → course-local adapter → Bot Core
+
+HTTP request/response được học bằng neutral fixture trong Week 13. Core grading
+không gọi live network và không chứa endpoint VuaCóc.
+
+    python weeks/week-13-modules-cli-api/checks/check_week.py
+    python projects/vuacoc-bot-journey/local_arena/cli.py --bot-a student --bot-b wait
