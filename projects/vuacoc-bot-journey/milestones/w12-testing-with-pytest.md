@@ -34,3 +34,13 @@ nghĩa.
 - Có ít nhất một test từng fail trước fix và pass sau fix.
 - Tên test mô tả hành vi.
 - Người học giải thích được failure message quan trọng.
+Week 12 learner tests nằm trong week directory; root `tests/` là maintainer
+invariants và không phải bài tập learner.
+
+Tối thiểu có normal, edge, invalid và regression cases theo
+Arrange → Act → Assert. Không cần mocking framework.
+
+```bash
+pytest weeks/week-12-testing-pytest/tests -q
+pytest projects/vuacoc-bot-journey/tests -q
+```
