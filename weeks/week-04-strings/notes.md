@@ -6,7 +6,7 @@
 ---
 
 ## 🎯 Mục Tiêu Tuần Này
-
+`
 Sau buổi học, bạn có thể:
 - Truy cập từng ký tự và cắt chuỗi bằng indexing/slicing
 - Dùng thành thạo ≥10 phương thức chuỗi quan trọng
