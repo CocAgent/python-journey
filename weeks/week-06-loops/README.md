@@ -1,51 +1,30 @@
-# Tuần 06: Vòng lặp 🔁
+# Tuần 06 — Loops · enumerate · zip · comprehensions
 
-> *"Sức mạnh của máy tính nằm ở khả năng lặp lại." — Unknown*
+Tuần này bạn lặp qua dữ liệu rõ ràng, ghép các collection liên quan và dùng
+comprehension khi biểu thức vẫn dễ đọc.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- dùng `for`, `while` và `range` đúng tình huống;
+- dùng `break` và `continue` có chủ đích;
+- dùng `enumerate` thay cho index thủ công;
+- dùng `zip` để ghép các collection song song;
+- viết list comprehension đơn giản và chọn loop thường khi logic dài.
 
-- Dùng vòng lặp `for` để duyệt chuỗi, list, `range()`
-- Dùng `while` với điều kiện kiểm soát
-- Kiểm soát vòng lặp với `break`, `continue`
-- Dùng `enumerate()` và `zip()` hiệu quả
-- Tránh vòng lặp vô hạn
+## Learning path
 
-## 📖 Kiến thức cần nắm
+```text
+README → notes → examples → exercises → hints
+       → machine check → iteration report → evidence
+```
 
-for, while, range(), break, continue, enumerate(), zip(), nested loops
+Đi theo [`notes.md`](notes.md), [`examples/`](examples/),
+[`exercises/`](exercises/), [`hints.md`](hints.md),
+[machine check](checks/README.md) và [mini-project](mini-project/README.md).
 
-Chi tiết xem tại [`notes.md`](notes.md)
+## Evidence
 
-## ✍️ Bài tập
-
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
-
-1. **`ex01_for_loop.py`** — Vòng lặp for cơ bản
-2. **`ex02_while_loop.py`** — Vòng lặp while và nhập liệu
-3. **`ex03_patterns.py`** — In hoa văn với vòng lặp lồng nhau
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Pattern Printer 🎨
-
-In các hoa văn hình học đẹp: tam giác, kim cương, cây thông bằng vòng lặp
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 6: Iteration | [Đọc](https://allendowney.github.io/ThinkPython/chap06.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_for_loop.py`
-- [ ] Hoàn thành `ex02_while_loop.py`
-- [ ] Hoàn thành `ex03_patterns.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- output `Week 06 solution checks: PASS`;
+- một loop có điều kiện dừng rõ ràng;
+- output từ `enumerate`, `zip` và comprehension;
+- báo cáo iteration đã chạy.

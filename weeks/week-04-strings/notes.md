@@ -139,3 +139,23 @@ Ký tự đầu mỗi từ: P l n n l t t v
 > 1. **Index âm** (`s[-1]`) là cách tiện lợi truy cập từ cuối chuỗi
 > 2. **`s[::-1]`** đảo ngược chuỗi — trick hay và Pythonic
 > 3. **`.strip()`** luôn dùng khi nhận input từ người dùng để xóa khoảng trắng thừa
+
+## 6. String methods hay regex?
+
+Dùng string methods khi câu hỏi cụ thể: xóa khoảng trắng, tách theo dấu phẩy,
+thay một từ hoặc kiểm tra prefix/suffix. Regex hữu ích khi cần mô tả một pattern
+và tìm nhiều vị trí phù hợp.
+
+```python
+import re
+
+text = "Mã PJ-102 và PJ-305 đã sẵn sàng"
+codes = re.findall(r"PJ-\d{3}", text)
+print(codes)
+
+valid = re.fullmatch(r"W\d{2}", "W04") is not None
+print(valid)
+```
+
+Prefix `r` tạo raw string để dấu `\` trong regex dễ đọc hơn. Các pattern này là
+mini-lab đơn giản, không phải chuẩn validation phổ quát.

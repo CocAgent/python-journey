@@ -1,39 +1,11 @@
-"""
-Bài tập 03: In hoa văn bằng vòng lặp lồng 🎨
-===============================================
-Mục tiêu: Thành thạo nested loops
-"""
+"""Exercise 03: readable list comprehensions."""
 
-# TODO 1: In tam giác vuông cao n dòng
-# n = 5:
-# *
-# **
-# ***
-# ****
-# *****
+numbers = range(1, 11)
 
+# TODO: build squares for all numbers.
+squares: list[int] = []
+# TODO: build even_numbers with one filter.
+even_numbers: list[int] = []
+# TODO: rewrite one comprehension as a normal loop and compare readability.
 
-# TODO 2: In tam giác cân cao n dòng (căn giữa)
-# n = 5:
-#     *
-#    ***
-#   *****
-#  *******
-# *********
-
-
-# TODO 3: In hình kim cương cao n dòng (n lẻ)
-# n = 5:
-#   *
-#  ***
-# *****
-#  ***
-#   *
-
-
-# TODO 4 (Thử thách): In bàn cờ n x n
-# n = 4:
-# ■ □ ■ □
-# □ ■ □ ■
-# ■ □ ■ □
-# □ ■ □ ■
+print(squares, even_numbers)

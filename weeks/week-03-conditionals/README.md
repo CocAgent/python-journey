@@ -1,51 +1,31 @@
-# Tuần 03: Câu lệnh điều kiện 🔀
+# Tuần 03 — Conditionals · Boolean · Input Validation
 
-> *"Cuộc sống là tổng của tất cả những lựa chọn của bạn." — Albert Camus*
+Tuần này bạn biến điều kiện thành decision rõ ràng và từ chối input không hợp
+lệ trước khi xử lý.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- dùng `if`, `elif`, `else` theo đúng thứ tự ưu tiên;
+- kết hợp comparison với `and`, `or`, `not`;
+- hiểu truthy/falsy ở mức nhập môn;
+- dùng guard-style validation;
+- tránh nested condition khi một nhánh return sớm rõ hơn.
 
-- Viết câu lệnh `if/elif/else` đúng cú pháp
-- Dùng toán tử so sánh: `==` `!=` `>` `<` `>=` `<=`
-- Dùng toán tử logic: `and`, `or`, `not`
-- Viết biểu thức điều kiện một dòng (ternary)
-- Tránh lỗi logic phổ biến với điều kiện
+## Learning path
 
-## 📖 Kiến thức cần nắm
+```text
+README → notes → examples → exercises → hints
+       → machine check → mini-project → evidence
+```
 
-if/elif/else, comparison operators, and/or/not, ternary, truthy/falsy
+Đọc [`notes.md`](notes.md), chạy [`examples/`](examples/), làm
+[`exercises/`](exercises/), dùng [`hints.md`](hints.md), chạy
+[machine check](checks/README.md), rồi hoàn thành
+[Decision Ticket](mini-project/README.md).
 
-Chi tiết xem tại [`notes.md`](notes.md)
+## Evidence
 
-## ✍️ Bài tập
-
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
-
-1. **`ex01_if_else.py`** — Phân loại và xếp hạng
-2. **`ex02_logical.py`** — Toán tử logic kết hợp
-3. **`ex03_nested.py`** — Điều kiện lồng nhau
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Máy tính điểm GPA 📊
-
-Nhập điểm các môn → tính GPA → xếp loại học lực → hiển thị kết quả
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 4: Conditionals and Recursion | [Đọc](https://allendowney.github.io/ThinkPython/chap04.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_if_else.py`
-- [ ] Hoàn thành `ex02_logical.py`
-- [ ] Hoàn thành `ex03_nested.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- output `Week 03 solution checks: PASS`;
+- normal, boundary và invalid case;
+- giải thích thứ tự của một chuỗi `if/elif/else`;
+- commit và một bug logic đã sửa.

@@ -1,30 +1,22 @@
-"""Lời giải Bài tập 03: Máy tính nhận input"""
+"""Official solution: calculations after input conversion."""
 
-# TODO 1
-a = float(input("Nhập số thứ nhất: "))
-b = float(input("Nhập số thứ hai: "))
-print(f"Tổng: {a + b}")
-print(f"Hiệu: {a - b}")
-print(f"Tích: {a * b}")
-if b != 0:
-    print(f"Thương: {a / b:.2f}")
-else:
-    print("Không thể chia cho 0!")
 
-# TODO 2
-r = float(input("Nhập bán kính: "))
-pi = 3.14159
-print(f"Diện tích: {pi * r**2:.2f}")
-print(f"Chu vi: {2 * pi * r:.2f}")
+def calculate_total(first: float, second: float) -> float:
+    """Return the sum of two converted numbers."""
+    return first + second
 
-# TODO 3
-gia_goc = float(input("Giá gốc: "))
-giam = float(input("Phần trăm giảm: "))
-gia_moi = gia_goc * (1 - giam / 100)
-print(f"Giá sau giảm: {gia_moi:,.0f} VNĐ")
 
-# TODO 4
-vnd = float(input("Số tiền VNĐ: "))
-ty_gia = float(input("Tỷ giá USD/VNĐ: "))
-usd = vnd / ty_gia
-print(f"{vnd:,.0f} VNĐ = {usd:.2f} USD")
+def discounted_price(price: float, discount_percent: float) -> float:
+    """Return a price after a percentage discount."""
+    return price * (1 - discount_percent / 100)
+
+
+def vnd_to_usd(amount: float, exchange_rate: float) -> float:
+    """Convert VND using a caller-provided teaching exchange rate."""
+    return amount / exchange_rate
+
+
+if __name__ == "__main__":
+    first = float(input("Số thứ nhất: "))
+    second = float(input("Số thứ hai: "))
+    print(f"Tổng: {calculate_total(first, second)}")

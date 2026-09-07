@@ -1,7 +1,9 @@
 # VuaCóc Bot Journey
 
 VuaCóc Bot Journey là project xuyên khóa để người học nâng cấp cùng một hệ
-thống ra quyết định từ Week 07 đến Week 15. Người học không gặp `functions`,
+thống ra quyết định từ Week 07 đến Week 15. Game gốc có thể tham khảo tại
+[vuacoc.com](https://vuacoc.com/), nhưng track này chỉ dùng mô hình học tập
+local, không tuyên bố API/runtime compatibility. Người học không gặp `functions`,
 `dict`, JSON, exceptions, `pytest`, modules và OOP như những chương rời rạc:
 mỗi chủ đề làm bot **more capable, more reliable, more explainable**.
 

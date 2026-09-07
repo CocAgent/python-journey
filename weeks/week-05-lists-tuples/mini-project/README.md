@@ -1,20 +1,14 @@
-# Quản lý Todo List ✅
+# Mini-project — Collection Workflow
 
-App todo terminal: thêm/xóa/đánh dấu hoàn thành/hiển thị.
+Model ba bước công việc bằng list các tuple `(title, status)`.
 
 ## Yêu cầu
-1. Menu: Thêm / Xem / Đánh dấu hoàn thành / Xóa / Thoát
-2. Hiển thị danh sách với trạng thái ✅ / ❌
-3. Cho phép đánh dấu hoàn thành theo số thứ tự
-4. Xử lý input sai (không crash)
 
-## Ví dụ output
-```
-=== TODO LIST ===
-1. [❌] Học Python tuần 5
-2. [✅] Đọc sách
-3. [❌] Tập thể dục
-```
+- thêm, cập nhật và xóa item trong list;
+- unpack một tuple để hiển thị title và status;
+- chứng minh alias và copy khác nhau;
+- không cần loop hoặc comprehension trong core evidence.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 05"`
+```bash
+python weeks/week-05-lists-tuples/mini-project/starter.py
+```

@@ -37,3 +37,11 @@ COMPOSITION BEFORE INHERITANCE
 - Mỗi strategy có tests hành vi.
 - Người học giải thích vì sao composition phù hợp.
 - Không có class hierarchy hoặc design pattern phức tạp không cần thiết.
+Composition là kiến trúc chính:
+
+    Bot(strategy) → choose_action(state) → strategy(state)
+
+Người học đổi defensive, balanced và aggressive strategy mà không sửa arena
+core. Basic inheritance chỉ nằm trong ví dụ “is-a” riêng.
+
+    python weeks/week-14-oop-essentials/checks/check_week.py

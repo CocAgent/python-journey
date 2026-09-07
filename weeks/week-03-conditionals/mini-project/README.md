@@ -1,17 +1,15 @@
-# Máy tính điểm GPA 📊
+# Mini-project — Decision Ticket
 
-Nhập điểm các môn → tính GPA → xếp loại → hiển thị kết quả.
+Nhận tên, tuổi và loại vé rồi validate trước khi quyết định giá.
 
-## Yêu cầu
-1. Nhập số lượng môn học
-2. Với mỗi môn: nhập tên môn, số tín chỉ, điểm (0-10)
-3. Tính GPA theo công thức: Σ(điểm × tín chỉ) / Σ tín chỉ
-4. Xếp loại: >= 3.6 Xuất sắc, >= 3.2 Giỏi, >= 2.5 Khá, >= 2.0 TB
-5. In bảng kết quả đẹp
+## Definition of done
 
-## Gợi ý
-- Dùng if/elif/else cho xếp loại
-- Chuyển điểm 10 → thang 4: điểm_4 = điểm_10 * 4 / 10
+- input rỗng hoặc tuổi không phải số bị từ chối;
+- tuổi ngoài `0..120` bị từ chối;
+- `if/elif/else` tạo một price rõ ràng;
+- output dùng f-string;
+- có normal, boundary và invalid case.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 03"`
+```bash
+python weeks/week-03-conditionals/mini-project/starter.py
+```

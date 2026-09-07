@@ -1,51 +1,26 @@
-# Tuần 10: File I/O 📂
+# Tuần 10 — File · pathlib · CSV · JSON · Replay
 
-> *"Dữ liệu không được lưu là dữ liệu sẽ mất." — Unknown*
+Tuần này dữ liệu sống lâu hơn một lần chạy: text cho nội dung đơn giản, CSV
+cho bảng và JSON cho dữ liệu có cấu trúc.
 
-## 🎯 Mục tiêu tuần này
+## Outcomes
 
-Sau tuần này, bạn sẽ:
+- tạo đường dẫn bằng `pathlib.Path`;
+- đọc/ghi text với `encoding="utf-8"`;
+- đọc/ghi CSV và JSON bằng context manager;
+- giải thích Python object ↔ JSON-compatible data;
+- lưu, tải và kiểm tra replay course-local.
 
-- Đọc và ghi file text với `open()`
-- Dùng context manager (`with`) đúng cách
-- Xử lý CSV cơ bản với module `csv`
-- Đọc/ghi JSON với module `json`
-- Dùng `pathlib` để thao tác đường dẫn
+## Learning path
 
-## 📖 Kiến thức cần nắm
+```text
+notes → examples → exercises → hints → machine check
+      → replay persistence → evidence
+```
 
-open(), read/write/append, with, csv module, json module, pathlib
+Đi theo [notes](notes.md), [examples](examples/), [exercises](exercises/),
+[hints](hints.md), [machine check](checks/README.md) và
+[mini-project](mini-project/README.md).
 
-Chi tiết xem tại [`notes.md`](notes.md)
-
-## ✍️ Bài tập
-
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
-
-1. **`ex01_read_write.py`** — Đọc và ghi file text
-2. **`ex02_csv_data.py`** — Xử lý dữ liệu CSV
-3. **`ex03_json_data.py`** — Đọc/ghi file JSON
-
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Contact Book 📇
-
-Sổ danh bạ: thêm/xem/tìm/xóa liên hệ, lưu vào file JSON
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Python Docs | Reading and Writing Files | [Đọc](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_read_write.py`
-- [ ] Hoàn thành `ex02_csv_data.py`
-- [ ] Hoàn thành `ex03_json_data.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+Replay của project chỉ mang nhãn `COURSE LOCAL FORMAT` và
+`NOT VUACOC PRODUCTION FORMAT`.

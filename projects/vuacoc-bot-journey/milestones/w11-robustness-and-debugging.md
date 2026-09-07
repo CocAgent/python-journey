@@ -31,3 +31,16 @@ Reproduce → Read → Isolate → Fix → Re-test
 - Fix nhỏ, không dùng bare `except:` để che lỗi.
 - Case đã sửa được chạy lại thành công.
 - Known strategy weakness vẫn được ghi riêng nếu chưa cải tiến.
+
+## Course-local negative controls
+
+- invalid local state: validation phải từ chối;
+- illegal local action: match trả `bot_failure`;
+- bot exception: type và message được ghi vào reason;
+- malformed replay: loader raise `ValueError`;
+- known failure regression: giữ minimal input và chạy lại sau fix.
+
+```bash
+pytest projects/vuacoc-bot-journey/tests/test_local_arena.py -q
+pytest projects/vuacoc-bot-journey/tests/test_replay.py -q
+```

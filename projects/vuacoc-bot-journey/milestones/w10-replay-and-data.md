@@ -21,8 +21,9 @@ NOT VUACOC PRODUCTION FORMAT
 
 1. Chọn dữ liệu tối thiểu cần lưu để tái hiện một quyết định.
 2. Tạo đường dẫn bằng `pathlib`.
-3. Ghi và đọc lại dữ liệu bằng context manager.
-4. Kiểm tra dữ liệu đọc lại trước khi phân tích.
+3. Ghi replay bằng `save_replay`.
+4. Đọc replay bằng `load_replay` và kiểm tra labels trước khi phân tích.
+5. Dùng CSV cho bảng tổng hợp kết quả nếu cần.
 
 ## Evidence
 
@@ -30,3 +31,10 @@ NOT VUACOC PRODUCTION FORMAT
 - Một CSV tổng hợp kết quả course-local hoặc báo cáo tương đương.
 - README giải thích file nào là input và file nào là output.
 - Không file nào được tuyên bố tương thích production khi contract chưa verified.
+
+## Chạy evidence
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/examples/replay_roundtrip.py
+pytest projects/vuacoc-bot-journey/tests/test_replay.py
+```

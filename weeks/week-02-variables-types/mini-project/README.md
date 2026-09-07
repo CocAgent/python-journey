@@ -1,23 +1,17 @@
-# Thẻ sinh viên tự động 🪪
+# Mini-project — Thẻ sinh viên
 
-Nhập thông tin sinh viên → in thẻ đẹp với border và căn chỉnh chuẩn.
+Nhận tên, mã sinh viên, ngành và năm nhập học rồi in một profile rõ ràng.
 
 ## Yêu cầu
-1. Nhập: Họ tên, MSSV, ngành, năm nhập học
-2. Tính năm dự kiến tốt nghiệp (nhập học + 4)
-3. In thẻ có border, căn chỉnh đẹp
 
-## Ví dụ output
-```
-╔════════════════════════════╗
-║    THẺ SINH VIÊN           ║
-║----------------------------║
-║ Họ tên:  Nguyễn Văn An     ║
-║ MSSV:    2024001            ║
-║ Ngành:   Công nghệ TT      ║
-║ Khóa:    2024 - 2028        ║
-╚════════════════════════════╝
-```
+- `input()` cho bốn giá trị;
+- xác nhận năm chỉ gồm chữ số trước `int()`;
+- tính năm dự kiến tốt nghiệp bằng năm nhập học + 4;
+- dùng f-string cho output;
+- không cần exception handling ở tuần này.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 02"`
+Chạy:
+
+```bash
+python weeks/week-02-variables-types/mini-project/starter.py
+```

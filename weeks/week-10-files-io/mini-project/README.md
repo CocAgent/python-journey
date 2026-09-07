@@ -1,17 +1,18 @@
-# Contact Book 📇
+# Mini-project — Replay Inspector
 
-Sổ danh bạ lưu trữ file JSON.
+Lưu một replay course-local rồi tải lại để kiểm tra labels và số turn.
 
-## Yêu cầu
-1. CRUD: Thêm / Xem / Tìm / Sửa / Xóa liên hệ
-2. Mỗi liên hệ: tên, SĐT, email, nhóm
-3. Tìm kiếm theo tên hoặc nhóm
-4. Lưu/đọc dữ liệu từ file contacts.json
-5. Dữ liệu persist giữa các lần chạy
+## Contract
 
-## Gợi ý
-- Dùng list of dicts để lưu liên hệ
-- json.dump() / json.load() cho file I/O
+```text
+COURSE LOCAL FORMAT
+NOT VUACOC PRODUCTION FORMAT
+```
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 10"`
+Chạy project implementation:
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/examples/replay_roundtrip.py
+```
+
+Đây là format học tập offline, không phải schema hay API của production VuaCóc.

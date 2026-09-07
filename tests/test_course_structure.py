@@ -7,6 +7,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_WEEK_PREFIXES = [f"week-{number:02d}-" for number in range(1, 16)]
+EXPECTED_WEEK_DIRECTORIES = [
+    "week-01-hello-python",
+    "week-02-variables-types",
+    "week-03-conditionals",
+    "week-04-strings",
+    "week-05-lists-tuples",
+    "week-06-loops",
+    "week-07-functions",
+    "week-08-dicts-sets",
+    "week-09-midterm-project",
+    "week-10-files-io",
+    "week-11-exceptions",
+    "week-12-testing-pytest",
+    "week-13-modules-cli-api",
+    "week-14-oop-essentials",
+    "week-15-capstone-project",
+]
 REQUIRED_ROOT_FILES = {
     "AGENTS.md",
     "CONTRIBUTING.md",
@@ -48,6 +65,7 @@ def test_week_directories_cover_exactly_01_through_15() -> None:
         name.startswith(prefix)
         for name, prefix in zip(week_names, EXPECTED_WEEK_PREFIXES, strict=True)
     )
+    assert week_names == EXPECTED_WEEK_DIRECTORIES
 
 
 def test_syllabus_has_exactly_15_numbered_week_headings() -> None:

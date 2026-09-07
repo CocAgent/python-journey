@@ -1,13 +1,19 @@
-# Robust Calculator 🔒
+# Mini-project — Robust Bot Debugging Note
 
-Máy tính chống crash hoàn toàn.
+Chạy negative controls của local arena và ghi evidence cho một software defect.
 
-## Yêu cầu
-1. Hỗ trợ: +, -, *, /, //, %, **
-2. Xử lý mọi lỗi: nhập chữ, chia 0, overflow
-3. Lịch sử tính toán (lưu kết quả gần nhất)
-4. Hỗ trợ: 'quit' để thoát, 'history' xem lịch sử
-5. KHÔNG BAO GIỜ crash, dù nhập gì
+```bash
+pytest projects/vuacoc-bot-journey/tests/test_local_arena.py -q
+pytest projects/vuacoc-bot-journey/tests/test_replay.py -q
+```
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 11"`
+Evidence cần có:
+
+- minimal failing input;
+- exception type/message hoặc explicit failure reason;
+- nguyên nhân đã isolate;
+- fix nhỏ và regression check;
+- strategy weakness, nếu có, ghi riêng với software defect.
+
+Arena bắt exception tại boundary để ghi failure có quan sát được; learner code
+không được dùng exception swallowing.

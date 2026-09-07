@@ -32,6 +32,14 @@ AI_USAGE_DISCLOSED
 4. Giải thích một strategy trade-off và một known failure.
 5. Nêu bước cải tiến tiếp theo mà không phóng đại production readiness.
 
+## Chạy local tournament
+
+    python projects/vuacoc-bot-journey/local_arena/tournament_cli.py
+    pytest projects/vuacoc-bot-journey/tests/test_tournament.py -q
+
+Student bot đấu ba baseline trong cùng điều kiện deterministic. Standings và
+replay là course-local evidence, không phải production benchmark.
+
 ## Canonical capstone
 
 Track này không có rubric riêng. Yêu cầu, evidence và rubric canonical vẫn nằm
