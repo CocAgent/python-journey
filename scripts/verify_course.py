@@ -8,6 +8,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_WEEK_NUMBERS = list(range(1, 16))
+EXPECTED_WEEK_DIRECTORIES = (
+    "week-01-hello-python",
+    "week-02-variables-types",
+    "week-03-conditionals",
+    "week-04-strings",
+    "week-05-lists-tuples",
+    "week-06-loops",
+    "week-07-functions",
+    "week-08-dicts-sets",
+    "week-09-midterm-project",
+    "week-10-files-io",
+    "week-11-exceptions",
+    "week-12-testing-pytest",
+    "week-13-modules-cli-api",
+    "week-14-oop-essentials",
+    "week-15-capstone-project",
+)
 REQUIRED_ROOT_FILES = (
     "AGENTS.md",
     "CONTRIBUTING.md",
@@ -107,6 +124,15 @@ def verify() -> list[str]:
         actual_weeks = week_directory_numbers(weeks_path)
         if actual_weeks != EXPECTED_WEEK_NUMBERS:
             errors.append(f"Week directories are {actual_weeks}, expected 1 through 15")
+        actual_week_dirs = sorted(
+            child.name
+            for child in weeks_path.iterdir()
+            if child.is_dir() and child.name.startswith("week-")
+        )
+        if actual_week_dirs != list(EXPECTED_WEEK_DIRECTORIES):
+            errors.append(
+                "Week directory names do not match the locked V2 semantic map"
+            )
 
     syllabus_path = ROOT / "SYLLABUS.md"
     if syllabus_path.is_file():
@@ -138,6 +164,7 @@ def main() -> int:
     print("Python Journey course verification: PASS")
     print("- required root documents: present")
     print("- week directories: 15")
+    print("- semantic week directory map: 15/15")
     print("- syllabus week headings: 15")
     print("- capstone ownership: present")
     print("- P0 content contamination: none")
