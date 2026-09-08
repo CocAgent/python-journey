@@ -16,3 +16,5 @@ Thumbs.db
 *.swp
 *.swo
 **/.learner-output/
+**/.pytest_cache/
+.codex_review_tmp*/
