@@ -12,15 +12,24 @@ from bot_course.http_foundation import (  # noqa: E402
     build_get_request,
     parse_json_response,
 )
+from cli import parse_args  # noqa: E402
 
 assert course_local_action({"position": 1, "goal": 4})["action"] == "right"
 request = build_get_request("https://example.invalid/fixture")
 assert request.method == "GET"
 assert parse_json_response(200, b'{"ok": true}') == {"ok": True}
+args = parse_args(["--position", "1", "--goal", "4"])
+assert (args.position, args.goal) == (1, 4)
 try:
     parse_json_response(503, b"{}")
 except ValueError:
     pass
 else:
     raise AssertionError("non-2xx response was accepted")
+try:
+    parse_json_response(200, b"not-json")
+except ValueError:
+    pass
+else:
+    raise AssertionError("malformed JSON was accepted")
 print("Week 13 solution checks: PASS")

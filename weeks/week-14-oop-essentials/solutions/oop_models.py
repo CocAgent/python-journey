@@ -15,6 +15,9 @@ class Progress:
     def percentage(self) -> float:
         return self.completed / self.total * 100
 
+    def __str__(self) -> str:
+        return f"Progress: {self.completed}/{self.total} ({self.percentage():.0f}%)"
+
 
 class Bot:
     def __init__(self, strategy: Strategy):
@@ -24,16 +27,28 @@ class Bot:
         return self.strategy(state)
 
 
-def defensive(state: dict[str, int]) -> str:
+def move_toward_goal(state: dict[str, int]) -> str:
+    """Return one step toward either course-local goal."""
+    if state["position"] < state["goal"]:
+        return "right"
+    if state["position"] > state["goal"]:
+        return "left"
     return "wait"
 
 
+def defensive(state: dict[str, int]) -> str:
+    opponent = state.get("opponent_position")
+    if opponent is not None and abs(opponent - state["position"]) <= 1:
+        return "wait"
+    return move_toward_goal(state)
+
+
 def balanced(state: dict[str, int]) -> str:
-    return "right" if state["position"] < state["goal"] else "wait"
+    return move_toward_goal(state)
 
 
 def aggressive(state: dict[str, int]) -> str:
-    return "right"
+    return move_toward_goal(state)
 
 
 class Animal:

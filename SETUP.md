@@ -211,6 +211,18 @@ Thoát environment bằng:
 deactivate
 ```
 
+### Cài công cụ kiểm tra của khóa học
+
+Từ repository root, sau khi kích hoạt virtual environment:
+
+```bash
+python -m pip install --upgrade "pip>=25.1"
+python -m pip install --group dev
+```
+
+Tùy chọn `--group` cần pip 25.1 trở lên. Lệnh đầu tiên giúp tránh lỗi
+`no such option: --group` trên các bản pip cũ đi kèm Python.
+
 ## 6. Clone repository và bắt đầu
 
 ```bash

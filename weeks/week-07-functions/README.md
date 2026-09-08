@@ -23,6 +23,8 @@ Sau Week 07, bạn có thể:
 
 ## Prerequisites
 
+Story mở đầu tùy chọn: [Cóc, bác Rùa và những chiếc Hàm](../../assets/Story-07-%20Hàm.md).
+
 Bạn nên hoàn thành Week 01–06 và đã quen với biến, kiểu dữ liệu, điều kiện,
 chuỗi, list và loop.
 

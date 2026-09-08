@@ -1,7 +1,8 @@
-# Hints — Week 11
+# Gợi ý — Week 11
 
-- Read the final traceback line first.
-- Catch the narrow exception you can meaningfully handle.
-- Validate at a boundary and raise a message containing the bad value.
-- Preserve the smallest input that reproduces a defect.
-- A lost match is not automatically a software bug.
+- Đọc dòng cuối traceback trước.
+- Chỉ bắt exception cụ thể mà chương trình có thể xử lý có ý nghĩa.
+- Đặt success path trong `else`; dành `finally` cho việc luôn phải chạy.
+- Validate tại boundary và đưa giá trị sai vào error message.
+- Giữ input nhỏ nhất có thể tái hiện defect.
+- Thua một match không tự động có nghĩa là software bug.

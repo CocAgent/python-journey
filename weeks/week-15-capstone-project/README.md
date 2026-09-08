@@ -21,3 +21,8 @@ Flagship optional track:
 tournament và replay course-local.
 
 Xem [integration checklist](notes.md).
+
+Starter documentation:
+
+- [Capstone README template](../../templates/capstone-readme-template.md)
+- [AI usage template](../../templates/AI_USAGE.template.md)

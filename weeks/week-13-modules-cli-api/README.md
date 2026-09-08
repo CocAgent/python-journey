@@ -17,5 +17,6 @@ Core checks không gọi mạng và không dùng endpoint VuaCóc production.
     python weeks/week-13-modules-cli-api/cli.py --position 1 --goal 4
     python weeks/week-13-modules-cli-api/checks/check_week.py
 
-Xem [notes](notes.md), [package](bot_course/), [exercises](exercises/),
+Xem [notes](notes.md), [package](bot_course/),
+[cách chạy exercises](exercises/README.md),
 [hints](hints.md) và [mini-project](mini-project/README.md).

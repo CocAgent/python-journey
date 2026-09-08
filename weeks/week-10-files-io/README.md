@@ -24,3 +24,7 @@ notes → examples → exercises → hints → machine check
 
 Replay của project chỉ mang nhãn `COURSE LOCAL FORMAT` và
 `NOT VUACOC PRODUCTION FORMAT`.
+
+Exercise ghi output vào `.learner-output/` bên trong thư mục tuần. Output luyện
+tập không được commit; evidence cần nộp phải được chép có chủ đích vào project
+của người học.

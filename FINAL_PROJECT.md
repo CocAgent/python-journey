@@ -240,6 +240,11 @@ Cấu trúc có thể đơn giản hơn nếu project nhỏ.
 
 Không tạo file hoặc module không cần thiết.
 
+Có thể bắt đầu từ:
+
+- [`templates/capstone-readme-template.md`](templates/capstone-readme-template.md);
+- [`templates/AI_USAGE.template.md`](templates/AI_USAGE.template.md).
+
 ---
 
 ## 8. README

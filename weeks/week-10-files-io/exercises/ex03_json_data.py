@@ -3,12 +3,14 @@
 import json
 from pathlib import Path
 
-path = Path("replay.json")
+WEEK_ROOT = Path(__file__).resolve().parents[1]
+path = WEEK_ROOT / ".learner-output" / "replay.json"
 replay = {
     "format": "COURSE LOCAL FORMAT",
     "production_compatibility": "NOT VUACOC PRODUCTION FORMAT",
     "turns": [],
 }
-# TODO: save replay with ensure_ascii=False and indent=2.
-# TODO: load it and verify both labels before inspecting turns.
+# TODO: tạo thư mục cha trước khi ghi file.
+# TODO: lưu replay với ensure_ascii=False và indent=2.
+# TODO: tải lại và kiểm tra cả hai nhãn trước khi đọc turns.
 print(json.__name__, path, replay)

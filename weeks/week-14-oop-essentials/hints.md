@@ -1,7 +1,9 @@
-# Hints — Week 14
+# Gợi ý — Week 14
 
-- Give a class one understandable responsibility.
-- Store a strategy on self, then call it from choose_action.
-- Construct a new Bot to swap strategies.
-- Prefer composition when behavior must vary independently.
-- Use inheritance only for a clear “is-a” relationship.
+- Cho mỗi class một trách nhiệm dễ hiểu.
+- Để `__str__` trả biểu diễn ngắn dành cho người đọc.
+- Lưu strategy trên `self`, sau đó gọi nó từ `choose_action`.
+- Tạo một `Bot` mới để đổi strategy.
+- Ưu tiên composition khi behavior cần thay đổi độc lập.
+- Chỉ dùng inheritance cho quan hệ “is-a” rõ ràng.
+- Test mỗi movement strategy với goal ở cả hai phía.

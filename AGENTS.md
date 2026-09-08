@@ -79,12 +79,14 @@ The blocking maintainer checks are:
 ```bash
 python scripts/verify_course.py
 pytest
-ruff check scripts tests
+ruff check scripts tests projects/vuacoc-bot-journey
 git diff --check
 ```
 
-`pytest` is configured to collect only `tests/`, which contains repository
-invariant tests. Do not broaden collection to unfinished learner exercises.
+`pytest` is configured to collect repository invariant tests in `tests/` and
+stable infrastructure tests in `projects/vuacoc-bot-journey/tests/`. Learner
+tests inside week directories are run explicitly from their owning lesson; do
+not add unfinished learner exercises to default collection.
 
 Use these commands to measure existing course content without turning legacy
 debt into a release blocker:
@@ -101,6 +103,7 @@ Maintainer dependencies are declared in the `dev` dependency group in
 `pyproject.toml`. Install them with:
 
 ```bash
+python -m pip install --upgrade "pip>=25.1"
 python -m pip install --group dev
 ```
 

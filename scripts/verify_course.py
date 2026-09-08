@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_WEEK_NUMBERS = list(range(1, 16))
@@ -46,6 +47,7 @@ CONTENT_PATHS = (
     "assets",
     "cheatsheets",
     "templates",
+    "projects",
 )
 CONTAMINATION_PATTERNS = (
     re.compile(r"g\+\+\s+-std=Python", re.IGNORECASE),
@@ -56,6 +58,7 @@ CONTAMINATION_PATTERNS = (
     re.compile(r"\.h\s+declaration", re.IGNORECASE),
     re.compile(r"struct\s+Book", re.IGNORECASE),
 )
+MARKDOWN_LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 
 def syllabus_week_numbers(path: Path) -> list[int]:
@@ -109,6 +112,29 @@ def contamination_findings() -> list[str]:
     return findings
 
 
+def internal_markdown_link_findings() -> list[str]:
+    """Return relative Markdown links whose target file does not exist."""
+    findings: list[str] = []
+    paths = [*iter_content_files(), ROOT / "FINAL_PROJECT.md"]
+    for path in paths:
+        if path.suffix.lower() != ".md":
+            continue
+        text = path.read_text(encoding="utf-8")
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            for match in MARKDOWN_LINK_PATTERN.finditer(line):
+                target = match.group(1).strip()
+                if target.startswith(("http://", "https://", "mailto:", "#")):
+                    continue
+                file_target = unquote(target.split("#", maxsplit=1)[0])
+                if not file_target:
+                    continue
+                candidate = path.parent / file_target
+                if not candidate.exists():
+                    relative = path.relative_to(ROOT)
+                    findings.append(f"{relative}:{line_number} -> {target}")
+    return findings
+
+
 def verify() -> list[str]:
     """Return all invariant violations found in the repository."""
     errors: list[str] = []
@@ -149,6 +175,10 @@ def verify() -> list[str]:
         errors.append("Expected exactly one Week 15 README")
 
     errors.extend(f"Course contamination: {finding}" for finding in contamination_findings())
+    errors.extend(
+        f"Broken internal Markdown link: {finding}"
+        for finding in internal_markdown_link_findings()
+    )
     return errors
 
 
@@ -168,6 +198,7 @@ def main() -> int:
     print("- syllabus week headings: 15")
     print("- capstone ownership: present")
     print("- P0 content contamination: none")
+    print("- internal Markdown links: valid")
     return 0
 
 

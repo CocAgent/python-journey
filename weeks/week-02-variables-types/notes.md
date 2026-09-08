@@ -135,7 +135,7 @@ print(10 / 3)              # 3.3333333333333335
 print(0.1 + 0.2)           # 0.30000000000000004 (!!!)
 print(0.1 + 0.2 == 0.3)    # False (!!!)
 
-# Giải pháp: dùng round() khi so sánh
+# round() phù hợp để hiển thị; khi cần so sánh gần đúng, dùng math.isclose().
 print(round(0.1 + 0.2, 2) == 0.3)  # True
 ```
 

@@ -1,6 +1,6 @@
-# Hints — Week 12
+# Gợi ý — Week 12
 
-- Import `pytest` only when using helpers such as `pytest.raises`.
-- Test one behavior per test when practical.
-- Assert the exact expected action, not only membership, for decision rules.
-- Name a regression test after the behavior that previously failed.
+- Chỉ import `pytest` khi dùng helper như `pytest.raises`.
+- Mỗi test nên kiểm tra một behavior khi phù hợp.
+- Với decision rule, assert action chính xác thay vì chỉ kiểm tra membership.
+- Đặt tên regression test theo behavior từng bị lỗi.

@@ -106,3 +106,17 @@ def test_course_health_verifier_passes() -> None:
     )
 
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_week_13_http_exercise_runs_in_documented_module_mode() -> None:
+    week_root = ROOT / "weeks" / "week-13-modules-cli-api"
+    result = subprocess.run(
+        [sys.executable, "-m", "exercises.ex03_http"],
+        cwd=week_root,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "'lesson': 13" in result.stdout

@@ -16,6 +16,10 @@ Sau Week 01, bạn có thể:
 
 ## Thứ tự học
 
+Nếu thích học qua câu chuyện, đọc tùy chọn
+[Giới thiệu Python](../../assets/Story-00-Giới%20thiệu%20Python.md) và
+[Hello Python](../../assets/Story-01-Hello%20Python.md) trước khi bắt đầu.
+
 1. **Environment map** — đọc
    [`lesson-01-python-ecosystem-and-environment.md`](lesson-01-python-ecosystem-and-environment.md).
 2. **Setup nếu cần** — làm theo [`SETUP.md`](../../SETUP.md) khi Python, VS Code,

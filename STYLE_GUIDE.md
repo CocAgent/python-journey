@@ -69,7 +69,7 @@ def tinh_bmi(can_nang: float, chieu_cao: float) -> float:
 import os
 import sys
 
-import requests
+from pathlib import Path
 
 from my_module import my_function
 ```
@@ -84,15 +84,18 @@ result = (first_value
           + second_value
           - third_value)
 
-# Dùng \ (ít dùng hơn)
-total = first_long_variable + \
-        second_long_variable
+# Với biểu thức dài, ưu tiên ngoặc thay vì dấu gạch chéo ngược.
+total = (
+    first_long_variable
+    + second_long_variable
+)
 ```
 
 ## Quy tắc khóa này
 
-1. **Luôn dùng f-string** thay `format()` hay `%`
-2. **Luôn dùng `with`** khi mở file
+1. **Ưu tiên f-string** cho nội suy chuỗi dễ đọc
+2. **Dùng `with`** khi quản lý file handle
 3. **Không bare `except:`** — luôn chỉ rõ loại exception
 4. **Comment giải thích *tại sao***, không giải thích *cái gì*
-5. **Mỗi hàm làm MỘT việc** — nếu quá 20 dòng, tách ra
+5. **Mỗi hàm có trách nhiệm rõ ràng** — độ dài là tín hiệu để review, không
+   phải luật cứng

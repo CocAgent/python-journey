@@ -7,7 +7,7 @@ tiếp tục hiện rõ.
 
 - đọc exception type, message và vị trí cuối traceback;
 - phân biệt expected bad input với programming bug;
-- dùng `try/except` cho exception cụ thể và `raise` khi contract bị vi phạm;
+- dùng `try/except/else/finally` đúng vai trò và `raise` khi contract bị vi phạm;
 - áp dụng `Reproduce → Read traceback → Isolate → Fix → Re-test`;
 - phân biệt strategy loss với software defect trong bot local.
 
