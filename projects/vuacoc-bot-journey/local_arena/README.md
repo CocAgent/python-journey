@@ -63,6 +63,15 @@ python projects/vuacoc-bot-journey/local_arena/cli.py --bot-a forward --bot-b wa
 Available selections are `wait`, `forward`, `cautious` and `student`. CLI
 syntax is infrastructure, not a Week 07 learning objective.
 
+Week 15 tournament chạy student bot với cả seat A và B trước từng baseline:
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/tournament_cli.py
+```
+
+Summary báo win/draw/loss, match completion rate, legal action rate và known
+failure count riêng rẽ. Đây không phải production rating.
+
 ## Security boundary
 
 > Local Arena is not a security sandbox. Do not run untrusted Python code.

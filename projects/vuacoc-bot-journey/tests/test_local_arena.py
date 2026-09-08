@@ -52,7 +52,16 @@ def test_bot_exception_is_recorded_not_silently_swallowed() -> None:
 
 def test_student_starter_participates_with_a_legal_action() -> None:
     result = run_match(student_bot, forward_bot)
+    state = {
+        "turn": 1,
+        "max_turns": 6,
+        "position": 0,
+        "opponent_position": 4,
+        "goal": 4,
+        "min_position": 0,
+        "max_position": 4,
+    }
 
-    assert student_bot({}) in LOCAL_ACTIONS
+    assert student_bot(state) in LOCAL_ACTIONS
     assert result.status == "completed"
     assert 1 <= len(result.turns) <= result.max_turns

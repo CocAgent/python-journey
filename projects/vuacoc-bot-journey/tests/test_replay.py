@@ -63,6 +63,30 @@ def test_malformed_replay_is_rejected(tmp_path) -> None:
         load_replay(source)
 
 
+def test_replay_with_missing_result_fields_is_rejected(tmp_path) -> None:
+    source = tmp_path / "incomplete.json"
+    source.write_text(
+        '{"format": "COURSE LOCAL FORMAT", '
+        '"production_compatibility": "NOT VUACOC PRODUCTION FORMAT", '
+        '"turns": []}',
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="status"):
+        load_replay(source)
+
+
+def test_replay_with_invalid_nested_action_is_rejected(tmp_path) -> None:
+    result = run_match(forward_bot, wait_bot)
+    data = replay_data(result)
+    data["turns"][0]["bot_a_action"] = "teleport"
+    source = tmp_path / "invalid-action.json"
+    source.write_text(json.dumps(data), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="invalid bot A action"):
+        load_replay(source)
+
+
 def test_concise_summary_contains_each_required_turn_field() -> None:
     result = run_match(forward_bot, wait_bot)
     summary = concise_summary(result)
