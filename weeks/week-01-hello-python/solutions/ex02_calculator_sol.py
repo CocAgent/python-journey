@@ -1,29 +1,37 @@
-"""
-Lời giải Bài tập 02: Máy tính Python 🧮
-"""
+"""Official solution: arithmetic with Python."""
 
-# TODO 1
-print("2024 + 1000 =", 2024 + 1000)
+PI = 3.14159
 
-# TODO 2
-tien = 150000
-ca_phe = 3 * 35000
-con_lai = tien - ca_phe
-print(f"Số tiền còn lại: {con_lai:,} VNĐ")
 
-# TODO 3
-ban_kinh = 7
-dien_tich = 3.14159 * ban_kinh ** 2
-print(f"Diện tích hình tròn: {dien_tich:.2f}")
+def remaining_balance(budget: int, unit_price: int, quantity: int) -> int:
+    """Return the money left after buying a quantity at a unit price."""
+    return budget - unit_price * quantity
 
-# TODO 4
-keo = 100
-nguoi = 7
-moi_nguoi = keo // nguoi
-du = keo % nguoi
-print(f"Mỗi người: {moi_nguoi} viên, dư: {du} viên")
 
-# TODO 5
-C = 37
-F = C * 9/5 + 32
-print(f"{C}°C = {F}°F")
+def circle_area(radius: float) -> float:
+    """Return the area of a circle using a teaching value of pi."""
+    if radius < 0:
+        raise ValueError("radius cần >= 0")
+    return PI * radius**2
+
+
+def share_candy(total: int, people: int) -> tuple[int, int]:
+    """Return candies per person and the remainder."""
+    if people <= 0:
+        raise ValueError("people cần > 0")
+    return total // people, total % people
+
+
+def celsius_to_fahrenheit(celsius: float) -> float:
+    """Convert a Celsius temperature to Fahrenheit."""
+    return celsius * 9 / 5 + 32
+
+
+if __name__ == "__main__":
+    print("2024 + 1000 =", 2024 + 1000)
+    print(f"Số tiền còn lại: {remaining_balance(150_000, 35_000, 3):,} VNĐ")
+    print(f"Diện tích hình tròn: {circle_area(7):.2f}")
+
+    each, left = share_candy(100, 7)
+    print(f"Mỗi người: {each} viên, dư: {left} viên")
+    print(f"37°C = {celsius_to_fahrenheit(37)}°F")

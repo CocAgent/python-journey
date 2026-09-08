@@ -25,10 +25,13 @@ Nếu thích học qua câu chuyện, đọc tùy chọn
 2. **Setup nếu cần** — làm theo [`SETUP.md`](../../SETUP.md) khi Python, VS Code,
    Python extension, terminal hoặc Git chưa sẵn sàng.
 3. **Python fundamentals** — đọc [`notes.md`](notes.md).
-4. **Exercises** — hoàn thành ba file trong [`exercises/`](exercises/).
-5. **Mini-project** — xây ASCII Art Generator theo
+4. **Examples** — chạy thử ba file trong [`examples/`](examples/) để thấy
+   `print()`, phép toán và traceback đầu tiên hoạt động thế nào.
+5. **Exercises** — hoàn thành ba file trong [`exercises/`](exercises/). Khi bí,
+   mở [`hints.md`](hints.md) trước khi xem solutions.
+6. **Mini-project** — xây ASCII Art Generator theo
    [`mini-project/README.md`](mini-project/README.md).
-6. **Commit evidence** — review thay đổi, commit tiến độ và push lên GitHub.
+7. **Commit evidence** — review thay đổi, commit tiến độ và push lên GitHub.
 
 > Đã có Python 3.12+ và Git? Bạn có thể bỏ qua thao tác cài đặt, nhưng vẫn cần
 > hiểu environment map và chạy các lệnh kiểm tra.
@@ -55,6 +58,18 @@ Mở thư mục [`exercises/`](exercises/) và hoàn thành theo thứ tự:
 3. [`ex03_input.py`](exercises/ex03_input.py) — trò chuyện với người dùng.
 
 Mỗi file có TODO hướng dẫn. Hãy tự làm trước khi xem [`solutions/`](solutions/).
+
+Gợi ý theo từng bài nằm ở [`hints.md`](hints.md).
+
+## Machine check
+
+Sau khi đối chiếu với solutions, xác nhận official solutions vẫn chạy đúng:
+
+```bash
+python weeks/week-01-hello-python/checks/check_solutions.py
+```
+
+Chi tiết: [`checks/README.md`](checks/README.md).
 
 ## Mini-project — ASCII Art Generator
 
@@ -98,6 +113,7 @@ Không commit secret, virtual environment hoặc file tạm.
 - [ ] Hoàn thành `ex01_hello.py`.
 - [ ] Hoàn thành `ex02_calculator.py`.
 - [ ] Hoàn thành `ex03_input.py`.
+- [ ] Chạy các file trong `examples/`.
 - [ ] Hoàn thành mini-project.
 - [ ] Review thay đổi trước khi commit.
 - [ ] Commit và push bằng chứng lên GitHub.

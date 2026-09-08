@@ -1,25 +1,41 @@
-"""
-Lời giải Bài tập 03: Trò chuyện với Python 💬
-"""
+"""Official solution: talking to the user with input()."""
 
-# TODO 1
-ten = input("Bạn tên là gì? ")
-print(f"Xin chào, {ten}!")
 
-# TODO 2
-tuoi = int(input("Bạn bao nhiêu tuổi? "))
-nam_sinh = 2025 - tuoi
-print(f"Bạn sinh năm {nam_sinh}")
+def birth_year(current_year: int, age: int) -> int:
+    """Return an approximate birth year from a current age."""
+    if age < 0:
+        raise ValueError("age cần >= 0")
+    return current_year - age
 
-# TODO 3
-so1 = float(input("Nhập số thứ nhất: "))
-so2 = float(input("Nhập số thứ hai: "))
-print(f"Tổng: {so1} + {so2} = {so1 + so2}")
 
-# TODO 4
-ten = input("Nhập tên: ")
-tinh_tu = input("Nhập tính từ: ")
-con_vat = input("Nhập con vật: ")
-so = input("Nhập một số: ")
-print(f"{ten} có một con {con_vat} rất {tinh_tu}.")
-print(f"Mỗi ngày nó ăn {so} bát cơm!")
+def total_of(first: float, second: float) -> float:
+    """Return the sum of two numbers."""
+    return first + second
+
+
+def mad_lib(name: str, adjective: str, animal: str, number: str) -> list[str]:
+    """Return a two-line story built from user words."""
+    return [
+        f"{name} có một con {animal} rất {adjective}.",
+        f"Mỗi ngày nó ăn {number} bát cơm!",
+    ]
+
+
+if __name__ == "__main__":
+    name = input("Bạn tên là gì? ").strip()
+    print(f"Xin chào, {name}!")
+
+    age = int(input("Bạn bao nhiêu tuổi? "))
+    print(f"Bạn sinh năm {birth_year(2026, age)}")
+
+    first = float(input("Nhập số thứ nhất: "))
+    second = float(input("Nhập số thứ hai: "))
+    print(f"Tổng: {first} + {second} = {total_of(first, second)}")
+
+    for line in mad_lib(
+        input("Nhập tên: ").strip(),
+        input("Nhập tính từ: ").strip(),
+        input("Nhập con vật: ").strip(),
+        input("Nhập một số: ").strip(),
+    ):
+        print(line)

@@ -120,3 +120,56 @@ def test_week_13_http_exercise_runs_in_documented_module_mode() -> None:
 
     assert result.returncode == 0, result.stdout + result.stderr
     assert "'lesson': 13" in result.stdout
+
+
+def test_every_week_has_learning_architecture() -> None:
+    """Every week ships notes, a README, hints and a machine check."""
+    missing: list[str] = []
+    for name in EXPECTED_WEEK_DIRECTORIES:
+        week = ROOT / "weeks" / name
+        for required in ("README.md", "notes.md", "hints.md"):
+            if not (week / required).is_file():
+                missing.append(f"{name}/{required}")
+        checks = week / "checks"
+        if not checks.is_dir():
+            missing.append(f"{name}/checks/")
+            continue
+        if not (checks / "README.md").is_file():
+            missing.append(f"{name}/checks/README.md")
+        if not any(checks.glob("check*.py")):
+            missing.append(f"{name}/checks/check*.py")
+
+    assert not missing, f"missing week architecture: {missing}"
+
+
+def test_week_01_solution_checks_pass() -> None:
+    result = subprocess.run(
+        [sys.executable, "weeks/week-01-hello-python/checks/check_solutions.py"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_week_15_readiness_check_reports_incomplete_project(tmp_path: Path) -> None:
+    """The readiness check must fail a project that is missing its evidence."""
+    (tmp_path / "main.py").write_text("print('hi')\n", encoding="utf-8")
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "weeks/week-15-capstone-project/checks/check_capstone_readiness.py",
+            str(tmp_path),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "README.md" in result.stdout
+    assert "AI_USAGE.md" in result.stdout

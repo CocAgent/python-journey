@@ -43,7 +43,8 @@ choose → plan → decompose → implement → run
 1. Đọc [`notes.md`](notes.md).
 2. Chọn brief trong [`tracks/`](tracks/).
 3. Copy hoặc hoàn thiện artifact phù hợp trong [`starter/`](starter/).
-4. Chạy project nhiều lần với các case đã lên kế hoạch.
+4. Chạy project nhiều lần với các case đã lên kế hoạch. Khi bí, xem
+   [`hints.md`](hints.md).
 5. Dùng [`evidence-template.md`](evidence-template.md) để ghi bằng chứng.
 6. Chạy [machine check](checks/README.md) cho reference artifacts.
 7. Commit project bằng message có ý nghĩa.
