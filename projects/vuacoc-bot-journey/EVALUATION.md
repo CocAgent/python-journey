@@ -20,6 +20,10 @@ KNOWN_FAILURE_COUNT
 - `BASELINE_RESULTS`: kết quả riêng khi gặp WaitBot, ForwardBot và CautiousBot.
 - `KNOWN_FAILURE_COUNT`: số weakness hoặc failure còn được ghi nhận.
 
+Tournament chạy learner bot ở cả hai seat A/B để tránh evidence chỉ dựa trên
+một hướng xuất phát. `summarize_results()` báo bốn metric course-local ở trên
+cùng phân bố win/draw/loss; nó không tạo aggregate rating.
+
 Đây là course-local evidence. Không metric nào là Elo, Glicko hoặc production
 rating của VuaCóc.
 

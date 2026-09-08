@@ -37,4 +37,4 @@ jobs:
         run: pytest
 
       - name: Lint maintainer code
-        run: ruff check scripts tests
+        run: ruff check scripts tests projects/vuacoc-bot-journey

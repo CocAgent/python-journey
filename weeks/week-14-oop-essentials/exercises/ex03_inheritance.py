@@ -1,5 +1,5 @@
 """Exercise 03: one clear basic inheritance example."""
 
-# TODO: create Animal(name) and Dog(Animal).
-# TODO: add Dog.speak().
-# TODO: explain in one sentence why Dog “is an” Animal.
+# TODO: tạo Animal(name) và Dog(Animal).
+# TODO: thêm Dog.speak().
+# TODO: giải thích bằng một câu vì sao Dog “is an” Animal.

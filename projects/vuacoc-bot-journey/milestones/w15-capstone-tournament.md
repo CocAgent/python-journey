@@ -37,8 +37,10 @@ AI_USAGE_DISCLOSED
     python projects/vuacoc-bot-journey/local_arena/tournament_cli.py
     pytest projects/vuacoc-bot-journey/tests/test_tournament.py -q
 
-Student bot đấu ba baseline trong cùng điều kiện deterministic. Standings và
-replay là course-local evidence, không phải production benchmark.
+Student bot đấu ba baseline ở cả hai vị trí A/B trong cùng điều kiện
+deterministic. Báo cáo giữ riêng kết quả, completion rate, legal action rate và
+known failures; không gộp thành rating. Standings và replay là course-local
+evidence, không phải production benchmark.
 
 ## Canonical capstone
 

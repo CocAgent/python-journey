@@ -11,11 +11,12 @@ if str(WEEK_ROOT) not in sys.path:
 from bot_course.adapter import course_local_action  # noqa: E402
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """Parse CLI arguments, optionally from a supplied list for testing."""
     parser = argparse.ArgumentParser(description="Run a course-local decision")
     parser.add_argument("--position", type=int, required=True)
     parser.add_argument("--goal", type=int, required=True)
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def main() -> int:

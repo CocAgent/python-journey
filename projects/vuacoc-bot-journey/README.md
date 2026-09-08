@@ -62,6 +62,9 @@ SECRETS = 0
 | W14 | [Strategy Composition](milestones/w14-strategy-composition.md) | thay strategy mà không viết lại core |
 | W15 | [Capstone Tournament](milestones/w15-capstone-tournament.md) | tích hợp, đánh giá, giải thích và demo |
 
+Tournament W15 chạy hai lượt A/B trước mỗi baseline để evidence không phụ thuộc
+một phía xuất phát. Các metric được báo riêng, không gộp thành rating.
+
 Xem [bảng milestone](MILESTONES.md), [kiến trúc](ARCHITECTURE.md),
 [evaluation](EVALUATION.md) và [trạng thái integration contract](INTEGRATION_CONTRACT.md).
 

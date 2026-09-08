@@ -1,7 +1,7 @@
-# Hints — Week 13
+# Gợi ý — Week 13
 
-- Import from the module that owns the behavior.
-- Keep main() small and put logic in reusable functions.
-- argparse input arrives as text unless a type is declared.
-- HTTP success is normally 2xx; status alone does not make malformed JSON valid.
-- Timeout/error handling belongs at the transport boundary, not bot core.
+- Import từ module sở hữu behavior.
+- Giữ `main()` nhỏ và đặt logic trong các function có thể tái sử dụng.
+- Input của `argparse` là text nếu argument không khai báo `type`.
+- HTTP success thường là 2xx; status đúng không biến malformed JSON thành hợp lệ.
+- Xử lý timeout/error thuộc transport boundary, không thuộc bot core.

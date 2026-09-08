@@ -1,12 +1,17 @@
-"""Check required Week 12 testing foundations."""
+"""Run the Week 12 reference tests as an executable behavior check."""
 
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-tests = (ROOT / "tests" / "test_decision.py").read_text(encoding="utf-8")
-required = ("Arrange", "pytest.raises", "edge_case", "regression")
+TESTS = ROOT / "tests"
 
-missing = [marker for marker in required if marker not in tests]
-if missing:
-    raise SystemExit(f"Missing testing foundations: {missing}")
+result = subprocess.run(
+    [sys.executable, "-m", "pytest", str(TESTS), "-q", "-p", "no:cacheprovider"],
+    cwd=ROOT.parents[1],
+    check=False,
+)
+if result.returncode != 0:
+    raise SystemExit(result.returncode)
 print("Week 12 solution checks: PASS")

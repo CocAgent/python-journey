@@ -2,6 +2,8 @@
 
 > **Python cơ bản theo hướng học qua làm — từ zero đến một chương trình có thể kiểm chứng.**
 
+![Python Journey](assets/banner.png)
+
 [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
 [![15 Weeks](https://img.shields.io/badge/Duration-15%20Weeks-f59e0b?style=flat-square)](#lộ-trình-15-tuần)
@@ -9,7 +11,8 @@
 
 **Learning loop:** `Learn → Build → Test → Debug → Improve → Commit → Prove`
 
-**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md)🏆 https://vuacoc.com/
+**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md)
+🏆 · [Tham khảo game gốc](https://vuacoc.com/)
 
 ---
 
@@ -170,11 +173,16 @@ python-journey/
 │   ├── week-01-hello-python/
 │   ├── ...
 │   └── week-15-capstone-project/
+├── projects/
+│   └── vuacoc-bot-journey/
+├── scripts/
+├── tests/
+├── templates/
 ├── cheatsheets/
 └── assets/
 ```
 
-Trong quá trình nâng cấp V2, mỗi tuần sẽ dần hội tụ về learning pattern:
+Mỗi tuần V2 đi theo learning pattern:
 
 ```text
 README → notes/examples → exercises → self-check/tests → challenge → mini-project
@@ -208,10 +216,22 @@ Người học được khuyến khích:
 ```bash
 git clone https://github.com/CocAgent/python-journey.git
 cd python-journey
+```
+
+Sau đó mở [`SETUP.md`](SETUP.md) và làm theo hướng dẫn cho hệ điều hành của
+bạn. Nếu muốn đọc file ngay trong terminal:
+
+```powershell
+# Windows PowerShell
+Get-Content SETUP.md
+```
+
+```bash
+# macOS/Linux
 cat SETUP.md
 ```
 
-Sau đó mở:
+Tuần học đầu tiên nằm tại:
 
 ```text
 weeks/week-01-hello-python/
@@ -226,6 +246,13 @@ weeks/week-01-hello-python/
 - [`SETUP.md`](SETUP.md) — cài đặt môi trường.
 - [`STYLE_GUIDE.md`](STYLE_GUIDE.md) — quy tắc viết code.
 - [`FINAL_PROJECT.md`](FINAL_PROJECT.md) — yêu cầu capstone chính thức.
+
+## Câu chuyện mở đầu tùy chọn
+
+- [Giới thiệu Python qua câu chuyện Cóc và Dế](assets/Story-00-Giới%20thiệu%20Python.md)
+- [Hello Python](assets/Story-01-Hello%20Python.md)
+- [Biến và chuỗi](assets/Story-02-Biến%20và%20chuỗi.md)
+- [Hàm và phân rã vấn đề](assets/Story-07-%20Hàm.md)
 
 ---
 

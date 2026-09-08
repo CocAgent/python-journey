@@ -65,6 +65,10 @@ transition. Một bot đạt goal thì thắng; cả hai đạt goal cùng turn 
 Mỗi completed transition ghi turn number, state trước action, action của bot A,
 action của bot B và state sau action.
 
+Loader kiểm tra nhãn, result fields, state positions, action set và thứ tự turn.
+JSON parse thành công nhưng thiếu field hoặc chứa action ngoài contract vẫn bị
+từ chối.
+
 ```text
 COURSE LOCAL FORMAT
 NOT VUACOC PRODUCTION FORMAT

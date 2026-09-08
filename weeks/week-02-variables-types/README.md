@@ -14,6 +14,8 @@ và tạo output rõ bằng f-string.
 
 ## Learning path
 
+Story mở đầu tùy chọn: [Cóc và Dế mở chiếc ba lô Python](../../assets/Story-02-Biến%20và%20chuỗi.md).
+
 ```text
 README → notes → examples → exercises → hints
        → machine check → mini-project → evidence

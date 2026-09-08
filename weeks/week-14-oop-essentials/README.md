@@ -5,7 +5,7 @@ composition là lựa chọn chính: Bot nhận một strategy có thể thay th
 
 ## Outcomes
 
-- tạo class, object, __init__, instance attributes và methods;
+- tạo class, object, __init__, instance attributes, methods và `__str__`;
 - hiểu encapsulation là giữ một trách nhiệm cùng dữ liệu liên quan;
 - dùng composition trước inheritance;
 - đổi defensive/balanced/aggressive strategy mà không sửa arena core;

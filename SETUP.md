@@ -211,6 +211,18 @@ Thoát environment bằng:
 deactivate
 ```
 
+### Cài công cụ kiểm tra của khóa học
+
+Từ repository root, sau khi kích hoạt virtual environment:
+
+```bash
+python -m pip install --upgrade "pip>=25.1"
+python -m pip install --group dev
+```
+
+Tùy chọn `--group` cần pip 25.1 trở lên. Lệnh đầu tiên giúp tránh lỗi
+`no such option: --group` trên các bản pip cũ đi kèm Python.
+
 ## 6. Clone repository và bắt đầu
 
 ```bash
@@ -263,6 +275,29 @@ Python 3 dùng UTF-8 cho source code theo mặc định. Hãy phân biệt:
 
 Trong Week 01, hãy lưu file bằng UTF-8 và kiểm tra terminal. Khi học file I/O,
 sử dụng rõ `encoding="utf-8"` với `open(...)` khi phù hợp.
+
+#### Windows: `UnicodeEncodeError` khi `print()` tiếng Việt
+
+Trên Windows, console mặc định có thể dùng codepage cũ (ví dụ cp1258) và làm
+chương trình dừng với lỗi:
+
+```text
+UnicodeEncodeError: 'charmap' codec can't encode character ...
+```
+
+Đây là lỗi **hiển thị của terminal**, không phải lỗi code của bạn. Cách xử lý,
+theo thứ tự ưu tiên:
+
+```powershell
+# 1. Bật UTF-8 mode cho một lần chạy
+$env:PYTHONUTF8 = "1"; python ten_file.py
+
+# 2. Bật cho toàn bộ session hiện tại
+chcp 65001
+```
+
+Dùng Windows Terminal thay cho Command Prompt cũ cũng tránh được phần lớn
+trường hợp này.
 
 ## 8. Checklist xác nhận
 

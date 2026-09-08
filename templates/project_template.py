@@ -7,14 +7,14 @@ Ngày: [YYYY-MM-DD]
 """
 
 
-def main():
+def main() -> None:
     """Hàm chính của chương trình."""
     print("=" * 40)
     print("  [TÊN PROJECT]")
     print("=" * 40)
-    
+
     # TODO: Viết logic chính ở đây
-    
+
     print("\nCảm ơn bạn đã sử dụng! 👋")
 
 

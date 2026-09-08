@@ -1,5 +1,6 @@
 """Exercise 02: compose Bot with a strategy."""
 
-# TODO: create Bot.__init__(strategy) and choose_action(state).
-# TODO: create defensive, balanced and aggressive functions.
-# TODO: swap strategies without changing the Bot class.
+# TODO: tạo Bot.__init__(strategy) và choose_action(state).
+# TODO: tạo các function defensive, balanced và aggressive.
+# TODO: làm cho movement hoạt động với cả goal=0 và goal=4.
+# TODO: đổi strategy mà không sửa class Bot.

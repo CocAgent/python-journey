@@ -15,6 +15,14 @@ method dùng self để làm việc với object hiện tại.
 
 Progress chịu trách nhiệm cho dữ liệu và phép tính tiến độ liên quan.
 
+`__str__` định nghĩa biểu diễn thân thiện khi dùng `print(object)`. Nó không
+thay thế dữ liệu thật và không nên chứa side effect:
+
+```python
+def __str__(self) -> str:
+    return f"Progress: {self.completed}/{self.total}"
+```
+
 ## 2. Composition
 
 Composition nghĩa là một object nhận hoặc chứa collaborator khác.
@@ -27,6 +35,10 @@ Composition nghĩa là một object nhận hoặc chứa collaborator khác.
             return self.strategy(state)
 
 Thay strategy không cần sửa Bot hay arena. Đây là thiết kế chính cho milestone.
+
+Mỗi movement strategy phải đọc cả `position` và `goal`. Không hardcode
+`"right"`, vì cùng bot có thể chạy ở phía hướng tới `goal=0` hoặc phía hướng
+tới `goal=4`.
 
 ## 3. Strategy swap
 
