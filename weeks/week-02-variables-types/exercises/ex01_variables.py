@@ -50,5 +50,5 @@ print("Sau bước 4: x =", x)
 # In ra: "Họ tên: [ho] [ten], [tuoi] tuổi"
 ho = "Nguyễn"
 ten = "Tuấn Kiệt"
-tuoi = 25
+tuoi = 20
 print(f"Họ tên: {ho} {ten}, {tuoi} tuổi")
