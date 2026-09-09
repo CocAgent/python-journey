@@ -7,7 +7,7 @@
 # 🎨 Drawing Score Predictor
 
 > Dự đoán số điểm bài vẽ dựa trên phân tích hình ảnh và các tiêu chí đánh giá.
-![Image](<img width="596" height="335" alt="images (3)" src="https://github.com/user-attachments/assets/a2ee0f94-4af1-4c83-84bc-572ffd331c0f" />)
+![Drawing Score Predictor](<img width="596" height="335" alt="images (3)" src="https://github.com/user-attachments/assets/51e7e8c5-d6a1-4221-bda9-a8e8169083c5" />.png)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#-công-nghệ-sử-dụng)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#-công-nghệ-sử-dụng)
