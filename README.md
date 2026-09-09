@@ -1,4 +1,4 @@
-<img width="384" height="688" alt="images" src="https://github.com/user-attachments/assets/713f0e53-7078-430e-8be9-9710bdc1e454" /># Python Journey 🐍
+# Python Journey 🐍
 # 👋 Hi, I'm Duc
 
 💻 Frontend Developer  
@@ -16,7 +16,7 @@
 
 Trở thành Software Developer.
 
-![Python Journey](assets/banner.png)
+![Python Journey](assets/images.jpg)
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
