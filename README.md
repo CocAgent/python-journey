@@ -1,4 +1,4 @@
-# Python Journey 🐍
+<img width="384" height="688" alt="images" src="https://github.com/user-attachments/assets/713f0e53-7078-430e-8be9-9710bdc1e454" /># Python Journey 🐍
 # 👋 Hi, I'm Duc
 
 💻 Frontend Developer  
@@ -11,8 +11,10 @@
 - React
 - Node.js
 - Git & GitHub
+- 
+## Mục tiêu
 
-> **Python cơ bản theo hướng học qua làm — từ zero đến một chương trình có thể kiểm chứng.**
+Trở thành Software Developer.
 
 ![Python Journey](assets/banner.png)
 
