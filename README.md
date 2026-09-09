@@ -1,4 +1,16 @@
 # Python Journey 🐍
+# 👋 Hi, I'm Duc
+
+💻 Frontend Developer  
+🌱 Currently learning React & TypeScript  
+📍 Ho Chi Minh City, Vietnam
+
+## 🚀 My Skills
+
+- JavaScript / TypeScript
+- React
+- Node.js
+- Git & GitHub
 
 > **Python cơ bản theo hướng học qua làm — từ zero đến một chương trình có thể kiểm chứng.**
 
