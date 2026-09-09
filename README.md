@@ -7,14 +7,13 @@
 # 🎨 Drawing Score Predictor
 
 > Dự đoán số điểm bài vẽ dựa trên phân tích hình ảnh và các tiêu chí đánh giá.
-
+![Python Journey](https://chatgpt.com/backend-api/estuary/content?id=file_00000000b1708230b09f2c756035b18a&ts=496926&p=fs&cid=1&sig=7dcbf42f8b1257cad506d7ef19ed615d121c6800873744a7fd5705da1c11c9e9&v=0)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#-công-nghệ-sử-dụng)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#-công-nghệ-sử-dụng)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#-công-nghệ-sử-dụng)
 [![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Project-6366f1?style=flat-square)](#-mô-hình-dự-đoán)
 
-[![Drawing Score Predictor](assets/banner.png)](https://username.github.io/drawing-score-predictor/)
 
 ## 🌐 Demo
 
