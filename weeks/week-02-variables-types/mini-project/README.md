@@ -1,6 +1,6 @@
 # 🎓 Mini-project — Thẻ sinh viên
 
-Mini-project thuộc **Week 02 — Variables & Data Types** trong hành trình học Python.
+Mini-project thuộc **Week 02 — Variables & Data Types**.
 
 Chương trình cho phép người dùng nhập thông tin của một sinh viên, kiểm tra năm nhập học và hiển thị thông tin dưới dạng một thẻ sinh viên đơn giản.
 
