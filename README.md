@@ -1,10 +1,7 @@
 🐍 Python Journey
 
-Chào mừng đến với Python Journey --- hành trình học Python từ cơ bản
-đến nâng cao.
-
-Repo này được dùng để lưu lại bài học, bài tập, ví dụ và mini project
-trong quá trình học Python.
+Hành trình học Python từ cơ bản đến nâng cao --- học lý thuyết, làm
+bài tập và xây dựng project.
 
 👨‍💻 Thông tin
 
@@ -17,33 +14,51 @@ Mục tiêu: Học và thực hành Python từ cơ bản đến nâng cao
 GitHub:
 buitrungson09-maker
 
-📚 Nội dung học
+📚 Lộ trình học
 
-Tuần      Chủ đề                   Trạng thái
+Tuần    Chủ đề                     Trạng thái
 
-Week 01   Hello Python             ✅ Hoàn thành
-Week 02   Variables & Data Types   🚀 Đang học
-Week 03   Conditionals             ⏳ Chưa học
-Week 04   Strings                  ⏳ Chưa học
-Week 05   Lists & Tuples           ⏳ Chưa học
-Week 06   Loops                    ⏳ Chưa học
-Week 07   Functions                ⏳ Chưa học
-Week 08   Dictionaries & Sets      ⏳ Chưa học
-Week 09   Mini Project             ⏳ Chưa học
-Week 10   Files I/O                ⏳ Chưa học
-Week 11   Exceptions               ⏳ Chưa học
-Week 12   Testing with Pytest      ⏳ Chưa học
-Week 13   Modules & CLI API        ⏳ Chưa học
-Week 14   OOP Essentials           ⏳ Chưa học
-Week 15   Capstone Project         ⏳ Chưa học
+Week 01  Hello Python              ✅ Hoàn thành
+Week 02  Variables & Data Types     🚀 Đang học
+Week 03  Conditionals               ⏳ Chưa học
+Week 04  Strings                    ⏳ Chưa học
+Week 05  Lists & Tuples             ⏳ Chưa học
+Week 06  Loops                      ⏳ Chưa học
+Week 07  Functions                  ⏳ Chưa học
+Week 08  Dictionaries & Sets        ⏳ Chưa học
+Week 09  Midterm Project            ⏳ Chưa học
+Week 10  Files I/O                  ⏳ Chưa học
+Week 11  Exceptions                 ⏳ Chưa học
+Week 12  Testing with Pytest        ⏳ Chưa học
+Week 13  Modules & CLI API          ⏳ Chưa học
+Week 14  OOP Essentials             ⏳ Chưa học
+Week 15  Capstone Project           ⏳ Chưa học
 
-📂 Cấu trúc thư mục
+📁 Cấu trúc thư mục
 
 python-journey/
-│
+├── .devcontainer/
+├── .github/
+├── assets/
+├── cheatsheets/
+├── projects/
+├── scripts/
+├── templates/
+├── tests/
 ├── weeks/
 │   ├── week-01-hello-python/
 │   ├── week-02-variables-types/
+│   │   ├── checks/
+│   │   ├── examples/
+│   │   ├── exercises/
+│   │   │   ├── ex01_variables.py
+│   │   │   ├── ex02_type_conversion.py
+│   │   │   └── ex03_input_calc.py
+│   │   ├── mini-project/
+│   │   ├── solutions/
+│   │   ├── hints.md
+│   │   ├── notes.md
+│   │   └── README.md
 │   ├── week-03-conditionals/
 │   ├── week-04-strings/
 │   ├── week-05-lists-tuples/
@@ -57,47 +72,51 @@ python-journey/
 │   ├── week-13-modules-cli-api/
 │   ├── week-14-oop-essentials/
 │   └── week-15-capstone-project/
-│
-├── projects/
-├── scripts/
-├── tests/
+├── .gitignore
+├── AGENTS.md
+├── CONTRIBUTING.md
+├── FINAL_PROJECT.md
 └── README.md
 
-✅ Week 02 - Variables & Data Types
+🚀 Week 02 --- Variables & Data Types
 
-Các bài tập hiện tại:
+📝 Bài tập
 
 ex01_variables.py
+--- Biến, hoán đổi giá trị, augmented assignment và multiple
+assignment.
+
 ex02_type_conversion.py
+--- Chuyển đổi kiểu dữ liệu, bool(), BMI và chuyển đổi thời gian.
+
 ex03_input_calc.py
+--- Bài tập nhập dữ liệu và tính toán.
 
-Nội dung đã học
+🧠 Kiến thức đã học
 
-Khai báo biến
+Khai báo và sử dụng biến
 
-str, int, float, bool
+Kiểu dữ liệu str, int, float, bool
 
-type()
+Kiểm tra kiểu dữ liệu bằng type()
+
+Chuyển đổi kiểu với int(), float(), str(), bool()
+
+Nhập dữ liệu bằng input()
 
 Multiple Assignment
 
-Hoán đổi biến
+Hoán đổi giá trị hai biến
 
-Augmented Assignment
+Augmented Assignment: +=, -=, *=, //=
 
-Chuyển đổi kiểu dữ liệu
+F-string và định dạng kết quả
 
-input()
+Tính chỉ số BMI
 
-int(), float(), str(), bool()
+Chuyển đổi giây sang giờ, phút, giây
 
-F-string
-
-Tính BMI
-
-Chuyển đổi thời gian
-
-💻 Ví dụ Python
+💻 Ví dụ
 
 ten = "Son"
 tuoi = 18
@@ -139,35 +158,35 @@ Kết quả:
 
 44
 
+🛠️ Công nghệ
+
+
+
+
+
+
 🎯 Mục tiêu
 
-✅ Nắm chắc Python cơ bản
+✅ Làm quen với Python và môi trường lập trình
 
-✅ Hiểu cách sử dụng biến và kiểu dữ liệu
+🔄 Nắm chắc Python cơ bản
 
-🔄 Luyện tập bài tập mỗi tuần
+🔄 Hoàn thành bài tập theo từng tuần
 
-🔄 Học cách sử dụng Git và GitHub
+🔄 Thành thạo Git và GitHub
 
-⏳ Làm mini project bằng Python
+⏳ Hoàn thành các mini project
 
 ⏳ Hoàn thành Capstone Project
 
-🛠 Công nghệ sử dụng
-
-
-
-
-
-
 📈 Tiến độ
 
-Python Basics        ███████░░░  70%
-Git & GitHub         ██████░░░░  60%
-Projects             ██░░░░░░░░  20%
+Week 01: ✅ Hoàn thành
+Week 02: 🚀 Đang học
+Week 03 → Week 15: ⏳ Chưa học
 
 🌟 Learning Journey
 
 Code → Practice → Error → Fix → Improve 🚀
 
-Mỗi bài tập là một bước tiến trong hành trình học lập trình Python
+Mỗi bài tập là một bước tiến trong hành trình học lập trình Python.
