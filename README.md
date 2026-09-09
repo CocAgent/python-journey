@@ -7,7 +7,7 @@
 # 🎨 Drawing Score Predictor
 
 > Dự đoán số điểm bài vẽ dựa trên phân tích hình ảnh và các tiêu chí đánh giá.
-![Drawing Score Predictor](<img width="596" height="335" alt="images (3)" src="https://github.com/user-attachments/assets/51e7e8c5-d6a1-4221-bda9-a8e8169083c5" />.png)
+![Drawing Score Predictor](<img width="596" height="335" alt="images (3)" src="https://github.com/user-attachments/assets/51e7e8c5-d6a1-4221-bda9-a8e8169083c5" />)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#-công-nghệ-sử-dụng)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#-công-nghệ-sử-dụng)
@@ -255,15 +255,15 @@ Project sẽ kiểm tra:
 
 ### Trang chính
 
-![Home](assets/demo-home.png)
+![Home]([assets/demo-home.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0S7hbHsHyLXXvOQRYzqt0t4mYBo87bZEuPK70so4jBA&s=10))
 
 ### Upload bài vẽ
 
-![Upload](assets/demo-upload.png)
+![Upload]([assets/demo-upload.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWzls9bV_bfijQRpj6QHzM-LL5eqGA9A532fYpYQuGXw&s=10))
 
 ### Kết quả dự đoán
 
-![Result](assets/demo-result.png)
+![Result]([assets/demo-result.png](https://gcs.tripi.vn/public-tripi/tripi-feed/img/474085grI/meme-10-diem-hai-huoc_094606795.jpeg))
 
 ---
 
