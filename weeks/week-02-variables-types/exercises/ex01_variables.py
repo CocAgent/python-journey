@@ -10,6 +10,14 @@ Mục tiêu: Hiểu cách khai báo và sử dụng biến
 # diem_tb = ???   (float)
 # dang_hoc = ???  (bool)
 # In ra giá trị và kiểu dữ liệu của mỗi biến bằng type()
+ten="kiet"
+tuoi =20
+diem_tb= 8.4
+dang_hoc=True
+print(ten, type(ten))
+print(tuoi, type(tuoi))
+print(diem_tb, type(diem_tb))
+print(dang_hoc, type(dang_hoc))
 
 
 # TODO 2: Hoán đổi giá trị 2 biến KHÔNG dùng biến tạm
