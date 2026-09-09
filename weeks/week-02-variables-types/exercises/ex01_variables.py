@@ -34,6 +34,15 @@ print("Sau hoán đổi: a =", a, ", b =", b)
 # TODO 3: Augmented assignment
 # Cho x = 100. Dùng +=, -=, *=, //= để biến đổi x qua 4 bước
 # In ra x sau mỗi bước
+x= 100
+x += 10
+print("Sau bước 1: x =", x)
+x -= 20
+print("Sau bước 2: x =", x)
+x *= 3
+print("Sau bước 3: x =", x)
+x //= 4
+print("Sau bước 4: x =", x)
 
 
 # TODO 4 (Thử thách): Multiple assignment
