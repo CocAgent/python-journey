@@ -1,7 +1,6 @@
 🐍 Python Journey
 
-Hành trình học Python từ cơ bản đến nâng cao --- học lý thuyết, làm
-bài tập và xây dựng project.
+Hành trình học Python từ cơ bản đến nâng cao — học lý thuyết, làm bài tập và xây dựng project.
 
 👨‍💻 Thông tin
 
@@ -11,40 +10,109 @@ Ngôn ngữ: Python
 
 Mục tiêu: Học và thực hành Python từ cơ bản đến nâng cao
 
-GitHub:
-buitrungson09-maker
+GitHub: buitrungson09-maker
 
 📚 Lộ trình học
 
-Tuần    Chủ đề                     Trạng thái
+Tuần
 
-Week 01  Hello Python              ✅ Hoàn thành
-Week 02  Variables & Data Types     🚀 Đang học
-Week 03  Conditionals               ⏳ Chưa học
-Week 04  Strings                    ⏳ Chưa học
-Week 05  Lists & Tuples             ⏳ Chưa học
-Week 06  Loops                      ⏳ Chưa học
-Week 07  Functions                  ⏳ Chưa học
-Week 08  Dictionaries & Sets        ⏳ Chưa học
-Week 09  Midterm Project            ⏳ Chưa học
-Week 10  Files I/O                  ⏳ Chưa học
-Week 11  Exceptions                 ⏳ Chưa học
-Week 12  Testing with Pytest        ⏳ Chưa học
-Week 13  Modules & CLI API          ⏳ Chưa học
-Week 14  OOP Essentials             ⏳ Chưa học
-Week 15  Capstone Project           ⏳ Chưa học
+Chủ đề
+
+Trạng thái
+
+Week 01
+
+Hello Python
+
+✅ Hoàn thành
+
+Week 02
+
+Variables & Data Types
+
+🚀 Đang học
+
+Week 03
+
+Conditionals
+
+⏳ Chưa học
+
+Week 04
+
+Strings
+
+⏳ Chưa học
+
+Week 05
+
+Lists & Tuples
+
+⏳ Chưa học
+
+Week 06
+
+Loops
+
+⏳ Chưa học
+
+Week 07
+
+Functions
+
+⏳ Chưa học
+
+Week 08
+
+Dictionaries & Sets
+
+⏳ Chưa học
+
+Week 09
+
+Midterm Project
+
+⏳ Chưa học
+
+Week 10
+
+Files I/O
+
+⏳ Chưa học
+
+Week 11
+
+Exceptions
+
+⏳ Chưa học
+
+Week 12
+
+Testing with Pytest
+
+⏳ Chưa học
+
+Week 13
+
+Modules & CLI API
+
+⏳ Chưa học
+
+Week 14
+
+OOP Essentials
+
+⏳ Chưa học
+
+Week 15
+
+Capstone Project
+
+⏳ Chưa học
 
 📁 Cấu trúc thư mục
 
 python-journey/
-├── .devcontainer/
-├── .github/
-├── assets/
-├── cheatsheets/
-├── projects/
-├── scripts/
-├── templates/
-├── tests/
 ├── weeks/
 │   ├── week-01-hello-python/
 │   ├── week-02-variables-types/
@@ -72,25 +140,20 @@ python-journey/
 │   ├── week-13-modules-cli-api/
 │   ├── week-14-oop-essentials/
 │   └── week-15-capstone-project/
-├── .gitignore
-├── AGENTS.md
-├── CONTRIBUTING.md
-├── FINAL_PROJECT.md
+├── projects/
+├── scripts/
+├── tests/
 └── README.md
 
-🚀 Week 02 --- Variables & Data Types
+🚀 Week 02 — Variables & Data Types
 
 📝 Bài tập
 
-ex01_variables.py
---- Biến, hoán đổi giá trị, augmented assignment và multiple
-assignment.
+ex01_variables.py — Biến, hoán đổi giá trị, augmented assignment và multiple assignment.
 
-ex02_type_conversion.py
---- Chuyển đổi kiểu dữ liệu, bool(), BMI và chuyển đổi thời gian.
+ex02_type_conversion.py — Chuyển đổi kiểu dữ liệu, bool(), BMI và chuyển đổi thời gian.
 
-ex03_input_calc.py
---- Bài tập nhập dữ liệu và tính toán.
+ex03_input_calc.py — Nhập dữ liệu và thực hiện các phép tính.
 
 🧠 Kiến thức đã học
 
@@ -100,7 +163,7 @@ Kiểu dữ liệu str, int, float, bool
 
 Kiểm tra kiểu dữ liệu bằng type()
 
-Chuyển đổi kiểu với int(), float(), str(), bool()
+Chuyển đổi kiểu bằng int(), float(), str(), bool()
 
 Nhập dữ liệu bằng input()
 
@@ -112,11 +175,11 @@ Augmented Assignment: +=, -=, *=, //=
 
 F-string và định dạng kết quả
 
-Tính chỉ số BMI
+Tính BMI
 
 Chuyển đổi giây sang giờ, phút, giây
 
-💻 Ví dụ
+💻 Ví dụ Python
 
 ten = "Son"
 tuoi = 18
@@ -158,7 +221,7 @@ Kết quả:
 
 44
 
-🛠️ Công nghệ
+🛠️ Công nghệ sử dụng
 
 
 
@@ -182,7 +245,9 @@ Kết quả:
 📈 Tiến độ
 
 Week 01: ✅ Hoàn thành
+
 Week 02: 🚀 Đang học
+
 Week 03 → Week 15: ⏳ Chưa học
 
 🌟 Learning Journey
@@ -190,3 +255,5 @@ Week 03 → Week 15: ⏳ Chưa học
 Code → Practice → Error → Fix → Improve 🚀
 
 Mỗi bài tập là một bước tiến trong hành trình học lập trình Python.
+
+⭐ Keep learning. Keep coding.
