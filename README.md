@@ -1,18 +1,24 @@
-# Python Journey 🐍
+# Python Journey ⚡
 
-> **Python cơ bản theo hướng học qua làm — từ zero đến một chương trình có thể kiểm chứng.**
+![Python Journey Banner](https://capsule-render.vercel.app/api?type=rect&color=ff1a1a&height=220&section=header&text=%E2%AD%90%20Python%20Journey%20%F0%9F%8C%95%F0%9F%94%A5&fontSize=42&fontColor=ffffff&desc=%E2%9C%A8%20Zero%20to%20Hero%20%E2%80%94%20Sky%20Full%20of%20Stars%20%F0%9F%8C%8C&descSize=18&descAlignY=70&animation=twinkling)
 
-![Python Journey](assets/banner.png)
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
-[![15 Weeks](https://img.shields.io/badge/Duration-15%20Weeks-f59e0b?style=flat-square)](#lộ-trình-15-tuần)
-[![Level](https://img.shields.io/badge/Level-Beginner-6366f1?style=flat-square)](#đối-tượng)
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
+![Duration](https://img.shields.io/badge/Duration-15_Weeks-1e3a8a?style=for-the-badge)
+![Fork Status](https://img.shields.io/badge/Student_Fork-Active-b91c1c?style=for-the-badge)
+
+> **THÔNG TIN HỌC VIÊN:**
+> - **Họ và tên:** Phạm Minh Thành
+> - **Chuyên ngành:** Công nghệ thông tin (Năm 2)
+> - **Trạng thái:** Đã Fork repository & bắt đầu thực hành lộ trình 15 tuần.
+
+</div>
 
 **Learning loop:** `Learn → Build → Test → Debug → Improve → Commit → Prove`
 
-**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md)
-🏆 · [Tham khảo game gốc](https://vuacoc.com/)
+**Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md) 🎯 https://vuacoc.com/
 
 ---
 
@@ -29,13 +35,13 @@ CocAgent Python Learning Path
 Đầu vào: không yêu cầu kinh nghiệm lập trình
 ```
 
-> **Mục tiêu cuối khóa:** người học không chỉ “biết cú pháp Python”, mà có thể viết một chương trình nhỏ **đúng, rõ ràng, có kiểm thử, biết debug và giải thích được vì sao giải pháp hoạt động**.
+> **Mục tiêu cuối khóa:** người học không chỉ "biết cú pháp Python", mà có thể viết một chương trình nhỏ **đúng, rõ ràng, có kiểm thử, biết debug và giải thích được vì sao giải pháp hoạt động**.
 
 ---
 
 ## Triết lý học
 
-Python Journey không đi theo mô hình “đọc hết cú pháp rồi mới làm project”.
+Python Journey không đi theo mô hình "đọc hết cú pháp rồi mới làm project".
 
 Mỗi chủ đề được học qua một vòng ngắn:
 
@@ -47,7 +53,7 @@ Ba nguyên tắc:
 
 1. **Học qua làm** — khái niệm phải được dùng ngay trong bài tập hoặc mini-project.
 2. **Đúng phải có bằng chứng** — từ sớm người học làm quen với self-check và test, không chỉ nhìn output rồi đoán là đúng.
-3. **Đơn giản nhưng đáng tin cậy** — không nhồi kỹ thuật chỉ để trông “nâng cao”.
+3. **Đơn giản nhưng đáng tin cậy** — không nhồi kỹ thuật chỉ để trông "nâng cao".
 
 ---
 
@@ -68,19 +74,19 @@ Ba nguyên tắc:
 
 Sau khóa học, người học có thể:
 
-- viết chương trình Python rõ ràng với biến, điều kiện, vòng lặp và hàm;
-- sử dụng `list`, `tuple`, `dict`, `set` phù hợp với dữ liệu;
-- xử lý chuỗi và biết khi nào regex hữu ích;
-- đọc/ghi dữ liệu với file, CSV, JSON và `pathlib`;
-- đọc traceback, xử lý exception và debug có phương pháp;
-- viết test cơ bản bằng `pytest`, bao gồm edge cases;
-- tổ chức code thành module và hiểu dependency/project structure ở mức nhập môn;
-- gọi một HTTP API đơn giản, đọc status code và xử lý JSON response;
-- hiểu type hints như contract hỗ trợ người đọc và tooling;
-- dùng class khi OOP thực sự làm mô hình rõ hơn; hiểu composition và inheritance cơ bản;
-- dùng Git/GitHub để lưu lịch sử phát triển;
-- hoàn thành capstone có code, tests, README và bằng chứng chạy được;
-- sẵn sàng bước sang **Python Mastery**, **DSA with Python** hoặc **Data Python**.
+- Viết chương trình Python rõ ràng với biến, điều kiện, vòng lặp và hàm.
+- Sử dụng `list`, `tuple`, `dict`, `set` phù hợp với dữ liệu.
+- Xử lý chuỗi và biết khi nào nên dùng regex.
+- Đọc/ghi dữ liệu với file, CSV, JSON và `pathlib`.
+- Đọc traceback, xử lý exception và debug có phương pháp.
+- Viết test cơ bản bằng `pytest`, bao gồm các edge case.
+- Tổ chức code thành module và hiểu cấu trúc dự án (dependencies, modules).
+- Gọi một HTTP API đơn giản, đọc `status code` và xử lý `JSON` response.
+- Hiểu `type hints` như một contract hỗ trợ người đọc và tooling.
+- Sử dụng class khi OOP giúp mô hình hóa; hiểu composition và inheritance cơ bản.
+- Dùng Git/GitHub để lưu lịch sử phát triển và làm việc nhóm.
+- Hoàn thành capstone gồm code, tests, README và bằng chứng chạy được.
+- Sẵn sàng bước sang **Python Mastery**, **DSA with Python** hoặc **Data Python**.
 
 ---
 
@@ -104,7 +110,7 @@ Sau khóa học, người học có thể:
 | **07** | Functions · Decomposition · Scope · Type hints | Utility Toolkit có contract rõ |
 | **08** | Dict · Set · Nested data · Data modeling | Word/Data Counter |
 
-## Tuần 09 — Midterm Project 🏆
+## Tuần 09 — Midterm Project 🎯
 
 Tổng hợp W01–W08 thành một chương trình console có cấu trúc. Trọng tâm là **phân rã vấn đề, dữ liệu, hàm, Git history và khả năng giải thích code**.
 
@@ -122,14 +128,14 @@ Tổng hợp W01–W08 thành một chương trình console có cấu trúc. Tr�
 
 Xây dựng một chương trình Python hoàn chỉnh có:
 
-- vấn đề và phạm vi rõ ràng;
-- ít nhất 4 chức năng có ý nghĩa;
-- code được phân rã hợp lý;
-- xử lý lỗi và edge cases;
-- tests có ý nghĩa;
-- README và hướng dẫn chạy;
-- Git history rõ ràng;
-- khả năng demo và giải thích quyết định thiết kế.
+- Vấn đề và phạm vi rõ ràng.
+- Ít nhất 4 chức năng có ý nghĩa.
+- Code được phân rã hợp lý (hàm/ngăn xếp module rõ ràng).
+- Xử lý lỗi và các edge case đã được kiểm thử.
+- Tests có ý nghĩa bao phủ hành vi chính.
+- README hướng dẫn chạy và giải thích cách dùng.
+- Lưu giữ Git history rõ ràng (các commit có ý nghĩa).
+- Có cách demo (script hoặc hướng dẫn) và giải thích các quyết định thiết kế.
 
 Yêu cầu chính thức nằm tại [`FINAL_PROJECT.md`](FINAL_PROJECT.md).
 
@@ -137,25 +143,32 @@ Yêu cầu chính thức nằm tại [`FINAL_PROJECT.md`](FINAL_PROJECT.md).
 
 ## Ranh giới với Python Mastery
 
-Python Journey trả lời:
+**Python Journey trả lời:**
 
-> **Can I program reliably in Python?**
+- Làm thế nào để viết code Python đúng và rõ ràng?
+- Khi nào dùng list, dict, set hay tuple?
+- Cách debug khi gặp lỗi?
+- Cách tổ chức code thành hàm và module?
+- Cách viết test cơ bản?
 
-Python Mastery trả lời:
+**Python Mastery trả lời:**
 
-> **Can I engineer good Python software?**
+- Cách tối ưu hiệu năng và bộ nhớ?
+- Cách xây dựng thư viện Python chuyên nghiệp?
+- Cách xử lý concurrency và async?
+- Cách áp dụng design pattern nâng cao?
 
 Các nội dung sau để dành cho Python Mastery hoặc khóa chuyên sâu:
 
-- advanced decorators;
-- iterators/generators chuyên sâu;
-- advanced typing và protocols;
-- descriptors/metaclasses;
-- advanced testing/mocking;
-- concurrency/asyncio;
-- design patterns và architecture;
-- profiling/performance;
-- packaging/publishing chuyên sâu.
+- Advanced decorators
+- Iterators / generators nâng cao
+- Advanced typing và protocols
+- Descriptors / metaclasses
+- Advanced testing / mocking
+- Concurrency / asyncio
+- Design patterns và architecture
+- Profiling / performance tuning
+- Packaging / publishing chuyên sâu
 
 ---
 
@@ -173,16 +186,11 @@ python-journey/
 │   ├── week-01-hello-python/
 │   ├── ...
 │   └── week-15-capstone-project/
-├── projects/
-│   └── vuacoc-bot-journey/
-├── scripts/
-├── tests/
-├── templates/
 ├── cheatsheets/
 └── assets/
 ```
 
-Mỗi tuần V2 đi theo learning pattern:
+Trong quá trình nâng cấp V2, mỗi tuần sẽ dần hội tụ về learning pattern:
 
 ```text
 README → notes/examples → exercises → self-check/tests → challenge → mini-project
@@ -214,24 +222,12 @@ Người học được khuyến khích:
 ## Bắt đầu
 
 ```bash
-git clone https://github.com/CocAgent/python-journey.git
+git clone https://github.com/mthanhcode/python-journey.git
 cd python-journey
-```
-
-Sau đó mở [`SETUP.md`](SETUP.md) và làm theo hướng dẫn cho hệ điều hành của
-bạn. Nếu muốn đọc file ngay trong terminal:
-
-```powershell
-# Windows PowerShell
-Get-Content SETUP.md
-```
-
-```bash
-# macOS/Linux
 cat SETUP.md
 ```
 
-Tuần học đầu tiên nằm tại:
+Sau đó mở:
 
 ```text
 weeks/week-01-hello-python/
@@ -246,13 +242,6 @@ weeks/week-01-hello-python/
 - [`SETUP.md`](SETUP.md) — cài đặt môi trường.
 - [`STYLE_GUIDE.md`](STYLE_GUIDE.md) — quy tắc viết code.
 - [`FINAL_PROJECT.md`](FINAL_PROJECT.md) — yêu cầu capstone chính thức.
-
-## Câu chuyện mở đầu tùy chọn
-
-- [Giới thiệu Python qua câu chuyện Cóc và Dế](assets/Story-00-Giới%20thiệu%20Python.md)
-- [Hello Python](assets/Story-01-Hello%20Python.md)
-- [Biến và chuỗi](assets/Story-02-Biến%20và%20chuỗi.md)
-- [Hàm và phân rã vấn đề](assets/Story-07-%20Hàm.md)
 
 ---
 
