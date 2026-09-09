@@ -25,6 +25,10 @@ print(dang_hoc, type(dang_hoc))
 # b = 20
 # Sau hoán đổi: a = 20, b = 10
 # Gợi ý: Python cho phép a, b = b, a
+a=10
+b=20
+a, b = b, a
+print("Sau hoán đổi: a =", a, ", b =", b)
 
 
 # TODO 3: Augmented assignment
