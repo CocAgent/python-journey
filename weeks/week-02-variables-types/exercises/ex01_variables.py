@@ -49,6 +49,6 @@ print("Sau bước 4: x =", x)
 # Gán 3 biến trên 1 dòng: ho, ten, tuoi = ???
 # In ra: "Họ tên: [ho] [ten], [tuoi] tuổi"
 ho = "Nguyễn"
-ten = "A"
+ten = "Tuấn Kiệt"
 tuoi = 25
 print(f"Họ tên: {ho} {ten}, {tuoi} tuổi")
