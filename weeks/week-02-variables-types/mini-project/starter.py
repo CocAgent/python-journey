@@ -6,9 +6,11 @@ major = input("Ngành: ").strip()
 start_year_text = input("Năm nhập học: ").strip()
 
 if start_year_text.isdigit():
-    start_year = int(start_year_text)
-    graduation_year = start_year + 4
-    print(f"{name} · {student_id} · {major}")
-    print(f"Khóa: {start_year}–{graduation_year}")
+	start_year = int(start_year_text)
+	graduation_year = start_year + 4
+	print(f"{name} · {student_id} · {major}")
+	print(f"Khóa: {start_year}–{graduation_year}")
 else:
-    print("Năm nhập học cần gồm các chữ số")
+	print("Năm nhập học cần gồm các chữ số")
+
+
