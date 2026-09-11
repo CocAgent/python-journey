@@ -11,14 +11,22 @@ ten = input("Nhập tên của bạn: ")
 
 # Bước 2: Tính độ rộng khung
 # TODO: Tính width dựa trên len(ten)
+loi_chao = "Xin chào"
+dong_trang_tri = "🐍 Python 🐍"
+width = max(len(ten) + 4, len(loi_chao) + 4, len(dong_trang_tri) + 4)
 
 # Bước 3: In khung trên
 # TODO: In dòng trên bằng ╔═══╗
+print("╔" + "═" * width + "╗")
 
 # Bước 4: In nội dung
 # TODO: In tên trong khung, căn giữa
+print("║" + loi_chao.center(width) + "║")
+print("║" + (ten.upper() + "!").center(width) + "║")
+print("║" + dong_trang_tri.center(width) + "║")
 
 # Bước 5: In khung dưới
 # TODO: In dòng dưới bằng ╚═══╝
+print("╚" + "═" * width + "╝")
 
 # Gợi ý: Dùng str.center(width) để căn giữa
