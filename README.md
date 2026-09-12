@@ -7,7 +7,15 @@
 <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&weight=700&size=24&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=760&lines=👋+Hi,+I'm+Nguyen+Nhu+Duc;🐍+Python+Learner;⚙️+C+++Developer;🎮+Roblox+Studio+Creator;🚀+Future+Game+Developer" alt="Typing intro" />
 
 <p>
-  <a href="https://github.com/nguyennhuduc-dev"><img src="https://img.shields.io/badge/GitHub-@nguyennhuduc--dev-181717?style=for-the-badge&logo=github" alt="GitHub badge" /></a>
+  <a href="https://github.com/nguyennhuduc-dev/python-new">
+    <img src="https://img.shields.io/github/stars/nguyennhuduc-dev/python-new?style=for-the-badge&logo=github" alt="GitHub stars" />
+  </a>
+  <a href="https://github.com/nguyennhuduc-dev/python-new/forks">
+    <img src="https://img.shields.io/github/forks/nguyennhuduc-dev/python-new?style=for-the-badge&logo=github" alt="GitHub forks" />
+  </a>
+  <a href="https://github.com/nguyennhuduc-dev/python-new">
+    <img src="https://img.shields.io/github/repo-size/nguyennhuduc-dev/python-new?style=for-the-badge" alt="GitHub repo size" />
+  </a>
   <a href="mailto:nguyennhuduc.dev@gmail.com"><img src="https://img.shields.io/badge/Email-Contact-0A66C2?style=for-the-badge&logo=gmail" alt="Email badge" /></a>
   <img src="https://img.shields.io/badge/Location-Vietnam-🇻🇳-brightgreen?style=for-the-badge" alt="Location badge" />
 </p>
