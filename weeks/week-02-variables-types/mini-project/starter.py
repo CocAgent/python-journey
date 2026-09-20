@@ -1,14 +1,10 @@
-"""Starter for the Week 02 student card."""
-
-name = input("Họ tên: ").strip()
-student_id = input("Mã sinh viên: ").strip()
-major = input("Ngành: ").strip()
-start_year_text = input("Năm nhập học: ").strip()
-
-if start_year_text.isdigit():
-    start_year = int(start_year_text)
-    graduation_year = start_year + 4
-    print(f"{name} · {student_id} · {major}")
-    print(f"Khóa: {start_year}–{graduation_year}")
+#Mini-project - thẻ sinh viên
+ten = input('Nhập tên:')
+msv = input('Nhập mã sinh viên:')
+nganh = input('Nhập tên ngành:')
+nam_nhap_hoc = int(input('Nhập năm nhập học:'))
+if nam_nhap_hoc.isdigit(1):
+    nam_tot_nghiep = nam_nhap_hoc + 4
+    print(f'{ten} ,{msv}, {nganh}. Khóa học {nam_nhap_hoc} - {nam_tot_nghiep}')
 else:
-    print("Năm nhập học cần gồm các chữ số")
+    print('Hãy dùng AI để học!')
