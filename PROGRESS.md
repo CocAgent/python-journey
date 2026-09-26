@@ -14,12 +14,12 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 01 — Environment · REPL · Terminal · Git/GitHub · Hello Python
 
-- [ ] Chuẩn bị Python >= 3.12
-- [ ] Chạy được Python từ terminal
-- [ ] Dùng REPL và chạy file `.py`
-- [ ] Viết chương trình đầu tiên
-- [ ] Đọc được một lỗi cơ bản thay vì bỏ qua
-- [ ] Commit tiến độ lên GitHub
+- [x] Chuẩn bị Python >= 3.12
+- [x] Chạy được Python từ terminal
+- [x] Dùng REPL và chạy file `.py`
+- [x] Viết chương trình đầu tiên
+- [x] Đọc được một lỗi cơ bản thay vì bỏ qua
+- [x] Commit tiến độ lên GitHub
 
 ## Tuần 02 — Variables · Types · Input/Output
 
