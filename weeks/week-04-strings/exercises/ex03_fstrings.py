@@ -10,7 +10,7 @@ Mục tiêu: Định dạng output đẹp với f-string
 ten = "An"
 tuoi = 20
 diem = 8.567
-
+print(f"Học sinh {ten}, {tuoi} tuổi, điểm TB: {diem:.2f}")
 
 # TODO 2: In bảng cửu chương 5 với cột thẳng hàng
 # Dùng f-string width: f"{value:>4}"
@@ -18,6 +18,8 @@ diem = 8.567
 # 5 x  2 =  10
 # ...
 # 5 x 10 =  50
+for i in range(1, 11):
+    print(f"5 x {i:>2} = {5 * i:>3}")
 
 
 # TODO 3: In hóa đơn mua hàng đẹp
@@ -32,8 +34,28 @@ diem = 8.567
 # TỔNG CỘNG           70,000
 # ===========================
 # Gợi ý: dùng f"{name:<20}{price:>10,}"
+print("=" * 30)
+print(f"{'SẢN PHẨM':<20}{'GIÁ (VNĐ)':>10}")
+print("-" * 30)
+print(f"{'Cà phê':<20}{35000:>10,}")
+print(f"{'Bánh mì':<20}{25000:>10,}")
+print(f"{'Nước suối':<20}{10000:>10,}")
+print("-" * 30)
+print(f"{'TỔNG CỘNG':<20}{70000:>10,}")
+print("=" * 30)
 
 
 # TODO 4 (Thử thách): Tạo progress bar bằng f-string
 # Nhập phần trăm (0-100)
 # In ra: [████████░░░░░░░░░░░░] 40%
+percentage = int(input("Nhập phần trăm (0-100): "))
+
+# Tính số lượng ký tự block (mỗi block = 2 ký tự)
+filled_blocks = percentage // 5
+empty_blocks = 20 - filled_blocks
+
+# Tạo chuỗi progress bar
+progress_bar = "█" * filled_blocks + "░" * empty_blocks
+
+# In ra với f-string
+print(f"[{progress_bar}] {percentage}%")
