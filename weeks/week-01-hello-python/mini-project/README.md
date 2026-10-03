@@ -12,7 +12,7 @@ Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dù
 ╔══════════════════╗
 ║   Xin chào       ║
 ║   MINH!          ║
-║   🐍 Python 🐍   ║
+║   🐍 Python 🐍  ║
 ╚══════════════════╝
 ```
 
@@ -22,4 +22,4 @@ Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dù
 - Thử nhiều kiểu border: `═`, `─`, `│`, `╔`, `╚`, `*`
 
 ## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 01"`
+Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week1"
