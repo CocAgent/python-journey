@@ -3,14 +3,18 @@
 coordinate = (3, 7)
 
 # TODO: unpack coordinate into x and y.
-x = 0
-y = 0
+x, y = coordinate
 
 # TODO: pack name, age and topic into one profile tuple, then unpack it.
-profile: tuple[str, int, str] = ("", 0, "")
+name = "An"
+age = 20
+topic = "Python"
+profile: tuple[str, int, str] = (name, age, topic)
+name_unpacked, age_unpacked, topic_unpacked = profile
 
 # TODO: swap left and right using unpacking.
 left = "A"
 right = "B"
+left, right = right, left
 
 print(x, y, profile, left, right)
