@@ -10,15 +10,20 @@ Chạy: python starter.py
 ten = input("Nhập tên của bạn: ")
 
 # Bước 2: Tính độ rộng khung
-# TODO: Tính width dựa trên len(ten)
+# Cộng 16 để chừa đủ chỗ cho emoji và căn giữa đẹp mắt
+width = len(ten) + 15
 
 # Bước 3: In khung trên
-# TODO: In dòng trên bằng ╔═══╗
+print("╔" + "═" * width + "╗")
 
 # Bước 4: In nội dung
-# TODO: In tên trong khung, căn giữa
+ten_emoji = "✨ " + ten + " ✨"
+print("║" + ten_emoji.center(width) + "║")
+print("║" + "🐍 Python 🐍".center(width) + "║")
 
 # Bước 5: In khung dưới
-# TODO: In dòng dưới bằng ╚═══╝
+print("╚" + "═" * width + "╝")
+
+
 
 # Gợi ý: Dùng str.center(width) để căn giữa
