@@ -54,12 +54,12 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 05 — Lists · Tuples · Mutability · Unpacking
 
-- [ ] CRUD trên list
-- [ ] Slicing
-- [ ] Tuple và unpacking
-- [ ] Hiểu mutable vs immutable
-- [ ] Dùng comprehension đơn giản khi phù hợp
-- [ ] Hoàn thành mini-project tuần
+- [x] CRUD trên list
+- [x] Slicing
+- [x] Tuple và unpacking
+- [x] Hiểu mutable vs immutable
+- [x] Dùng comprehension đơn giản khi phù hợp
+- [x] Hoàn thành mini-project tuần
 
 ## Tuần 06 — Loops · enumerate · zip · comprehensions
 
