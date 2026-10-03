@@ -3,14 +3,20 @@
 coordinate = (3, 7)
 
 # TODO: unpack coordinate into x and y.
-x = 0
-y = 0
+x, y = coordinate      # x = 3, y = 7
 
 # TODO: pack name, age and topic into one profile tuple, then unpack it.
-profile: tuple[str, int, str] = ("", 0, "")
+profile: tuple[str, int, str] = ("An", 20, "Python")
+name, age, topic = profile  # giải nén lại
 
 # TODO: swap left and right using unpacking.
-left = "A"
+left  = "A"
 right = "B"
+left, right = right, left   # swap không cần biến tạm
 
 print(x, y, profile, left, right)
+
+# --- Bonus: kiểm tra kết quả ---
+print(f"\nx={x}, y={y}")
+print(f"name={name!r}, age={age}, topic={topic!r}")
+print(f"left={left!r}, right={right!r}  (đã hoán đổi)")
