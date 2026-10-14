@@ -4,26 +4,46 @@ Bài tập 01: Biến trong Python 📦
 Mục tiêu: Hiểu cách khai báo và sử dụng biến
 """
 
-# TODO 1: Tạo 4 biến lưu thông tin cá nhân
-# ten = ???       (str)
-# tuoi = ???      (int)
-# diem_tb = ???   (float)
-# dang_hoc = ???  (bool)
-# In ra giá trị và kiểu dữ liệu của mỗi biến bằng type()
+# TODO 1: Tạo biến và in type
+ten = "Nguyễn Tấn Vũ"
+tuoi = 20
+diem_tb = 3.6
+dang_hoc = True
+
+print("ten =", ten, "| type:", type(ten))
+print("tuoi =", tuoi, "| type:", type(tuoi))
+print("diem_tb =", diem_tb, "| type:", type(diem_tb))
+print("dang_hoc =", dang_hoc, "| type:", type(dang_hoc))
 
 
-# TODO 2: Hoán đổi giá trị 2 biến KHÔNG dùng biến tạm
-# a = 10
-# b = 20
-# Sau hoán đổi: a = 20, b = 10
-# Gợi ý: Python cho phép a, b = b, a
+# TODO 2: Hoán đổi giá trị 2 biến
+a = 10
+b = 20
+
+a, b = b, a
+
+print("\nSau hoán đổi:")
+print("a =", a)
+print("b =", b)
 
 
 # TODO 3: Augmented assignment
-# Cho x = 100. Dùng +=, -=, *=, //= để biến đổi x qua 4 bước
-# In ra x sau mỗi bước
+x = 100
+
+x += 50
+print("x += 50 →", x)
+
+x -= 30
+print("x -= 30 →", x)
+
+x *= 2
+print("x *= 2 →", x)
+
+x //= 7
+print("x //= 7 →", x)
 
 
-# TODO 4 (Thử thách): Multiple assignment
-# Gán 3 biến trên 1 dòng: ho, ten, tuoi = ???
-# In ra: "Họ tên: [ho] [ten], [tuoi] tuổi"
+# TODO 4: Multiple assignment
+ho, ten, tuoi = "Nguyễn", "Tấn Vũ", 20
+
+print("\nHọ tên:", ho, ten, ",", tuoi, "tuổi")
