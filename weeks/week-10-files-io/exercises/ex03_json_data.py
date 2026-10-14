@@ -10,7 +10,26 @@ replay = {
     "production_compatibility": "NOT VUACOC PRODUCTION FORMAT",
     "turns": [],
 }
-# TODO: tạo thư mục cha trước khi ghi file.
-# TODO: lưu replay với ensure_ascii=False và indent=2.
-# TODO: tải lại và kiểm tra cả hai nhãn trước khi đọc turns.
+
+# Tao thu muc cha
+path.parent.mkdir(parents=True, exist_ok=True)
+
+# Ghi JSON
+with path.open("w", encoding="utf-8") as file:
+    json.dump(replay, file, ensure_ascii=False, indent=2)
+
+# Tai lai va kiem tra nhan
+with path.open("r", encoding="utf-8") as file:
+    data = json.load(file)
+
+if (
+    isinstance(data, dict)
+    and data.get("format") == "COURSE LOCAL FORMAT"
+    and data.get("production_compatibility") == "NOT VUACOC PRODUCTION FORMAT"
+):
+    print("Dữ liệu hợp lệ")
+    print("Danh sách lượt chơi:", data["turns"])
+else:
+    print("Dữ liệu không hợp lệ")
+
 print(json.__name__, path, replay)
