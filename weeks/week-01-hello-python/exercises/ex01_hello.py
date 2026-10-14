@@ -9,7 +9,7 @@ Chạy file này bằng: python ex01_hello.py
 
 # TODO 1: In ra dòng chữ "Hello, World!"
 # Viết code ở đây:
-
+print('hello word')
 
 # TODO 2: In ra tên của bạn trên một dòng riêng
 # Viết code ở đây:
