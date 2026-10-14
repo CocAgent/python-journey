@@ -4,7 +4,7 @@ import csv
 from pathlib import Path
 
 WEEK_ROOT = Path(__file__).resolve().parents[1]
-path = WEEK_ROOT / ".learner-output" / "match_summary.csv"
+path = WEEK_ROOT / "data" / "match_summary.csv"
 rows = [{"bot": "student", "wins": 2}, {"bot": "wait", "wins": 0}]
 
 # Tao thu muc cha
