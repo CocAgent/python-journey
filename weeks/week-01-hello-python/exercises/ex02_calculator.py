@@ -1,4 +1,5 @@
 """
+Lop nay hoi luoi
 Bài tập 02: Máy tính Python 🧮
 ================================
 Mục tiêu: Sử dụng các phép tính cơ bản trong Python
