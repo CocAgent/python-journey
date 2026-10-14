@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 WEEK_ROOT = Path(__file__).resolve().parents[1]
-path = WEEK_ROOT / ".learner-output" / "replay.json"
+path = WEEK_ROOT / "data" / "replay.json"
 replay = {
     "format": "COURSE LOCAL FORMAT",
     "production_compatibility": "NOT VUACOC PRODUCTION FORMAT",
