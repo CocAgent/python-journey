@@ -1,6 +1,14 @@
 """Exercise 01: expected bad input."""
 
-raw_turn = "not-a-number"
-# TODO: catch ValueError from int(raw_turn) and print a useful message.
-# TODO: do not add a broad except.
-print(raw_turn)
+
+def safe_int(text: str) -> int | None:
+    try:
+        return int(text)
+    except ValueError:
+        return None
+
+
+if __name__ == "__main__":
+    raw_turn = "not-a-number"
+    result = safe_int(raw_turn)
+    print(f"Không thể chuyển {raw_turn!r} thành số nguyên." if result is None else result)
