@@ -2,8 +2,10 @@
 
 
 def distance(position: int, goal: int) -> int:
-    # TODO: reproduce with (1, 4), fix the subtraction and retain an assertion.
-    return position - goal
+    result = abs(position - goal)
+    assert result >= 0, "Khoảng cách không thể là số âm"
+    return result
 
+print(distance(1, 4))  
 
-print(distance(1, 4))
+print(distance(4, 1)) 
