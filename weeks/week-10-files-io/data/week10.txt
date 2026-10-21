@@ -1,0 +1,2 @@
+Xin chào Python
+Đây là bài tập tuần 10

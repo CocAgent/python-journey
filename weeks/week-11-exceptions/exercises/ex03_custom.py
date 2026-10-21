@@ -2,8 +2,12 @@
 
 
 def distance(position: int, goal: int) -> int:
-    # TODO: reproduce with (1, 4), fix the subtraction and retain an assertion.
-    return position - goal
+    if position < 0 or goal < 0:
+        raise ValueError("positions must be non-negative")
+    return abs(goal - position)
 
 
-print(distance(1, 4))
+if __name__ == "__main__":
+    assert distance(1, 4) == 3
+    assert distance(4, 1) == 3
+    print(distance(1, 4))

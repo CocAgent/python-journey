@@ -25,24 +25,32 @@ Self-check command:
 def gioi_thieu(ten: str, tuoi: int = 18) -> str:
     """Trả về một câu giới thiệu ngắn."""
     # TODO: Dùng default ``tuoi`` khi caller không truyền argument thứ hai.
+    return f"Tôi là {ten}, {tuoi} tuổi."    
     raise NotImplementedError("Hoàn thành hàm gioi_thieu")
 
 
 def tinh_tam_tinh(gia: float, so_luong: int) -> float:
     """Tính tạm tính; trả về 0 nếu số lượng không dương."""
     # TODO: Kiểm tra so_luong trước khi nhân.
+    if so_luong <= 0:
+        return 0
+    return gia * so_luong
     raise NotImplementedError("Hoàn thành hàm tinh_tam_tinh")
 
 
 def ap_dung_giam_gia(tam_tinh: float, phan_tram: float = 0) -> float:
     """Trả về số tiền sau giảm giá."""
     # TODO: Tính phần trăm giảm từ ``tam_tinh``.
+    return tam_tinh * (1 - phan_tram / 100)
     raise NotImplementedError("Hoàn thành hàm ap_dung_giam_gia")
 
 
 def tao_hoa_don(gia: float, so_luong: int, phan_tram: float = 0) -> str:
     """Ghép các bước nhỏ và trả về dòng tổng tiền."""
     # TODO: Gọi tinh_tam_tinh, sau đó gọi ap_dung_giam_gia.
+    tam_tinh = tinh_tam_tinh(gia, so_luong)
+    tong_tien = ap_dung_giam_gia(tam_tinh, phan_tram)
+    return f"Tổng tiền: {tong_tien:,.0f} VND"   
     raise NotImplementedError("Hoàn thành hàm tao_hoa_don")
 
 

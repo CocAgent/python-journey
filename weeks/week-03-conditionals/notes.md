@@ -120,6 +120,7 @@ else:
 ### Bài 1 — Xếp loại học sinh (Dễ)
 Nhận điểm từ người dùng (0-10), xếp loại theo thang Việt Nam với kiểm tra điểm hợp lệ.
 
+
 ### Bài 2 — Máy tính 4 phép (Trung bình)
 Nhận 2 số và phép toán (+, -, *, /), trả về kết quả với xử lý chia cho 0.
 
