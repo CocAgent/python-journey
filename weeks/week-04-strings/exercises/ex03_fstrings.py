@@ -10,6 +10,7 @@ Mục tiêu: Định dạng output đẹp với f-string
 ten = "An"
 tuoi = 20
 diem = 8.567
+print(f"Hoc sinh {ten}, {tuoi}, diem TB: {diem:.2f}")
 
 
 # TODO 2: In bảng cửu chương 5 với cột thẳng hàng
