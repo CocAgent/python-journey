@@ -4,7 +4,9 @@ LOCAL_ACTIONS = {"left", "right", "wait"}
 
 
 def validate_action(action: str) -> str:
-    # TODO: raise ValueError for an action outside LOCAL_ACTIONS.
+    """Return a valid local action or raise ValueError."""
+    if action not in LOCAL_ACTIONS:
+        raise ValueError(f"illegal local action: {action!r}")
     return action
 
 
