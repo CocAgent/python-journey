@@ -1,23 +1,44 @@
 """
-Bài tập 03: Máy tính nhận input 🖥️
+Bai tap 03: May tinh nhan input
 ====================================
-Mục tiêu: Kết hợp input() với tính toán
+Muc tieu: Ket hop input() voi tinh toan
 """
 
-# TODO 1: Nhập 2 số từ người dùng, in ra tổng, hiệu, tích, thương
+# TODO 1: Nhap 2 so tu nguoi dung, in ra tong, hieu, tich, thuong
+a = float(input("Nhap so thu nhat: "))
+b = float(input("Nhap so thu hai: "))
+print(f"Tong:   {a} + {b} = {a + b}")
+print(f"Hieu:   {a} - {b} = {a - b}")
+print(f"Tich:   {a} x {b} = {a * b}")
+print(f"Thuong: {a} / {b} = {a / b:.2f}")   # chia co the ra so thap phan
 
 
-# TODO 2: Nhập bán kính hình tròn, tính và in:
-# - Diện tích = π × r²
-# - Chu vi = 2 × π × r
-# Dùng pi = 3.14159
+# TODO 2: Nhap ban kinh hinh tron, tinh va in:
+# - Dien tich = pi x r^2
+# - Chu vi    = 2 x pi x r
+pi = 3.14159
+r = float(input("Nhap ban kinh hinh tron: "))
+dien_tich = pi * r ** 2
+chu_vi = 2 * pi * r
+print(f"Dien tich: {dien_tich:.2f}")
+print(f"Chu vi:    {chu_vi:.2f}")
 
 
-# TODO 3: Nhập giá gốc và % giảm giá
-# Tính và in giá sau khi giảm
-# Ví dụ: Giá gốc 500,000, giảm 20% → 400,000
+# TODO 3: Nhap gia goc va % giam gia
+# Tinh va in gia sau khi giam
+# Vi du: Gia goc 500000, giam 20% -> 400000
+gia_goc = float(input("Nhap gia goc: "))
+phan_tram = float(input("Nhap % giam gia: "))
+so_tien_giam = gia_goc * phan_tram / 100
+gia_sau_giam = gia_goc - so_tien_giam
+print(f"Giam:         {so_tien_giam:,.0f}")
+print(f"Gia sau giam: {gia_sau_giam:,.0f}")   # :, de them dau phan cach hang nghin
 
 
-# TODO 4 (Thử thách): Máy đổi tiền
-# Nhập số tiền VNĐ, tỷ giá USD/VNĐ
-# In ra số USD tương ứng (làm tròn 2 chữ số)
+# TODO 4 (Thu thach): May doi tien
+# Nhap so tien VND, ty gia USD/VND
+# In ra so USD tuong ung (lam tron 2 chu so)
+vnd = float(input("Nhap so tien VND: "))
+ty_gia = float(input("Nhap ty gia (1 USD = ? VND): "))
+usd = vnd / ty_gia
+print(f"{vnd:,.0f} VND = {usd:.2f} USD")
