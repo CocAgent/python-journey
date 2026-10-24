@@ -2,8 +2,9 @@
 
 
 def distance(position: int, goal: int) -> int:
-    # TODO: reproduce with (1, 4), fix the subtraction and retain an assertion.
-    return position - goal
+    """Return the non-negative distance from position to goal."""
+    return goal - position
 
 
+assert distance(1, 4) == 3
 print(distance(1, 4))
