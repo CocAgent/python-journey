@@ -6,7 +6,6 @@ Không đọc Drive, không lấy đáp án gốc, không chạy bài nộp củ
 from decimal import Decimal
 
 import pytest
-
 from assessment_reference import (
     RunResult,
     illustrative_exam_score,
