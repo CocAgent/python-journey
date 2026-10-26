@@ -1,51 +1,35 @@
 # Tuần 14: OOP nâng cao — Kế thừa & Đa hình 🧬
 
-> *"Tái sử dụng code là nghệ thuật, không phải sao chép." — Unknown*
+Tuần này thực hành inheritance, `super()`, method overriding, polymorphism và duck typing.
 
-## 🎯 Mục tiêu tuần này
+## Bài tập và lời giải
 
-Sau tuần này, bạn sẽ:
+| Bài | Nội dung | Lời giải |
+|---|---|---|
+| [ex01_inheritance.py](exercises/ex01_inheritance.py) | Kế thừa, hình học, isinstance/issubclass, đa kế thừa | [ex01_inheritance_sol.py](solutions/ex01_inheritance_sol.py) |
+| [ex02_override.py](exercises/ex02_override.py) | Override, super(), xe điện, template method | [ex02_override_sol.py](solutions/ex02_override_sol.py) |
+| [ex03_polymorphism.py](exercises/ex03_polymorphism.py) | Đa hình, thanh toán, duck typing, tính lương | [ex03_polymorphism_sol.py](solutions/ex03_polymorphism_sol.py) |
 
-- Dùng kế thừa (inheritance) để tái sử dụng code
-- Ghi đè (override) phương thức từ class cha
-- Gọi class cha với `super()`
-- Hiểu đa hình (polymorphism) và ứng dụng
-- Thiết kế hệ thống class có kế thừa
+## Chạy bài tập
 
-## 📖 Kiến thức cần nắm
+Từ thư mục gốc repository:
 
-inheritance, super(), method overriding, polymorphism, isinstance(), abstract concept
+```bash
+python weeks/week-14-oop-inheritance/exercises/ex01_inheritance.py
+python weeks/week-14-oop-inheritance/exercises/ex02_override.py
+python weeks/week-14-oop-inheritance/exercises/ex03_polymorphism.py
+```
 
-Chi tiết xem tại [`notes.md`](notes.md)
+Trên Windows, có thể dùng `py` thay cho `python`.
 
-## ✍️ Bài tập
+## Mini-project
 
-Mở thư mục `exercises/` và hoàn thành theo thứ tự:
+Xem [Hệ thống ngân hàng](mini-project/README.md) để xây dựng tài khoản cơ sở, tài khoản tiết kiệm/thanh toán, gửi/rút/chuyển tiền và lưu JSON.
 
-1. **`ex01_inheritance.py`** — Kế thừa cơ bản
-2. **`ex02_override.py`** — Override và super()
-3. **`ex03_polymorphism.py`** — Đa hình trong thực tế
+## Checklist
 
-> 💡 Mỗi file có TODO comment hướng dẫn chi tiết. Hãy thử trước khi xem solutions!
-
-## 🚀 Mini-Project: Hệ thống ngân hàng 🏦
-
-Account → SavingsAccount / CheckingAccount, gửi/rút/chuyển/lịch sử
-
-Xem chi tiết tại [`mini-project/README.md`](mini-project/README.md)
-
-## 📚 Đọc thêm
-
-| Nguồn | Chương | Link |
-|:------|:-------|:-----|
-| Think Python | Chapter 17: Inheritance | [Đọc](https://allendowney.github.io/ThinkPython/chap17.html) |
-
-## ✅ Checklist cuối tuần
-
-- [ ] Đọc notes.md
-- [ ] Hoàn thành `ex01_inheritance.py`
-- [ ] Hoàn thành `ex02_override.py`
-- [ ] Hoàn thành `ex03_polymorphism.py`
-- [ ] Hoàn thành Mini-Project
-- [ ] Commit code lên GitHub
-- [ ] Đánh dấu trong PROGRESS.md
+- [ ] Giải thích class cha, class con và `super()`.
+- [ ] Phân biệt override và polymorphism.
+- [ ] Chạy cả ba bài tập và so sánh với lời giải.
+- [ ] Hoàn thành mini-project.
+- [ ] Cập nhật [PROGRESS.md](../../PROGRESS.md) sau khi tự kiểm tra.
