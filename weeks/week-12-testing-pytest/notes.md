@@ -155,3 +155,26 @@ Chưa học mocking nâng cao, property-based testing chuyên sâu, kiểm thử
 Có thể hỏi: *"Tôi đã viết test cho bot đi phải. Hãy gợi ý hai trường hợp biên nhưng đừng viết lời giải."* Sau đó tự bổ sung phép kiểm tra và thử lỗi. Không dùng AI tạo ra toàn bộ test mà không đọc, không chạy hoặc không hiểu.
 
 **Vòng lặp học tập:** Dự đoán → Viết test → Chạy → Đọc lỗi → Sửa → Thử lại.
+
+---
+
+## 11. Kiểm thử lỗi khi chương trình có nhiều tệp
+
+Một tính năng có thể đi qua nhiều module:
+
+```text
+service.py (tạo đơn hàng)
+ ├─ pricing.py (tính tiền)
+ └─ storage.py (ghi và đọc JSON)
+```
+
+Nếu mỗi tệp chạy riêng đều có vẻ đúng, luồng tích hợp vẫn có thể sai: ví dụ `service.py` quên lưu đơn hàng. Ta cần cả **kiểm thử hàm nhỏ** và **kiểm thử luồng nhiều tệp**.
+
+Xem [ví dụ nhiều tệp](examples/multi_file_lab/README.md). Bộ thử lỗi cố ý sẽ thay đúng một chi tiết trong một bản sao tạm của `pricing.py`, `storage.py` hoặc `service.py`, rồi chạy cùng bộ test.
+
+```bash
+python -m pytest weeks/week-12-testing-pytest/examples/test_multi_file_lab.py -q
+python weeks/week-12-testing-pytest/checks/check_multi_file_faults.py
+```
+
+**Bài học:** một test tốt không chỉ PASS với code đúng; nó cần FAIL khi một lỗi liên quan xuất hiện. Sáu lỗi minh họa không chứng minh mọi lỗi khác đã được loại bỏ.
