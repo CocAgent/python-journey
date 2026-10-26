@@ -1,38 +1,58 @@
-"""Bài tập 01: Lớp DienThoai.
+"""Bài tập 01: Class đầu tiên.
 
-Yêu cầu:
-- Thuộc tính: MaMay, TenMay, HangSanXuat, DungLuongPin, GiaBan.
-- Phương thức __init__() khởi tạo các thuộc tính.
-- Phương thức thongtindienthoai() hiển thị thông tin điện thoại.
-- Tạo hai đối tượng DT01 và DT02, sau đó in thông tin.
+Chủ đề: class, object, __init__, instance method, __str__, class variable.
 """
 
 
-class DienThoai:
-    def __init__(self, MaMay, TenMay, HangSanXuat, DungLuongPin, GiaBan):
-        self.MaMay = MaMay
-        self.TenMay = TenMay
-        self.HangSanXuat = HangSanXuat
-        self.DungLuongPin = DungLuongPin
-        self.GiaBan = GiaBan
+class HocSinh:
+    dem = 0
 
-    def thongtindienthoai(self):
-        print("Mã máy:", self.MaMay)
-        print("Tên máy:", self.TenMay)
-        print("Hãng sản xuất:", self.HangSanXuat)
-        print("Dung lượng pin:", self.DungLuongPin, "mAh")
-        print("Giá bán:", f"{self.GiaBan:,}", "VNĐ")
+    def __init__(self, ten, tuoi, diem):
+        if not ten.strip():
+            raise ValueError("Tên học sinh không được để trống.")
+        if tuoi <= 0:
+            raise ValueError("Tuổi phải lớn hơn 0.")
+        if not 0 <= diem <= 10:
+            raise ValueError("Điểm phải nằm trong khoảng 0 đến 10.")
+
+        self.ten = ten
+        self.tuoi = tuoi
+        self.diem = diem
+        HocSinh.dem += 1
+
+    def tinh_xep_loai(self):
+        if self.diem >= 9:
+            return "Xuất sắc"
+        if self.diem >= 8:
+            return "Giỏi"
+        if self.diem >= 6.5:
+            return "Khá"
+        if self.diem >= 5:
+            return "Trung bình"
+        return "Yếu"
+
+    def __str__(self):
+        return (
+            f"{self.ten} ({self.tuoi} tuổi) - "
+            f"Điểm: {self.diem:.1f} - {self.tinh_xep_loai()}"
+        )
+
+    @classmethod
+    def so_luong(cls):
+        return cls.dem
 
 
 def main():
-    dt01 = DienThoai("DT01", "iPhone 15 Pro", "Apple", 3274, 28990000)
-    dt02 = DienThoai("DT02", "Galaxy S24 Ultra", "Samsung", 5000, 29990000)
+    danh_sach = [
+        HocSinh("Nguyễn An", 20, 8.5),
+        HocSinh("Trần Bình", 21, 6.0),
+        HocSinh("Lê Châu", 19, 9.5),
+    ]
 
-    print("===== THÔNG TIN ĐIỆN THOẠI 1 =====")
-    dt01.thongtindienthoai()
+    for hoc_sinh in danh_sach:
+        print(hoc_sinh)
 
-    print("\\n===== THÔNG TIN ĐIỆN THOẠI 2 =====")
-    dt02.thongtindienthoai()
+    print(f"Tổng số học sinh: {HocSinh.so_luong()}")
 
 
 if __name__ == "__main__":
