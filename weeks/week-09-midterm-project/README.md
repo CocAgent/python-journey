@@ -29,9 +29,9 @@ Xem [`tracks/README.md`](tracks/README.md):
 
 1. **VuaCóc Bot V1** — flagship track dùng structured state và Local Arena.
 2. **Student Manager** — track thay thế giữ bài toán quản lý học sinh legacy.
+3. **Dự án nhóm tham khảo từ mã nguồn mở** — chọn một ý tưởng phù hợp trong [20 dự án](project-ideas/README.md) của tài liệu giảng viên, hoặc tự đề xuất dự án Python khác.
 
-Hai track dùng cùng tiêu chí về planning, decomposition, correctness và
-evidence. Bạn chỉ cần hoàn thành một track.
+Ba track đều dùng chung minh chứng về kế hoạch, phân rã, tính đúng và khả năng chạy lại. Mỗi nhóm 1–3 sinh viên (hoặc cá nhân) **chỉ cần hoàn thành một track**. Đối với Track C, có thể làm MVP Python thuần; không bắt buộc cài nguyên framework nâng cao.
 
 ## Learning path
 
@@ -47,12 +47,11 @@ choose → plan → decompose → implement → run
    [`hints.md`](hints.md).
 5. Dùng [`evidence-template.md`](evidence-template.md) để ghi bằng chứng.
 6. Chạy [machine check](checks/README.md) cho reference artifacts.
-7. Commit project bằng message có ý nghĩa.
+7. Commit project bằng message có ý nghĩa. Nếu theo Track C, điền thêm [phiếu đề xuất nhóm](project-ideas/phieu-de-xuat-nhom.md) và chọn một mục trong [danh mục 20 ý tưởng](project-ideas/catalog-20-du-an.md).
 
 ## Evaluation
 
-Đánh giá dựa trên project có chạy, dữ liệu và rules có giải thích được, case đã
-kiểm tra, bug đã sửa và evidence đã lưu. Không có yêu cầu win-rate cho bot.
+Áp dụng [rubric 10 điểm của giảng viên](project-ideas/rubric-10-diem.md): Python là chính, cài/chạy được, demo, input/output, README, cấu trúc, test/checklist, Git, phạm vi MVP và đạo đức dữ liệu. Đánh giá dựa trên bằng chứng thực tế, **không có ưu tiên điểm cho công cụ khó hoặc đắt tiền**. Với Bot không yêu cầu win-rate.
 
 Week 09 milestone: [Midterm Bot V1](../../projects/vuacoc-bot-journey/milestones/w09-midterm-bot-v1.md).
 
