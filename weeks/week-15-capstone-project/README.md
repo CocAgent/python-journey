@@ -1,43 +1,80 @@
-# Tuần 15 — Capstone · Tests · README · Git/GitHub
+# Week 15 — Python Capstone
 
-Tuần cuối tích hợp kỹ năng đã học thành evidence có thể chạy, đọc và review.
+> **Focus:** Integration · Testing · Debugging · Documentation · Git/GitHub
 
-## Canonical capstone
+Week 15 brings the course together in one small but complete Python project. The goal is not to write the most code; it is to deliver a working, testable program that solves a clear problem and that you can explain.
 
-Đề bài, deliverables và rubric duy nhất nằm tại
-[FINAL_PROJECT.md](../../FINAL_PROJECT.md). Week 15 không định nghĩa rubric
-thứ hai và VuaCóc Bot không phải lựa chọn bắt buộc.
+## Official requirements
 
-## Outcomes
+The canonical project brief and grading rubric are maintained in FINAL_PROJECT.md. This folder does not introduce a separate rubric.
 
-- hoàn thiện một vertical slice có scope rõ;
-- chạy tests và ghi known failures;
-- viết README có setup, usage, evidence và limitations;
-- tạo commit history dễ review;
-- demo một kết quả có thể tái hiện.
+A successful capstone should include:
 
-Flagship optional track:
-[VuaCóc Bot Journey](../../projects/vuacoc-bot-journey/README.md), gồm local
-tournament và replay course-local.
+- at least **four meaningful business features**;
+- functions and modules with clear responsibilities;
+- validation and helpful error handling;
+- at least **five meaningful tests**, including edge or invalid-input cases;
+- a polished README.md with setup, usage, tests, examples, design decisions, and limitations;
+- an AI_USAGE.md disclosure when AI assistance was used;
+- a reviewable Git history and a reproducible demo.
 
-Xem [integration checklist](notes.md) và [gợi ý theo hạng mục](hints.md).
+## Suggested workflow
 
-Starter documentation:
+1. **Define** the problem and list what is out of scope.
+2. **Build** a minimal end-to-end workflow before adding extra features.
+3. **Test** normal, empty, boundary, and invalid-input cases.
+4. **Debug** failures and add regression tests for fixed bugs.
+5. **Document** how to install, run, and verify the project.
+6. **Commit** changes in small, descriptive commits.
 
-- [Capstone README template](../../templates/capstone-readme-template.md)
-- [AI usage template](../../templates/AI_USAGE.template.md)
+## Repository map
+
+| Path | Purpose |
+|---|---|
+| FINAL_PROJECT.md | Official brief and rubric |
+| notes.md | Integration and handoff checklist |
+| hints.md | Hints for completing the capstone |
+| checks/ | Mechanical readiness checker |
+| submission/ | Example capstone implementation |
+
+## Example capstone — Personal Expense Tracker
+
+The submission folder contains a small console application demonstrating add/list/filter/total features, JSON persistence, validation, and tests. Treat it as a learning reference: run the tests, inspect the implementation, and be ready to explain the design decisions before adapting it for your own submission.
+
+## Run the example
+
+From the repository root:
+
+```bash
+python weeks/week-15-capstone-project/submission/main.py
+```
+
+## Run tests
+
+From the submission directory:
+
+```bash
+python -m unittest -v
+```
 
 ## Readiness check
 
-Week 15 không có exercises hay official solutions: deliverable chính là project
-của bạn. Thay vào đó, tự kiểm tra evidence cơ học trước khi handoff:
+To inspect your own capstone folder, run:
 
 ```bash
 python weeks/week-15-capstone-project/checks/check_capstone_readiness.py path/to/my-project
 ```
 
-Check xác nhận README có setup/usage/test, có `AI_USAGE.md`, đủ hàm, đủ test,
-pytest collect được và không có bare `except:`. Nó **không chấm điểm** — rubric
-duy nhất vẫn là [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
+The checker reports structural evidence; it does not replace the official rubric or a human review.
 
-Chi tiết: [`checks/README.md`](checks/README.md).
+## Before handoff
+
+- [ ] Four or more meaningful features work.
+- [ ] At least five meaningful tests pass.
+- [ ] Invalid input and common file errors are handled.
+- [ ] README setup, usage, tests, examples, and limitations are accurate.
+- [ ] AI_USAGE.md honestly describes assistance and verification.
+- [ ] I can explain the important functions and design decisions.
+
+---
+**Deliverable:** a working Python project, tests, documentation, and a demo that can be reproduced by another person.
