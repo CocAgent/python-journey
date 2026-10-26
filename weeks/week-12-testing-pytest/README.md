@@ -93,3 +93,18 @@ python weeks/week-12-testing-pytest/checks/check_week.py
 - [ ] Ghi lệnh chạy và kết quả thực tế; chỉ báo PASS khi đã kiểm chứng.
 
 Đọc [gợi ý theo từng bước](hints.md) nếu bị vướng; ưu tiên tự thử trước.
+
+---
+
+## Mở rộng — kiểm thử lỗi ở nhiều tệp Python
+
+Sau khi hoàn thành bot, hãy thử ví dụ **đơn hàng đi qua ba tệp**: [pricing.py](examples/multi_file_lab/pricing.py), [storage.py](examples/multi_file_lab/storage.py), [service.py](examples/multi_file_lab/service.py). Xem [hướng dẫn và sơ đồ trách nhiệm](examples/multi_file_lab/README.md).
+
+```bash
+python -m pytest weeks/week-12-testing-pytest/examples/test_multi_file_lab.py -q
+python weeks/week-12-testing-pytest/checks/check_multi_file_faults.py
+```
+
+Kết quả mong đợi của ví dụ tham chiếu: **8 ca kiểm thử PASS**, sau đó **6/6 lỗi cố ý bị phát hiện ở 3 tệp**. Công cụ chỉ dùng bản sao tạm; việc kiểm tra lỗi cố ý không thay thế đánh giá bài nộp của sinh viên.
+
+**Phân biệt:** bốn phép thử Bot thuộc *bài tập sinh viên*; bài thử đơn hàng nhiều tệp là *ví dụ tham chiếu để quan sát và tự mở rộng*.

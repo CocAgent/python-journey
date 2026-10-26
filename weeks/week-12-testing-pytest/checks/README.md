@@ -27,3 +27,14 @@ python -m pytest weeks/week-12-testing-pytest/examples -q
 ```
 
 **Quy tắc báo cáo:** ghi chính xác lệnh đã chạy, kết quả, và đó là test của ai. Không dùng kết quả PASS từ bộ tham chiếu để khẳng định một bài nộp đã đúng.
+
+---
+
+## D. Ví dụ tự kiểm tra lỗi qua nhiều tệp
+
+```bash
+python -m pytest weeks/week-12-testing-pytest/examples/test_multi_file_lab.py -q
+python weeks/week-12-testing-pytest/checks/check_multi_file_faults.py
+```
+
+Ví dụ gồm **8 ca kiểm thử** và **6 lỗi giả lập trong `pricing.py`, `storage.py`, `service.py`**. Chỉ chạy trên file tạm, không sửa bài nộp. Đây là **kiểm thử chất lượng tài liệu mẫu**, không phải bài tự động chấm sinh viên. Xem [hướng dẫn](../examples/multi_file_lab/README.md).
