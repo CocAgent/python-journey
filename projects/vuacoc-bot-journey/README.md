@@ -90,3 +90,57 @@ PRODUCTION_INTEGRATION = NO
 
 Các milestone hiện dùng teaching models và local evidence. Không nội dung nào
 trong thư mục này được xem là contract runtime chính thức của VuaCóc.
+
+
+## Setup
+
+Yêu cầu Python 3.10+ và `pytest` để chạy bộ test. Từ thư mục gốc repository:
+
+```bash
+python -m pip install pytest
+```
+
+Project chỉ dùng Python standard library trong phần chạy bot; không cần API key,
+tài khoản game hoặc kết nối mạng.
+
+## Usage
+
+Chạy một match giữa bot của bạn và baseline:
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/cli.py --bot-a student --bot-b forward --replay
+```
+
+Chạy tournament với cả ba baseline:
+
+```bash
+python projects/vuacoc-bot-journey/local_arena/tournament_cli.py
+```
+
+Các kết quả chỉ áp dụng cho teaching model local, không chứng minh tương thích
+với runtime production của VuaCóc.
+
+## Test
+
+Chạy toàn bộ test của project:
+
+```bash
+python -m pytest projects/vuacoc-bot-journey/tests -q
+```
+
+Chạy readiness check cho capstone:
+
+```bash
+python weeks/week-15-capstone-project/checks/check_capstone_readiness.py projects/vuacoc-bot-journey
+```
+
+## Design decisions and limitations
+
+- Bot core chỉ nhận state dạng dictionary và trả một action; arena chịu trách nhiệm
+  điều phối match, kiểm tra action và ghi replay.
+- Bot chọn hướng dựa trên `position` và `goal`; state thiếu hoặc có kiểu dữ liệu
+  không hợp lệ sẽ trả `wait`.
+- Tournament báo riêng completion rate, legal-action rate, kết quả từng baseline
+  và số match lỗi; không gộp thành rating.
+- Đây là policy nền tảng, không phải chiến thuật tối ưu. Các bot có thể hòa nhau;
+  kết quả tournament không đại diện cho hiệu năng ngoài môi trường local.

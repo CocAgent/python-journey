@@ -1,25 +1,29 @@
-"""Starter Student Bot for the course-local Line Arena."""
+"""Student decision policy for the course-local Line Arena."""
 
 
 def choose_action(state: dict[str, int]) -> str:
-    """Return a safe local action while the learner adds decision rules."""
-    # TODO W07: Inspect simple state values and return left, right, or wait.
-    # TODO W08: Explain how structured state changes the decision.
+    """Move toward this bot goal using the local state contract.
+
+    Invalid or incomplete state returns the safe local action ``wait``.
+    """
+    position = state.get("position")
+    goal = state.get("goal")
+    if (not isinstance(position, int) or isinstance(position, bool)
+            or not isinstance(goal, int) or isinstance(goal, bool)):
+        return "wait"
+    if position < goal:
+        return "right"
+    if position > goal:
+        return "left"
     return "wait"
 
 
 def main() -> None:
-    """Show that the starter is syntactically valid and runnable."""
-    teaching_state = {
-        "turn": 1,
-        "max_turns": 6,
-        "position": 0,
-        "opponent_position": 4,
-        "goal": 4,
-        "min_position": 0,
-        "max_position": 4,
-    }
-    print(choose_action(teaching_state))
+    """Run a small example of the decision policy."""
+    state = {"turn": 1, "max_turns": 6, "position": 0,
+             "opponent_position": 4, "goal": 4,
+             "min_position": 0, "max_position": 4}
+    print(choose_action(state))
 
 
 if __name__ == "__main__":
