@@ -7,12 +7,20 @@ Thư mục `tests/` là **maintainer CI**, dùng xác nhận giáo trình Python
 | Tệp | Đánh giá gì | Không đánh giá |
 |---|---|---|
 | `test_course_structure.py` | Cấu trúc 15 tuần, hợp đồng course, một số lệnh tham chiếu | Mã sinh viên |
-| `test_week09_project_catalog.py` | Danh mục 20 ý tưởng và rubric 10 tiêu chí | 20 dự án đã cài/chạy |
-| `test_week12_multi_file_quality.py` | Ví dụ kiểm lỗi nhiều tệp của Tuần 12 | Bài test chưa hoàn thành |
-| `test_week14_oop_reference.py` | Lời giải OOP tham chiếu Tuần 14 | Bốn bài tập OOP của sinh viên |
+| `test_week_owned_checks.py` | Chỉ gọi các lệnh kiểm thử tại tuần sở hữu (09/12/14) trong CI | Không lưu đáp án hay logic test của từng tuần |
 | `test_assessment_reference.py` | So khớp output, trạng thái chạy, timeout, tổng điểm 5 x 2 | Bài thi thật hay độ chính xác máy chấm |
 
 `assessment_reference.py` là helper dành **chỉ cho test ví dụ tin cậy**; không được quảng bá là sandbox/chấm thi an toàn.
+
+## Bài kiểm thử gắn với từng tuần nằm ở đâu?
+
+| Tuần | Nguồn kiểm thử / kiểm tra chính | Lệnh chạy độc lập |
+|---|---|---|
+| 09 | `weeks/week-09-midterm-project/checks/check_project_catalog.py` | `python weeks/week-09-midterm-project/checks/check_project_catalog.py` |
+| 12 | `weeks/week-12-testing-pytest/examples/test_multi_file_lab.py` và `checks/check_multi_file_faults.py` | `python -m pytest weeks/week-12-testing-pytest/examples/test_multi_file_lab.py -q` |
+| 14 | `weeks/week-14-oop-essentials/tests/` và `checks/check_week.py` | `python weeks/week-14-oop-essentials/checks/check_week.py` |
+
+**Nguyên tắc tổ chức:** mỗi tuần sở hữu test, ví dụ và checker của mình. `tests/test_week_owned_checks.py` là **cầu nối CI**, chỉ gọi lại chúng bằng Python trong tiến trình riêng; không viết lại logic chấm ở cấp gốc. Thư mục `tests/` giữ những kiểm tra xuyên suốt 15 tuần và ví dụ về chất lượng chấm dùng chung. Bài sinh viên ở `exercises/` hoặc `learner_tests/` được chạy **riêng**, không qua cầu nối này.
 
 ## Bối cảnh tài liệu nguồn trên Drive
 
