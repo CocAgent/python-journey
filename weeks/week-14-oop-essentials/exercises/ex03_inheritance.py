@@ -1,5 +1,18 @@
-"""Exercise 03: one clear basic inheritance example."""
+"""Exercise 03: basic inheritance."""
 
-# TODO: tạo Animal(name) và Dog(Animal).
-# TODO: thêm Dog.speak().
-# TODO: giải thích bằng một câu vì sao Dog “is an” Animal.
+
+class Animal:
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+
+class Dog(Animal):
+    def speak(self) -> str:
+        return f"{self.name}: woof"
+
+
+# Dog is an Animal: a dog is a particular type of animal.
+if __name__ == "__main__":
+    dog = Dog("Milo")
+    print(dog.speak())
+    print(isinstance(dog, Animal))
