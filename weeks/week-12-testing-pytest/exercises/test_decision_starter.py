@@ -1,23 +1,33 @@
-"""Complete these learner tests."""
+"""Tuần 12 — Tự viết kiểm thử cho chương trình ra quyết định.
 
-from decision import LOCAL_ACTIONS, choose_action, validate_turn
+Bài tập: sửa từng hàm test theo mô hình Chuẩn bị → Thực hiện → Kiểm tra.
+Ban đầu các test CỐ Ý báo chưa hoàn thành, để tránh PASS giả.
+"""
+
+import pytest
+
+from decision import choose_action, validate_turn
 
 
 def test_normal_case() -> None:
-    # TODO: Arrange position/goal, Act, then Assert the expected action.
-    assert choose_action(1, 4) in LOCAL_ACTIONS
+    # TODO: Cho position=1, goal=4. Hãy dự đoán hành động chính xác.
+    # Sau đó dùng assert so sánh kết quả thực tế với kết quả dự đoán.
+    raise NotImplementedError("Hãy tự viết assert cho trường hợp thông thường")
 
 
 def test_edge_case_at_goal() -> None:
-    # TODO: assert the bot waits at its goal.
-    assert choose_action(4, 4) in LOCAL_ACTIONS
+    # TODO: Khi position bằng goal, bot nên thực hiện hành động nào?
+    # Dùng phép so sánh chính xác, không chỉ kiểm tra action thuộc tập hợp.
+    raise NotImplementedError("Hãy tự viết assert cho trường hợp biên")
 
 
 def test_invalid_turn() -> None:
-    # TODO: use pytest.raises(ValueError) for validate_turn(0).
-    assert validate_turn(1) == 1
+    # TODO: Dùng with pytest.raises(ValueError) để kiểm tra validate_turn(0).
+    # Trường hợp này phải ném lỗi; không được chỉ kiểm tra validate_turn(1).
+    raise NotImplementedError("Hãy tự kiểm chứng đầu vào không hợp lệ")
 
 
 def test_regression_position_past_goal_moves_left() -> None:
-    # Regression: an earlier version always returned "right".
-    assert choose_action(4, 1) in LOCAL_ACTIONS
+    # TODO: Với position=4, goal=1, kiểm tra hướng đi CHÍNH XÁC.
+    # Mục tiêu: phát hiện lỗi bot luôn trả về cùng một hướng.
+    raise NotImplementedError("Hãy bổ sung bài kiểm thử hồi quy")
