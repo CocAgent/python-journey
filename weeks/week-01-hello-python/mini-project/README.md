@@ -1,25 +1,38 @@
-# ASCII Art Generator 🎨
+# Mini-project Tuần 01 — Khung ASCII
 
-Tạo chương trình in ra hình vẽ ASCII đẹp mắt từ tên người dùng.
+## Mức A: Tuần 01 bắt buộc
 
-## Yêu cầu
-1. Hỏi tên người dùng
-2. In ra tên trong khung border đẹp
-3. Thêm emoji hoặc hoa văn trang trí
+Dùng các lệnh `print()` tạo một khung và lời chào **tĩnh**, không cần
+`input()`, `if`, vòng lặp hoặc hàm. Ví dụ:
 
-## Ví dụ output
-```
-╔══════════════════╗
-║   Xin chào       ║
-║   MINH!          ║
-║   🐍 Python 🐍   ║
-╚══════════════════╝
+```text
++--------------+
+| Xin chào An! |
++--------------+
 ```
 
-## Gợi ý
-- Dùng `len()` để tính độ rộng khung
-- Dùng `f-string` hoặc `str.center()` để căn giữa
-- Thử nhiều kiểu border: `═`, `─`, `│`, `╔`, `╚`, `*`
+Độ dài viền trên/dưới bằng nhau, `|` của dòng giữa thẳng hàng.
+Bắt đầu với [`starter_basic.py`](starter_basic.py), tự viết TODO.
 
-## Nộp bài
-Hoàn thành code và commit lên GitHub với message: `"Complete mini-project week 01"`
+## Mức B: chuẩn bị Tuần 02 (tự chọn)
+
+Hỏi tên bằng `input()` rồi căn khung theo tên:
+
+```text
+Tên của bạn: An
++--------------+
+| Xin chào An! |
++--------------+
+```
+
+Bắt đầu từ [`starter.py`](starter.py); chỉ sau khi tự làm hãy xem
+[`reference.py`](reference.py). Mức này sử dụng biến, `len()` và
+`input()`, vì thế không phải yêu cầu Tuần 01. Với emoji và dấu kết hợp,
+độ rộng hiển thị trong terminal có thể khác `len()`; không cần giải quyết
+vấn đề Unicode nâng cao.
+
+## Minh chứng
+
+Ghi lệnh chạy, output, một lỗi/sửa lỗi, branch và commit SHA vào
+[phiếu minh chứng](../evidence-template.md). Bộ test tham chiếu không
+chấm code student starter.
