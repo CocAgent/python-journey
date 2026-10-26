@@ -1,6 +1,7 @@
 """Core logic for a small JSON-backed expense tracker."""
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import date
 from pathlib import Path
@@ -56,6 +57,30 @@ def filter_by_category(
 ) -> list[Transaction]:
     target = category.strip().casefold()
     return [item for item in transactions if item.category.casefold() == target]
+
+
+def monthly_total(transactions: list[Transaction], year: int, month: int) -> float:
+    """Return total expenses for a calendar month; reject invalid month values."""
+    if not 1 <= month <= 12:
+        raise ValueError("Tháng phải nằm trong khoảng 1–12.")
+    prefix = f"{year:04d}-{month:02d}-"
+    return sum(item.amount for item in transactions if item.transaction_date.startswith(prefix))
+
+
+def category_totals(transactions: list[Transaction]) -> dict[str, float]:
+    """Return totals by category, combining category names case-insensitively."""
+    totals: dict[str, float] = defaultdict(float)
+    display_names: dict[str, str] = {}
+    for item in transactions:
+        key = item.category.casefold()
+        display_names.setdefault(key, item.category)
+        totals[key] += item.amount
+    return {display_names[key]: amount for key, amount in sorted(totals.items())}
+
+
+def largest_transaction(transactions: list[Transaction]) -> Transaction | None:
+    """Return the most expensive transaction, or None when there are no records."""
+    return max(transactions, key=lambda item: item.amount, default=None)
 
 
 def save_transactions(path: Path, transactions: list[Transaction]) -> None:
