@@ -4,8 +4,9 @@ import argparse
 
 
 def parser() -> argparse.ArgumentParser:
-    result = argparse.ArgumentParser()
-    # TODO: thêm option --turn bắt buộc với type=int.
+    """Create a parser with one required integer turn argument."""
+    result = argparse.ArgumentParser(description="Inspect a course turn")
+    result.add_argument("--turn", type=int, required=True)
     return result
 
 
