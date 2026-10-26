@@ -24,27 +24,37 @@ Self-check command:
 
 def gioi_thieu(ten: str, tuoi: int = 18) -> str:
     """Trả về một câu giới thiệu ngắn."""
-    # TODO: Dùng default ``tuoi`` khi caller không truyền argument thứ hai.
-    raise NotImplementedError("Hoàn thành hàm gioi_thieu")
+    return f"Tôi là {ten}, {tuoi} tuổi."
 
 
 def tinh_tam_tinh(gia: float, so_luong: int) -> float:
     """Tính tạm tính; trả về 0 nếu số lượng không dương."""
-    # TODO: Kiểm tra so_luong trước khi nhân.
-    raise NotImplementedError("Hoàn thành hàm tinh_tam_tinh")
+    if so_luong <= 0:
+        return 0.0
+    return gia * so_luong
 
 
 def ap_dung_giam_gia(tam_tinh: float, phan_tram: float = 0) -> float:
     """Trả về số tiền sau giảm giá."""
-    # TODO: Tính phần trăm giảm từ ``tam_tinh``.
-    raise NotImplementedError("Hoàn thành hàm ap_dung_giam_gia")
+    giam_gia = tam_tinh * (phan_tram / 100)
+    return tam_tinh - giam_gia
 
 
 def tao_hoa_don(gia: float, so_luong: int, phan_tram: float = 0) -> str:
     """Ghép các bước nhỏ và trả về dòng tổng tiền."""
-    # TODO: Gọi tinh_tam_tinh, sau đó gọi ap_dung_giam_gia.
-    raise NotImplementedError("Hoàn thành hàm tao_hoa_don")
+    tam_tinh = tinh_tam_tinh(gia, so_luong)
+    tong_tien = ap_dung_giam_gia(tam_tinh, phan_tram)
+    return f"Tổng tiền: {tong_tien:,.0f} VNĐ"
 
 
 if __name__ == "__main__":
-    print("Hoàn thành các TODO rồi thử tao_hoa_don(25_000, 2, 10).")
+    # Test thử các hàm
+    print(gioi_thieu("An"))                     # Tôi là An, 18 tuổi.
+    print(gioi_thieu("Bình", 20))               # Tôi là Bình, 20 tuổi.
+    
+    print(tinh_tam_tinh(25_000, 2))             # 50000.0
+    print(tinh_tam_tinh(25_000, 0))             # 0.0 (Xử lý số lượng không dương)
+    
+    print(ap_dung_giam_gia(100_000, 10))        # 90000.0
+    
+    print(tao_hoa_don(25_000, 2, 10))           # Tổng tiền: 45,000 VNĐ
