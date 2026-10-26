@@ -17,6 +17,22 @@ Sau phần fundamentals, bạn có thể:
 - phân biệt code, output và traceback;
 - đọc ba lỗi đầu tiên: `SyntaxError`, `NameError` và `IndentationError`.
 
+## Phạm vi kiến thức và cách chứng minh đã làm xong
+
+**Bắt buộc Tuần 01:** terminal, REPL, Python 3.12+, Git, `print()`,
+comment, phép toán, đọc lỗi và commit. **Không bắt buộc:** `input()`,
+`int()`, `float()`, vòng lặp hay hàm. Những nội dung đó thuộc các tuần sau;
+`ex03_input.py` và mini-project nhập tên là bài tự chọn.
+
+**Terminal khác REPL:** tại PowerShell/Terminal, bạn gõ `python --version`
+hoặc `python hello.py`. Khi thấy `>>>`, bạn đang ở trong **REPL**:
+gõ `2 + 3` và nhận `5`. Dùng `exit()` để về terminal trước khi chạy file.
+
+**Đừng nhầm chạy được với đúng:** file chỉ có `# TODO` vẫn có thể
+thoát bình thường mà chưa tạo output. Phải đối chiếu từng dòng và giá trị
+mong đợi trong [đề bài](exercises/README.md). Lời giải mẫu đôi khi có
+cấu trúc hàm để kiểm thử; điều đó không biến hàm thành yêu cầu của Tuần 01.
+
 ## 1. Code Python được chạy như thế nào?
 
 File Python là source code dạng văn bản:

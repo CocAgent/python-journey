@@ -42,4 +42,4 @@ Chạy file này bằng: python ex01_hello.py
 # Viết code ở đây:
 
 
-print("\n🎉 Chúc mừng! Bạn đã hoàn thành bài tập đầu tiên!")
+# Starter chưa hoàn thành: chỉ có output khi sinh viên tự viết các TODO.
