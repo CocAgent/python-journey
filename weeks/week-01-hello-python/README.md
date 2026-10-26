@@ -31,7 +31,9 @@ Nếu thích học qua câu chuyện, đọc tùy chọn
    `ex03_input.py` là **bài chuẩn bị Tuần 02, tùy chọn**.
 6. **Mini-project** — làm khung ASCII tĩnh theo
    [`mini-project/README.md`](mini-project/README.md); `input()` là phần nâng cao.
-7. **Commit evidence** — review thay đổi, lưu [minh chứng](evidence-template.md),
+7. **AI tools (tự chọn)** — xem [Antigravity và ChatGPT–GitHub](optional-tools/README.md)
+   nếu muốn học với AI, không thay cho việc tự chạy Python.
+8. **Commit evidence** — review thay đổi, lưu [minh chứng](evidence-template.md),
    commit trên nhánh học tập (không push trực tiếp vào `main`).
 
 > Đã có Python 3.12+ và Git? Bạn có thể bỏ qua thao tác cài đặt, nhưng vẫn cần
@@ -47,8 +49,20 @@ Git
 GitHub
 ```
 
-Jupyter, Colab, Kaggle, Anaconda/Miniconda và Codex là tùy chọn. Không cần cài
-các công cụ này để hoàn thành Week 01.
+Jupyter, Colab, Kaggle, Anaconda/Miniconda, Codex, **Google Antigravity**
+và **ChatGPT kết nối GitHub** là công cụ tùy chọn. Không cần cài hoặc kết
+nối các công cụ AI để hoàn thành Tuần 01.
+
+## Mở rộng tự chọn — viết code với AI, đọc repository bằng ChatGPT
+
+- [Google Antigravity: dùng agent hỗ trợ viết code trên máy](optional-tools/google-antigravity.md).
+- [Kết nối GitHub với ChatGPT: đọc và giải thích code](optional-tools/chatgpt-github.md).
+- [Bài thực hành nhỏ và quy tắc an toàn chung](optional-tools/README.md).
+
+Nguyên tắc: **AI đưa gợi ý → bạn tự viết → chạy Python → đọc output
+→ xem diff → ghi minh chứng**. Agent không thay thế interpreter, không
+được tự làm bài hoặc push lên `main`. ChatGPT đọc GitHub được cấp quyền
+không có nghĩa đọc mọi tệp local hoặc được tự động sửa repo.
 
 ## Bài tập
 
@@ -139,3 +153,5 @@ Không commit secret, `.venv`, `__pycache__` hay file tạm.
 - [ ] Review thay đổi trước khi commit.
 - [ ] Commit và push bằng chứng lên GitHub.
 - [ ] Cập nhật [`PROGRESS.md`](../../PROGRESS.md).
+- [ ] *(Tự chọn)* Thử [Antigravity hoặc ChatGPT–GitHub](optional-tools/README.md)
+      và ghi điều đã tự kiểm chứng.
