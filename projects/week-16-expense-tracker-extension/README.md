@@ -1,26 +1,25 @@
 # Week 16 Extension — Expense Tracker Reports (self-designed)
 
-**Important:** The course repository currently defines a 15-week curriculum. This folder is an optional self-designed continuation, not an official Week 16 assignment.
+**Important:** The repository's official curriculum currently defines 15 weeks. This is a self-designed continuation, not an official Week 16 assignment.
 
-## Goal
-Extend the Week 15 Expense Tracker with reusable reporting logic.
+## Implemented extension
 
-## Planned exercises
-1. Implement `monthly_total(transactions, year, month)` to sum expenses for a selected month.
-2. Implement `category_totals(transactions)` to return totals grouped by category.
-3. Implement `largest_transaction(transactions)`, returning `None` for an empty list.
-4. Add tests for empty data, month boundaries, and categories with different capitalization.
-5. Add a report option to the console menu and update the main project README.
+The reporting extension is implemented in the Week 15 capstone so it can reuse the same transaction model and JSON data:
+
+- `monthly_total(transactions, year, month)`: sum expenses for a selected month and reject months outside 1–12.
+- `category_totals(transactions)`: total spending by category, combining capitalization variants.
+- `largest_transaction(transactions)`: return the most expensive record or `None` when empty.
+- Console option **5. Báo cáo theo tháng** prints monthly total, category totals, and the largest transaction.
+
+## Exercises / acceptance criteria
+1. Read the three reporting functions in `projects/week-15-expense-tracker/src/expense_tracker.py` and explain their return values.
+2. Run the full test suite from the project directory: `python -m pytest -q`.
+3. Add a test for a month with no expenses.
+4. Add a test for an empty category report.
+5. Run the app and demonstrate a report for a month that has transactions and one that has none.
 
 ## Mini-project
-Create a monthly report that shows total expenses for a selected month, totals by category, and the largest transaction. Keep reporting logic separate from terminal input/output.
+Improve the monthly report with one additional feature of your choice (for example, date-range filtering or CSV export). Keep the logic separate from terminal input/output, add tests, and update the capstone README.
 
-## Acceptance criteria
-- Invalid months (not 1–12) are rejected.
-- Empty data produces clear output rather than an exception.
-- At least 5 new meaningful tests cover normal and edge cases.
-- Existing Week 15 tests continue to pass.
-- README documents the new feature and a sample report.
-
-## Status
-This folder documents the extension brief. Implementation should be added here only after the official course scope is confirmed or the learner chooses this self-designed extension.
+## Verification note
+The GitHub connector was used to commit the source and tests, but it does not execute Python in this repository. Run the commands above locally to confirm behavior before submission.
