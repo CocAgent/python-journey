@@ -1,1 +1,0 @@
-"""Expense Tracker source package."""
