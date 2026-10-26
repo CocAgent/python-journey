@@ -1,30 +1,49 @@
 # Tuần 15: Dự án cuối khóa 🎓
 
-> *"The secret is to get started." — Mark Twain*
+Tuần 15 là capstone: xây dựng chương trình có chức năng thực tế, lưu dữ liệu, kiểm thử và tài liệu. Đọc yêu cầu chính thức tại [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
 
-## 🎯 Mục tiêu tuần này
+## Dự án mẫu: Expense Tracker
 
-Sau tuần này, bạn sẽ:
+Ứng dụng quản lý thu/chi trên terminal:
+- Thêm khoản thu và khoản chi.
+- Xem danh sách giao dịch.
+- Tính tổng thu, tổng chi và số dư.
+- Lọc giao dịch theo danh mục.
+- Lưu/đọc dữ liệu JSON.
+- Kiểm tra input và xử lý dữ liệu lỗi cơ bản.
 
-- Hoàn thành dự án cuối khóa sử dụng toàn bộ kiến thức
-- Thực hành quy trình phát triển phần mềm thực tế
-- Viết README và documentation chuyên nghiệp
-- Nhìn lại hành trình và xác định bước tiếp theo
+## Cấu trúc
 
-## 📖 Kiến thức cần nắm
+- [main.py](main.py): logic ứng dụng và giao diện terminal.
+- `data/transactions.json`: dữ liệu được tạo khi lưu lần đầu.
+- [tests/test_main.py](tests/test_main.py): kiểm thử tự động bằng `unittest`.
+- [AI_USAGE.md](AI_USAGE.md): mẫu khai báo hỗ trợ AI cần chỉnh lại trung thực.
 
-Tổng hợp toàn bộ 14 tuần: OOP + File I/O + Exception + Modules + ...
+## Chạy chương trình
 
-Chi tiết xem tại [`notes.md`](notes.md)
+Từ thư mục gốc repository:
 
-## 🚀 Đề bài
+```bash
+python weeks/week-15-capstone-project/main.py
+```
 
-Xem chi tiết yêu cầu và tiêu chí đánh giá trong [`notes.md`](notes.md)
+Trên Windows, có thể dùng `py` thay cho `python`.
 
-## ✅ Checklist cuối tuần
+## Chạy test
 
-- [ ] Chọn đề tài và lên kế hoạch
-- [ ] Hoàn thành code chức năng chính
-- [ ] Test và sửa bug
-- [ ] Viết README cho project
-- [ ] Commit code lên GitHub
+```bash
+python -m unittest discover -s weeks/week-15-capstone-project/tests -v
+```
+
+Test bao gồm thêm giao dịch, từ chối dữ liệu sai, tổng thu/chi, lọc danh mục và lưu/đọc JSON. Hãy xem kết quả chạy thực tế trước khi đánh dấu hoàn thành.
+
+## Checklist trước khi nộp
+
+- [ ] Chạy chương trình và tự thử các chức năng.
+- [ ] Chạy test và đọc kết quả.
+- [ ] Giải thích được các hàm chính.
+- [ ] Đọc [FINAL_PROJECT.md](../../FINAL_PROJECT.md) và đối chiếu rubric.
+- [ ] Chỉnh [AI_USAGE.md](AI_USAGE.md) đúng với quá trình làm bài thực tế.
+- [ ] Commit tiến độ lên GitHub.
+
+> Đây là project mẫu tham khảo. Hãy tự chạy, hiểu và cải tiến trước khi dùng làm bài nộp.
