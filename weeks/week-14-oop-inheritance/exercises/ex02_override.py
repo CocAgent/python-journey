@@ -1,28 +1,47 @@
-"""
-Bài tập 02: Override & super() 🔄
-===================================
-Mục tiêu: Ghi đè phương thức, gọi class cha
-"""
+"""Bài 02: Override và super()."""
 
-# TODO 1: Override __str__
-# Class cha NhanVien: ten, luong, __str__()
-# Class con QuanLy: thêm phong_ban, override __str__() thêm phòng ban
-# Dùng super().__str__() + thông tin thêm
+class NhanVien:
+    def __init__(self, ten, luong): self.ten, self.luong = ten, luong
+    def tinh_luong(self): return self.luong
+    def __str__(self): return f"{self.ten} — Lương: {self.tinh_luong():,.0f} VNĐ"
 
+class QuanLy(NhanVien):
+    def __init__(self, ten, luong, phong_ban):
+        super().__init__(ten, luong); self.phong_ban = phong_ban
+    def tinh_luong(self): return self.luong * 1.2
+    def __str__(self): return f"{super().__str__()} — Phòng ban: {self.phong_ban}"
 
-# TODO 2: Override method tính lương
-# NhanVien.tinh_luong() → lương cơ bản
-# QuanLy.tinh_luong() → lương + phụ cấp quản lý (20%)
-# TapSu.tinh_luong() → lương × 0.7 (70%)
+class TapSu(NhanVien):
+    def tinh_luong(self): return self.luong * 0.7
 
+class Vehicle:
+    def __init__(self, name, speed): self.name, self.speed = name, speed
+    def describe(self): return f"{self.name}, tốc độ tối đa {self.speed} km/h"
 
-# TODO 3: super().__init__()
-# Class cha: Vehicle(name, speed)
-# Class con: ElectricCar(name, speed, battery)
-# Dùng super().__init__(name, speed) trong __init__ của ElectricCar
+class ElectricCar(Vehicle):
+    def __init__(self, name, speed, battery):
+        super().__init__(name, speed)
+        if not 0 <= battery <= 100: raise ValueError("Pin phải từ 0 đến 100%.")
+        self.battery = battery
+    def describe(self): return f"{super().describe()}, pin {self.battery}%"
 
+class Report:
+    def header(self): return "BÁO CÁO"
+    def body(self): raise NotImplementedError
+    def footer(self): return "Hết báo cáo."
+    def generate(self): return "\\n".join([self.header(), self.body(), self.footer()])
 
-# TODO 4 (Thử thách): Template method pattern
-# Class cha Report: generate() gọi header(), body(), footer()
-# Class con HTMLReport: override body() tạo HTML
-# Class con TextReport: override body() tạo plain text
+class HTMLReport(Report):
+    def header(self): return "<h1>BÁO CÁO</h1>"
+    def body(self): return "<p>Nội dung báo cáo</p>"
+    def footer(self): return "<footer>Hết báo cáo.</footer>"
+
+class TextReport(Report):
+    def body(self): return "Nội dung báo cáo dạng văn bản."
+
+def main():
+    for nv in [NhanVien("An", 10_000_000), QuanLy("Bình", 15_000_000, "IT"), TapSu("Châu", 8_000_000)]: print(nv)
+    print(ElectricCar("EV", 160, 85).describe())
+    print(HTMLReport().generate()); print(TextReport().generate())
+
+if __name__ == "__main__": main()
