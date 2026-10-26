@@ -1,31 +1,116 @@
-"""
-Bài tập 02: Methods & đóng gói 🔒
-====================================
-Mục tiêu: Instance methods, property, encapsulation
-"""
-
-# TODO 1: Tạo class TaiKhoanNganHang
-# - __init__(self, chu_tai_khoan, so_du=0)
-# - gui_tien(self, so_tien) — kiểm tra số tiền > 0
-# - rut_tien(self, so_tien) — kiểm tra đủ số dư
-# - xem_so_du(self)
-# - __str__(self)
+"""Bài tập 02: Methods và đóng gói."""
 
 
-# TODO 2: Thêm lịch sử giao dịch
-# - Mỗi lần gửi/rút → thêm vào list lich_su
-# - Thêm method xem_lich_su(self) in ra lịch sử
+class TaiKhoanNganHang:
+    def __init__(self, chu_tai_khoan, so_du=0):
+        if so_du < 0:
+            raise ValueError("Số dư ban đầu không được âm.")
+        self.chu_tai_khoan = chu_tai_khoan
+        self.so_du = so_du
+        self.lich_su = []
+
+    def gui_tien(self, so_tien):
+        if so_tien <= 0:
+            return False
+        self.so_du += so_tien
+        self.lich_su.append(f"Gửi +{so_tien:,.0f} VNĐ")
+        return True
+
+    def rut_tien(self, so_tien):
+        if so_tien <= 0 or so_tien > self.so_du:
+            return False
+        self.so_du -= so_tien
+        self.lich_su.append(f"Rút -{so_tien:,.0f} VNĐ")
+        return True
+
+    def xem_so_du(self):
+        return self.so_du
+
+    def xem_lich_su(self):
+        return self.lich_su.copy()
+
+    def __str__(self):
+        return f"Tài khoản {self.chu_tai_khoan}: {self.so_du:,.0f} VNĐ"
 
 
-# TODO 3: Tạo class SanPham
-# - __init__(self, ten, gia, so_luong)
-# - ban(self, sl) → giảm số lượng, kiểm tra còn hàng
-# - nhap(self, sl) → tăng số lượng
-# - tong_gia_tri(self) → giá × số lượng
+class SanPham:
+    def __init__(self, ten, gia, so_luong):
+        if gia < 0 or so_luong < 0:
+            raise ValueError("Giá và số lượng không được âm.")
+        self.ten = ten
+        self.gia = gia
+        self.so_luong = so_luong
+
+    def ban(self, sl):
+        if sl <= 0 or sl > self.so_luong:
+            return False
+        self.so_luong -= sl
+        return True
+
+    def nhap(self, sl):
+        if sl <= 0:
+            return False
+        self.so_luong += sl
+        return True
+
+    def tong_gia_tri(self):
+        return self.gia * self.so_luong
 
 
-# TODO 4 (Thử thách): Tạo class GioHang
-# - them(self, san_pham, so_luong)
-# - xoa(self, ten_san_pham)
-# - tinh_tong(self) → tổng tiền
-# - hien_thi(self) → in giỏ hàng
+class GioHang:
+    def __init__(self):
+        # Lưu tên sản phẩm cùng sản phẩm và số lượng đã chọn.
+        self.mat_hang = {}
+
+    def them(self, san_pham, so_luong):
+        if so_luong <= 0 or so_luong > san_pham.so_luong:
+            return False
+
+        ten = san_pham.ten
+        dang_co = self.mat_hang.get(ten, {}).get("so_luong", 0)
+        if dang_co + so_luong > san_pham.so_luong:
+            return False
+
+        self.mat_hang[ten] = {
+            "san_pham": san_pham,
+            "so_luong": dang_co + so_luong,
+        }
+        return True
+
+    def xoa(self, ten_san_pham):
+        return self.mat_hang.pop(ten_san_pham, None) is not None
+
+    def tinh_tong(self):
+        return sum(
+            item["san_pham"].gia * item["so_luong"]
+            for item in self.mat_hang.values()
+        )
+
+    def hien_thi(self):
+        if not self.mat_hang:
+            print("Giỏ hàng đang trống.")
+            return
+
+        for ten, item in self.mat_hang.items():
+            thanh_tien = item["san_pham"].gia * item["so_luong"]
+            print(f"{ten} x {item['so_luong']}: {thanh_tien:,.0f} VNĐ")
+        print(f"Tổng cộng: {self.tinh_tong():,.0f} VNĐ")
+
+
+def main():
+    tai_khoan = TaiKhoanNganHang("Nguyễn An", 1_000_000)
+    tai_khoan.gui_tien(500_000)
+    tai_khoan.rut_tien(200_000)
+    print(tai_khoan)
+    print("Lịch sử:", *tai_khoan.xem_lich_su(), sep="\n- ")
+
+    tra = SanPham("Trà sữa", 30_000, 10)
+    banh = SanPham("Bánh ngọt", 20_000, 5)
+    gio_hang = GioHang()
+    gio_hang.them(tra, 2)
+    gio_hang.them(banh, 1)
+    gio_hang.hien_thi()
+
+
+if __name__ == "__main__":
+    main()
