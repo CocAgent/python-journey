@@ -14,6 +14,7 @@ def main() -> int:
             "-m",
             "pytest",
             str(WEEK_ROOT / "tests"),
+            str(WEEK_ROOT / "examples" / "test_oop_team.py"),
             "-q",
             "-p",
             "no:cacheprovider",
