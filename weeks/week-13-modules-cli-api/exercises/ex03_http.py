@@ -7,9 +7,16 @@ fixture = b'{"lesson": 13}'
 
 def main() -> None:
     """Inspect a successful offline response fixture."""
-    # TODO: parse status 200 và assert lesson == 13.
-    # TODO: quan sát ValueError với status 500.
-    print(parse_json_response(200, fixture))
+    data = parse_json_response(200, fixture)
+    assert data["lesson"] == 13
+    print(data)
+
+    try:
+        parse_json_response(500, fixture)
+    except ValueError as error:
+        print(error)
+    else:
+        raise AssertionError("A 500 response should raise ValueError")
 
 
 if __name__ == "__main__":

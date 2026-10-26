@@ -5,7 +5,7 @@ import argparse
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser()
-    # TODO: thêm option --turn bắt buộc với type=int.
+    result.add_argument("--turn", type=int, required=True)
     return result
 
 
