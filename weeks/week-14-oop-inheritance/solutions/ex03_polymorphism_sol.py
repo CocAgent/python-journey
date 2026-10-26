@@ -1,49 +1,60 @@
-"""Lời giải Bài tập 03: Đa hình"""
+"""Lời giải bài 03: Đa hình."""
 import math
-
 class HinhTron:
-    def __init__(self, r):
-        self.r = r
-    def tinh_dien_tich(self):
-        return math.pi * self.r ** 2
-
+    def __init__(self,r):
+        if r<=0: raise ValueError("r phải > 0")
+        self.r=r
+    def tinh_dien_tich(self): return math.pi*self.r**2
 class HinhChuNhat:
-    def __init__(self, dai, rong):
-        self.dai, self.rong = dai, rong
-    def tinh_dien_tich(self):
-        return self.dai * self.rong
-
+    def __init__(self,dai,rong):
+        if min(dai,rong)<=0: raise ValueError("Kích thước phải > 0")
+        self.dai,self.rong=dai,rong
+    def tinh_dien_tich(self): return self.dai*self.rong
 class HinhTamGiac:
-    def __init__(self, a, b, c):
-        self.a, self.b, self.c = a, b, c
+    def __init__(self,a,b,c):
+        if min(a,b,c)<=0 or a+b<=c or a+c<=b or b+c<=a: raise ValueError("Tam giác không hợp lệ")
+        self.a,self.b,self.c=a,b,c
     def tinh_dien_tich(self):
-        s = (self.a + self.b + self.c) / 2
-        return math.sqrt(s * (s-self.a) * (s-self.b) * (s-self.c))
-
-# TODO 1 — Đa hình: cùng method name, kết quả khác nhau
-shapes = [HinhTron(5), HinhChuNhat(4, 6), HinhTamGiac(3, 4, 5)]
-for shape in shapes:
-    print(f"{type(shape).__name__}: S = {shape.tinh_dien_tich():.2f}")
-
-# TODO 2
+        s=(self.a+self.b+self.c)/2
+        return math.sqrt(s*(s-self.a)*(s-self.b)*(s-self.c))
 class ThanhToan:
-    def xu_ly(self, so_tien):
-        raise NotImplementedError
-
+    def phuong_thuc(self): raise NotImplementedError
+    def xu_ly(self,so_tien): raise NotImplementedError
 class TienMat(ThanhToan):
-    def xu_ly(self, so_tien):
-        print(f"Nhận {so_tien:,} tiền mặt")
-
+    def phuong_thuc(self): return "Tiền mặt"
+    def xu_ly(self,so_tien): return f"Nhận {so_tien:,.0f} VNĐ bằng tiền mặt."
 class TheNganHang(ThanhToan):
-    def xu_ly(self, so_tien):
-        print(f"Trừ thẻ {so_tien:,}")
-
+    def phuong_thuc(self): return "Thẻ ngân hàng"
+    def xu_ly(self,so_tien): return f"Trừ thẻ {so_tien:,.0f} VNĐ."
 class ViDienTu(ThanhToan):
-    def xu_ly(self, so_tien):
-        print(f"Chuyển {so_tien:,} qua ví điện tử")
-
-def thanh_toan(so_tien, phuong_thuc):
-    phuong_thuc.xu_ly(so_tien)
-
-for pt in [TienMat(), TheNganHang(), ViDienTu()]:
-    thanh_toan(100000, pt)
+    def phuong_thuc(self): return "Ví điện tử"
+    def xu_ly(self,so_tien): return f"Thanh toán {so_tien:,.0f} VNĐ qua ví."
+def thanh_toan(don_hang,phuong_thuc):
+    if don_hang<0: raise ValueError("Đơn hàng không được âm")
+    return f"{phuong_thuc.phuong_thuc()}: {phuong_thuc.xu_ly(don_hang)}"
+class Nguoi:
+    def speak(self): return "Xin chào."
+class ChoNoi:
+    def speak(self): return "Gâu gâu."
+def phat_bieu(obj):
+    if not callable(getattr(obj,"speak",None)): raise TypeError("Cần method speak()")
+    return obj.speak()
+class NhanVien:
+    def __init__(self,ten): self.ten=ten
+    def tinh_luong(self): raise NotImplementedError
+class FullTime(NhanVien):
+    def __init__(self,ten,luong): super().__init__(ten); self.luong=luong
+    def tinh_luong(self): return self.luong
+class PartTime(NhanVien):
+    def __init__(self,ten,gio,luong_gio): super().__init__(ten); self.gio=gio; self.luong_gio=luong_gio
+    def tinh_luong(self): return self.gio*self.luong_gio
+class Intern(NhanVien):
+    def __init__(self,ten,tro_cap): super().__init__(ten); self.tro_cap=tro_cap
+    def tinh_luong(self): return self.tro_cap
+def tong_luong(danh_sach): return sum(n.tinh_luong() for n in danh_sach)
+def main():
+    for h in [HinhTron(5),HinhChuNhat(4,6),HinhTamGiac(3,4,5)]: print(type(h).__name__,round(h.tinh_dien_tich(),2))
+    for p in [TienMat(),TheNganHang(),ViDienTu()]: print(thanh_toan(100_000,p))
+    print(phat_bieu(Nguoi()),phat_bieu(ChoNoi()))
+    print("Tổng lương:",f"{tong_luong([FullTime('An',20_000_000),PartTime('Bình',80,50_000),Intern('Châu',3_000_000)]):,.0f} VNĐ")
+if __name__=="__main__": main()
