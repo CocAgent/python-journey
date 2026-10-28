@@ -1,92 +1,68 @@
-# 🐍 Hành Trình Học Python
+# 🐍 Python Journey — Hành trình học Python
 
-Chào mừng đến với repository **Python Journey** của mình! 👋
+Repository lưu trữ bài tập, thực hành và các dự án nhỏ trong quá trình học Python. Mục tiêu là luyện tư duy giải quyết vấn đề, viết mã dễ đọc và làm quen với kiểm thử.
 
-Repository này được sử dụng để lưu trữ các bài tập, bài thực hành, dự án nhỏ và theo dõi quá trình học Python của mình.
+## 👨‍🎓 Thông tin
 
-## 👨‍💻 Thông tin sinh viên
+- **Sinh viên:** Nguyễn Tuấn Kiệt
+- **Lớp:** CCQ2511G
+- **Ngôn ngữ chính:** Python
 
-* **Họ và tên:** Nguyễn Tuấn Kiệt
-* **Lớp:** CCQ2511G
-* **Ngôn ngữ:** Python 🐍
-* **Repository:** Python Journey
+## 📚 Nội dung học tập
+
+Các chủ đề đã được học hoặc thực hành trong hành trình này (xem thư mục [weeks](weeks/)):
+
+| Tuần | Chủ đề |
+| --- | --- |
+| 02 | Biến, kiểu dữ liệu, toán tử |
+| 03 | Câu điều kiện |
+| 04 | Chuỗi (string) |
+| 05 | List, Tuple |
+| 06–07 | Vòng lặp, hàm |
+| 08 | Dictionary, Set |
+| 10 | File, CSV và xử lý dữ liệu |
+| 11–12 | Kiểm thử và trường hợp kiểm thử |
+| 13 | API thời tiết |
+
+> Bảng trên là danh sách chủ đề thực hành, **không phải xác nhận rằng mọi bài trong từng tuần đều đã hoàn thiện**. Hãy xem mã nguồn của từng tuần để kiểm tra tiến độ chi tiết.
 
 ## 🎯 Mục tiêu
 
-Trong quá trình học Python, mình đặt ra các mục tiêu:
+- Nắm vững cú pháp và các cấu trúc dữ liệu Python cơ bản.
+- Luyện tập qua bài tập có đầu vào / đầu ra và các trường hợp kiểm thử.
+- Đọc và ghi file, làm việc với dữ liệu CSV.
+- Biết cách sử dụng API trong dự án thực hành.
+- Thành thạo Git và GitHub để theo dõi quá trình học.
 
-* Hiểu cú pháp và kiến thức cơ bản của Python.
-* Rèn luyện tư duy lập trình và giải quyết vấn đề.
-* Thành thạo biến, kiểu dữ liệu và toán tử.
-* Sử dụng được câu điều kiện và vòng lặp.
-* Hiểu và sử dụng hàm.
-* Làm việc với List, Tuple, Set và Dictionary.
-* Biết cách đọc và ghi file.
-* Làm quen với lập trình hướng đối tượng (OOP).
-* Xây dựng các dự án Python nhỏ.
-* Sử dụng Git và GitHub để quản lý mã nguồn.
+## ▶️ Cách chạy bài tập
 
-## 📚 Tiến độ học tập
-
-| Nội dung            | Trạng thái  |
-| ------------------- | ----------- |
-| Python cơ bản       | 🟢 Đang học |
-| Biến & kiểu dữ liệu | 🟢 Đang học |
-| Câu điều kiện       | 🟡 Sắp học  |
-| Vòng lặp            | 🟡 Sắp học  |
-| Hàm                 | 🟡 Sắp học  |
-| List & Dictionary   | 🟡 Sắp học  |
-| Xử lý File          | 🟡 Sắp học  |
-| OOP                 | 🟡 Sắp học  |
-| Dự án nhỏ           | 🟡 Sắp học  |
-
-**Chú thích:**
-
-* 🟢 Đang học
-* ✅ Hoàn thành
-* 🟡 Sắp học
-
-## 📁 Cấu trúc Repository
-
-```text
-python-journey/
-│
-├── exercises/       # Bài tập Python
-├── projects/        # Các dự án nhỏ
-├── README.md        # Giới thiệu repository
-└── ...
-```
-
-## ▶️ Cách chạy chương trình
-
-Mở Terminal tại thư mục chứa file Python và nhập:
+1. Cài Python 3 và VS Code (hoặc trình soạn thảo yêu thích).
+2. Clone repository:
 
 ```bash
-python ten_file.py
+git clone https://github.com/nguyentuankiet210666/python-journey.git
+cd python-journey
 ```
 
-Ví dụ:
+3. Mở thư mục bài tập trong `weeks/` và chạy file `.py` cần thực hành:
 
 ```bash
-python hello.py
+python duong_dan_den_file.py
 ```
 
-## 🛠️ Công cụ sử dụng
+> Thay `duong_dan_den_file.py` bằng đường dẫn file Python thực tế. Một số bài có sử dụng thư viện ngoài hoặc API sẽ cần cài dependency và cấu hình riêng.
 
-* 🐍 Python
-* 💻 Visual Studio Code
-* 🔧 Git
-* 🌐 GitHub
+## 🧪 Cách tự kiểm tra
 
-## 📝 Ghi chú
+- Chạy trường hợp đầu vào bình thường.
+- Thử dữ liệu rỗng, dữ liệu sai định dạng và giá trị biên (nếu phù hợp).
+- So sánh kết quả thực tế với kết quả mong đợi.
+- Ghi lại lý do test chưa đạt trước khi sửa lỗi.
 
-Repository sẽ được cập nhật thường xuyên trong quá trình mình học và thực hành Python.
+## 🛠️ Công cụ
 
-Mục tiêu quan trọng nhất là **học từng bước, thực hành thường xuyên và cải thiện kỹ năng mỗi ngày.** 🚀
+`Python` · `Visual Studio Code` · `Git` · `GitHub`
 
 ---
 
-### 👨‍💻 Nguyễn Tuấn Kiệt
-
-**Lớp:** CCQ2511G
-**Hành trình học Python 🐍**
+**Học từng bước, thực hành thường xuyên, cải thiện qua mỗi lần viết code.** 🚀
