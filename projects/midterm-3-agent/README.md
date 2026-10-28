@@ -46,3 +46,13 @@ Có 6 test cho đường chạy thường, input rỗng, plan rỗng, thiếu b�
 
 ## An toàn, ghi công và minh chứng
 Không đọc/ghi file dự án khác, không thực thi code sinh tự động, không yêu cầu secret. Chỉ dùng dữ liệu giả. Để nộp: lưu output terminal thực tế, commit SHA, lỗi đã sửa, và ảnh demo vào evidence.md. Không tuyên bố PASS khi chưa kiểm tra thực tế.
+
+## Tài nguyên bổ sung
+- [Sơ đồ và giải thích kiến trúc](docs/architecture.md)
+- [Ghi chú AI Agent / workflow](docs/ai-agent-notes.md)
+- [Ví dụ đầu vào](examples/README.md) và [dữ liệu mẫu](test_data/cases.json)
+- [Lộ trình nâng cấp](ROADMAP.md)
+- [Tài nguyên trực tuyến và mã nguồn mở](RESOURCES.md)
+- [Nhật ký thay đổi](CHANGELOG.md)
+
+Các tài liệu trên hỗ trợ học tập, **không có nghĩa MVP hiện tại đã tích hợp LLM hay các framework được dẫn link**.
