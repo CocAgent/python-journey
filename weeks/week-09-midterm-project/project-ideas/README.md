@@ -1,16 +1,16 @@
-# Hướng C — Dự án nhóm tham khảo từ 20 mã nguồn mở
+# Hướng C — Dự án nhóm lấy cảm hứng từ 20 nguồn mở được tuyển chọn
 
 **Dành cho nhóm 1–3 sinh viên**, hoặc cá nhân muốn làm sản phẩm riêng. Đây là **track bổ sung** bên cạnh VuaCóc Bot V1 và Student Manager; chỉ cần hoàn thành **một** trong ba hướng giữa kỳ.
 
-- [Danh mục 20 dự án GitHub gốc và 20 đề xuất MVP](catalog-20-du-an.md).
+- [Danh mục 20 nguồn mở được biên tập, kèm 20 đề xuất MVP](catalog-20-du-an.md).
 - [Rubric đánh giá 10 điểm từ tài liệu giảng viên](rubric-10-diem.md).
 - [Phiếu đề xuất và phân công nhóm](phieu-de-xuat-nhom.md).
 - [Hướng dẫn Track C](../tracks/open-source-inspired.md).
 - [Mẫu minh chứng chung](../evidence-template.md).
 
-**Điểm quan trọng:** Tài liệu gốc liệt kê các dự án từ Web/API, Data, AI/Agent tới Robotics, Game. Đây là *danh mục công nghệ để tham khảo*, **không phải 20 chương trình phải xây dựng** và không phải yêu cầu học hết AI/robotics trong Tuần 09.
+**Điểm quan trọng:** Danh mục 20 nguồn hiện tại là **bản tuyển chọn đã cập nhật từ tài liệu giảng viên**, không phải bản sao nguyên văn danh sách trong Word. Các nguồn được bổ sung/đưa khỏi danh mục ưu tiên và lý do ghi tại cuối [catalog](catalog-20-du-an.md). Đây là *nguồn ý tưởng*, **không phải 20 chương trình phải xây dựng**, và không bắt buộc học framework AI hay agent ở Tuần 09.
 
-Sinh viên có thể làm chương trình **Python CLI ngoại tuyến nhỏ** lấy cảm hứng từ một dòng trong danh mục, kiểm tra dữ liệu vào/ra và trình bày được. Việc dùng Streamlit, FastAPI, PyTorch, ROS 2 hoặc framework khác là phần *nâng cao tùy chọn*, không phải lợi thế điểm số tự động.
+Sinh viên có thể làm chương trình **Python CLI ngoại tuyến nhỏ** lấy cảm hứng từ một dòng trong danh mục, kiểm tra dữ liệu vào/ra và trình bày được. Việc dùng Streamlit, FastAPI, PyTorch, Playwright hoặc framework khác là phần *nâng cao tùy chọn*, không phải lợi thế điểm số tự động.
 
 ## Quy trình bắt đầu
 

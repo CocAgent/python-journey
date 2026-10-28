@@ -29,7 +29,7 @@ Xem [`tracks/README.md`](tracks/README.md):
 
 1. **VuaCóc Bot V1** — flagship track dùng structured state và Local Arena.
 2. **Student Manager** — track thay thế giữ bài toán quản lý học sinh legacy.
-3. **Dự án nhóm tham khảo từ mã nguồn mở** — chọn một ý tưởng phù hợp trong [20 dự án](project-ideas/README.md) của tài liệu giảng viên, hoặc tự đề xuất dự án Python khác.
+3. **Dự án nhóm lấy cảm hứng từ nguồn mở được tuyển chọn** — chọn một ý tưởng phù hợp trong [20 nguồn mở được biên tập](project-ideas/README.md) từ tài liệu giảng viên, hoặc tự đề xuất dự án Python khác.
 
 Ba track đều dùng chung minh chứng về kế hoạch, phân rã, tính đúng và khả năng chạy lại. Mỗi nhóm 1–3 sinh viên (hoặc cá nhân) **chỉ cần hoàn thành một track**. Đối với Track C, có thể làm MVP Python thuần; không bắt buộc cài nguyên framework nâng cao.
 
@@ -47,7 +47,7 @@ choose → plan → decompose → implement → run
    [`hints.md`](hints.md).
 5. Dùng [`evidence-template.md`](evidence-template.md) để ghi bằng chứng.
 6. Chạy [machine check](checks/README.md) cho reference artifacts.
-7. Commit project bằng message có ý nghĩa. Nếu theo Track C, điền thêm [phiếu đề xuất nhóm](project-ideas/phieu-de-xuat-nhom.md) và chọn một mục trong [danh mục 20 ý tưởng](project-ideas/catalog-20-du-an.md).
+7. Commit project bằng message có ý nghĩa. Nếu theo Track C, điền thêm [phiếu đề xuất nhóm](project-ideas/phieu-de-xuat-nhom.md) và chọn một mục trong [danh mục 20 ý tưởng được cập nhật](project-ideas/catalog-20-du-an.md).
 
 ## Evaluation
 

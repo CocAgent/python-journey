@@ -1,209 +1,195 @@
-# Danh mục 20 dự án mã nguồn mở tham khảo — Tuần 09
+# Danh mục 20 dự án mã nguồn mở được tuyển chọn — Week 09 (2026)
 
-> **Nguồn:** tài liệu giảng viên *Bài tập nhóm thực hành Python.docx*, mục “Tổng hợp 20 dự án mã nguồn mở tiềm năng (Python – AI – Agent – Edge – Robotics – Game)”. Danh sách tên, lĩnh vực và liên kết bên dưới được đối chiếu với tài liệu gốc. **Ý tưởng MVP, đầu vào/đầu ra, phép thử và mức gợi ý là phần biên soạn bổ sung cho Python Journey**, không phải nội dung được tài liệu Word quy định.
+> **Lịch sử nguồn:** Bản đầu dựa trên tài liệu giảng viên *Bài tập nhóm thực hành Python.docx*, mục “Tổng hợp 20 dự án mã nguồn mở tiềm năng (Python – AI – Agent – Edge – Robotics – Game)”. **Bản này là danh mục được biên tập lại**, không còn là bản sao nguyên danh sách Word. Ý tưởng MVP, tiêu chí tuyển chọn và các nguồn bổ sung là nội dung của Python Journey.
+>
+> **Đối chiếu metadata:** 28/10/2026, dựa trên GitHub repository public/không archived, hoạt động mã nguồn, ngôn ngữ chính và thông tin giấy phép hiển thị. Đây **không phải** audit độc lập về bảo mật, chất lượng từng bản release hay tính tương thích Python 3.12. Muốn sử dụng source thực tế, phải kiểm tra LICENSE, dependency và phiên bản tại thời điểm cài đặt.
 
-**Không cần sao chép, viết lại hoặc cài đặt cả dự án mã nguồn mở.** Chọn *một ý tưởng nhỏ được gợi cảm hứng*, dùng Python 3.12+ cùng kiến thức Tuần 01–08: `if`, `list`, `dict`, vòng lặp và hàm. Có thể trình bày demo CLI ngoại tuyến, không cần GPU, mô hình AI, robot, server hoặc tài khoản dịch vụ.
+Xem [bản lưu chiểu 20 tên/URL gốc](archive/original-word-sources-20.md) để đối chiếu nguồn giảng viên; file lưu chiểu không phải danh sách khuyến nghị.
 
-Các nhãn “Dễ bắt đầu”, “Mở rộng”, “Định hướng” chỉ mô tả độ khó khi muốn **dùng chính framework**; *không quyết định điểm*. MVP Python thuần vẫn được chấm đầy đủ theo [rubric 10 điểm](rubric-10-diem.md). Mỗi nhóm 1–3 sinh viên chọn **một đề tài**; cũng có thể tự đề xuất ngoài danh sách nếu dùng Python là chính.
+**Chỉ chọn 1 MVP bằng Python 3.12+** cho Track C. Không phải clone/cài cả 20 repo, không yêu cầu API key, GPU, web server, robot, tài khoản dịch vụ hoặc truy cập Internet để hoàn thành giữa kỳ. Các ví dụ Python thuần dùng `if/for/list/dict/function` của Week 01–08; tên framework chỉ là **nguồn tham khảo/hướng phát triển nghề**, không phải tiêu chí cộng điểm.
 
-## Toàn bộ 20 dự án và MVP vừa sức
+## Nguyên tắc tuyển chọn
 
-| STT | Dự án / repository gốc | Lĩnh vực theo tài liệu | Ý tưởng MVP Python 01–08 | Mức tham khảo |
-|---:|---|---|---|---|
-| 01 | [FastAPI](https://github.com/fastapi/fastapi) | Web/API | Sổ quản lý công việc dạng CLI với thêm/xem/tìm/lọc | Mở rộng |
-| 02 | [Streamlit](https://github.com/streamlit/streamlit) | Data app | Báo cáo điểm học tập từ danh sách dict | Dễ bắt đầu |
-| 03 | [Gradio](https://github.com/gradio-app/gradio) | AI demo UI | Bộ phân loại câu ngắn bằng quy tắc từ khóa, chạy CLI | Dễ bắt đầu |
-| 04 | [Apache Airflow](https://github.com/apache/airflow) | Data pipeline | Chuỗi ba hàm nạp → lọc → tổng hợp dữ liệu mẫu | Mở rộng |
-| 05 | [Prefect](https://github.com/PrefectHQ/prefect) | Data pipeline | Quy trình kiểm tra đặt hàng bằng các hàm tuần tự | Mở rộng |
-| 06 | [DVC](https://github.com/iterative/dvc) | MLOps/Data versioning | So sánh hai bộ dữ liệu mẫu và ghi thủ công thay đổi | Mở rộng |
-| 07 | [JupyterLab](https://github.com/jupyterlab/jupyterlab) | Notebook/IDE | Notebook hoặc script khảo sát thống kê điểm số | Dễ bắt đầu |
-| 08 | [Polars](https://github.com/pola-rs/polars) | DataFrame | Thống kê bán hàng theo loại với list/dict | Dễ bắt đầu |
-| 09 | [PyTorch](https://github.com/pytorch/pytorch) | Deep Learning | Hệ thống dự đoán điểm bằng quy tắc tuyến tính đơn giản | Định hướng |
-| 10 | [Transformers (Hugging Face)](https://github.com/huggingface/transformers) | Model zoo | Gắn nhãn văn bản bằng từ khóa và kiểm tra kết quả | Định hướng |
-| 11 | [LangGraph](https://github.com/langchain-ai/langgraph) | Multi-agent/workflow | Sơ đồ quyết định tư vấn học tập bằng if/elif/hàm | Định hướng |
-| 12 | [CrewAI](https://github.com/crewAIInc/crewAI) | Multi-agent/team | Quy trình nhóm ba vai trò bằng ba hàm Python | Định hướng |
-| 13 | [ONNX Runtime](https://github.com/microsoft/onnxruntime) | Edge/Inference | Phân loại dữ liệu cảm biến bằng ngưỡng cố định | Định hướng |
-| 14 | [OpenVINO](https://github.com/openvinotoolkit/openvino) | Edge optimization | Bộ lọc kết quả mô phỏng phát hiện đối tượng | Định hướng |
-| 15 | [llama.cpp](https://github.com/ggml-org/llama.cpp) | Local LLM | Trợ lý FAQ dựa trên từ điển câu hỏi–câu trả lời | Định hướng |
-| 16 | [TensorFlow Lite Micro (tflite-micro)](https://github.com/tensorflow/tflite-micro) | TinyML | Hệ thống cảnh báo cảm biến giả lập bằng quy tắc | Định hướng |
-| 17 | [ROS 2](https://github.com/ros2/ros2) | Robotics platform | Robot đi trong lưới 1 chiều/2 chiều trên terminal | Mở rộng |
-| 18 | [PyBullet (Bullet3)](https://github.com/bulletphysics/bullet3) | Robot simulation | Mô phỏng vị trí chuyển động theo thời gian bằng phép tính | Mở rộng |
-| 19 | [Pygame](https://github.com/pygame/pygame) | Game 2D | Trò chơi đoán số hoặc di chuyển nhân vật dạng terminal | Dễ bắt đầu |
-| 20 | [Panda3D](https://github.com/panda3d/panda3d) | Game 3D | Mô hình bản đồ ô vuông bằng ký tự với nhân vật | Mở rộng |
+- **Tính hữu ích nghề nghiệp:** Backend, QA/automation, data, AI/agent, game; có lộ trình mở rộng W10–W15.
+- **Khả năng học:** ý tưởng có thể thu nhỏ thành input → xử lý → output ngoại tuyến, người học hiểu và giải thích được từng hàm.
+- **Tín hiệu bảo trì:** repository gốc tồn tại, không archived và có lịch sử cập nhật; sao GitHub chỉ là tham khảo, không thay review code.
+- **Giấy phép và an toàn:** không chép mã/dữ liệu nếu chưa kiểm LICENSE và điều kiện sử dụng. Không chạy code bên thứ ba không tin cậy trong máy thật; không nhập secret hay thông tin cá nhân.
+- **Cân bằng:** đúng **20 lựa chọn**; các hệ thống nặng/không chủ yếu bằng Python không được ưu tiên chỉ vì đang nổi tiếng.
 
-## Cách chọn đề tài
+**Nhãn mức:** B = có thể học framework sau khi hoàn thành MVP; C = định hướng nghề nghiệp nâng cao, **không yêu cầu cài/huấn luyện tại W09**. Nhãn không quyết định điểm. Dùng chung [rubric 10 điểm](rubric-10-diem.md) và [phiếu đề xuất nhóm](phieu-de-xuat-nhom.md).
 
-1. Ưu tiên đề tài mà nhóm **giải thích được từng hàm**, không chọn vì công cụ đang “hot”.
-2. Dùng dữ liệu mẫu hợp lệ, mô tả nguồn; không lấy API key, dữ liệu cá nhân hoặc tài nguyên trả phí.
-3. Viết trước một câu mục tiêu, một ví dụ input/output và 2 phép thử (thường + biên).
-4. Bản mở rộng dùng framework gốc là **tùy chọn** sau khi MVP CLI đúng; các mục Deep Learning, Multi-agent, Edge, ROS 2, 3D không phải năng lực bắt buộc của giữa kỳ.
-5. Nếu tự chọn đề tài khác trong danh sách, dùng cùng [phiếu đề xuất](phieu-de-xuat-nhom.md) và [rubric](rubric-10-diem.md).
+## Danh sách 20 nguồn được chọn
 
-## Gợi ý cụ thể cho từng dự án
+| STT | Repository nguồn mở | Hướng nghề | Mức | Ý tưởng MVP tự xây dựng ở Week 09 |
+|---:|---|---|:---:|---|
+| 01 | [FastAPI](https://github.com/fastapi/fastapi) | Backend / REST API | B | Sổ yêu cầu hỗ trợ: thêm, tìm, đóng ticket theo trạng thái |
+| 02 | [Flask](https://github.com/pallets/flask) | Web backend nhỏ | B | Quản lý lịch sự kiện bằng các hàm Python và CLI |
+| 03 | [Django](https://github.com/django/django) | Business web / ORM | C | Quản lý kho sách: nhập, bán, tra cứu tồn kho |
+| 04 | [Streamlit](https://github.com/streamlit/streamlit) | Data dashboard | B | Thống kê tiến bộ học tập của một nhóm nhỏ |
+| 05 | [Gradio](https://github.com/gradio-app/gradio) | Giao diện demo AI | B | Bộ tư vấn câu hỏi học tập theo từ khóa, không dùng LLM |
+| 06 | [Typer](https://github.com/fastapi/typer) | CLI automation | B | Công cụ danh sách việc làm với lệnh add/list/done |
+| 07 | [Pydantic](https://github.com/pydantic/pydantic) | Data validation | B | Kiểm tra phiếu đăng ký có trường bắt buộc và khoảng hợp lệ |
+| 08 | [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) | Database / backend | B | Theo dõi sách mượn-trả bằng list/dict |
+| 09 | [pytest](https://github.com/pytest-dev/pytest) | QA / software reliability | B | Bộ kiểm chứng hàm xếp loại kết quả học tập |
+| 10 | [Playwright Python](https://github.com/microsoft/playwright-python) | QA / web automation | C | Bộ kiểm tra quy tắc biểu mẫu giả lập, không mở trình duyệt |
+| 11 | [Scrapy](https://github.com/scrapy/scrapy) | Data collection | C | Trích tiêu đề từ các đoạn HTML mẫu được cung cấp sẵn |
+| 12 | [pandas](https://github.com/pandas-dev/pandas) | Data analytics | B | Báo cáo doanh thu theo danh mục |
+| 13 | [Polars](https://github.com/pola-rs/polars) | Data analytics hiệu năng | B | Tổng hợp đơn hàng theo cửa hàng |
+| 14 | [scikit-learn](https://github.com/scikit-learn/scikit-learn) | Machine learning cổ điển | C | Gợi ý phân nhóm bài học bằng rule-based features |
+| 15 | [PyTorch](https://github.com/pytorch/pytorch) | Deep learning | C | Tính điểm dự đoán bằng công thức tuyến tính minh bạch |
+| 16 | [Hugging Face Transformers](https://github.com/huggingface/transformers) | NLP / model tooling | C | Phân loại câu hỏi theo chủ đề bằng bộ từ khóa |
+| 17 | [LangGraph](https://github.com/langchain-ai/langgraph) | Agent workflow / state graph | C | Bộ điều phối các bước tư vấn học tập bằng hàm thuần |
+| 18 | [OpenAI Agents SDK (Python)](https://github.com/openai/openai-agents-python) | Agent / tool orchestration | C | Luồng planner → checker → reporter bằng ba hàm Python |
+| 19 | [pygame-ce](https://github.com/pygame-community/pygame-ce) | Game Python / event loop | B | Game tìm đường trong mê cung ký tự ở terminal |
+| 20 | [OpenClaw](https://github.com/openclaw/openclaw) | Agent systems (TypeScript) | C | Bộ định tuyến công cụ an toàn: chọn tác vụ bằng quy tắc |
+
+## Đề cương MVP: đầu vào, đầu ra, edge case và mở rộng
 
 ### 01 · FastAPI
 
-- **MVP tại Tuần 09:** Sổ quản lý công việc dạng CLI với thêm/xem/tìm/lọc. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Danh sách công việc mẫu và từ khóa.
-- **Output cần chứng minh:** Danh sách kết quả và số việc hoàn thành.
-- **Ít nhất một kiểm tra biên/sai:** Danh sách rỗng; lọc không thấy việc.
-- **Hướng mở rộng không bắt buộc:** Sau Tuần 13: chuyển CLI sang API GET/POST.
+- **MVP W09 (Python thuần):** Sổ yêu cầu hỗ trợ: thêm, tìm, đóng ticket theo trạng thái.
+- **Input → output và trường hợp biên:** List dict ticket → danh sách lọc, số ticket mở; thử ticket ID không tồn tại.
+- **Định hướng sau giữa kỳ:** W13: API GET/POST + validation; W15: tests, deployment localhost.
 
-### 02 · Streamlit
+### 02 · Flask
 
-- **MVP tại Tuần 09:** Báo cáo điểm học tập từ danh sách dict. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Ba học sinh với các điểm số.
-- **Output cần chứng minh:** Bảng tổng kết, điểm trung bình, số đạt.
-- **Ít nhất một kiểm tra biên/sai:** Danh sách lớp rỗng; học sinh không có điểm.
-- **Hướng mở rộng không bắt buộc:** Làm dashboard Streamlit sau khi nắm dependencies.
+- **MVP W09 (Python thuần):** Quản lý lịch sự kiện bằng các hàm Python và CLI.
+- **Input → output và trường hợp biên:** Danh sách sự kiện → lịch sắp xếp; thử ngày sai và danh sách rỗng.
+- **Định hướng sau giữa kỳ:** W13+: web routes/form, test client, không deploy công khai khi chưa có auth.
 
-### 03 · Gradio
+### 03 · Django
 
-- **MVP tại Tuần 09:** Bộ phân loại câu ngắn bằng quy tắc từ khóa, chạy CLI. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Một câu tiếng Việt đơn giản.
-- **Output cần chứng minh:** Nhãn chủ đề và lý do lựa chọn.
-- **Ít nhất một kiểm tra biên/sai:** Chuỗi rỗng; câu không có từ khóa.
-- **Hướng mở rộng không bắt buộc:** Gắn giao diện Gradio; mô hình AI là tùy chọn.
+- **MVP W09 (Python thuần):** Quản lý kho sách: nhập, bán, tra cứu tồn kho.
+- **Input → output và trường hợp biên:** Bản ghi sách dạng dict → tồn kho; thử bán quá tồn.
+- **Định hướng sau giữa kỳ:** W15+: học ORM/admin/migration trên dữ liệu giả.
 
-### 04 · Apache Airflow
+### 04 · Streamlit
 
-- **MVP tại Tuần 09:** Chuỗi ba hàm nạp → lọc → tổng hợp dữ liệu mẫu. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** List bản ghi doanh thu.
-- **Output cần chứng minh:** Tổng doanh thu hợp lệ và số bản ghi bị loại.
-- **Ít nhất một kiểm tra biên/sai:** Nguồn rỗng; giá trị âm; bước sai dữ liệu.
-- **Hướng mở rộng không bắt buộc:** Sau giữa kỳ: tìm hiểu DAG, scheduler và retry.
+- **MVP W09 (Python thuần):** Thống kê tiến bộ học tập của một nhóm nhỏ.
+- **Input → output và trường hợp biên:** Điểm mẫu → trung bình và số đạt; thử dữ liệu rỗng.
+- **Định hướng sau giữa kỳ:** W13+: dashboard bảng/biểu đồ bằng Streamlit.
 
-### 05 · Prefect
+### 05 · Gradio
 
-- **MVP tại Tuần 09:** Quy trình kiểm tra đặt hàng bằng các hàm tuần tự. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Các đơn hàng dạng dict.
-- **Output cần chứng minh:** Danh sách đơn hợp lệ và báo cáo lỗi.
-- **Ít nhất một kiểm tra biên/sai:** Đơn trống; thiếu trường; số lượng 0.
-- **Hướng mở rộng không bắt buộc:** Nghiên cứu workflow/task có trạng thái, retry.
+- **MVP W09 (Python thuần):** Bộ tư vấn câu hỏi học tập theo từ khóa, không dùng LLM.
+- **Input → output và trường hợp biên:** Câu hỏi → nhãn + giải thích; thử câu không khớp.
+- **Định hướng sau giữa kỳ:** W13+: đưa hàm hiện có vào UI Gradio.
 
-### 06 · DVC
+### 06 · Typer
 
-- **MVP tại Tuần 09:** So sánh hai bộ dữ liệu mẫu và ghi thủ công thay đổi. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Hai list/dict phiên bản A và B.
-- **Output cần chứng minh:** Các bản ghi được thêm, bớt, cập nhật.
-- **Ít nhất một kiểm tra biên/sai:** Hai phiên bản bằng nhau; danh sách rỗng.
-- **Hướng mở rộng không bắt buộc:** Học quản lý phiên bản dữ liệu bằng DVC.
+- **MVP W09 (Python thuần):** Công cụ danh sách việc làm với lệnh add/list/done.
+- **Input → output và trường hợp biên:** Tên việc + trạng thái → báo cáo; thử tên rỗng.
+- **Định hướng sau giữa kỳ:** W13+: đổi argparse/CLI sang Typer; help + validation.
 
-### 07 · JupyterLab
+### 07 · Pydantic
 
-- **MVP tại Tuần 09:** Notebook hoặc script khảo sát thống kê điểm số. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** List số hoặc điểm của nhóm.
-- **Output cần chứng minh:** Min/max, trung bình, bảng tần suất.
-- **Ít nhất một kiểm tra biên/sai:** Không có dữ liệu; chỉ một giá trị.
-- **Hướng mở rộng không bắt buộc:** Dùng notebook JupyterLab để trình bày kết quả.
+- **MVP W09 (Python thuần):** Kiểm tra phiếu đăng ký có trường bắt buộc và khoảng hợp lệ.
+- **Input → output và trường hợp biên:** Dict biểu mẫu → danh sách lỗi; thử thiếu trường/sai tuổi.
+- **Định hướng sau giữa kỳ:** W13+: chuyển rule validation sang Pydantic models.
 
-### 08 · Polars
+### 08 · SQLAlchemy
 
-- **MVP tại Tuần 09:** Thống kê bán hàng theo loại với list/dict. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Các hóa đơn mẫu: loại, số lượng, giá.
-- **Output cần chứng minh:** Doanh thu và mặt hàng bán chạy theo loại.
-- **Ít nhất một kiểm tra biên/sai:** Không có giao dịch; số lượng bằng 0.
-- **Hướng mở rộng không bắt buộc:** Chuyển dữ liệu sang Polars để so sánh.
+- **MVP W09 (Python thuần):** Theo dõi sách mượn-trả bằng list/dict.
+- **Input → output và trường hợp biên:** Người mượn, mã sách → trạng thái mượn; thử trả sách chưa mượn.
+- **Định hướng sau giữa kỳ:** W10+: SQLite; W15+: SQLAlchemy sessions/transactions.
 
-### 09 · PyTorch
+### 09 · pytest
 
-- **MVP tại Tuần 09:** Hệ thống dự đoán điểm bằng quy tắc tuyến tính đơn giản. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Giờ học và số bài làm.
-- **Output cần chứng minh:** Điểm dự đoán và sai số so với dữ liệu mẫu.
-- **Ít nhất một kiểm tra biên/sai:** Giờ học 0; đầu vào âm; ngưỡng điểm.
-- **Hướng mở rộng không bắt buộc:** Mới tìm hiểu tensor/model; không bắt buộc huấn luyện.
+- **MVP W09 (Python thuần):** Bộ kiểm chứng hàm xếp loại kết quả học tập.
+- **Input → output và trường hợp biên:** Danh sách input/expected → báo cáo pass/fail thủ công; thử 0/10 và ngoài khoảng.
+- **Định hướng sau giữa kỳ:** W12: viết pytest cases, regression test; không bắt buộc pytest ở W09.
 
-### 10 · Transformers (Hugging Face)
+### 10 · Playwright Python
 
-- **MVP tại Tuần 09:** Gắn nhãn văn bản bằng từ khóa và kiểm tra kết quả. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Danh sách câu ngắn mẫu.
-- **Output cần chứng minh:** Nhãn cho từng câu và đếm số nhãn.
-- **Ít nhất một kiểm tra biên/sai:** Không có nhãn phù hợp; câu rỗng.
-- **Hướng mở rộng không bắt buộc:** Sau giữa kỳ thử inference có sẵn và kiểm tra giấy phép.
+- **MVP W09 (Python thuần):** Bộ kiểm tra quy tắc biểu mẫu giả lập, không mở trình duyệt.
+- **Input → output và trường hợp biên:** Danh sách thao tác test → pass/fail; thử trường rỗng.
+- **Định hướng sau giữa kỳ:** Sau W13: test UI trang local được phép; không automation đăng nhập trái phép.
 
-### 11 · LangGraph
+### 11 · Scrapy
 
-- **MVP tại Tuần 09:** Sơ đồ quyết định tư vấn học tập bằng if/elif/hàm. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Điểm hiện tại và mục tiêu học.
-- **Output cần chứng minh:** Đề xuất một bước tiếp theo có giải thích.
-- **Ít nhất một kiểm tra biên/sai:** Không nhập điểm; điểm biên 0/10.
-- **Hướng mở rộng không bắt buộc:** Mở rộng thành state graph khi đã học framework.
+- **MVP W09 (Python thuần):** Trích tiêu đề từ các đoạn HTML mẫu được cung cấp sẵn.
+- **Input → output và trường hợp biên:** Chuỗi HTML giả lập → danh sách tiêu đề; thử cấu trúc thiếu.
+- **Định hướng sau giữa kỳ:** Sau W13: spider trên website có quyền thu thập; tôn trọng robots/ToS.
 
-### 12 · CrewAI
+### 12 · pandas
 
-- **MVP tại Tuần 09:** Quy trình nhóm ba vai trò bằng ba hàm Python. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Mô tả một yêu cầu đơn giản.
-- **Output cần chứng minh:** Kế hoạch, bản kiểm tra và báo cáo cuối.
-- **Ít nhất một kiểm tra biên/sai:** Đầu vào thiếu; thiếu một bước kiểm tra.
-- **Hướng mở rộng không bắt buộc:** Sau giữa kỳ tìm hiểu agent phối hợp vai trò.
+- **MVP W09 (Python thuần):** Báo cáo doanh thu theo danh mục.
+- **Input → output và trường hợp biên:** List dict giao dịch → tổng và nhóm; thử danh sách rỗng, giá âm.
+- **Định hướng sau giữa kỳ:** W10+: CSV/pandas DataFrame; kiểm tra schema dữ liệu.
 
-### 13 · ONNX Runtime
+### 13 · Polars
 
-- **MVP tại Tuần 09:** Phân loại dữ liệu cảm biến bằng ngưỡng cố định. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Danh sách số đo nhiệt độ.
-- **Output cần chứng minh:** Nhãn bình thường/cảnh báo và thống kê.
-- **Ít nhất một kiểm tra biên/sai:** Giá trị đúng ngưỡng; danh sách rỗng.
-- **Hướng mở rộng không bắt buộc:** Thử chạy mô hình ONNX có sẵn khi có điều kiện.
+- **MVP W09 (Python thuần):** Tổng hợp đơn hàng theo cửa hàng.
+- **Input → output và trường hợp biên:** List dict đơn hàng → doanh số; thử số lượng 0.
+- **Định hướng sau giữa kỳ:** W13+: so sánh DataFrame pandas/Polars sau khi hiểu cơ sở.
 
-### 14 · OpenVINO
+### 14 · scikit-learn
 
-- **MVP tại Tuần 09:** Bộ lọc kết quả mô phỏng phát hiện đối tượng. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Danh sách nhãn và độ tin cậy giả lập.
-- **Output cần chứng minh:** Chỉ giữ nhãn vượt ngưỡng đã định.
-- **Ít nhất một kiểm tra biên/sai:** Đúng bằng ngưỡng; độ tin cậy ngoài 0–1.
-- **Hướng mở rộng không bắt buộc:** Nghiên cứu tối ưu inference trên thiết bị tương thích.
+- **MVP W09 (Python thuần):** Gợi ý phân nhóm bài học bằng rule-based features.
+- **Input → output và trường hợp biên:** Điểm và thời gian học → gợi ý có giải thích; thử dữ liệu thiếu.
+- **Định hướng sau giữa kỳ:** Sau W15: mô hình ML với train/test split và baseline.
 
-### 15 · llama.cpp
+### 15 · PyTorch
 
-- **MVP tại Tuần 09:** Trợ lý FAQ dựa trên từ điển câu hỏi–câu trả lời. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Câu hỏi mẫu không chứa dữ liệu cá nhân.
-- **Output cần chứng minh:** Câu trả lời có nguồn từ bảng FAQ hoặc 'chưa biết'.
-- **Ít nhất một kiểm tra biên/sai:** Câu hỏi chưa có; chuỗi trống.
-- **Hướng mở rộng không bắt buộc:** Tìm hiểu mô hình cục bộ, nguồn tải và yêu cầu thiết bị.
+- **MVP W09 (Python thuần):** Tính điểm dự đoán bằng công thức tuyến tính minh bạch.
+- **Input → output và trường hợp biên:** Giờ học + số bài → điểm dự đoán; thử input âm.
+- **Định hướng sau giữa kỳ:** Sau W15: tensor, autograd; không cần GPU/huấn luyện ở W09.
 
-### 16 · TensorFlow Lite Micro (tflite-micro)
+### 16 · Hugging Face Transformers
 
-- **MVP tại Tuần 09:** Hệ thống cảnh báo cảm biến giả lập bằng quy tắc. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Chuỗi giá trị ánh sáng/nhiệt độ giả lập.
-- **Output cần chứng minh:** Thông báo vượt ngưỡng, tổng số lần cảnh báo.
-- **Ít nhất một kiểm tra biên/sai:** Dữ liệu rỗng; giá trị ở ngưỡng.
-- **Hướng mở rộng không bắt buộc:** Tìm hiểu MCU/TinyML, không bắt buộc mua thiết bị.
+- **MVP W09 (Python thuần):** Phân loại câu hỏi theo chủ đề bằng bộ từ khóa.
+- **Input → output và trường hợp biên:** Danh sách câu → nhãn và số lượng; thử câu rỗng.
+- **Định hướng sau giữa kỳ:** Sau W15: inference có mẫu và license phù hợp; không tải model lớn mặc định.
 
-### 17 · ROS 2
+### 17 · LangGraph
 
-- **MVP tại Tuần 09:** Robot đi trong lưới 1 chiều/2 chiều trên terminal. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Vị trí xuất phát, đích và giới hạn.
-- **Output cần chứng minh:** Dãy bước hợp lệ hoặc 'không có đường đi'.
-- **Ít nhất một kiểm tra biên/sai:** Đã ở đích; đích ngoài lưới.
-- **Hướng mở rộng không bắt buộc:** Tìm hiểu ROS 2 node/topic sau khi học modules.
+- **MVP W09 (Python thuần):** Bộ điều phối các bước tư vấn học tập bằng hàm thuần.
+- **Input → output và trường hợp biên:** State dict → bước tiếp theo; thử state thiếu/điểm biên.
+- **Định hướng sau giữa kỳ:** Sau W15: state graph và checkpoint; không cấp quyền tool nguy hiểm.
 
-### 18 · PyBullet (Bullet3)
+### 18 · OpenAI Agents SDK (Python)
 
-- **MVP tại Tuần 09:** Mô phỏng vị trí chuyển động theo thời gian bằng phép tính. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Vị trí, vận tốc, số bước đơn giản.
-- **Output cần chứng minh:** Bảng trạng thái sau từng bước.
-- **Ít nhất một kiểm tra biên/sai:** Vận tốc 0; số bước 0; số bước âm.
-- **Hướng mở rộng không bắt buộc:** Thử môi trường mô phỏng PyBullet.
+- **MVP W09 (Python thuần):** Luồng planner → checker → reporter bằng ba hàm Python.
+- **Input → output và trường hợp biên:** Nhiệm vụ mẫu → kế hoạch, kiểm tra, báo cáo; thử bước lỗi.
+- **Định hướng sau giữa kỳ:** Sau W15: agent tools, approval, fake provider; không cần API key ở W09.
 
-### 19 · Pygame
+### 19 · pygame-ce
 
-- **MVP tại Tuần 09:** Trò chơi đoán số hoặc di chuyển nhân vật dạng terminal. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Lệnh di chuyển hoặc lựa chọn của người chơi.
-- **Output cần chứng minh:** Trạng thái lượt chơi, thắng/thua.
-- **Ít nhất một kiểm tra biên/sai:** Lệnh sai; trúng đích; hết lượt.
-- **Hướng mở rộng không bắt buộc:** Vẽ sprite/cửa sổ Pygame là tự chọn.
+- **MVP W09 (Python thuần):** Game tìm đường trong mê cung ký tự ở terminal.
+- **Input → output và trường hợp biên:** Bản đồ + lệnh → vị trí và thắng/thua; thử va tường.
+- **Định hướng sau giữa kỳ:** Sau W09: UI 2D, event loop, sprite; không bắt buộc đồ họa.
 
-### 20 · Panda3D
+### 20 · OpenClaw
 
-- **MVP tại Tuần 09:** Mô hình bản đồ ô vuông bằng ký tự với nhân vật. Không phụ thuộc việc cài framework gốc.
-- **Input mẫu:** Tọa độ nhân vật và lệnh di chuyển.
-- **Output cần chứng minh:** Bản đồ hiển thị và vị trí hiện tại.
-- **Ít nhất một kiểm tra biên/sai:** Đi ra ngoài bản đồ; va chạm vật cản.
-- **Hướng mở rộng không bắt buộc:** Chuyển demo sang không gian 3D với Panda3D.
+- **MVP W09 (Python thuần):** Bộ định tuyến công cụ an toàn: chọn tác vụ bằng quy tắc.
+- **Input → output và trường hợp biên:** Yêu cầu → tên hàm được phép + lý do; thử tác vụ không được phép.
+- **Định hướng sau giữa kỳ:** Sau W15: nghiên cứu gateway/approval/log; không fork/cài toàn bộ, không shell tools.
 
-## Bản quyền, nguồn và giới hạn
+## Những nguồn không còn ưu tiên trong danh mục Week 09
 
-- Các liên kết dẫn tới **repository bên thứ ba để đọc/tham khảo**; không có cam kết chúng đang hoạt động, hỗ trợ một phiên bản Python nhất định, hay được phép sao chép không điều kiện.
-- Kiểm tra giấy phép, README, phiên bản và điều kiện cài đặt **trước khi** dùng mã/tài nguyên của dự án gốc; không cần cài đặt để hoàn thành MVP.
-- Nội dung giả lập/dữ liệu mẫu phải được giới thiệu rõ là giả lập; không quảng bá chatbot quy tắc là LLM hay bot mô phỏng là robot thật.
-- Danh mục này nhằm **gợi ý vấn đề**; bài nộp cần là sản phẩm Python của sinh viên, có dấu vết Git và chứng cứ chạy lại.
+**Không kết luận những repo dưới đây kém chất lượng.** Chúng có thể rất mạnh trong lĩnh vực riêng, nhưng bản trước gây hiểu lầm rằng sinh viên nhập môn cần chọn từ các hệ thống quá lớn, thiên về C++/robotics/embedded, hoặc trùng ý tưởng MVP. Vì thế thay bằng các nguồn Python sát nghề nghiệp hơn:
+
+| Nguồn cũ | Lý do rời danh mục ưu tiên W09 | Nếu quan tâm vẫn có thể học |
+|---|---|---|
+| Apache Airflow, Prefect | Hai orchestration engines quá nặng cho chương trình dùng hàm cơ bản; ý tưởng pipeline bị trùng | Data engineering sau W13 |
+| DVC | Data versioning/MLOps cần workflow và Git/data lineage trước | MLOps sau W15 |
+| JupyterLab | IDE/notebook hữu ích nhưng không phải dự án giải quyết vấn đề độc lập; trùng ý tưởng thống kê | Công cụ hỗ trợ học data |
+| CrewAI | Trùng nhánh multi-agent với SDK/LangGraph, khó đo evidence khi W09 chưa có LLM | Agent engineering sau W15 |
+| ONNX Runtime, OpenVINO, llama.cpp | Runtime inference thiên về C++/phần cứng/tối ưu; MVP W09 không thực sự thực hành công cụ gốc | Inference/edge sau W15 |
+| TensorFlow Lite Micro | Embedded/TinyML cần kiến thức phần cứng/C++ | IoT/Edge nâng cao |
+| ROS 2, PyBullet, Panda3D | Robot/physics/3D nặng, khó setup, không cần cho việc học Python nền tảng | Robotics/3D nâng cao |
+| pygame/pygame | Giữ hướng game nhưng ưu tiên [pygame-ce](https://github.com/pygame-community/pygame-ce) có hoạt động cập nhật gần hơn tại ngày rà soát | Học game Python tương tự |
+
+Tổng cộng: **13 nguồn cũ rời danh mục**, thay bằng **13 lựa chọn mới hoặc thay thế**, giữ 7 nguồn gốc phù hợp nhất. Đây là quyết định *scope/pedagogy*, không phải bảng xếp hạng chất lượng upstream.
+
+## Quy trình nộp đề tài (1–3 sinh viên hoặc cá nhân)
+
+1. Chọn **một đề tài** trong danh sách hoặc tự đề xuất vấn đề khác; làm [phiếu đề xuất](phieu-de-xuat-nhom.md).
+2. Ghi 3–5 chức năng MVP, dữ liệu mẫu, **một input bình thường và một input biên/không hợp lệ**, expected/actual.
+3. Code **Python thuần** với hàm, danh sách/từ điển; chạy một lệnh offline. Các framework từ bảng là **tùy chọn sau khi MVP PASS**.
+4. Chụp/log kết quả thật, ghi một lỗi đã sửa, một known limitation, README, Git commit SHA và [evidence](../evidence-template.md).
+5. Ghi công nguồn, xác minh license nếu thật sự dùng mã/tài nguyên, không tự động gửi dữ liệu tới bên thứ ba.
+6. Đối với scraping/browser automation, chỉ truy cập dữ liệu/test site **được phép**, tôn trọng ToS/robots và không vượt CAPTCHA hoặc cơ chế bảo vệ.
+7. **Không yêu cầu pytest ở W09** (dạy ở W12), HTTP/API ở W13, LLM hoặc agent server. Nhánh AI có thể dùng rule deterministic; **không gọi chatbot quy tắc là LLM**.
+
+**Rubric và quyền đề xuất đề tài khác không thay đổi.** Đây chỉ là catalog tham khảo, không phải syllabus thứ hai, thư viện bắt buộc hay bằng chứng sản phẩm đã PASS.
