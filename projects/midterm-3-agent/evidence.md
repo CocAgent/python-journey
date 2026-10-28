@@ -1,11 +1,13 @@
-# Evidence — Week 09
-- Branch: feature/week09-three-agent-midterm
-- Commit SHA: điền sau khi xác nhận commit
-- Demo input: Tao nhan vat di chuyen 2D
-- Expected: 3 bước, 3 mô phỏng, passed=True
-- Actual: CHƯA CHẠY TRÊN MÁY WINDOWS
-- Edge case: nhập khoảng trắng → thông báo lỗi
-- Automated tests: 6 bài test, CHƯA XÁC NHẬN CHẠY THỰC TẾ
-- Known limitation: chỉ là mô phỏng, không có LLM và không sinh mã.
-- Lỗi đã sửa: bổ sung kiểm tra đầu vào rỗng (cần xác minh bằng test).
-- Nguồn: xem README.md
+## Kết quả kiểm thử thực tế
+
+- Hệ điều hành: Windows
+- Python: 3.14.5
+- pytest: 9.2.0
+- Lệnh kiểm thử: `python -m pytest -v tests`
+- Số bài kiểm thử: 6
+- Kết quả: **6 passed in 0.03s**
+- Trạng thái: PASS
+
+Đã chạy thành công chương trình `main.py` với yêu cầu tạo nhân vật di chuyển trong game tu tiên 2D.
+
+Giới hạn: Đây là mô phỏng 3 Agent bằng Python, chưa tích hợp mô hình AI thực sự.
