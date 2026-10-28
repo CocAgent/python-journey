@@ -1,10 +1,10 @@
-# Track C — Dự án Python tự chọn, tham khảo 20 mã nguồn mở
+# Track C — Dự án Python tự chọn, tham khảo 20 nguồn mở được tuyển chọn
 
 ## Mục tiêu
 
 Chọn **một** vấn đề nhỏ từ [danh mục 20 dự án](../project-ideas/catalog-20-du-an.md), hoặc đề xuất đề tài Python khác, rồi xây **MVP chạy lại được** dựa trên hàm, vòng lặp, điều kiện và dữ liệu `list/dict` (Tuần 01–08).
 
-Đây là **dự án của nhóm 1–3 sinh viên hoặc cá nhân**, không phải yêu cầu fork cả repo FastAPI, Transformers, ROS 2 hay huấn luyện AI. Không bắt buộc cài package bên thứ ba, dùng AI API, GPU, server, thiết bị robot, hoặc dữ liệu trực tuyến.
+Đây là **dự án của nhóm 1–3 sinh viên hoặc cá nhân**, không phải yêu cầu fork cả repo FastAPI, Transformers, OpenClaw hay huấn luyện AI. Không bắt buộc cài package bên thứ ba, dùng AI API, GPU, server, thiết bị robot, hoặc dữ liệu trực tuyến.
 
 ## Điều kiện hoàn thành
 
@@ -21,8 +21,10 @@ Chọn **một** vấn đề nhỏ từ [danh mục 20 dự án](../project-idea
 | Bắt buộc giữa kỳ | Tùy chọn sau MVP |
 |---|---|
 | Một chương trình Python nhỏ giải quyết vấn đề | Giao diện Streamlit/Gradio/Pygame |
-| Dữ liệu `list/dict`, xử lý bằng hàm và `if/for` | Web API/FastAPI, pipeline Airflow/Prefect |
-| Hướng dẫn chạy được, thử case biên | PyTorch, Transformers, agent/robotics/edge |
+| Dữ liệu `list/dict`, xử lý bằng hàm và `if/for` | Web API/FastAPI, validation Pydantic, data pandas |
+| Hướng dẫn chạy được, thử case biên | PyTorch, Transformers, LangGraph, OpenClaw (chỉ nghiên cứu kiến trúc) |
 | README, Git, minh chứng và đạo đức dữ liệu | Deploy cloud, máy học lớn, phần cứng thật |
+
+**Danh mục này đã được cập nhật so với 20 tên trong tài liệu giảng viên; các lý do thay nguồn nằm ở cuối catalog.** Không phải bất kỳ framework nào cũng được yêu cầu cài ở Week 09.
 
 **Không cho điểm tự động cao hơn vì chọn công nghệ khó hơn.** Chấm theo [10 tiêu chí nguồn](../project-ideas/rubric-10-diem.md). Track A Bot V1 và Track B Student Manager vẫn là hai lựa chọn đầy đủ khác.
