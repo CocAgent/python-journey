@@ -29,7 +29,7 @@ Xem [`tracks/README.md`](tracks/README.md):
 
 1. **VuaCóc Bot V1** — flagship track dùng structured state và Local Arena.
 2. **Student Manager** — track thay thế giữ bài toán quản lý học sinh legacy.
-3. **Dự án nhóm lấy cảm hứng từ nguồn mở được tuyển chọn** — chọn một ý tưởng phù hợp trong [20 nguồn mở được biên tập](project-ideas/README.md) từ tài liệu giảng viên, hoặc tự đề xuất dự án Python khác.
+3. **Dự án nhóm lấy cảm hứng từ nguồn mở được tuyển chọn** — chọn trong [thư viện ý tưởng](project-ideas/README.md) gồm **20 nguồn lõi**, **13 Commerce/Marketing** và **11 Agent tự chọn**, hoặc tự đề xuất dự án Python khác.
 
 Ba track đều dùng chung minh chứng về kế hoạch, phân rã, tính đúng và khả năng chạy lại. Mỗi nhóm 1–3 sinh viên (hoặc cá nhân) **chỉ cần hoàn thành một track**. Đối với Track C, có thể làm MVP Python thuần; không bắt buộc cài nguyên framework nâng cao.
 

@@ -19,13 +19,25 @@ PostHog, Umami, Mautic, listmonk, Matomo và GrowthBook.
 nguồn cốt lõi mà checker Week 09 đang kiểm.** Có bài toán MVP Python offline
 cho giỏ hàng, tồn kho, CRM, phân khúc khách hàng, chiến dịch và phân tích chuyển đổi.
 
+## Mở rộng AI Agent & Agentic Systems
+
+Ngoài CrewAI **A01** ở phần dưới, đã bổ sung thêm **10 nguồn mở Agent**
+vào [**phụ lục A01–A11**](agent-open-source.md): PydanticAI, Google ADK,
+smolagents, Agno, CAMEL, Haystack, Browser Use, Deep Agents, MCP Python SDK
+và Microsoft Agent Framework. Phụ lục có bài toán Python thuần chạy offline,
+đầu vào/đầu ra/edge case, lộ trình Week 10–15 và lưu ý bảo mật.
+
+**Nguồn mở chỉ để tham khảo:** không cần cài các framework hay dùng LLM/API key
+trong bài giữa kỳ. Chỉ 20 dự án cốt lõi được tính trong bảng chính; A01–A11
+là nhóm tự chọn, không làm thay đổi rubric 10 điểm.
+
 ## Nguyên tắc tuyển chọn
 
 - **Tính hữu ích nghề nghiệp:** Backend, QA/automation, data, AI/agent, game; có lộ trình mở rộng W10–W15.
 - **Khả năng học:** ý tưởng có thể thu nhỏ thành input → xử lý → output ngoại tuyến, người học hiểu và giải thích được từng hàm.
 - **Tín hiệu bảo trì:** repository gốc tồn tại, không archived và có lịch sử cập nhật; sao GitHub chỉ là tham khảo, không thay review code.
 - **Giấy phép và an toàn:** không chép mã/dữ liệu nếu chưa kiểm LICENSE và điều kiện sử dụng. Không chạy code bên thứ ba không tin cậy trong máy thật; không nhập secret hay thông tin cá nhân.
-- **Cân bằng:** giữ đúng **20 lựa chọn cốt lõi**, thêm **A01 CrewAI tự chọn**; các hệ thống nặng không được ưu tiên chỉ vì đang nổi tiếng.
+- **Cân bằng:** giữ đúng **20 lựa chọn cốt lõi**, có **A01–A11 Agent tự chọn** và **13 nguồn Commerce/Marketing**; hệ thống lớn không được ưu tiên chỉ vì nổi tiếng.
 
 **Nhãn mức:** B = có thể học framework sau khi hoàn thành MVP; C = định hướng nghề nghiệp nâng cao, **không yêu cầu cài/huấn luyện tại W09**. Nhãn không quyết định điểm. Dùng chung [rubric 10 điểm](rubric-10-diem.md) và [phiếu đề xuất nhóm](phieu-de-xuat-nhom.md).
 

@@ -14,6 +14,8 @@ CATALOG = WEEK_ROOT / "project-ideas" / "catalog-20-du-an.md"
 ARCHIVE = WEEK_ROOT / "project-ideas" / "archive" / "original-word-sources-20.md"
 RUBRIC = WEEK_ROOT / "project-ideas" / "rubric-10-diem.md"
 INDUSTRY = WEEK_ROOT / "project-ideas" / "commerce-marketing-open-source.md"
+AGENTS = WEEK_ROOT / "project-ideas" / "agent-open-source.md"
+PROJECT_IDEAS_README = WEEK_ROOT / "project-ideas" / "README.md"
 
 # Provenance được niêm phong từ Word nguồn; KHÔNG phải recommended catalog.
 ORIGINAL_WORD_SOURCES = (
@@ -89,6 +91,77 @@ def verify_optional_agent(text: str, core_urls: list[str]) -> list[str]:
     return issues
 
 
+AGENT_ROW = re.compile(
+    r"^\| (?P<id>A\d{2}) \| \[(?P<name>[^]]+)\]\((?P<url>https://github[.]com/[^)]+)\) \|",
+    re.MULTILINE,
+)
+AGENT_SECTION = re.compile(r"^### (?P<id>A\d{2}) · (?P<name>[^\n]+)$", re.MULTILINE)
+AGENT_REQUIRED = (
+    "**Bài toán MVP W09:**",
+    "**Input:**",
+    "**Output:**",
+    "**Case biên / từ chối:**",
+    "**Lộ trình W10–W15:**",
+    "**An toàn:**",
+)
+
+
+def verify_agent_catalog(core_urls: list[str]) -> list[str]:
+    """Verify 11 curated agent ideas without changing the 20-core contract."""
+    if not AGENTS.is_file():
+        return ["Thiếu phụ lục Agent: agent-open-source.md"]
+
+    text = AGENTS.read_text(encoding="utf-8")
+    expected = [f"A{i:02d}" for i in range(1, 12)]
+    rows = AGENT_ROW.findall(text)
+    ids = [item_id for item_id, _, _ in rows]
+    urls = [url for _, _, url in rows]
+    issues: list[str] = []
+
+    if ids != expected:
+        issues.append("Agent catalog phải gồm A01–A11 đúng thứ tự")
+    if len(urls) != 11 or len(set(urls)) != 11:
+        issues.append("Agent catalog phải có 11 URL GitHub không trùng")
+    if set(urls) & set(core_urls):
+        issues.append("Agent catalog trùng URL với 20 nguồn cốt lõi")
+    if INDUSTRY.is_file():
+        industry_text = INDUSTRY.read_text(encoding="utf-8")
+        industry_urls = {url for _, _, url in INDUSTRY_ROW.findall(industry_text)}
+        if set(urls) & industry_urls:
+            issues.append("Agent catalog trùng URL với phụ lục Commerce/Marketing")
+    if not rows or rows[0][1] != "CrewAI" or rows[0][2] != "https://github.com/crewAIInc/crewAI":
+        issues.append("A01 phải liên kết về CrewAI canonical")
+
+    sections = list(AGENT_SECTION.finditer(text))
+    if [match.group("id") for match in sections] != expected:
+        issues.append("Agent catalog phải có đủ heading A01–A11")
+    else:
+        for index, section in enumerate(sections):
+            if section.group("id") == "A01":
+                continue  # Detailed A01 lives in catalog-20-du-an.md
+            end = sections[index + 1].start() if index + 1 < len(sections) else len(text)
+            detail = text[section.end():end]
+            for marker in AGENT_REQUIRED:
+                if marker not in detail:
+                    issues.append(f"{section.group('id')} thiếu: {marker}")
+
+    if not PROJECT_IDEAS_README.is_file():
+        issues.append("Thiếu README chọn đề tài")
+    else:
+        readme = PROJECT_IDEAS_README.read_text(encoding="utf-8")
+        required_links = (
+            "catalog-20-du-an.md",
+            "commerce-marketing-open-source.md",
+            "agent-open-source.md",
+            "rubric-10-diem.md",
+        )
+        for link in required_links:
+            if link not in readme:
+                issues.append(f"README chọn đề tài thiếu link: {link}")
+
+    return issues
+
+
 INDUSTRY_ROW = re.compile(
     r"^\| (?P<id>[CM]\d{2}) \| \[(?P<name>[^]]+)\]\((?P<url>https://github[.]com/[^)]+)\) \|",
     re.MULTILINE,
@@ -151,6 +224,7 @@ def verify() -> list[str]:
         issues.append("Danh mục hiện hành phải có 20 URL GitHub khác nhau")
     issues.extend(verify_industry_catalog(urls))
     issues.extend(verify_optional_agent(text, urls))
+    issues.extend(verify_agent_catalog(urls))
     if len(set(names)) != 20:
         issues.append("Tên 20 repository không được trùng")
     if not all(url.count("/") == 4 for url in urls):
@@ -193,6 +267,7 @@ def verify() -> list[str]:
         "project-ideas/catalog-20-du-an.md",
         "project-ideas/archive/original-word-sources-20.md",
         "project-ideas/commerce-marketing-open-source.md",
+        "project-ideas/agent-open-source.md",
         "project-ideas/rubric-10-diem.md",
         "project-ideas/phieu-de-xuat-nhom.md",
         "tracks/open-source-inspired.md",
@@ -212,7 +287,7 @@ def main() -> int:
             print(f"- {issue}")
         return 1
     print("Week 09 project catalog: PASS — 20 nguồn, 10 tiêu chí, đủ tài liệu")
-    print("Phụ lục tùy chọn: A01 CrewAI + 13 nguồn Commerce & Marketing")
+    print("Phụ lục tự chọn: 11 Agent (A01–A11) + 13 Commerce & Marketing")
     print("Catalog tuyển chọn khác lưu chiểu Word gốc; không chấm bài sinh viên.")
     return 0
 
