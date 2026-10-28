@@ -1,43 +1,99 @@
-# Tuần 15 — Capstone · Tests · README · Git/GitHub
+# Tuần 15 — Capstone · Integrate · Prove · Defend
 
-Tuần cuối tích hợp kỹ năng đã học thành evidence có thể chạy, đọc và review.
+Tuần cuối không phải lúc bắt đầu một project mới. Đây là lúc biến những gì bạn đã
+xây thành một sản phẩm **chạy được, kiểm chứng được và giải thích được**.
 
-## Canonical capstone
+```text
+Scope lock
+→ Integrate
+→ Test & debug
+→ Document & prove
+→ Demo & defend
+```
 
-Đề bài, deliverables và rubric duy nhất nằm tại
-[FINAL_PROJECT.md](../../FINAL_PROJECT.md). Week 15 không định nghĩa rubric
-thứ hai và VuaCóc Bot không phải lựa chọn bắt buộc.
+## Nguồn chân lý
+
+Yêu cầu, deliverables và rubric duy nhất của capstone nằm tại
+[FINAL_PROJECT.md](../../FINAL_PROJECT.md).
+
+Week 15 **không tạo rubric thứ hai**, không đặt quota class/hàm/file và không
+biến VuaCóc Bot thành đề tài bắt buộc.
 
 ## Outcomes
 
-- hoàn thiện một vertical slice có scope rõ;
-- chạy tests và ghi known failures;
-- viết README có setup, usage, evidence và limitations;
-- tạo commit history dễ review;
-- demo một kết quả có thể tái hiện.
+Sau Week 15, bạn có thể:
 
-Flagship optional track:
-[VuaCóc Bot Journey](../../projects/vuacoc-bot-journey/README.md), gồm local
-tournament và replay course-local.
+- chốt scope vừa sức và nói rõ phần không làm;
+- hoàn thiện một vertical slice end-to-end;
+- chạy test, sửa regression và ghi known limitations;
+- tạo evidence từ test, debugging và Git history;
+- viết README đủ để người khác chạy lại;
+- giải thích một quyết định thiết kế và một trade-off;
+- demo/bảo vệ code của chính mình trong 5–8 phút;
+- mô tả cách đã dùng và kiểm chứng AI nếu có.
 
-Xem [integration checklist](notes.md) và [gợi ý theo hạng mục](hints.md).
+## Learning path
 
-Starter documentation:
+1. Đọc [kế hoạch thực thi](execution-plan.md) và chốt scope.
+2. Hoàn thiện luồng chính trước khi thêm feature phụ.
+3. Dùng [integration checklist](notes.md) để test/debug.
+4. Có thể dùng [evidence template](evidence-template.md) để gom bằng chứng.
+5. Chạy readiness checker.
+6. Chuẩn bị [demo & defense](demo-defense.md).
+7. Commit trạng thái cuối với worktree sạch.
+
+Các template hỗ trợ:
 
 - [Capstone README template](../../templates/capstone-readme-template.md)
 - [AI usage template](../../templates/AI_USAGE.template.md)
 
-## Readiness check
+## Readiness checker
 
-Week 15 không có exercises hay official solutions: deliverable chính là project
-của bạn. Thay vào đó, tự kiểm tra evidence cơ học trước khi handoff:
+Chạy từ repository root:
 
 ```bash
 python weeks/week-15-capstone-project/checks/check_capstone_readiness.py path/to/my-project
 ```
 
-Check xác nhận README có setup/usage/test, có `AI_USAGE.md`, đủ hàm, đủ test,
-pytest collect được và không có bare `except:`. Nó **không chấm điểm** — rubric
-duy nhất vẫn là [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
+Checker mặc định chỉ kiểm **evidence cơ học**:
 
-Chi tiết: [`checks/README.md`](checks/README.md).
+- README có các phần cốt lõi;
+- có `AI_USAGE.md`;
+- Python source parse được;
+- có ít nhất 5 test function;
+- pytest collect được;
+- không có bare `except:`.
+
+Nó **không chấm chất lượng thiết kế** và không suy điểm rubric.
+
+Sau khi tự tin với project của chính mình, có thể chạy cả tests:
+
+```bash
+python weeks/week-15-capstone-project/checks/check_capstone_readiness.py \
+  path/to/my-project --run-tests
+```
+
+Không dùng `--run-tests` cho code không tin cậy.
+
+## Definition of ready
+
+Trước khi demo:
+
+- [ ] Luồng chính chạy được từ command ghi trong README.
+- [ ] Các chức năng nghiệp vụ đã chốt đều có evidence.
+- [ ] Ít nhất 5 test có ý nghĩa và test suite PASS.
+- [ ] Có ít nhất một bug đã tái hiện, sửa và kiểm tra lại.
+- [ ] README mô tả scope, cách chạy, test, cấu trúc và limitations.
+- [ ] `AI_USAGE.md` phản ánh đúng cách dùng AI.
+- [ ] Git history cho thấy quá trình build/test/debug/improve.
+- [ ] Bạn giải thích được code mà không phụ thuộc vào AI.
+- [ ] `git status` sạch khi handoff.
+
+## Flagship optional track — VuaCóc Bot Journey
+
+[VuaCóc Bot Journey](../../projects/vuacoc-bot-journey/README.md) có thể dùng
+làm capstone nếu bạn đã phát triển bot từ Week 07.
+
+W15 của track này là **integration + tournament + evidence**, không phải bắt đầu
+bot từ đầu. Local tournament/replay chỉ là course-local evidence và không chứng
+minh tương thích production VuaCóc.
