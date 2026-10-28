@@ -196,11 +196,11 @@ def main() -> int:
         print("\nTham chiếu rubric chính thức: FINAL_PROJECT.md")
         return 1
 
-    print("Week 15 capstone readiness : PASS")
+    print("Week 15 capstone readiness: PASS")
     if args.run_tests:
-        print("Mechanical evidence đỳ và test suite PASS.")
+        print("Mechanical evidence đủ và test suite PASS.")
     else:
-        print("Mechanical evidence ủ; dùng --run-tests để chạy test suite.")
+        print("Mechanical evidence đủ; dùng --run-tests để chạy test suite.")
     print("Rubric và review chất lượng vẫn do FINAL_PROJECT.md/người chấm quyết định.")
     return 0
 
