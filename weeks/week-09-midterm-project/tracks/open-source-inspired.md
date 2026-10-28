@@ -6,6 +6,10 @@ Chọn **một** vấn đề nhỏ từ [danh mục 20 dự án](../project-idea
 
 Đây là **dự án của nhóm 1–3 sinh viên hoặc cá nhân**, không phải yêu cầu fork cả repo FastAPI, Transformers, OpenClaw hay huấn luyện AI. Không bắt buộc cài package bên thứ ba, dùng AI API, GPU, server, thiết bị robot, hoặc dữ liệu trực tuyến.
 
+**Hướng AI Agent:** Chọn [11 nguồn mở Agent](../project-ideas/agent-open-source.md),
+trong đó A01 CrewAI đã mô tả tại catalog chính và A02–A11 có bài toán
+mô phỏng offline. Sinh viên không cần LLM, API key hoặc công cụ thực thi shell.
+
 **Hướng ngành kinh doanh:** Sinh viên có thể chọn thêm
 [13 bài toán từ Saleor, ERP, CRM, marketing và analytics](../project-ideas/commerce-marketing-open-source.md).
 Bản giữa kỳ vẫn làm Python CLI ngoại tuyến, không cần thanh toán, email thật,
