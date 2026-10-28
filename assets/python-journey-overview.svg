@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Python Journey learning workspace</title>
+  <desc id="desc">A visual mockup of a Python learning dashboard with a 15-week roadmap, practice tasks, tests, and a learning loop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101827"/><stop offset="1" stop-color="#202b42"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+  </defs>
+  <rect width="1200" height="560" rx="28" fill="url(#bg)"/>
+  <circle cx="1080" cy="75" r="130" fill="#4f8cff" opacity=".08"/><circle cx="70" cy="500" r="160" fill="#7c5cff" opacity=".08"/>
+  <rect x="30" y="28" width="1140" height="504" rx="18" fill="#111827" stroke="#39465e"/>
+  <path d="M30 80H1170" stroke="#39465e"/>
+  <circle cx="55" cy="54" r="6" fill="#fb7185"/><circle cx="76" cy="54" r="6" fill="#fbbf24"/><circle cx="97" cy="54" r="6" fill="#34d399"/>
+  <text x="125" y="60" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#e5edff">PYTHON JOURNEY</text>
+  <text x="1095" y="60" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#9eacc5">LEARN • BUILD • TEST</text>
+  <rect x="54" y="104" width="700" height="174" rx="14" fill="#182338" stroke="#34445f"/>
+  <text x="80" y="139" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#78aaff" letter-spacing="2">YOUR LEARNING PATH</text>
+  <text x="80" y="174" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#f3f6ff">From Python basics to reliable code.</text>
+  <text x="80" y="202" font-family="Arial,sans-serif" font-size="15" fill="#b7c4da">15 weeks of hands-on practice, tests, debugging and projects.</text>
+  <rect x="80" y="225" width="145" height="30" rx="7" fill="url(#accent)"/>
+  <text x="152" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">START LEARNING</text>
+  <rect x="776" y="104" width="366" height="174" rx="14" fill="#182338" stroke="#34445f"/>
+  <text x="800" y="137" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#f3f6ff">LEARNING LOOP</text>
+  <g font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+    <rect x="800" y="155" width="95" height="34" rx="8" fill="#253d60"/><text x="847" y="177" fill="#cfe0ff">Learn</text>
+    <rect x="910" y="155" width="95" height="34" rx="8" fill="#253d60"/><text x="957" y="177" fill="#cfe0ff">Build</text>
+    <rect x="1020" y="155" width="95" height="34" rx="8" fill="#253d60"/><text x="1067" y="177" fill="#cfe0ff">Test</text>
+    <rect x="855" y="207" width="205" height="34" rx="8" fill="#243b35"/><text x="957" y="229" fill="#a7f3d0">Debug → Improve</text>
+  </g>
+  <path d="M895 172h13m-4 -4 4 4-4 4M1005 172h13m-4 -4 4 4-4 4M1067 190v10m0 0-4 -4m4 4 4 -4" stroke="#91a7c7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="55" y="317" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#f3f6ff">ROADMAP PREVIEW</text>
+  <text x="1142" y="317" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#9eacc5">FOUNDATIONS → CAPSTONE</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="54" y="336" width="250" height="144" rx="12" fill="#182338" stroke="#34445f"/><rect x="54" y="336" width="250" height="5" rx="2" fill="#4f8cff"/>
+    <text x="74" y="367" font-size="12" font-weight="700" fill="#78aaff">WEEK 01–03</text><text x="74" y="395" font-size="19" font-weight="700" fill="#f3f6ff">Get started</text><text x="74" y="420" font-size="13" fill="#b7c4da">Types • Conditions • Terminal</text><text x="74" y="451" font-size="12" fill="#9eacc5">Build your first programs</text>
+    <rect x="322" y="336" width="250" height="144" rx="12" fill="#182338" stroke="#34445f"/><rect x="322" y="336" width="250" height="5" rx="2" fill="#8b7bff"/>
+    <text x="342" y="367" font-size="12" font-weight="700" fill="#b7aaff">WEEK 04–08</text><text x="342" y="395" font-size="19" font-weight="700" fill="#f3f6ff">Work with data</text><text x="342" y="420" font-size="13" fill="#b7c4da">Strings • Collections • Functions</text><text x="342" y="451" font-size="12" fill="#9eacc5">Practice problem solving</text>
+    <rect x="590" y="336" width="250" height="144" rx="12" fill="#182338" stroke="#34445f"/><rect x="590" y="336" width="250" height="5" rx="2" fill="#34d399"/>
+    <text x="610" y="367" font-size="12" font-weight="700" fill="#6ee7b7">WEEK 10–14</text><text x="610" y="395" font-size="19" font-weight="700" fill="#f3f6ff">Build reliably</text><text x="610" y="420" font-size="13" fill="#b7c4da">Files • Testing • Debugging • OOP</text><text x="610" y="451" font-size="12" fill="#9eacc5">Make code easier to trust</text>
+    <rect x="858" y="336" width="284" height="144" rx="12" fill="#182338" stroke="#34445f"/><rect x="858" y="336" width="284" height="5" rx="2" fill="#fbbf24"/>
+    <text x="878" y="367" font-size="12" font-weight="700" fill="#fcd34d">WEEK 15</text><text x="878" y="395" font-size="19" font-weight="700" fill="#f3f6ff">Capstone project</text><text x="878" y="420" font-size="13" fill="#b7c4da">Code • Tests • README • Demo</text><text x="878" y="451" font-size="12" fill="#9eacc5">Show what you can build</text>
+  </g>
+</svg>
