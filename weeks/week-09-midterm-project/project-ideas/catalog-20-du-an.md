@@ -4,6 +4,8 @@
 >
 > **Đối chiếu metadata:** 28/10/2026, dựa trên GitHub repository public/không archived, hoạt động mã nguồn, ngôn ngữ chính và thông tin giấy phép hiển thị. Đây **không phải** audit độc lập về bảo mật, chất lượng từng bản release hay tính tương thích Python 3.12. Muốn sử dụng source thực tế, phải kiểm tra LICENSE, dependency và phiên bản tại thời điểm cài đặt.
 
+Xem [bản lưu chiểu 20 tên/URL gốc](archive/original-word-sources-20.md) để đối chiếu nguồn giảng viên; file lưu chiểu không phải danh sách khuyến nghị.
+
 **Chỉ chọn 1 MVP bằng Python 3.12+** cho Track C. Không phải clone/cài cả 20 repo, không yêu cầu API key, GPU, web server, robot, tài khoản dịch vụ hoặc truy cập Internet để hoàn thành giữa kỳ. Các ví dụ Python thuần dùng `if/for/list/dict/function` của Week 01–08; tên framework chỉ là **nguồn tham khảo/hướng phát triển nghề**, không phải tiêu chí cộng điểm.
 
 ## Nguyên tắc tuyển chọn
