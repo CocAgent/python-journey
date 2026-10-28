@@ -11,6 +11,16 @@
 
 **Learning loop:** `Learn → Build → Test → Debug → Improve → Commit → Prove`
 
+<p align="center">
+  <img src="assets/python-journey-overview.svg" alt="Python Journey learning dashboard and 15-week roadmap" width="100%" />
+</p>
+
+<p align="center">
+  <a href="#lộ-trình-15-tuần"><img src="https://img.shields.io/badge/ROADMAP-15%20weeks-4f8cff?style=for-the-badge" alt="15 week roadmap" /></a>
+  <a href="weeks/week-12-testing-with-pytest/"><img src="https://img.shields.io/badge/LEARN-Test%20%26%20Debug-22c55e?style=for-the-badge" alt="Test and debug" /></a>
+  <a href="projects/vuacoc-bot-journey/README.md"><img src="https://img.shields.io/badge/BUILD-Capstone-f59e0b?style=for-the-badge" alt="Capstone project" /></a>
+</p>
+
 **Featured spiral project:** [VuaCóc Bot Journey](projects/vuacoc-bot-journey/README.md)
 🏆 · [Tham khảo game gốc](https://vuacoc.com/)
 
