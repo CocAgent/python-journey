@@ -110,3 +110,16 @@ chọn phát triển API với FastAPI hoặc dashboard với Streamlit.
   cho các hướng backend, automation, data và agent foundations.
 - Không bắt buộc chọn đề tài này và **không thay thế**
   [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
+
+## Hướng phát triển nghề nghiệp — Commerce & Marketing
+
+Sinh viên muốn tiếp tục MVP Week 09 thành capstone có thể xem
+[13 nguồn mở Commerce & Marketing](../week-09-midterm-project/project-ideas/commerce-marketing-open-source.md),
+trong đó có Saleor (commerce API), ERPNext/Odoo (quản trị doanh nghiệp),
+PostHog/Umami (analytics) và Mautic (marketing automation).
+Ví dụ nâng cấp: giỏ hàng + quản lý tồn kho hoặc dashboard conversion rate,
+thêm lưu dữ liệu, validation, pytest và CLI/API adapter tùy chọn.
+
+Đây là **hướng tham khảo**, không bắt buộc cài hệ thống gốc và không thay
+[FINAL_PROJECT.md](../../FINAL_PROJECT.md). Không dùng thẻ thanh toán,
+dữ liệu khách hàng thật hay gửi marketing thật trong bài mẫu.

@@ -13,6 +13,7 @@ WEEK_ROOT = Path(__file__).resolve().parents[1]
 CATALOG = WEEK_ROOT / "project-ideas" / "catalog-20-du-an.md"
 ARCHIVE = WEEK_ROOT / "project-ideas" / "archive" / "original-word-sources-20.md"
 RUBRIC = WEEK_ROOT / "project-ideas" / "rubric-10-diem.md"
+INDUSTRY = WEEK_ROOT / "project-ideas" / "commerce-marketing-open-source.md"
 
 # Provenance được niêm phong từ Word nguồn; KHÔNG phải recommended catalog.
 ORIGINAL_WORD_SOURCES = (
@@ -55,6 +56,49 @@ DETAIL_MARKERS = (
 )
 
 
+INDUSTRY_ROW = re.compile(
+    r"^\| (?P<id>[CM]\d{2}) \| \[(?P<name>[^]]+)\]\((?P<url>https://github[.]com/[^)]+)\) \|",
+    re.MULTILINE,
+)
+INDUSTRY_SECTION = re.compile(r"^### (?P<id>[CM]\d{2}) ·", re.MULTILINE)
+INDUSTRY_REQUIRED = (
+    "**Bài toán MVP W09:**",
+    "**Input:**",
+    "**Output:**",
+    "**Biên/sai cần chứng minh:**",
+    "**Sau W09 (tùy chọn):**",
+)
+
+
+def verify_industry_catalog(core_urls: list[str]) -> list[str]:
+    """Keep the 20 core options sealed and separately validate the 13 industry choices."""
+    if not INDUSTRY.is_file():
+        return ["Thiếu phụ lục Commerce & Marketing"]
+    text = INDUSTRY.read_text(encoding="utf-8")
+    rows = INDUSTRY_ROW.findall(text)
+    expected = [f"C{i:02d}" for i in range(1, 7)] + [
+        f"M{i:02d}" for i in range(1, 8)
+    ]
+    issues: list[str] = []
+    if [id_ for id_, _, _ in rows] != expected:
+        issues.append("Phụ lục Commerce & Marketing phải có 6 nguồn C + 7 nguồn M")
+    urls = [url for _, _, url in rows]
+    if len(urls) != 13 or len(set(urls)) != 13:
+        issues.append("Phụ lục phải có 13 URL GitHub không trùng")
+    if set(urls) & set(core_urls):
+        issues.append("Phụ lục lặp URL danh mục 20 nguồn cốt lõi")
+    sections = list(INDUSTRY_SECTION.finditer(text))
+    if [section.group("id") for section in sections] != expected:
+        issues.append("Phụ lục thiếu 13 mục chi tiết C01–C06, M01–M07")
+    else:
+        for index, section in enumerate(sections):
+            end = sections[index + 1].start() if index + 1 < len(sections) else len(text)
+            detail = text[section.end():end]
+            if not all(marker in detail for marker in INDUSTRY_REQUIRED):
+                issues.append(f"Phụ lục {section.group('id')} thiếu MVP/input/output/edge/extension")
+    return issues
+
+
 def verify() -> list[str]:
     """Validate curricular evidence without requiring the old 20 as current picks."""
     issues: list[str] = []
@@ -72,6 +116,7 @@ def verify() -> list[str]:
         issues.append("Danh mục hiện hành phải có đúng 20 dòng STT 01–20")
     if len(urls) != 20 or len(set(urls)) != 20:
         issues.append("Danh mục hiện hành phải có 20 URL GitHub khác nhau")
+    issues.extend(verify_industry_catalog(urls))
     if len(set(names)) != 20:
         issues.append("Tên 20 repository không được trùng")
     if not all(url.count("/") == 4 for url in urls):
@@ -113,6 +158,7 @@ def verify() -> list[str]:
         "project-ideas/README.md",
         "project-ideas/catalog-20-du-an.md",
         "project-ideas/archive/original-word-sources-20.md",
+        "project-ideas/commerce-marketing-open-source.md",
         "project-ideas/rubric-10-diem.md",
         "project-ideas/phieu-de-xuat-nhom.md",
         "tracks/open-source-inspired.md",

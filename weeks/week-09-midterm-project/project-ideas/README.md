@@ -3,6 +3,7 @@
 **Dành cho nhóm 1–3 sinh viên**, hoặc cá nhân muốn làm sản phẩm riêng. Đây là **track bổ sung** bên cạnh VuaCóc Bot V1 và Student Manager; chỉ cần hoàn thành **một** trong ba hướng giữa kỳ.
 
 - [Danh mục 20 nguồn mở được biên tập, kèm 20 đề xuất MVP](catalog-20-du-an.md).
+- [Phụ lục 13 nguồn mở Commerce & Marketing](commerce-marketing-open-source.md) — Saleor, ERP/CRM, e-commerce, analytics, marketing automation, A/B testing; kèm MVP ngoại tuyến.
 - [Rubric đánh giá 10 điểm từ tài liệu giảng viên](rubric-10-diem.md).
 - [Phiếu đề xuất và phân công nhóm](phieu-de-xuat-nhom.md).
 - [Hướng dẫn Track C](../tracks/open-source-inspired.md).
