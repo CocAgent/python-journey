@@ -1,0 +1,16 @@
+{
+  "description": "Dữ liệu đầu vào mẫu cho CLI; chưa tự động nạp bởi main.py",
+  "valid_tasks": [
+    "Tao nhan vat di chuyen trong game 2D",
+    "Viet menu cho ung dung quan ly sinh vien",
+    "Lap ke hoach kiem thu ham tinh diem trung binh"
+  ],
+  "invalid_tasks": [
+    "",
+    "   "
+  ],
+  "expected_behavior": {
+    "valid": "Kế hoạch 3 bước, nhật ký simulated, báo cáo passed khi các bước khớp",
+    "invalid": "ValueError; CLI hiển thị thông báo lỗi"
+  }
+}
