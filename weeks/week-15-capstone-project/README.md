@@ -97,3 +97,16 @@ làm capstone nếu bạn đã phát triển bot từ Week 07.
 W15 của track này là **integration + tournament + evidence**, không phải bắt đầu
 bot từ đầu. Local tournament/replay chỉ là course-local evidence và không chứng
 minh tương thích production VuaCóc.
+
+## Dự án tham khảo chạy được — Career Knowledge Assistant
+
+[Career Knowledge Assistant](reference-projects/career-knowledge-assistant/README.md)
+là ứng dụng Python/SQLite hoàn chỉnh để sinh viên **cài đặt, chạy, test,
+đọc code và tự mở rộng**. Bản cơ sở chạy offline bằng CLI; sinh viên có thể
+chọn phát triển API với FastAPI hoặc dashboard với Streamlit.
+
+- Có mã nguồn đầy đủ, test, tài liệu setup và AI disclosure.
+- Có [challenges](reference-projects/career-knowledge-assistant/PROJECT_CHALLENGES.md)
+  cho các hướng backend, automation, data và agent foundations.
+- Không bắt buộc chọn đề tài này và **không thay thế**
+  [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
