@@ -1,36 +1,95 @@
 # Hints — Week 15
 
-Rubric và deliverables canonical: [FINAL_PROJECT.md](../../FINAL_PROJECT.md).
+Rubric và deliverables canonical:
+[FINAL_PROJECT.md](../../FINAL_PROJECT.md).
 
 ## Chốt scope
 
-- Viết một câu problem statement trước khi viết code.
-- Liệt kê rõ phần **out-of-scope**; đây là bằng chứng bạn kiểm soát phạm vi.
-- Bốn chức năng chạy tốt tốt hơn tám chức năng dở dang.
+- Viết problem statement trong một câu.
+- Nêu rõ out-of-scope.
+- Bốn chức năng nghiệp vụ chạy tốt tốt hơn tám chức năng dở dang.
+- Không thêm class, file hay dependency chỉ để “trông chuyên nghiệp”.
+
+## Khi project quá lớn
+
+Cắt theo thứ tự:
+
+1. bỏ UI phụ;
+2. bỏ feature không ảnh hưởng luồng chính;
+3. giữ persistence đơn giản;
+4. giữ test cho logic cốt lõi;
+5. giữ README và evidence.
+
+Không cắt testing/debugging để cứu feature phụ.
 
 ## Phân rã code
 
-- Tách I/O (input/print) khỏi logic tính toán để test được phần logic.
-- Hàm nào cần comment dài để giải thích thường nên tách thành hai hàm.
+- Tách I/O khỏi logic để phần logic test được.
+- Mỗi hàm nên có một trách nhiệm rõ.
+- Đừng hiểu “phân rã” thành quota số hàm.
+- Class chỉ dùng khi state + behavior thực sự thuộc cùng một mô hình.
 
 ## Testing
 
-- Mỗi chức năng chính cần ít nhất một normal case và một edge case.
-- Test invalid input: chuỗi rỗng, số âm, file chưa tồn tại, dữ liệu hỏng.
-- Test đang fail mà bạn hiểu nguyên nhân là known limitation — ghi vào README.
+Ưu tiên test behavior:
+
+- normal case;
+- boundary/empty;
+- invalid input;
+- regression của bug từng gặp.
+
+Một test chỉ kiểm `True is True` không tạo evidence.
 
 ## Debugging evidence
 
-- Giữ lại một bug đã sửa: triệu chứng, minimal failing input, nguyên nhân, cách sửa.
-- Đây là mục bạn sẽ được hỏi khi demo.
+Giữ lại một câu chuyện bug ngắn:
 
-## README
+```text
+Symptom
+→ minimal failing input
+→ root cause
+→ fix
+→ regression test
+```
 
-- Người đọc phải chạy được project chỉ bằng README, không hỏi thêm.
-- Có setup, usage, ví dụ input/output, design decision và known limitations.
-- Bắt đầu từ [capstone README template](../../templates/capstone-readme-template.md).
+Đây là phần rất mạnh khi bảo vệ.
 
-## Trước khi handoff
+## AI usage
 
-- Chạy readiness check trong [`checks/`](checks/).
-- `git status` sạch, không commit secret hoặc file tạm.
+AI có thể hỗ trợ giải thích, review, gợi ý test và debugging.
+
+Trước khi dùng output AI:
+
+- đọc và giải thích lại bằng lời của bạn;
+- chạy test/command kiểm chứng;
+- thử ít nhất một edge case;
+- bỏ phần bạn không hiểu hoặc không phù hợp.
+
+Nếu giảng viên thay một input hoặc yêu cầu nhỏ mà bạn không sửa được code của
+mình, evidence AI usage chưa đạt mục tiêu học tập.
+
+## Demo
+
+Đừng demo mọi feature.
+
+Chọn một flow đại diện:
+
+```text
+setup/run
+→ main behavior
+→ one edge case
+→ tests
+→ one bug/design decision
+```
+
+Nếu demo live lỗi, đọc traceback và giải thích cách bạn sẽ isolate lỗi tốt hơn
+việc cố che màn hình.
+
+## Trước handoff
+
+- chạy readiness check;
+- chạy test suite;
+- đọc README như người mới;
+- kiểm tra không có secret/file tạm;
+- `git status` sạch;
+- chuẩn bị câu trả lời cho “Tại sao bạn thiết kế như vậy?”.
