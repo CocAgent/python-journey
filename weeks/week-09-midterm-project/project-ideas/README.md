@@ -3,6 +3,7 @@
 **Dành cho nhóm 1–3 sinh viên**, hoặc cá nhân muốn làm sản phẩm riêng. Đây là **track bổ sung** bên cạnh VuaCóc Bot V1 và Student Manager; chỉ cần hoàn thành **một** trong ba hướng giữa kỳ.
 
 - [Danh mục 20 nguồn mở được biên tập, kèm 20 đề xuất MVP](catalog-20-du-an.md).
+- [CrewAI — A01, mô phỏng nhóm vai trò Python offline](catalog-20-du-an.md#ai-agent-mở-rộng--a01--crewai-ngoài-20-nguồn-cốt-lõi) — hướng mở rộng, không cần LLM hoặc API key.
 - [Phụ lục 13 nguồn mở Commerce & Marketing](commerce-marketing-open-source.md) — Saleor, ERP/CRM, e-commerce, analytics, marketing automation, A/B testing; kèm MVP ngoại tuyến.
 - [Rubric đánh giá 10 điểm từ tài liệu giảng viên](rubric-10-diem.md).
 - [Phiếu đề xuất và phân công nhóm](phieu-de-xuat-nhom.md).

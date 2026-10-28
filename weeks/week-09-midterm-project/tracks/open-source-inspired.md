@@ -27,7 +27,7 @@ tracking người dùng hay framework lớn.
 |---|---|
 | Một chương trình Python nhỏ giải quyết vấn đề | Giao diện Streamlit/Gradio/Pygame |
 | Dữ liệu `list/dict`, xử lý bằng hàm và `if/for` | Web API/FastAPI, validation Pydantic, data pandas |
-| Hướng dẫn chạy được, thử case biên | PyTorch, Transformers, LangGraph, OpenClaw (chỉ nghiên cứu kiến trúc) |
+| Hướng dẫn chạy được, thử case biên | PyTorch, Transformers, LangGraph, OpenClaw; CrewAI A01 (chỉ nghiên cứu kiến trúc ở W09) |
 | README, Git, minh chứng và đạo đức dữ liệu | Deploy cloud, máy học lớn, phần cứng thật |
 
 **Danh mục này đã được cập nhật so với 20 tên trong tài liệu giảng viên; các lý do thay nguồn nằm ở cuối catalog.** Không phải bất kỳ framework nào cũng được yêu cầu cài ở Week 09.
