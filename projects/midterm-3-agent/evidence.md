@@ -1,0 +1,11 @@
+# Evidence — Week 09
+- Branch: feature/week09-three-agent-midterm
+- Commit SHA: điền sau khi xác nhận commit
+- Demo input: Tao nhan vat di chuyen 2D
+- Expected: 3 bước, 3 mô phỏng, passed=True
+- Actual: CHƯA CHẠY TRÊN MÁY WINDOWS
+- Edge case: nhập khoảng trắng → thông báo lỗi
+- Automated tests: 6 bài test, CHƯA XÁC NHẬN CHẠY THỰC TẾ
+- Known limitation: chỉ là mô phỏng, không có LLM và không sinh mã.
+- Lỗi đã sửa: bổ sung kiểm tra đầu vào rỗng (cần xác minh bằng test).
+- Nguồn: xem README.md
