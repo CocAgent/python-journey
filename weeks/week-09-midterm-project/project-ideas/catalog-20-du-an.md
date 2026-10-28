@@ -8,6 +8,17 @@ Xem [bản lưu chiểu 20 tên/URL gốc](archive/original-word-sources-20.md) 
 
 **Chỉ chọn 1 MVP bằng Python 3.12+** cho Track C. Không phải clone/cài cả 20 repo, không yêu cầu API key, GPU, web server, robot, tài khoản dịch vụ hoặc truy cập Internet để hoàn thành giữa kỳ. Các ví dụ Python thuần dùng `if/for/list/dict/function` của Week 01–08; tên framework chỉ là **nguồn tham khảo/hướng phát triển nghề**, không phải tiêu chí cộng điểm.
 
+## Mở rộng theo ngành: Thương mại & Marketing
+
+Bên cạnh **20 nguồn cốt lõi**, sinh viên quan tâm ngành kinh doanh có thể chọn
+[**13 nguồn mở Commerce & Marketing**](commerce-marketing-open-source.md)
+gồm Saleor, Django Oscar, ERPNext, Odoo, Pretix, Medusa, Wagtail,
+PostHog, Umami, Mautic, listmonk, Matomo và GrowthBook.
+
+**Đây là phụ lục tự chọn, không phải thêm 13 bài phải làm hay đổi số lượng
+nguồn cốt lõi mà checker Week 09 đang kiểm.** Có bài toán MVP Python offline
+cho giỏ hàng, tồn kho, CRM, phân khúc khách hàng, chiến dịch và phân tích chuyển đổi.
+
 ## Nguyên tắc tuyển chọn
 
 - **Tính hữu ích nghề nghiệp:** Backend, QA/automation, data, AI/agent, game; có lộ trình mở rộng W10–W15.

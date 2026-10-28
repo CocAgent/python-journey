@@ -47,7 +47,9 @@ choose → plan → decompose → implement → run
    [`hints.md`](hints.md).
 5. Dùng [`evidence-template.md`](evidence-template.md) để ghi bằng chứng.
 6. Chạy [machine check](checks/README.md) cho reference artifacts.
-7. Commit project bằng message có ý nghĩa. Nếu theo Track C, điền thêm [phiếu đề xuất nhóm](project-ideas/phieu-de-xuat-nhom.md) và chọn một mục trong [danh mục 20 ý tưởng được cập nhật](project-ideas/catalog-20-du-an.md).
+7. Commit project bằng message có ý nghĩa. Nếu quan tâm **thương mại và marketing**, xem thêm
+   [13 lựa chọn Saleor/ERP/MarTech](project-ideas/commerce-marketing-open-source.md).
+   Nếu theo Track C, điền thêm [phiếu đề xuất nhóm](project-ideas/phieu-de-xuat-nhom.md) và chọn một mục trong [danh mục 20 ý tưởng được cập nhật](project-ideas/catalog-20-du-an.md).
 
 ## Evaluation
 
