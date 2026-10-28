@@ -211,7 +211,8 @@ def main() -> int:
         for issue in issues:
             print(f"- {issue}")
         return 1
-    print("Week 09 project catalog: PASS — 20 lõi + A01 CrewAI + 13 ngành, 10 tiêu chí")
+    print("Week 09 project catalog: PASS — 20 nguồn, 10 tiêu chí, đủ tài liệu")
+    print("Phụ lục tùy chọn: A01 CrewAI + 13 nguồn Commerce & Marketing")
     print("Catalog tuyển chọn khác lưu chiểu Word gốc; không chấm bài sinh viên.")
     return 0
 
