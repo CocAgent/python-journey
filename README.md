@@ -13,26 +13,27 @@
 
 ---
 
-## 📚 Lộ trình học
+## 📚 Lộ trình học — cập nhật 28/10/2026
 
 | Tuần | Chủ đề | Trạng thái |
 |---|---|---|
-| Week 01 | Hello Python | ✅ Hoàn thành |
-| Week 02 | Variables & Data Types | 🚀 Đang học |
-| Week 03 | Conditionals | ⏳ Chưa học |
-| Week 04 | Strings | ⏳ Chưa học |
-| Week 05 | Lists & Tuples | ⏳ Chưa học |
-| Week 06 | Loops | ⏳ Chưa học |
-| Week 07 | Functions | ⏳ Chưa học |
-| Week 08 | Dictionaries & Sets | ⏳ Chưa học |
-| Week 09 | Midterm Project | ⏳ Chưa học |
-| Week 10 | Files I/O | ⏳ Chưa học |
-| Week 11 | Exceptions | ⏳ Chưa học |
-| Week 12 | Testing with Pytest | ⏳ Chưa học |
-| Week 13 | Modules & CLI API | ⏳ Chưa học |
-| Week 14 | OOP Essentials | ⏳ Chưa học |
-| Week 15 | Capstone Project | ⏳ Chưa học |
+| Week 01 | Hello Python | ✅ Đã thực hành |
+| Week 02 | Variables & Data Types | ✅ Đã thực hành |
+| Week 03 | Conditionals | ✅ Đã thực hành |
+| Week 04 | Strings | ✅ Đã thực hành |
+| Week 05 | Lists & Tuples | ✅ Đã thực hành |
+| Week 06 | Loops | ✅ Đã thực hành |
+| Week 07 | Functions | ✅ Đã thực hành |
+| Week 08 | Dictionaries & Sets | ✅ Đã thực hành |
+| Week 09 | Midterm Project / Student Manager | ✅ Đã thực hành |
+| Week 10 | Files I/O | ✅ Đã thực hành |
+| Week 11 | Exceptions | ✅ Đã thực hành |
+| Week 12 | Testing with Pytest | ✅ Đã thực hành (4 test đã pass) |
+| Week 13 | Modules & CLI API | ⏳ Kế tiếp |
+| Week 14 | OOP Essentials | ⏳ Chưa xác nhận hoàn thành |
+| Week 15 | Capstone Project | ⏳ Chưa xác nhận hoàn thành |
 
+> Các dấu ✅ ghi nhận nội dung đã thực hành; không đồng nghĩa mọi bài tập trong tuần đã được kiểm tra đầy đủ.
 ---
 
 ## 📁 Cấu trúc thư mục
@@ -180,12 +181,15 @@ print(x)
 
 ---
 
-## 📈 Tiến độ
+## 📈 Tiến độ hiện tại
 
-- **Week 01:** ✅ Hoàn thành
-- **Week 02:** 🚀 Đang học
-- **Week 03 → Week 15:** ⏳ Chưa học
+- **Week 01–12:** ✅ Đã thực hành, có các bài về file I/O, xử lý ngoại lệ và Pytest.
+- **Week 12:** ✅ Đã chạy 4 bài kiểm thử thành công (theo kết quả thực hành).
+- **Week 13:** ⏳ Modules & CLI API — ưu tiên tiếp theo.
+- **Week 14–15:** ⏳ OOP và Capstone — chưa xác nhận hoàn thành.
+- **Mini project 3 Agent:** đang nâng cấp từ mô phỏng vai trò sang agent sử dụng AI thật.
 
+*Cập nhật: 28/10/2026.*
 ---
 
 ## 🌟 Learning Journey
