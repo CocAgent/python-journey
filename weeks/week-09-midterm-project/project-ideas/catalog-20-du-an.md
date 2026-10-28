@@ -25,7 +25,7 @@ cho giỏ hàng, tồn kho, CRM, phân khúc khách hàng, chiến dịch và ph
 - **Khả năng học:** ý tưởng có thể thu nhỏ thành input → xử lý → output ngoại tuyến, người học hiểu và giải thích được từng hàm.
 - **Tín hiệu bảo trì:** repository gốc tồn tại, không archived và có lịch sử cập nhật; sao GitHub chỉ là tham khảo, không thay review code.
 - **Giấy phép và an toàn:** không chép mã/dữ liệu nếu chưa kiểm LICENSE và điều kiện sử dụng. Không chạy code bên thứ ba không tin cậy trong máy thật; không nhập secret hay thông tin cá nhân.
-- **Cân bằng:** đúng **20 lựa chọn**; các hệ thống nặng/không chủ yếu bằng Python không được ưu tiên chỉ vì đang nổi tiếng.
+- **Cân bằng:** giữ đúng **20 lựa chọn cốt lõi**, thêm **A01 CrewAI tự chọn**; các hệ thống nặng không được ưu tiên chỉ vì đang nổi tiếng.
 
 **Nhãn mức:** B = có thể học framework sau khi hoàn thành MVP; C = định hướng nghề nghiệp nâng cao, **không yêu cầu cài/huấn luyện tại W09**. Nhãn không quyết định điểm. Dùng chung [rubric 10 điểm](rubric-10-diem.md) và [phiếu đề xuất nhóm](phieu-de-xuat-nhom.md).
 
@@ -53,6 +53,48 @@ cho giỏ hàng, tồn kho, CRM, phân khúc khách hàng, chiến dịch và ph
 | 18 | [OpenAI Agents SDK (Python)](https://github.com/openai/openai-agents-python) | Agent / tool orchestration | C | Luồng planner → checker → reporter bằng ba hàm Python |
 | 19 | [pygame-ce](https://github.com/pygame-community/pygame-ce) | Game Python / event loop | B | Game tìm đường trong mê cung ký tự ở terminal |
 | 20 | [OpenClaw](https://github.com/openclaw/openclaw) | Agent systems (TypeScript) | C | Bộ định tuyến công cụ an toàn: chọn tác vụ bằng quy tắc |
+
+## AI Agent mở rộng — A01 · CrewAI (ngoài 20 nguồn cốt lõi)
+
+CrewAI từng thuộc **20 nguồn tham khảo trong tài liệu Word gốc** (xem
+[lưu chiểu](archive/original-word-sources-20.md)). Nay đưa trở lại dưới mã
+**A01** vì phù hợp định hướng công việc AI Agent sau khi đã có Python cơ bản.
+Đây là **đề tài bổ sung tùy chọn**, không thay thế hay tăng 20 đề tài cốt lõi,
+không thay rubric.
+
+| Mã | Repository nguồn mở | Hướng nghề | Mức | Ý tưởng MVP tự xây dựng ở Week 09 |
+|---|---|---|:---:|---|
+| A01 | [CrewAI](https://github.com/crewAIInc/crewAI) | Python multi-agent workflows · role/task orchestration | C | Mô phỏng đội tác vụ Planner → Validator → Reporter bằng hàm Python, chạy offline |
+
+### A01 · CrewAI
+
+- **MVP W09 (Python thuần):** Xây `plan_task(task)`,
+  `validate_plan(plan)`, `report_result(plan, verdict)` và
+  `run_team(task)`, truyền dữ liệu giữa các vai trò bằng `dict`/ `list`.
+  Mô phỏng luồng *vai trò → nhiệm vụ → kết quả* bằng quy tắc xác định,
+  không chạy CrewAI thật và **không gọi đây là nhóm AI tự trị**.
+- **Input → output và trường hợp biên:** Nhận yêu cầu học tập giả lập
+  (`"on_tap_python"`, `"kiem_tra_git"`), xuất bản kế hoạch, kết quả
+  kiểm tra và nhật ký mỗi bước. Kiểm thử yêu cầu rỗng/không hỗ trợ,
+  kế hoạch thiếu trường, validator từ chối và bảo đảm Reporter không
+  báo thành công khi Validator thất bại.
+- **Định hướng sau giữa kỳ:** W10 lưu nhật ký JSON; W11 xử lý lỗi
+  rõ ràng; W12 thêm pytest; W13 chia module và tạo CLI; W15 tùy chọn
+  nghiên cứu [CrewAI Crews và Flows](https://github.com/crewAIInc/crewAI)
+  trong môi trường tách biệt, sử dụng dữ liệu giả, fake provider nếu
+  cần test. Việc cài framework, LLM/API key hoặc trả phí **không bắt buộc**.
+- **Giải thích kỹ thuật:** CrewAI là framework **Python**, cung cấp
+  khái niệm agents theo vai trò (Crews) và workflows (Flows); nội dung
+  W09 chỉ học ý tưởng decomposition/handoff, không phải sử dụng API
+  tương thích với CrewAI.
+- **An toàn và minh bạch:** Không trao shell/network/email/đọc tệp cá
+  nhân cho tác nhân, không nhúng secret hoặc đưa dữ liệu người dùng
+  vào model; khi thực sự tích hợp LLM ở môn nâng cao cần giới hạn
+  tool permissions, ghi audit log, xác nhận người dùng và kiểm soát
+  chi phí. Báo kết quả mô phỏng là *rule-based*, không gọi là inference.
+- **Nguồn và bản quyền:** [Repository CrewAI](https://github.com/crewAIInc/crewAI)
+  công bố MIT tại thời điểm đối chiếu 28/10/2026; kiểm LICENSE đúng
+  phiên bản trước khi sao chép/distribute source.
 
 ## Đề cương MVP: đầu vào, đầu ra, edge case và mở rộng
 
@@ -185,7 +227,7 @@ cho giỏ hàng, tồn kho, CRM, phân khúc khách hàng, chiến dịch và ph
 | Apache Airflow, Prefect | Hai orchestration engines quá nặng cho chương trình dùng hàm cơ bản; ý tưởng pipeline bị trùng | Data engineering sau W13 |
 | DVC | Data versioning/MLOps cần workflow và Git/data lineage trước | MLOps sau W15 |
 | JupyterLab | IDE/notebook hữu ích nhưng không phải dự án giải quyết vấn đề độc lập; trùng ý tưởng thống kê | Công cụ hỗ trợ học data |
-| CrewAI | Trùng nhánh multi-agent với SDK/LangGraph, khó đo evidence khi W09 chưa có LLM | Agent engineering sau W15 |
+| CrewAI | Không nằm trong **20 lựa chọn lõi** vì framework đa agent nâng cao; nay có **A01** là mô phỏng offline cho sinh viên muốn tìm hiểu | Dùng CrewAI thật sau W15 khi có nền tảng bảo mật và kiểm thử |
 | ONNX Runtime, OpenVINO, llama.cpp | Runtime inference thiên về C++/phần cứng/tối ưu; MVP W09 không thực sự thực hành công cụ gốc | Inference/edge sau W15 |
 | TensorFlow Lite Micro | Embedded/TinyML cần kiến thức phần cứng/C++ | IoT/Edge nâng cao |
 | ROS 2, PyBullet, Panda3D | Robot/physics/3D nặng, khó setup, không cần cho việc học Python nền tảng | Robotics/3D nâng cao |

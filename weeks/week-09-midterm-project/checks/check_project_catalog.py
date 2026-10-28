@@ -56,6 +56,39 @@ DETAIL_MARKERS = (
 )
 
 
+BONUS_ROW = re.compile(
+    r"^\| A01 \| \[CrewAI\]\((https://github[.]com/crewAIInc/crewAI)\) \|",
+    re.MULTILINE,
+)
+BONUS_SECTION = re.compile(r"^### A01 · CrewAI$", re.MULTILINE)
+BONUS_REQUIRED = (
+    "**MVP W09 (Python thuần):**",
+    "**Input → output và trường hợp biên:**",
+    "**Định hướng sau giữa kỳ:**",
+    "**An toàn và minh bạch:**",
+)
+
+
+def verify_optional_agent(text: str, core_urls: list[str]) -> list[str]:
+    """CrewAI is one optional extension, never a replacement for the 20 core rows."""
+    issues: list[str] = []
+    crewai_url = "https://github.com/crewAIInc/crewAI"
+    if len(BONUS_ROW.findall(text)) != 1:
+        issues.append("Phải có đúng một dòng A01 CrewAI trong catalog")
+    if len(BONUS_SECTION.findall(text)) != 1:
+        issues.append("Phải có đúng một đề cương ### A01 · CrewAI")
+    if crewai_url in core_urls:
+        issues.append("CrewAI A01 không được đếm trùng vào 20 nguồn cốt lõi")
+    match = BONUS_SECTION.search(text)
+    if match:
+        next_header = re.search(r"^## ", text[match.end():], re.MULTILINE)
+        body = text[match.end():match.end() + next_header.start()] if next_header else text[match.end():]
+        for marker in BONUS_REQUIRED:
+            if marker not in body:
+                issues.append(f"Đề cương CrewAI thiếu: {marker}")
+    return issues
+
+
 INDUSTRY_ROW = re.compile(
     r"^\| (?P<id>[CM]\d{2}) \| \[(?P<name>[^]]+)\]\((?P<url>https://github[.]com/[^)]+)\) \|",
     re.MULTILINE,
@@ -117,6 +150,7 @@ def verify() -> list[str]:
     if len(urls) != 20 or len(set(urls)) != 20:
         issues.append("Danh mục hiện hành phải có 20 URL GitHub khác nhau")
     issues.extend(verify_industry_catalog(urls))
+    issues.extend(verify_optional_agent(text, urls))
     if len(set(names)) != 20:
         issues.append("Tên 20 repository không được trùng")
     if not all(url.count("/") == 4 for url in urls):
@@ -178,6 +212,7 @@ def main() -> int:
             print(f"- {issue}")
         return 1
     print("Week 09 project catalog: PASS — 20 nguồn, 10 tiêu chí, đủ tài liệu")
+    print("Phụ lục tùy chọn: A01 CrewAI + 13 nguồn Commerce & Marketing")
     print("Catalog tuyển chọn khác lưu chiểu Word gốc; không chấm bài sinh viên.")
     return 0
 
