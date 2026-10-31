@@ -29,3 +29,16 @@ python -m pytest weeks/week-13-modules-cli-api/tests -q
 ```
 
 Test sử dụng dữ liệu giả lập; **không gửi HTTP request ra Internet**.
+
+## Bài nâng cao (tùy chọn)
+
+Chạy từ repository root:
+
+```bash
+python weeks/week-13-modules-cli-api/checks/check_advanced_ticketdesk.py
+python -m pytest weeks/week-13-modules-cli-api/tests -q
+```
+
+Checker mới tạo file dữ liệu trong thư mục tạm, không cần network,
+API key hay cài FastAPI; test suite gồm cả core Week13 và Ticket Desk.
+Xem [hướng dẫn thực hành nâng cao](../advanced_projects/README.md).

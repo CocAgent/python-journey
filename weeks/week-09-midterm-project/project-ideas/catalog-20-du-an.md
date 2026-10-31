@@ -66,6 +66,16 @@ là nhóm tự chọn, không làm thay đổi rubric 10 điểm.
 | 19 | [pygame-ce](https://github.com/pygame-community/pygame-ce) | Game Python / event loop | B | Game tìm đường trong mê cung ký tự ở terminal |
 | 20 | [OpenClaw](https://github.com/openclaw/openclaw) | Agent systems (TypeScript) | C | Bộ định tuyến công cụ an toàn: chọn tác vụ bằng quy tắc |
 
+## Hướng dẫn nâng cao sau Week 09
+
+Muốn nâng MVP Python thuần thành ứng dụng có **module, CLI, JSON, kiểm thử
+và HTTP foundation**, xem [**hướng dẫn nâng cao Week 13**](../../week-13-modules-cli-api/advanced_projects/README.md).
+Có mã mẫu **Ticket Desk** lấy cảm hứng từ **01 FastAPI**, kết hợp bài học
+**06 Typer** (CLI) và **09 pytest**; ngoài ra có
+[blueprint cho đủ 20 lựa chọn](../../week-13-modules-cli-api/advanced_projects/TRACK-BLUEPRINTS.md).
+Việc học framework thực tế là tùy chọn, không cộng điểm mặc định và
+không làm thay đổi bài giữa kỳ.
+
 ## AI Agent mở rộng — A01 · CrewAI (ngoài 20 nguồn cốt lõi)
 
 CrewAI từng thuộc **20 nguồn tham khảo trong tài liệu Word gốc** (xem
