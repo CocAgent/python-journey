@@ -12,7 +12,7 @@
 - Phần nguyên và phần dư thường đi theo cặp khi chia đều một số lượng.
 - Dùng `f"{value:,}"` để hiển thị số tiền có dấu phân cách nghìn.
 
-## Exercise 03
+## Exercise 03 — TỰ CHỌN (kiến thức Tuần 02)
 
 - `input()` luôn trả về text, cần `int()` hoặc `float()` trước khi tính.
 - Gọi `.strip()` để bỏ khoảng trắng thừa người dùng vô tình gõ.
@@ -21,4 +21,5 @@
 ## Mini-project
 
 - Vẽ hình ra giấy trước, đếm số ký tự mỗi dòng rồi mới viết `print()`.
-- Ghép tên người dùng vào khung bằng f-string thay vì nối chuỗi thủ công.
+- Bản Tuần 01: chỉ dùng `print()` để in thẻ tĩnh. Bản mở rộng dùng `input()` và f-string sau khi học Tuần 02.
+- So sánh độ dài dòng khung trên, dưới và dòng nội dung.

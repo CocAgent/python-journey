@@ -17,6 +17,16 @@ tách các phép tính và tạo report terminal.
 
 Đọc [`student-manager.md`](student-manager.md).
 
+## Track C — Dự án nhóm lấy cảm hứng từ mã nguồn mở
+
+Dựa trên danh mục [20 repository được giảng viên cung cấp](../project-ideas/catalog-20-du-an.md), nhóm 1–3 sinh viên có thể chọn một đề tài Python nhỏ, trình diễn được, với đầu vào/đầu ra và minh chứng rõ. Có thể đề xuất dự án Python khác ngoài danh sách.
+
+- [Yêu cầu Track C](open-source-inspired.md)
+- [Danh mục và 20 MVP gợi ý](../project-ideas/README.md)
+- [Rubric 10 điểm](../project-ideas/rubric-10-diem.md)
+
+Việc dùng framework nâng cao chỉ là phần tùy chọn; MVP Python 01–08 vẫn đủ điều kiện chấm điểm tối đa.
+
 ## Shared evidence
 
 Mọi track cần:

@@ -1,5 +1,13 @@
 # Bài tập Week 13 — tự làm trước khi xem solutions
 
+## Bài tập tương tự để em tự luyện
+
+Nếu đã hoàn thành bài tập gốc mà vẫn thấy khó chuyển sang dữ liệu khác,
+đọc [sổ tay bốn lab có ví dụ giải từng bước](../GUIDED-LABS.md) và
+[bài tự luyện Study Progress](../practice/README.md). Đây là bộ bài
+**riêng**, không thay thế các starter `ex01_modules`–`ex04_adapter`.
+
+
 **Chạy từ week root** (thư mục `weeks/week-13-modules-cli-api/`):
 
 ```bash

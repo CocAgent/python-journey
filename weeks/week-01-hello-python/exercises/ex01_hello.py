@@ -9,11 +9,11 @@ Chạy file này bằng: python ex01_hello.py
 
 # TODO 1: In ra dòng chữ "Hello, World!"
 # Viết code ở đây:
-print("Hello, World!")
+
 
 # TODO 2: In ra tên của bạn trên một dòng riêng
 # Viết code ở đây:
-print("Nguyễn Phi Trinh")
+
 
 # TODO 3: In ra 3 điều bạn thích, mỗi điều trên một dòng
 # Ví dụ:
@@ -21,9 +21,7 @@ print("Nguyễn Phi Trinh")
 # Tôi thích nghe nhạc
 # Tôi thích code Python
 # Viết code ở đây:
-print("Tôi thích ăn phở")
-print("Tôi thích nghe nhạc")
-print("Tôi thích học lập trình Python")
+
 
 # TODO 4: In ra một hình chữ nhật bằng dấu *
 # Kết quả mong muốn:
@@ -32,10 +30,7 @@ print("Tôi thích học lập trình Python")
 # *   *
 # *****
 # Viết code ở đây:
-print("*****")
-print("*   *")
-print("*   *")
-print("*****")
+
 
 # TODO 5 (Thử thách): In ra tên bạn bằng ký tự đặc biệt
 # Ví dụ nếu tên là "HI":
@@ -45,10 +40,6 @@ print("*****")
 # H   H   I
 # H   H  III
 # Viết code ở đây:
-print("TTTTT  RRRR   III  N   N  H   H")
-print("  T    R   R   I   NN  N  H   H")
-print("  T    RRRR    I   N N N  HHHHH")
-print("  T    R R     I   N  NN  H   H")
-print("  T    R  RR  III  N   N  H   H")
 
-print("\n🎉 Chúc mừng! Bạn đã hoàn thành bài tập đầu tiên!")
+
+# Starter chưa hoàn thành: chỉ có output khi sinh viên tự viết các TODO.

@@ -39,6 +39,13 @@ Ba dòng đầu có `action = right/left/wait`. Dòng cuối in lỗi ra
 python weeks/week-13-modules-cli-api/checks/check_week.py
 ```
 
+## Chưa tự tin? Luyện một bài tương tự trước
+
+[Sổ tay Lab từng bước](../GUIDED-LABS.md) đưa người học qua bốn bước
+import → CLI → HTTP/JSON → adapter bằng ví dụ **Study Progress**,
+có starter độc lập và checker cho chính bài tự viết.
+Có thể học song song trước khi mở rộng Bot ở phần dưới.
+
 ## Tự phát triển (chọn ít nhất một)
 
 - **A — CLI:** thêm `--verbose` ở `bot_course/cli.py`, hiển thị lý do

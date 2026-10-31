@@ -42,3 +42,19 @@
 - Đầu tiên kiểm **status**, sau đó **encoding/JSON**, cuối cùng **schema**.
 - Không bắt `except:` chung rồi in “thành công”.
 - Chưa cần gọi HTTP thật; đủ kiểm thử bằng static body.
+
+## Bài tập tương tự — Study Progress
+
+Đọc [GUIDED-LABS.md](GUIDED-LABS.md) để xem từng lab và test case
+trước khi xem `practice/solutions`. Gợi ý bổ sung:
+
+- **Lab 1:** `return f"Điểm {score:g}: {status_for_score(score)}"`
+  nhưng em phải tự import hàm từ `practice.study_core`.
+- **Lab 2:** `argparse` nhận `float`, rồi `status_for_score()`
+  kiểm khoảng 0–10; `json.dumps(..., ensure_ascii=False)`.
+- **Lab 3:** kiểm `"score" in data` trước khi gọi `validate_score()`.
+- **Lab 4:** kiểm `student` là `str`, không rỗng sau `strip()`;
+  dùng core để đánh giá điểm, không chép logic.
+
+Chạy `python -m practice.checks.check_lab --starter` từ week root
+và đọc tên Lab nào FAIL; `--solutions` không chấm bài của em.

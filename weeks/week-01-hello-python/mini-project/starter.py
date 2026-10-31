@@ -7,23 +7,18 @@ Chạy: python starter.py
 """
 
 # Bước 1: Hỏi tên người dùng
-ten = input("Nhập tên của bạn: ").strip()
+ten = input("Nhập tên của bạn: ")
 
 # Bước 2: Tính độ rộng khung
-lines = [
-    "Xin chào",
-    f"{ten.upper()}!",
-    "🐍 Python 🐍",
-]
-max_content_len = max(len(line) for line in lines)
-width = max(max_content_len + 8, 20)
+# TODO: Tính width dựa trên len(ten)
 
 # Bước 3: In khung trên
-print("╔" + "═" * width + "╗")
+# TODO: In dòng trên bằng ╔═══╗
 
 # Bước 4: In nội dung
-for line in lines:
-    print("║" + line.center(width) + "║")
+# TODO: In tên trong khung, căn giữa
 
 # Bước 5: In khung dưới
-print("╚" + "═" * width + "╝")
+# TODO: In dòng dưới bằng ╚═══╝
+
+# Gợi ý: Dùng str.center(width) để căn giữa

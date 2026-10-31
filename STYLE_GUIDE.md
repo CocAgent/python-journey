@@ -99,3 +99,14 @@ total = (
 4. **Comment giải thích *tại sao***, không giải thích *cái gì*
 5. **Mỗi hàm có trách nhiệm rõ ràng** — độ dài là tín hiệu để review, không
    phải luật cứng
+
+
+## Chú thích và docstring tiếng Việt cho sinh viên
+
+- Ưu tiên comment giải thích **lý do xử lý** hoặc **điều kiện biên** thay vì mô tả lại cú pháp.
+- Viết docstring tiếng Việt ngắn gọn cho hàm quan trọng, giữ nguyên tên lệnh Python.
+- Dùng UTF-8 có dấu; tên biến, hàm đặt theo `snake_case` không dấu.
+- Không thêm comment cho mọi dòng chỉ để tăng số lượng chú thích.
+- File bài tập cần ghi rõ TODO và lệnh kiểm tra; tuyệt đối không gọi test lời giải mẫu là kiểm tra bài sinh viên.
+
+Xem các ví dụ đúng/sai trong [Quy ước chú thích tiếng Việt](docs/QUY_UOC_CHU_THICH_TIENG_VIET.md).

@@ -31,6 +31,14 @@ Hints dưới đây gợi hướng suy nghĩ, không đưa lời giải.
 - Điểm trung bình cần xác định rõ cách xử lý danh sách điểm rỗng.
 - Report terminal nên tách phần format khỏi phần tính toán.
 
+## Track C — Dự án mã nguồn mở tham khảo
+
+- [20 dự án](project-ideas/catalog-20-du-an.md) là nơi chọn **ý tưởng**, không phải 20 framework bắt buộc học.
+- Hãy hỏi: “Em làm được **phiên bản CLI với 3 hàm** không?” trước khi cài API/AI package.
+- Muốn làm Data/AI/Agent/Robotics: có thể dùng quy tắc và dữ liệu giả lập, nhưng phải nói rõ **đây chỉ là mô phỏng**, không tuyên bố đã xây AI/robot hoàn chỉnh.
+- Nhóm 1–3 người cần phân công rõ và lưu chứng cứ; người làm cá nhân cũng dùng cùng rubric.
+- Viết đầu ra mong đợi **trước** khi chạy, không coi việc import package là hoàn thành sản phẩm.
+
 ## Testing và evidence
 
 - Chạy ít nhất một normal case và một boundary case cho mỗi chức năng chính.
