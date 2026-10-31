@@ -151,3 +151,21 @@ def classify_score(score: float) -> str:
 ```
 
 Tuần này tập trung vào điều kiện; Week 11 sẽ sở hữu exception handling.
+
+## Bộ ví dụ có giải thích từng bước và bài tự luyện
+
+Trong [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md), em sẽ **dự đoán**
+nhánh chạy trước khi mở terminal, so sánh `score=5/8/11`, quan sát
+`bool("False")`, rồi tự thay một điều kiện. Nếu chương trình trả sai
+mà vẫn chạy được, đó có thể là **lỗi logic** — hãy kiểm lại thứ tự
+`if/elif` và giá trị biên.
+
+Tiếp tục với [3 bài tương tự](practice/README.md). Ở bài nhập
+`"y"/"n"`, dùng so sánh `answer == "y"`, **không** dùng
+`bool(answer)`, vì `bool("n")` cũng là `True`.
+Các bảng giá và ngưỡng là **giả lập phục vụ giảng dạy**.
+
+**Lưu ý về `float(input(...))` ở phần đầu notes:** phép chuyển kiểu
+đó có thể gây `ValueError` khi gõ chữ. Khi làm bài nhận số nguyên
+ở Week03, hãy kiểm `strip()`, `isdigit()` và phạm vi trước khi
+xếp nhánh. Exception handling đầy đủ thuộc Week11.
