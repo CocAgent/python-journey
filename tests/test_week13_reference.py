@@ -19,3 +19,24 @@ def test_week13_standard_library_reference_check() -> None:
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "Week 13 solution checks: PASS" in result.stdout
+
+
+def test_week13_explicit_pytest_reference_suite() -> None:
+    """Reference pytest tests run explicitly; learner TODOs are not collected."""
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pytest",
+            "weeks/week-13-modules-cli-api/tests",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=40,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
