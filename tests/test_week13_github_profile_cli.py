@@ -43,10 +43,10 @@ def test_get_user_parses_json_and_sets_timeout() -> None:
 
     assert result["login"] == "octocat"
     assert result["public_repos"] == 8
-    request, timeout = mocked.call_args.args
+    request = mocked.call_args.args[0]
     assert request.full_url == "https://api.github.com/users/octocat"
     assert request.get_method() == "GET"
-    assert timeout == 10.0
+    assert mocked.call_args.kwargs["timeout"] == 10.0
 
 
 def test_get_user_rejects_empty_username() -> None:
