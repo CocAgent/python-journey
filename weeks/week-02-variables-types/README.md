@@ -25,8 +25,39 @@ README → notes → examples → exercises → hints
 2. Chạy các file trong [`examples/`](examples/).
 3. Làm ba bài trong [`exercises/`](exercises/).
 4. Chỉ mở [`hints.md`](hints.md) sau khi tự thử.
-5. Chạy [official solution check](checks/README.md).
-6. Hoàn thành [Thẻ sinh viên](mini-project/README.md).
+5. Xem [ví dụ dự đoán và giải thích lỗi](WORKED-EXAMPLES.md), rồi tự làm [bài tương tự](practice/README.md).
+6. Chạy [official solution check](checks/README.md).
+7. Hoàn thành [Thẻ sinh viên](mini-project/README.md).
+
+## Dự đoán trước khi chạy — 3 ví dụ có giải thích
+
+Mở [**WORKED-EXAMPLES.md**](WORKED-EXAMPLES.md) để học theo vòng:
+**Dự đoán → Chạy → So sánh → Giải thích lỗi → Thay input → Tự làm bài tương tự**.
+
+| Ví dụ mới | Nội dung quan sát | Câu hỏi |
+|---|---|---|
+| `04_predict_types.py` | `"12" + "3"` khác `12 + 3`; `bool("False")` | Vì sao một kết quả là 123, một kết quả là 15? |
+| `05_conversion_trace.py` | `"3"` → `int` → `75,000 VND` | Vì sao `"ba"` và `"0"` phải từ chối? |
+| `06_fstring_ticket.py` | `strip()`, `int()`, hóa đơn với f-string | Khi đổi số vé từ 2 lên 3, output là gì? |
+
+Từ **repository root**, chạy:
+
+```bash
+python weeks/week-02-variables-types/examples/04_predict_types.py
+python weeks/week-02-variables-types/examples/05_conversion_trace.py
+python weeks/week-02-variables-types/examples/06_fstring_ticket.py
+```
+
+Tiếp theo, tự làm [**3 bài tương tự**](practice/README.md) trên
+thông tin cá nhân, đơn hàng và vé. Mỗi bài có TODO, ví dụ input/output,
+trường hợp sai và checker riêng:
+
+```bash
+python weeks/week-02-variables-types/practice/checks/check_practice.py --starter
+```
+
+**Starter chưa sửa → FAIL có chủ đích**. Chỉ `--starter` mới kiểm bài em;
+`--solutions` chỉ kiểm lời giải tham khảo, không chứng minh đã làm bài.
 
 ## Evidence
 
