@@ -52,7 +52,10 @@ profile = "An", 20, "Python"
 name, age, topic = profile
 print(f"{name} · {age} · {topic}")
 
+first = "A"
+second = "B"
 first, second = second, first
+print(first, second)  # B A
 ```
 
 Số tên bên trái phải phù hợp số phần tử được unpack.
@@ -66,3 +69,22 @@ tuple → nhóm giá trị nhỏ, cố định sau khi tạo
 
 Week 06 sẽ dùng loop, `enumerate`, `zip` và comprehensions để xử lý nhiều phần
 tử. Week 05 tập trung vào cấu trúc và mutability trước.
+
+## 7. Từ ví dụ đến bài tự viết
+
+Sổ tay [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) giải thích vì sao
+`alias = original` **không tạo bản sao**, vì sao `sort()` trả
+`None`, khi nào `remove`/`pop` có thể gây lỗi, và tuple không
+thể gán lại một phần tử.
+
+Để nhớ sâu hơn, làm [3 lab tương tự](practice/README.md).
+Kết quả `--starter` là kiểm code sinh viên; kết quả `--solutions`
+chỉ kiểm đáp án mẫu, không được đánh tráo.
+
+**Giới hạn của copy:** `list.copy()` tạo shallow copy. Với các
+list phẳng chứa số/chuỗi dùng trong bài chính là phù hợp; với
+list lồng nhau, phần tử con có thể vẫn dùng chung. Tuple bất biến ở
+cấp phần tử nhưng có thể chứa object mutable như list.
+
+Các ví dụ mới chưa cần loop/comprehension; Week 06 học các công cụ
+này có hệ thống.
