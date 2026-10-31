@@ -84,6 +84,19 @@ week-13-modules-cli-api/
 
 `CLI → adapter → core` là **hướng phụ thuộc**: core không import CLI, HTTP hay framework.
 
+## Hướng dẫn nâng cao tự chọn — áp dụng 20 ý tưởng mã nguồn mở
+
+Sau khi hoàn thành phần cơ bản, bạn có thể theo
+[**hướng dẫn nâng cao 20 dự án**](advanced_projects/README.md):
+có một ứng dụng **Ticket Desk** chạy offline, lưu JSON, sử dụng CLI,
+mô phỏng HTTP response và có bài test; đồng thời có
+[blueprint cho đủ 20 đề tài](advanced_projects/TRACK-BLUEPRINTS.md)
+trong [catalog Week 09](../week-09-midterm-project/project-ideas/catalog-20-du-an.md).
+
+Đây là **nội dung mở rộng tùy chọn**, không bắt buộc cài FastAPI, Typer
+hay Agent framework, không thay rubric Week 09/15 và không tạo kết nối
+production VuaCóc.
+
 ## Bài tập và tự kiểm
 
 1. Làm lần lượt [Exercise 01–04](exercises/README.md), dự đoán output trước.
