@@ -4,6 +4,12 @@
 > chương trình ở các tuần trước. Bài này **không cần Internet/API key** và
 > chỉ dùng Python >=3.12.
 
+**Trước khi tự viết TODO:** nếu vẫn chưa hình dung luồng dữ liệu, xem
+[**ba ví dụ có giải thích input → từng bước → output → lỗi**](WALKTHROUGH-EXAMPLES.md).
+Chạy `python -m examples.ex05_trace_student_flow`, `ex06_http_error_cases`
+và `ex07_json_roundtrip` từ week root. Chúng dùng miền bài toán khác
+để em chuyển kiến thức sang Study Progress, không phải bài giải starter.
+
 Bạn không cần hiểu tất cả code ngay từ đầu. Mỗi lab gồm:
 **nhìn kết quả → đọc từng dòng quan trọng → chạy mẫu → viết bài tương tự →
 thử ca lỗi → giải thích bằng lời**.

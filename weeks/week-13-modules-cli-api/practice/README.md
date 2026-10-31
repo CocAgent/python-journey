@@ -3,7 +3,9 @@
 Đây là **bài để sinh viên tự viết**, không phải bài toán điểm học phần thực tế.
 Ngưỡng điểm 5/10 chỉ minh họa cho `if/else`. Chạy Python >=3.12, offline.
 
-**Đọc trước:** [GUIDED-LABS.md](../GUIDED-LABS.md). Chạy lệnh dưới đây khi
+**Đọc trước:** [GUIDED-LABS.md](../GUIDED-LABS.md). Nếu chưa rõ
+cách dữ liệu chạy giữa module, CLI, HTTP và storage, xem thêm
+[ba ví dụ từng bước](../WALKTHROUGH-EXAMPLES.md). Chạy lệnh dưới đây khi
 đứng tại thư mục `weeks/week-13-modules-cli-api/`.
 
 ## Quy trình cho từng bài

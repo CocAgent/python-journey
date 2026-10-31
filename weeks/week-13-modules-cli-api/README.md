@@ -75,7 +75,7 @@ week-13-modules-cli-api/
 │   ├── adapter.py          # kiểm input, định dạng course-local
 │   ├── cli.py              # argparse + xử lý lỗi người dùng
 │   └── http_foundation.py  # Request + parse phản hồi GIẢ, không gọi mạng
-├── examples/               # bốn ví dụ nhỏ
+├── examples/               # bốn ví dụ nền tảng + ba ví dụ giải thích thêm
 ├── exercises/              # bài để em tự làm (có TODO)
 ├── solutions/              # lời giải tham khảo — xem sau khi thử
 ├── checks/                 # tự kiểm offline
@@ -96,6 +96,30 @@ trong [catalog Week 09](../week-09-midterm-project/project-ideas/catalog-20-du-a
 Đây là **nội dung mở rộng tùy chọn**, không bắt buộc cài FastAPI, Typer
 hay Agent framework, không thay rubric Week 09/15 và không tạo kết nối
 production VuaCóc.
+
+## Ba ví dụ minh họa thêm — dễ hiểu trước khi tự làm lab
+
+Mở [**WALKTHROUGH-EXAMPLES.md — xem luồng dữ liệu từng bước**](WALKTHROUGH-EXAMPLES.md).
+Tài liệu mới đưa ba ví dụ nhỏ có **kết quả đúng, lỗi có chủ đích và
+bài biến đổi tương tự**, hoàn toàn offline:
+
+| Ví dụ | Em sẽ thấy gì? | Thử thay đổi gì? |
+|---|---|---|
+| `ex05_trace_student_flow` | JSON → adapter → Bot Core | position=4 / 99 / true |
+| `ex06_http_error_cases` | HTTP status → parse JSON → kiểm dữ liệu | 503, sai JSON, thiếu field |
+| `ex07_json_roundtrip` | ghi/đọc file JSON UTF-8 rồi kiểm schema | copies=0 / -1 / true |
+
+Đứng tại thư mục `weeks/week-13-modules-cli-api/`:
+
+```bash
+python -m examples.ex05_trace_student_flow
+python -m examples.ex06_http_error_cases
+python -m examples.ex07_json_roundtrip
+```
+
+Các ví dụ lấy cảm hứng từ học phần nhưng **không sửa bài tự làm**
+trong `practice/starter/`. Em hãy đoán output trước, chạy đối chiếu,
+thử một ca sai rồi làm [bài tương tự](GUIDED-LABS.md).
 
 ## Sổ tay thực hành chi tiết + bài tập tương tự (mới)
 
