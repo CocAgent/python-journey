@@ -1,18 +1,30 @@
-# Chạy exercises Week 13
+# Bài tập Week 13 — tự làm trước khi xem solutions
 
-Các exercise import package `bot_course`, vì vậy hãy chạy chúng theo module
-mode từ thư mục của tuần:
+**Chạy từ week root** (thư mục `weeks/week-13-modules-cli-api/`):
 
 ```bash
-cd weeks/week-13-modules-cli-api
 python -m exercises.ex01_modules
 python -m exercises.ex02_cli --turn 3
 python -m exercises.ex03_http
+python -m exercises.ex04_adapter
 ```
 
-Module mode đặt week root vào import path. Nếu chạy trực tiếp
-`python exercises/ex03_http.py`, Python chỉ nhìn thấy thư mục `exercises/` và
-không tìm được package sibling `bot_course`.
+Các starter **cố ý chưa hoàn thiện TODO**, nhưng phải là Python hợp lệ.
+Sau khi điền mã, đối chiếu kết quả:
 
-Sau khi hoàn thành, quay về repository root trước khi tiếp tục các command ở
-tài liệu chính.
+| Bài | Việc cần hoàn thiện | Output mục tiêu / test lỗi |
+|---|---|---|
+| 01 | import `choose_action`, main guard | `Hành động: right`; import module không in gì |
+| 02 | `argparse --turn` integer bắt buộc | `--turn 3` cho 3; thiếu/không phải số → argparse lỗi |
+| 03 | parse fixture 200, xử lý status 500 | `Lesson: 13`; 500 → ValueError được bắt |
+| 04 | gọi adapter và kiểm invalid input | `left` khi position=3, goal=1; `True` bị từ chối |
+
+**Tại sao phải dùng `python -m`?** Vì bài `ex01`/`ex03`/`ex04`
+import package `bot_course` nằm cùng cấp thư mục `exercises/`.
+Nếu chạy `python exercises/ex03_http.py`, import path có thể không tìm
+thấy `bot_course`.
+
+**Tự đánh giá:** em có thể giải thích một lỗi, không chỉ copy output.
+Khi bí, đọc [hints](../hints.md), sau đó [solutions](../solutions/README.md).
+Check tham khảo `checks/check_week.py` xác minh **reference solution**,
+không có nghĩa TODO của em đã hoàn tất.
