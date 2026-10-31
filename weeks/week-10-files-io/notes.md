@@ -97,3 +97,23 @@ Chỉ bắt lỗi bạn có thể xử lý có ý nghĩa. Không dùng `except E
 - JSON giữ đúng kiểu dữ liệu tương thích;
 - file thiếu và JSON lỗi có hành vi quan sát được;
 - replay vẫn mang đủ hai nhãn course-local.
+
+## Bài học dự đoán kết quả và phân loại lỗi
+
+Theo [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md): thử file chưa
+tồn tại, CSV chứa `"not-a-number"`, JSON `[]` và
+`{broken`. Các kết quả khác nhau vì ba bước:
+
+```text
+I/O (đọc file) → parsing (CSV/JSON) → validation (schema/range)
+```
+
+File thiếu → `FileNotFoundError`; JSON sai cú pháp →
+`JSONDecodeError`; JSON hợp lệ nhưng sai application schema →
+`ValueError` do code chúng ta chủ động nêu. CSV đọc
+điểm dạng `str` dù trước khi ghi là `int`.
+
+Học theo thứ tự **dự đoán → chạy → giải thích →
+thay input → tự làm [lab](practice/README.md)**. Phần
+lab ghi vào `TemporaryDirectory()`; không cần file
+tồn tại trên repo sau khi kiểm xong.
