@@ -1,40 +1,68 @@
-# Mini-project — GitHub Profile CLI
+# Mini-project W13 — Local Bot CLI (từ dữ liệu đến hành động)
 
-Build a small Python command-line application that reads a public GitHub
-profile through the official GitHub Users API.
+## Bài toán
 
-## What you practise
+Một Bot demo nhận **vị trí hiện tại** và **đích** trong dải `0..4`.
+Bot chọn `left`, `right` hoặc `wait`. Không cần giao diện web hay mạng.
 
-- **Modules and packages:** separate the HTTP client from the CLI.
-- **Dependencies:** use Python's standard library; no third-party package needed.
-- **CLI:** parse a username and an optional `--json` flag with `argparse`.
-- **HTTP/API:** send a GET request, set headers, and decode JSON.
-- **Error handling:** handle missing users, HTTP errors, invalid JSON and network
-  failures. Every request has a timeout.
+> Đây là project **course-local**, không phải mô hình trạng thái/actions của
+> VuaCóc production. `VUACOC_RUNTIME_CONTRACT = UNVERIFIED` và
+> `PRODUCTION_INTEGRATION = NO`.
 
-## Run on Windows, macOS or Linux
-
-From the repository root:
-
-```bash
-python weeks/week-13-modules-cli-api/mini-project/github_profile_cli/cli.py octocat
-```
-
-Print the complete JSON response:
-
-```bash
-python weeks/week-13-modules-cli-api/mini-project/github_profile_cli/cli.py octocat --json
-```
-
-The first command needs an internet connection. Tests use mocked HTTP responses,
-so the automated test suite does not depend on GitHub being reachable.
-
-## Design
+## Luồng xử lý
 
 ```text
-cli.py  ->  client.py  ->  GitHub Users API
- argparse     urllib       JSON response
+terminal --position 1 --goal 4
+           ↓
+bot_course/cli.py         argparse + in JSON / lỗi
+           ↓
+bot_course/adapter.py     validate 0..4, đóng gói dữ liệu
+           ↓
+bot_course/core.py        choose_action() → right
 ```
 
-The CLI handles user input and presentation. The client owns HTTP details.
-This separation makes the API client easier to test and reuse.
+## Chạy demo và quan sát
+
+Từ **repository root**:
+
+```bash
+python weeks/week-13-modules-cli-api/cli.py --position 1 --goal 4
+python weeks/week-13-modules-cli-api/cli.py --position 4 --goal 1
+python weeks/week-13-modules-cli-api/cli.py --position 2 --goal 2
+python weeks/week-13-modules-cli-api/cli.py --position 8 --goal 4
+```
+
+Ba dòng đầu có `action = right/left/wait`. Dòng cuối in lỗi ra
+`stderr` và có exit code `2`. Xem thêm:
+
+```bash
+python weeks/week-13-modules-cli-api/checks/check_week.py
+```
+
+## Tự phát triển (chọn ít nhất một)
+
+- **A — CLI:** thêm `--verbose` ở `bot_course/cli.py`, hiển thị lý do
+  chọn action mà không thay core.
+- **B — Validation:** thêm thông báo dễ hiểu cho state thiếu `goal`
+  hoặc ngoài phạm vi; có negative test.
+- **C — Input/Output:** thêm `--format text|json`, JSON vẫn mặc định,
+  nhưng core không nhận format.
+- **D — HTTP offline:** mô phỏng status 404/503 và body lỗi, viết report
+  phân biệt HTTP status và JSON parse error; **không gọi mạng**.
+
+## Acceptance checks
+
+- [ ] 3 trường hợp `left/right/wait` đúng.
+- [ ] Input không hợp lệ bị từ chối (không stack trace cho người dùng).
+- [ ] CLI chỉ lo parsing/output, core không import CLI/HTTP.
+- [ ] Đọc được `--help`; hiểu exit code 0/2.
+- [ ] Có một case thành công và một case lỗi HTTP giả lập.
+- [ ] Viết 3–5 dòng giải thích: thay đổi code ở đâu và vì sao?
+- [ ] Ghi 1 bug, cách tái hiện, cách sửa, commit có ý nghĩa.
+
+Không có quota file/class/mô hình AI hoặc yêu cầu production integration.
+
+## Giới hạn phải nêu
+
+Bot không tự học, không dùng LLM, không gọi VuaCóc thật, không truy cập
+web. Không suy từ kết quả chạy course-local sang chất lượng production.
