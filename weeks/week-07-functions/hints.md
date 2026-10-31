@@ -101,3 +101,27 @@ discount = subtotal × percent / 100
 final_total = subtotal - discount
 display = format final_total
 ```
+
+## Gợi ý — bốn bài luyện hàm tương tự
+
+Học [ba ví dụ mới](WORKED-EXAMPLES.md) rồi xem
+[đề bài chi tiết](practice/README.md). Mỗi lab có TODO,
+**đừng mở `practice/solutions/` ngay**.
+
+- **Lab 01:** điều kiện hợp lệ cần kiểm kiểu số nguyên, không
+  chấp nhận `bool` thay cho giá/quantity; `return`
+  `price * quantity + shipping`, không `print`.
+- **Lab 02:** `is_valid_order` trả bool; hàm tạm tính gọi
+  validator; hàm cuối **gọi lại hàm tạm tính**, nhân
+  `(100 - percent)` rồi `//100`. Khi input sai, raise
+  `ValueError` cho caller xử lý.
+- **Lab 03:** `notes` là list của caller, không tạo
+  notebook global. `add_note` sửa list được truyền vào;
+  `search_notes` tạo `result` local, không sửa list gốc.
+- **Lab 04:** kiểm `type(minutes) is int` và phạm vi
+  0..60; `type(confused) is bool`. **Hết giờ** phải
+  ưu tiên `stop` trước `review`.
+
+Chạy `python weeks/week-07-functions/practice/checks/check_practice.py
+--starter` từ repo root. Trước khi sửa TODO sẽ FAIL;
+`--solutions` chỉ kiểm đáp án tham khảo.
