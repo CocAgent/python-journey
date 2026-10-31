@@ -58,3 +58,22 @@ even_squares = [number**2 for number in range(1, 6) if number % 2 == 0]
 
 Nếu cần nhiều nhánh, side effect hoặc comprehension lồng khó đọc, dùng loop
 thường. Learner clarity quan trọng hơn việc rút ngắn code.
+
+## 7. Quan sát vòng lặp qua ba ví dụ có giải thích
+
+[WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) có bảng dự đoán trước khi
+chạy, trace các lượt lặp và trường hợp dữ liệu sai. Đặc biệt:
+
+- `continue` chỉ bỏ lượt hiện tại; `break` kết thúc vòng lặp.
+- Với `while`, cần biết rõ biến nào làm điều kiện dừng thay đổi.
+- `zip(..., strict=True)` báo `ValueError` **khi iterator được
+  duyệt tới phần không khớp**; không phải ngay lúc tạo `zip`.
+- Comprehension dùng cho một phép biến đổi/lọc ngắn, không ép
+  các nhánh phức tạp vào một dòng.
+
+Sau khi xem ví dụ, làm [ba lab tương tự](practice/README.md)
+và chạy `--starter` để kiểm code tự viết. `--solutions`
+chỉ kiểm lời giải tham khảo.
+
+Không dùng các bài này để yêu cầu học hàm (Week 07) hay
+test pytest (Week 12) sớm.
