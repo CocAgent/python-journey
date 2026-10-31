@@ -70,3 +70,22 @@ def parse_score(raw: str, audit_log: list[str]) -> int | None:
 
 Trong thực tế, context manager thường là cách rõ hơn để đóng file. `finally`
 vẫn quan trọng khi bạn phải đảm bảo một bước kết thúc luôn diễn ra.
+
+## Dự đoán luồng exception trước khi chạy
+
+Trong [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md), thực hành
+ba tình huống: (1) lỗi logic không tạo traceback;
+(2) `FileNotFoundError`/`ValueError` có thể xử lý
+theo contract nhưng bug khác phải hiện rõ;
+(3) `finally` vẫn chạy khi hàm return hoặc exception
+không bị bắt.
+
+Sau đó làm [4 lab tương tự](practice/README.md)
+và chạy checker `--starter`. Bài kiểm thử theo dõi
+type/message của exception, không chỉ in một dòng
+`PASS`. Đây là bài đệm để tự viết `pytest` Week 12.
+
+**Phân biệt contract hai tuần:** Lab 01 Week 10 chủ động
+cho `FileNotFoundError` nổi lên; Lab 02 Week 11 chọn
+trả `None` khi thiếu file điểm. Cả hai đều có thể hợp
+lý khi được **công bố trước trong contract**.

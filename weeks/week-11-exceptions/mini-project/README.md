@@ -17,3 +17,14 @@ Evidence cần có:
 
 Arena bắt exception tại boundary để ghi failure có quan sát được; learner code
 không được dùng exception swallowing.
+
+## Bài đệm trước Robust Bot Debugging Note
+
+Học [ba ví dụ giải thích từng bước](../WORKED-EXAMPLES.md)
+rồi tự làm [bốn lab](../practice/README.md) để phân biệt
+**expected bad input** với **programming bug** và luyện
+Reproduce → Read traceback → Isolate → Fix → Re-test.
+
+Không dùng broad except để chuyển crash thành "match thua".
+Nếu local arena báo `bot_failure`, ghi rõ failure reason
+và regression evidence; không tuyên bố production integration.
