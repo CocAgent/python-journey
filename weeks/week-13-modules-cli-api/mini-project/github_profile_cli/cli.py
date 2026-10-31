@@ -2,8 +2,15 @@
 
 import argparse
 import json
+import sys
+from pathlib import Path
 
-from github_profile_cli.client import GitHubAPIError, get_user
+# Allow the documented direct-file command to find the sibling package.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from github_profile_cli.client import GitHubAPIError, get_user  # noqa: E402
 
 
 def build_parser() -> argparse.ArgumentParser:
