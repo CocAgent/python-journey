@@ -97,6 +97,37 @@ trong [catalog Week 09](../week-09-midterm-project/project-ideas/catalog-20-du-a
 hay Agent framework, không thay rubric Week 09/15 và không tạo kết nối
 production VuaCóc.
 
+## Sổ tay thực hành chi tiết + bài tập tương tự (mới)
+
+Nếu mới học và chưa biết bắt đầu từ đâu, hãy mở
+**[GUIDED-LABS.md — hướng dẫn từng bước 4 lab](GUIDED-LABS.md)**.
+
+Mỗi lab có ví dụ gốc → giải thích code → bài tương tự trên dữ liệu
+**Study Progress** → trường hợp sai → tự kiểm → lời giải sau cùng:
+
+| Lab | Ví dụ gốc | Bài tương tự tự viết |
+|---|---|---|
+| 1. Module | `examples.ex01_modules` | `practice.starter.lab01_module` |
+| 2. CLI | `examples.ex02_cli` | `practice.starter.lab02_cli` |
+| 3. HTTP/JSON offline | `examples.offline_http` | `practice.starter.lab03_http` |
+| 4. Adapter | `examples.ex04_adapter` | `practice.starter.lab04_adapter` |
+
+Chạy từ thư mục `weeks/week-13-modules-cli-api/`:
+
+```bash
+python -m practice.starter.lab01_module
+python -m practice.starter.lab02_cli --score 7.5
+python -m practice.starter.lab03_http
+python -m practice.starter.lab04_adapter
+python -m practice.checks.check_lab --starter
+```
+
+**Checker starter ban đầu FAIL là có chủ đích**: sinh viên phải viết
+xong TODO thì mới PASS. Lời giải riêng ở
+[practice/solutions](practice/solutions/README.md) và chỉ được dùng để đối
+chiếu sau khi thử; `--solutions` PASS không có nghĩa starter đã hoàn thành.
+Bộ lab **tự chọn**, không thêm rubric, không thay nội dung Week13 cơ bản.
+
 ## Bài tập và tự kiểm
 
 1. Làm lần lượt [Exercise 01–04](exercises/README.md), dự đoán output trước.
