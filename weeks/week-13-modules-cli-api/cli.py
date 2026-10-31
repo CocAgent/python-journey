@@ -1,28 +1,12 @@
-"""Teaching CLI that calls the network-free bot core."""
+"""Entry point: python weeks/week-13-modules-cli-api/cli.py --position 1 --goal 4.
 
-import argparse
-import sys
-from pathlib import Path
+Python tìm thấy bot_course vì thư mục chứa cli.py tự nằm trên import path.
+Không chỉnh sys.path bên trong Bot Core.
+"""
 
-WEEK_ROOT = Path(__file__).resolve().parent
-if str(WEEK_ROOT) not in sys.path:
-    sys.path.insert(0, str(WEEK_ROOT))
+from bot_course.cli import main, parse_args
 
-from bot_course.adapter import course_local_action  # noqa: E402
-
-
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    """Parse CLI arguments, optionally from a supplied list for testing."""
-    parser = argparse.ArgumentParser(description="Run a course-local decision")
-    parser.add_argument("--position", type=int, required=True)
-    parser.add_argument("--goal", type=int, required=True)
-    return parser.parse_args(argv)
-
-
-def main() -> int:
-    args = parse_args()
-    print(course_local_action({"position": args.position, "goal": args.goal}))
-    return 0
+__all__ = ["main", "parse_args"]
 
 
 if __name__ == "__main__":
