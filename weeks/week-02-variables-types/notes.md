@@ -247,8 +247,9 @@ print(type(tuoi_str))      # <class 'str'>
 
 # Phải chuyển đổi nếu muốn tính toán
 tuoi = int(input("Nhập tuổi: "))
-nam_sinh = 2025 - tuoi
-print(f"Bạn sinh năm {nam_sinh}")
+nam_gia_dinh = 2026  # Năm minh họa trong bài, không phải giá trị tự cập nhật
+nam_sinh_uoc_tinh = nam_gia_dinh - tuoi
+print(f"Năm sinh ước tính: {nam_sinh_uoc_tinh}")
 ```
 
 **Ví dụ hoàn chỉnh — Máy tính đơn giản:**
@@ -324,3 +325,14 @@ print(len("Việt Nam"))
 `int("42")` chạy được nhưng `int("bốn mươi hai")` tạo `ValueError`. Ở Week 02,
 hãy kiểm tra dạng input đơn giản trước khi conversion và đọc error khi data sai.
 Week 11 sẽ dạy exception và defensive coding có hệ thống.
+
+## Phần thực hành có hướng dẫn theo từng bước
+
+Khi đã đọc lý thuyết, hãy thử
+[ba ví dụ dự đoán kết quả, giải thích lỗi và bài chuyển giao](WORKED-EXAMPLES.md).
+Ví dụ phân biệt `"12" + "3"` với `12 + 3`, rồi thử tự viết
+[một chương trình bán vé](practice/README.md) có `input()`.
+
+Lưu ý: năm sinh suy từ năm hiện tại và số tuổi chỉ là **ước tính**,
+vì còn phụ thuộc ngày sinh. Trong code minh họa, `2026` là giá trị cố định
+để học biến; không tự đổi theo năm thật.
