@@ -42,3 +42,17 @@ python -m pytest weeks/week-13-modules-cli-api/tests -q
 Checker mới tạo file dữ liệu trong thư mục tạm, không cần network,
 API key hay cài FastAPI; test suite gồm cả core Week13 và Ticket Desk.
 Xem [hướng dẫn thực hành nâng cao](../advanced_projects/README.md).
+
+## Kiểm thêm bộ bài tương tự
+
+Chạy từ **week root**:
+
+```bash
+python -m practice.checks.check_lab --starter
+python -m practice.checks.check_lab --solutions
+```
+
+`--starter` kiểm code sinh viên đang sửa, trước khi điền TODO sẽ
+**FAIL (đúng thiết kế)**. `--solutions` kiểm lời giải tham khảo và
+được bảo vệ bởi maintainer CI; không dùng kết quả của solution để thay
+bằng chứng tự làm. Đọc [GUIDED-LABS.md](../GUIDED-LABS.md).
