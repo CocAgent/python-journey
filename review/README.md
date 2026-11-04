@@ -1,85 +1,48 @@
-# Ôn tập Python Journey — Week 01–11
+# Ôn tập Python Journey
 
-Bộ ôn tập **tự chọn**, dành cho sinh viên cần củng cố trước khi học
-[Week 12 — pytest](../weeks/week-12-testing-pytest/) hoặc chuẩn bị
-dự án tiếp theo. **Không thay nội dung chính, thang điểm, hoặc rubric**
-trong [SYLLABUS.md](../SYLLABUS.md) và
-[FINAL_PROJECT.md](../FINAL_PROJECT.md).
+Thư mục `review/` cung cấp tài liệu **ôn tập tự chọn** và đề thực hành có thể tự kiểm. Nội dung gắn với các tuần trong Python Journey và không thay thế `SYLLABUS.md`, `FINAL_PROJECT.md`, bài tập chính thức hoặc thang điểm đánh giá của khóa học.
 
-Nguồn ôn tập: **các tuần trong chính repository Python Journey**.
-Không có tài liệu nào được đọc từ phiên Chrome Remote Desktop;
-thư mục này **không chứa ID phiên, thông tin đăng nhập, hoặc dữ liệu
-lấy từ màn hình/máy tính từ xa**.
+## Chọn lộ trình ôn tập
 
-## Học theo thứ tự
-
-1. [Kế hoạch ôn tập theo bốn buổi](STUDY-PLAN.md) — xác định chỗ
-   cần ôn và liên kết trực tiếp bài học từng tuần.
-2. [16 câu dự đoán nhanh](QUICK-CHECK.md) — **trả lời trước khi**
-   mở [đáp án giải thích](ANSWER-KEY.md).
-3. [Ba bài thực hành tích hợp](practice/README.md) — tự hoàn thành
-   hàm trong `practice/starter/`, không chép solutions.
-4. Chạy máy kiểm để nhận PASS/FAIL **trên code của chính sinh viên**.
-5. Ghi [bằng chứng học tập](EVIDENCE-TEMPLATE.md) và một lỗi đã sửa.
-
-## Bài tích hợp
-
-| Lab | Bài toán | Kiến thức |
+| Lộ trình | Phù hợp với | Bắt đầu |
 |---|---|---|
-| 01 — Gradebook | Tổng hợp danh sách học viên và điểm | Week 02–08: string, list, dict, set, vòng lặp, hàm |
-| 02 — JSON Report | Lưu, đọc và xác thực báo cáo | Week 10: `pathlib`, JSON, UTF-8, schema |
-| 03 — Debug & Exceptions | Khoảng cách đúng hai chiều, audit nhập điểm | Week 11: bug logic, `ValueError`, `finally` |
+| **Ôn kiến thức Week 01–11** | Sinh viên muốn củng cố trước khi học kiểm thử `pytest` ở Week 12 | [Kế hoạch 4 buổi](STUDY-PLAN.md) |
+| **Đề luyện cơ bản 60 phút** | Sinh viên cần tự kiểm biến, điều kiện, vòng lặp và cấu trúc dữ liệu cơ bản | [Đề luyện 60 phút](mock-exams/de-01/README.md) |
+| **Đề tổng hợp 90 phút** | Sinh viên muốn ôn số, chuỗi, list, dictionary và lập trình hướng đối tượng | [Đề tổng hợp 90 phút](mock-exams/de-90-phut-01/README.md) |
 
-**Không sử dụng mạng, không đụng dữ liệu thật.** Bộ kiểm sử dụng
-thư mục tạm để tạo file JSON và tự dọn sau khi hoàn thành.
+**Lưu ý về kiến thức tiên quyết:** đề 90 phút có câu lập trình hướng đối tượng với lớp `DienThoai`. Trong lộ trình Python Journey, nội dung OOP được học kỹ hơn ở Week 14. Sinh viên chưa học phần này có thể làm Câu 1–4 trước, học ví dụ OOP có hướng dẫn rồi hoàn thành Câu 5. Không dùng đề 90 phút như điều kiện hoàn thành bắt buộc của Week 11.
 
-## Chạy từ thư mục gốc `python-journey`
+## Bộ ôn kiến thức theo tuần
+
+- [16 câu hỏi dự đoán kết quả](QUICK-CHECK.md) và [đáp án giải thích](ANSWER-KEY.md).
+- [Ba bài thực hành tích hợp](practice/README.md): quản lý điểm, lưu JSON và xử lý lỗi.
+- [Mẫu ghi bằng chứng học tập](EVIDENCE-TEMPLATE.md): dự đoán, kết quả, lỗi đã sửa và kiểm tra lại.
+- [Hướng dẫn sử dụng trên máy từ xa](REMOTE-DESKTOP-SETUP.md) nếu người học truy cập máy qua Chrome Remote Desktop.
+
+## Cách sử dụng
+
+**Tải mã Python thực hành từ GitHub** (không chạy trực tiếp file từ Google Docs). Mở terminal tại thư mục gốc `python-journey`.
 
 ```bash
-python --version
-
-# Kiểm code sinh viên (TODO chưa hoàn thành => FAIL đúng thiết kế)
+# Ôn 3 bài thực hành tích hợp
 python review/practice/checks/check_review.py --starter
 
-# Kiểm lời giải tham khảo, chỉ dùng sau khi tự làm
+# Kiểm riêng lời giải tham khảo của 3 bài tích hợp (không chấm mã sinh viên)
 python review/practice/checks/check_review.py --solutions
+
+# Tự chấm đề tổng hợp 90 phút
+python review/mock-exams/de-90-phut-01/autograde_de1.py --student
+
+# Kiểm đáp án tham khảo (không chấm mã sinh viên)
+python review/mock-exams/de-90-phut-01/autograde_de1.py --reference
 ```
 
-Trên Windows, nếu `python` không nhận, thử `py -3` theo
-[SETUP.md](../SETUP.md). Khi xong, `--starter` cần báo
-`Review student: PASS (3/3)`. **Reference PASS không
-chứng minh bài sinh viên đã hoàn thành.**
+Khi file khởi đầu còn `TODO`, kết quả FAIL hoặc 0 điểm là **đúng thiết kế**. Sinh viên cần viết mã, chạy lại, giải thích lỗi và bổ sung trường hợp kiểm tra mới. Chỉ mở thư mục lời giải sau khi tự thực hiện.
 
-Nếu đang thao tác trên một máy qua Chrome Remote Desktop,
-xem [hướng dẫn lấy folder bằng GitHub an toàn](REMOTE-DESKTOP-SETUP.md).
-Không cần cấp quyền điều khiển máy cho người khác để làm bài.
+## Nguyên tắc chung
 
-## Tránh nhầm với bộ kiểm maintainer
+Bộ kiểm thử tự luyện có mục tiêu **phản hồi và hỗ trợ học tập**, không phải hệ thống chấm thi chính thức. Bộ đề công khai cả tình huống kiểm thử và lời giải để sinh viên nghiên cứu. Không sửa mã tự chấm nhằm tạo kết quả PASS giả.
 
-- `review/practice/checks/check_review.py` là self-check cho
-  bài tự làm, **không cần pytest**.
-- CI của repository chỉ kiểm ví dụ/reference và bảo đảm starter
-  chưa làm không thể báo PASS giả.
-- Thang điểm/đầu ra chính nằm trong các tài liệu canonical của khóa,
-  không phải trong thư mục ôn tập này.
+Thực thi mã do bản thân viết hoặc từ nguồn đáng tin cậy. Timeout không đủ để cách ly mã của người khác. **Không nộp mật khẩu, token, mã kết nối máy từ xa hoặc dữ liệu cá nhân không cần thiết.**
 
-Vòng học: **Learn → Build → Test → Debug → Improve → Commit → Prove**.
-
-## Đề ôn tập tổng hợp 90 phút và bài luyện khởi động 60 phút
-
-**Bộ đề 90 phút khuyến nghị:** [Đề tổng hợp 01 — 5 câu × 2 điểm](mock-exams/de-90-phut-01/README.md),
-gồm số và vòng lặp, xử lý chuỗi, list với tín hiệu dừng, dictionary
-quản lý sách và **OOP với lớp DienThoai**. Có 10 starter, 10 đáp án
-riêng và 78 ca kiểm thử công khai; phù hợp ôn tập trước bài thực hành.
-
-**Bộ 60 phút tự chọn:** [Đề luyện nhanh cơ bản](mock-exams/de-01/README.md)
-dùng để củng cố trước khi thử đề tổng hợp dài hơn.
-
-## Đề ôn tập theo mẫu 60 phút, có chấm tự động
-
-Đã bổ sung [**Đề 01 — 5 câu / 10 ý / 60 phút**](mock-exams/de-01/README.md)
-dựa trên cấu trúc bộ đề CBPYTHON người học đang tham khảo.
-Bộ đề mới có **10 file starter**, 10 lời giải tách biệt, các ví dụ
-có giải thích, **58 ca kiểm tự động công khai** và hướng dẫn nộp bài.
-Luyện bằng `python review/mock-exams/de-01/autograde_de1.py --student`.
-Điểm tự chấm không thay rubric chính thức của khóa học.
+Phương pháp học: **Học → Viết mã → Kiểm tra → Gỡ lỗi → Cải tiến → Lưu phiên bản → Chứng minh kết quả**.

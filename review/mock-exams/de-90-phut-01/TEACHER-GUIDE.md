@@ -9,6 +9,14 @@ Phạm vi được xác định từ đề mẫu 90 phút trong bộ
 dictionary, OOP. Các câu và dữ liệu ở đây đã được
 thiết kế lại, không cần sử dụng đề mẫu để làm bài.
 
+## Điều kiện học tập
+
+Đề có phần OOP với lớp `DienThoai`, trong khi Python Journey
+giới thiệu OOP sâu hơn ở Week 14. Với nhóm đang ôn Week 01–11,
+giảng viên nên hướng dẫn class và object trước khi yêu cầu Câu 5,
+hoặc dùng riêng Câu 1–4 như phần luyện tập. **Không điều chỉnh
+điểm chính thức theo bộ tự chấm này.**
+
 ## Tổ chức lớp
 
 - Phát đề và thư mục `submissions_de1/`; yêu cầu

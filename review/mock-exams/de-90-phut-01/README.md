@@ -32,6 +32,22 @@ Bộ 60 phút ở [../de-01/](../de-01/) là bài khởi động **tự chọn**
 | 4 | Dictionary quản lý sách và sao chép dữ liệu | 2 |
 | 5 | OOP: lớp `DienThoai`, thuộc tính, phương thức, tạo đối tượng | 2 |
 
+## Lưu ý về trình độ và nguồn mã thực hành
+
+Câu 5 sử dụng **lập trình hướng đối tượng (OOP)**; trong Python Journey,
+kiến thức này được học sâu hơn ở **Week 14**. Nếu đang ôn tập
+Week 01–11, sinh viên nên làm Câu 1–4 trước, đọc ví dụ
+`class` trong [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md)
+rồi mới hoàn thành Câu 5. Đây là đề tự luyện mở rộng,
+**không phải điều kiện hoàn thành Week 11**.
+
+Để lập trình và tự chấm, cần các file Python thực trong
+[thư mục `submissions_de1/`](submissions_de1/) trên GitHub.
+Bản Google Docs trên Drive chỉ dùng để **đọc hoặc sao chép mã**,
+không thể trực tiếp chạy như file `.py`. Người học có thể tải
+repository bằng **Code → Download ZIP** rồi giải nén,
+hoặc sử dụng `git clone`.
+
 ## Chạy từ thư mục gốc `python-journey`
 
 ```bash

@@ -49,8 +49,8 @@ def test_review_index_and_maintainer_readme_stay_distinct() -> None:
     review = (ROOT / "review" / "README.md").read_text(encoding="utf-8")
     tests = (ROOT / "tests" / "README.md").read_text(encoding="utf-8")
     assert "de-90-phut-01/README.md" in review
-    assert "Repository test suite" in tests
-    assert "maintainer-owned" in tests
-    assert "not" in tests.lower()
+    assert "Hướng dẫn kiểm thử mã nguồn Python Journey" in tests
+    assert "nhóm bảo trì quản lý" in tests
+    assert "không phải" in tests.lower()
     guide = (EXAM / "README.md").read_text(encoding="utf-8")
     assert "90 phút" in guide and "78" in guide
