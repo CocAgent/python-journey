@@ -64,3 +64,12 @@ Không cần cấp quyền điều khiển máy cho người khác để làm b�
   không phải trong thư mục ôn tập này.
 
 Vòng học: **Learn → Build → Test → Debug → Improve → Commit → Prove**.
+
+## Đề ôn tập theo mẫu 60 phút, có chấm tự động
+
+Đã bổ sung [**Đề 01 — 5 câu / 10 ý / 60 phút**](mock-exams/de-01/README.md)
+dựa trên cấu trúc bộ đề CBPYTHON người học đang tham khảo.
+Bộ đề mới có **10 file starter**, 10 lời giải tách biệt, các ví dụ
+có giải thích, **58 ca kiểm tự động công khai** và hướng dẫn nộp bài.
+Luyện bằng `python review/mock-exams/de-01/autograde_de1.py --student`.
+Điểm tự chấm không thay rubric chính thức của khóa học.
