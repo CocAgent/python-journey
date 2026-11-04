@@ -33,6 +33,7 @@
 | Xem quy tắc viết code | [STYLE_GUIDE.md](STYLE_GUIDE.md) |
 | Xem yêu cầu đồ án cuối khóa | [FINAL_PROJECT.md](FINAL_PROJECT.md) |
 | Vào danh sách các tuần | [Thư mục weeks](weeks/) |
+| Ôn tập đề thi thực hành Python | [Kiểm tra & ôn tập](kiem-tra-on-tap/) |
 
 ## 🗺️ Lộ trình 15 tuần
 
@@ -99,6 +100,7 @@
 python-journey-123/
 ├── README.md              # Trang chủ repo
 ├── weeks/                 # Bài học và bài tập theo tuần
+├── kiem-tra-on-tap/       # Đề thi thực hành và code ôn tập
 ├── projects/              # Dự án thực hành
 ├── tests/                 # Kiểm thử
 ├── scripts/               # Script hỗ trợ
