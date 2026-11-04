@@ -47,3 +47,17 @@ Nếu máy dùng lệnh `python` thay cho `py`, có thể đổi lệnh tương 
 
 ---
 **Python Journey · Learn · Build · Test · Debug · Improve**
+
+## Bộ điền đáp án và chấm tự động
+
+Nếu muốn tự làm từng ý rồi xem điểm ngay, mở thư mục [bo_cham_diem](bo_cham_diem/):
+
+- [bai_lam.py](bo_cham_diem/bai_lam.py): nơi bạn tự viết đáp án cho 1a, 1b, 1c... 5b.
+- [cham_diem.py](bo_cham_diem/cham_diem.py): chạy test và tính điểm từng ý trên tổng 10 điểm.
+- [README hướng dẫn](bo_cham_diem/README.md): cách chạy trong VS Code.
+
+Lệnh chạy từ thư mục gốc repository:
+
+```powershell
+py kiem-tra-on-tap/de-thi-11301/bo_cham_diem/cham_diem.py
+```
