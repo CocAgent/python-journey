@@ -65,6 +65,16 @@ Không cần cấp quyền điều khiển máy cho người khác để làm b�
 
 Vòng học: **Learn → Build → Test → Debug → Improve → Commit → Prove**.
 
+## Đề ôn tập tổng hợp 90 phút và bài luyện khởi động 60 phút
+
+**Bộ đề 90 phút khuyến nghị:** [Đề tổng hợp 01 — 5 câu × 2 điểm](mock-exams/de-90-phut-01/README.md),
+gồm số và vòng lặp, xử lý chuỗi, list với tín hiệu dừng, dictionary
+quản lý sách và **OOP với lớp DienThoai**. Có 10 starter, 10 đáp án
+riêng và 78 ca kiểm thử công khai; phù hợp ôn tập trước bài thực hành.
+
+**Bộ 60 phút tự chọn:** [Đề luyện nhanh cơ bản](mock-exams/de-01/README.md)
+dùng để củng cố trước khi thử đề tổng hợp dài hơn.
+
 ## Đề ôn tập theo mẫu 60 phút, có chấm tự động
 
 Đã bổ sung [**Đề 01 — 5 câu / 10 ý / 60 phút**](mock-exams/de-01/README.md)
