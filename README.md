@@ -34,6 +34,7 @@
 | Xem yêu cầu đồ án cuối khóa | [FINAL_PROJECT.md](FINAL_PROJECT.md) |
 | Vào danh sách các tuần | [Thư mục weeks](weeks/) |
 | Ôn tập đề thi thực hành Python | [Kiểm tra & ôn tập](kiem-tra-on-tap/) |
+| Luyện đề và chấm tự động Python 2026 | [Python Test & Auto Grader 2026](kiem-tra-on-tap/python-test-autograder-2026/) |
 
 ## 🗺️ Lộ trình 15 tuần
 
