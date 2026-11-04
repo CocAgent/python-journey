@@ -27,6 +27,9 @@ Thư mục `review/` cung cấp tài liệu **ôn tập tự chọn** và đề 
 # Ôn 3 bài thực hành tích hợp
 python review/practice/checks/check_review.py --starter
 
+# Kiểm riêng lời giải tham khảo của 3 bài tích hợp (không chấm mã sinh viên)
+python review/practice/checks/check_review.py --solutions
+
 # Tự chấm đề tổng hợp 90 phút
 python review/mock-exams/de-90-phut-01/autograde_de1.py --student
 
