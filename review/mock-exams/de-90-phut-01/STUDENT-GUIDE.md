@@ -3,6 +3,20 @@
 Mở [đề 90 phút](DE-90-PHUT.md) trước và đọc yêu cầu từng hàm.
 Không mở thư mục đáp án `solutions_de1/` ngay.
 
+## Cần biết trước khi làm đề
+
+- **File chạy được nằm trên GitHub:** `submissions_de1/Cau1a.py` đến
+  `Cau5b.py`. Các Google Docs trong Drive chỉ để đọc và sao chép nội dung,
+  không phải script Python thực thi trực tiếp.
+- **Tải mã:** vào https://github.com/CocAgent/python-journey,
+  chọn **Code → Download ZIP**, giải nén và mở terminal trong thư mục gốc;
+  hoặc `git clone https://github.com/CocAgent/python-journey.git`.
+- **Kiến thức OOP:** câu 5 cần kiến thức lớp và đối tượng (được học
+  chuyên sâu tại Week 14). Sinh viên mới học đến Week 11 có thể
+  hoàn thành Câu 1–4 rồi học ví dụ có hướng dẫn trước khi làm Câu 5.
+- **Kết quả tự chấm:** chạy `--student` mới kiểm mã của sinh viên;
+  `--reference` chỉ kiểm lời giải mẫu và không dùng để chấm bài nộp.
+
 ## Gợi ý phân phối thời gian
 
 | Thời lượng | Công việc |
