@@ -266,3 +266,13 @@ weeks/week-01-hello-python/
 ---
 
 > **Learn it. Build it. Test it. Understand it. Improve it.**
+
+---
+
+## Ôn tập tổng hợp Week 01–11 (tự chọn)
+
+[**Bộ ôn tập Python Journey**](review/README.md) gồm kế hoạch bốn buổi,
+16 câu hỏi dự đoán, ba bài thực hành tích hợp có starter/solutions riêng,
+máy tự kiểm `--starter` và hướng dẫn sử dụng trên máy học từ xa.
+Bộ này không thay syllabus, rubric hoặc bài tập của từng tuần.
+
