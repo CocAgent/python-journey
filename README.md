@@ -114,7 +114,7 @@ python-journey-123/
 
 Bạn có thể mở repository trong môi trường VS Code chạy trên trình duyệt, không cần cài Python trên máy.
 
-<a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1054650060"><img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces"></a>
+<a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1408346913"><img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces"></a>
 
 ### Cách mở
 
