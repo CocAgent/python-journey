@@ -1,4 +1,4 @@
-"""Test bài sinh viên: starter chưa làm phải FAIL chứ không PASS giả."""
+"""Test tự động cho bốn bài tập OOP trong exercises/."""
 
 import sys
 from pathlib import Path
