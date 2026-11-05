@@ -1,16 +1,11 @@
-"""Lab 1 — IMPORT + MAIN GUARD.
+"""Lab 1 solution: import, return, main guard."""
 
-Bài tập:
-1. Import status_for_score từ practice.study_core.
-2. describe_score(7.5) -> "Điểm 7.5: Đạt".
-3. describe_score(3) -> "Điểm 3: Cần luyện tập".
-4. Khi import file, không tự in. Xem GUIDED-LABS.md trước.
-"""
+from practice.study_core import status_for_score
 
 
 def describe_score(score: int | float) -> str:
-    """TODO: gọi hàm từ module khác và trả kết quả dạng string."""
-    return "TODO Lab 1: chưa viết mô tả điểm"
+    """Không in trong core: người gọi quyết định in ra đâu."""
+    return f"Điểm {score:g}: {status_for_score(score)}"
 
 
 def main() -> None:

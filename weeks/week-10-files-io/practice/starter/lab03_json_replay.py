@@ -1,7 +1,4 @@
-"""Lab 03: JSON course-local replay, parse is not schema validation.
-
-COURSE LOCAL FORMAT — NOT VUACOC PRODUCTION FORMAT.
-"""
+"""Reference Lab 03: validated course-local JSON replay (offline)."""
 
 import json
 from pathlib import Path
@@ -13,23 +10,39 @@ ACTIONS = {"left", "right", "wait"}
 
 
 def validate_replay(data: object) -> bool:
-    """Required labels + turns list; each turn int >=1 and legal action."""
-    # TODO: reject non-dict, missing/wrong labels, non-list turns.
-    # TODO: each turn must be dict with type(turn) is int, turn >=1,
-    #       action in ACTIONS and type(action) is str.
-    raise NotImplementedError("Hoàn thiện validate_replay")
+    if not isinstance(data, dict):
+        return False
+    if (
+        data.get("format") != FORMAT
+        or data.get("production_compatibility") != COMPAT
+        or not isinstance(data.get("turns"), list)
+    ):
+        return False
+    for event in data["turns"]:
+        if not isinstance(event, dict):
+            return False
+        if type(event.get("turn")) is not int or event["turn"] < 1:
+            return False
+        if type(event.get("action")) is not str or event["action"] not in ACTIONS:
+            return False
+    return True
 
 
 def save_replay(path: Path, replay: dict[str, object]) -> Path:
-    """Validate before writing, UTF-8 JSON with ensure_ascii=False."""
-    # TODO: invalid => ValueError; mkdir parent, json.dump via with.
-    raise NotImplementedError("Hoàn thiện save_replay")
+    if not validate_replay(replay):
+        raise ValueError("Replay schema không hợp lệ")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as stream:
+        json.dump(replay, stream, ensure_ascii=False, indent=2)
+    return path
 
 
 def load_replay(path: Path) -> dict[str, object]:
-    """Read/parse/validate; JSONDecodeError or FileNotFoundError propagate."""
-    # TODO: json.load via with; invalid schema => ValueError.
-    raise NotImplementedError("Hoàn thiện load_replay")
+    with path.open("r", encoding="utf-8") as stream:
+        data = json.load(stream)
+    if not validate_replay(data):
+        raise ValueError("Replay schema không hợp lệ")
+    return data
 
 
 if __name__ == "__main__":

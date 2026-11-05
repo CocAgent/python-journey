@@ -1,23 +1,26 @@
-"""Lab 03 — Set operations và unique-in-order.
-
-compare_skills({"dict","set"}, {"set","loop"}) trả 4 nhóm dạng set.
-unique_in_order(["a","b","a"]) -> ["a","b"].
-Không sửa list/set nguồn; empty input cũng phải chạy.
-"""
+"""Reference 03 — tập hợp dùng để so sánh; list giữ thứ tự."""
 
 
 def compare_skills(first: set[str], second: set[str]) -> dict[str, set[str]]:
-    """Trả common, only_first, only_second, all dưới dạng set."""
-    # TODO: dùng &, -, | rồi return dict đủ bốn key.
-    raise NotImplementedError("Hoàn thành compare_skills")
+    """Trả bốn nhóm mà không chỉnh sửa input sets."""
+    return {
+        "common": first & second,
+        "only_first": first - second,
+        "only_second": second - first,
+        "all": first | second,
+    }
 
 
 def unique_in_order(items: list[str]) -> list[str]:
-    """Loại trùng nhưng giữ thứ tự xuất hiện đầu tiên."""
-    # TODO: một set seen và một list result; duyệt từng item.
-    # Không dùng list(set(items)): thứ tự không được bảo đảm.
-    raise NotImplementedError("Hoàn thành unique_in_order")
+    """Dùng seen set để kiểm nhanh nhưng kết quả giữ thứ tự list."""
+    seen: set[str] = set()
+    result: list[str] = []
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
 
 
 if __name__ == "__main__":
-    print("Hoàn thành hai TODO, chạy thử trường hợp list rỗng.")
+    print(unique_in_order(["dict", "set", "dict"]))

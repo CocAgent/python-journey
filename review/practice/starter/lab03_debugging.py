@@ -1,29 +1,34 @@
-"""Ôn tập 03 — Sửa lỗi logic và chỉ bắt exception dự kiến."""
+"""Reference 03 — Logic bug regression, narrow exceptions, finally audit."""
 
 
 def distance(start: int, end: int) -> int:
-    """Khoảng cách tuyệt đối giữa hai ô nguyên từ 0 đến 10.
-
-    Sai kiểu, bool hoặc ngoài phạm vi -> ValueError.
-    """
-    # TODO: kiểm cả hai phải là int thật (không bool), 0 <= value <= 10.
-    # TODO: dùng abs(end - start), để hai chiều đều cho cùng khoảng cách.
-    raise NotImplementedError("Hãy hoàn thành distance")
+    """Không dựa vào hướng: khoảng cách luôn không âm."""
+    if (
+        type(start) is not int
+        or type(end) is not int
+        or not 0 <= start <= 10
+        or not 0 <= end <= 10
+    ):
+        raise ValueError("Vị trí không hợp lệ")
+    return abs(end - start)
 
 
 def parse_score(raw: str, audit: list[str]) -> int | None:
-    """Chuyển điểm [0..10] và ghi lại từng lần thử.
-
-    - text không phải số -> append 'invalid', trả None
-    - số ngoài 0..10 -> append 'out_of_range', trả None
-    - hợp lệ -> append 'accepted', trả int
-    - finally luôn append f'attempt:{raw!r}'
-    - input sai kiểu như None phải nổi TypeError, KHÔNG bị nuốt.
-    """
-    # TODO: try int(raw), except ValueError, else, finally.
-    # TODO: không return trong finally; không dùng except Exception.
-    raise NotImplementedError("Hãy hoàn thành parse_score")
+    """ValueError is expected bad input; TypeError is not swallowed."""
+    try:
+        value = int(raw)
+    except ValueError:
+        audit.append("invalid")
+        return None
+    else:
+        if not 0 <= value <= 10:
+            audit.append("out_of_range")
+            return None
+        audit.append("accepted")
+        return value
+    finally:
+        audit.append(f"attempt:{raw!r}")
 
 
 if __name__ == "__main__":
-    print("Tự viết hàm rồi thử input (4, 1), '8', 'abc', None.")
+    print(distance(4, 1))
