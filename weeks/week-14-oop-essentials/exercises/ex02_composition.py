@@ -1,6 +1,33 @@
-"""Exercise 02: compose Bot with a strategy."""
+class Bot:
+    def __init__(self, strategy="balanced"):
+        self.strategy = strategy
 
-# TODO: tạo Bot.__init__(strategy) và choose_action(state).
-# TODO: tạo các function defensive, balanced và aggressive.
-# TODO: làm cho movement hoạt động với cả goal=0 và goal=4.
-# TODO: đổi strategy mà không sửa class Bot.
+    def _move_to_goal(self, state):
+        position = state["position"]
+        goal = state["goal"]
+
+        if position < goal:
+            return "right"
+        if position > goal:
+            return "left"
+        return "wait"
+
+    def _defensive(self, state):
+        opponent_position = state.get("opponent_position")
+
+        if opponent_position is not None:
+            if abs(state["position"] - opponent_position) <= 1:
+                return "wait"
+
+        return self._move_to_goal(state)
+
+    def choose_action(self, state):
+        if callable(self.strategy):
+            return self.strategy(state)
+
+        if self.strategy == "defensive":
+            return self._defensive(state)
+        if self.strategy in ("balanced", "aggressive"):
+            return self._move_to_goal(state)
+
+        raise ValueError("Unknown strategy")
