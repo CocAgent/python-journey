@@ -1,22 +1,24 @@
-"""Bài 1: tự hoàn thành class Progress.
-
-Gợi ý: xem lý do kiểm tra total trong examples/01_class_object.py.
-Chưa làm bài thì các phương thức cố ý báo NotImplementedError.
-"""
+"""Bài 1: tự hoàn thành class Progress."""
 
 
 class Progress:
     """Quản lý completed/total và tính tỷ lệ phần trăm."""
 
     def __init__(self, completed: int, total: int) -> None:
-        # TODO: total > 0; completed phải nằm trong [0, total].
-        # TODO: lưu self.completed và self.total sau khi xác thực.
-        raise NotImplementedError("TODO: khởi tạo Progress")
+        # Xác thực dữ liệu trước khi lưu để object luôn hợp lệ.
+        if total <= 0 or not 0 <= completed <= total:
+            raise ValueError("Tiến độ phải nằm trong khoảng 0 đến total")
+
+        self.completed = completed
+        self.total = total
 
     def percentage(self) -> float:
-        # TODO: trả completed / total * 100, không in hoặc sửa dữ liệu.
-        raise NotImplementedError("TODO: tính phần trăm")
+        """Trả về phần trăm hoàn thành."""
+        return self.completed / self.total * 100
 
     def __str__(self) -> str:
-        # TODO: trả chuỗi "Progress: 3/4 (75%)" cho Progress(3, 4).
-        raise NotImplementedError("TODO: biểu diễn Progress")
+        """Trả về chuỗi mô tả object, không tự in ra màn hình."""
+        return (
+            f"Progress: {self.completed}/{self.total} "
+            f"({self.percentage():.0f}%)"
+        )
