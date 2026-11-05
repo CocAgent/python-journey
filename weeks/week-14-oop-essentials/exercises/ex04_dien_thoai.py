@@ -5,24 +5,35 @@ Không thay thế NotImplementedError bằng pass: bài chưa hoàn thành phả
 """
 
 
+# Họ tên:
+# MSSV:
+# Lớp:
+
+# Câu a: Tạo lớp DienThoai
 class DienThoai:
-    def __init__(
-        self,
-        ma_may: str,
-        ten_may: str,
-        hang_san_xuat: str,
-        dung_luong_pin: int,
-        gia_ban: int,
-    ) -> None:
-        # TODO: từ chối mã/tên/hãng rỗng; dung_luong_pin <= 0; gia_ban < 0.
-        # TODO: lưu đủ năm thuộc tính với self.
-        raise NotImplementedError("TODO: khởi tạo điện thoại")
+    def __init__(self, MaMay, TenMay, HangSanXuat, DungLuongPin, GiaBan):
+        self.MaMay = MaMay
+        self.TenMay = TenMay
+        self.HangSanXuat = HangSanXuat
+        self.DungLuongPin = DungLuongPin
+        self.GiaBan = GiaBan
 
-    def thongtindienthoai(self) -> str:
-        # TODO: trả chuỗi có đủ 5 trường; lệnh print nằm bên ngoài class.
-        raise NotImplementedError("TODO: tạo chuỗi thông tin điện thoại")
+    def thongtindienthoai(self):
+        print("Mã máy:", self.MaMay)
+        print("Tên máy:", self.TenMay)
+        print("Hãng sản xuất:", self.HangSanXuat)
+        print("Dung lượng pin:", self.DungLuongPin, "mAh")
+        print("Giá bán:", format(self.GiaBan, ",").replace(",", "."), "VNĐ")
 
 
-if __name__ == "__main__":
-    # TODO: tạo DT01 và DT02 theo đề bài rồi gọi print(...).
-    raise NotImplementedError("TODO: tạo hai đối tượng DienThoai")
+# Câu b: Tạo 2 đối tượng điện thoại
+DT01 = DienThoai("DT01", "iPhone 15 Pro", "Apple", 3274, 28990000)
+DT02 = DienThoai("DT02", "Galaxy S24 Ultra", "Samsung", 5000, 29990000)
+
+
+# Gọi phương thức hiển thị thông tin
+print("===== THÔNG TIN ĐIỆN THOẠI 1 =====")
+DT01.thongtindienthoai()
+
+print("\n===== THÔNG TIN ĐIỆN THOẠI 2 =====")
+DT02.thongtindienthoai()
