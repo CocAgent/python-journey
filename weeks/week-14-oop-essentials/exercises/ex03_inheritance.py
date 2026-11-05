@@ -1,17 +1,17 @@
-"""Bài 3: Animal và Dog minh họa quan hệ kế thừa đơn giản."""
+"""Bài 3 — Lời giải: Animal và Dog."""
 
 
 class Animal:
     def __init__(self, name: str) -> None:
-        # TODO: lưu tên đối tượng.
-        raise NotImplementedError("TODO: lưu tên động vật")
+        if not name.strip():
+            raise ValueError("Tên động vật không được để trống")
+        self.name = name
 
 
 class Dog(Animal):
     def speak(self) -> str:
-        # TODO: dùng self.name được kế thừa; trả "Milo: woof".
-        raise NotImplementedError("TODO: tiếng sủa")
+        return f"{self.name}: woof"
 
 
-# Câu hỏi tự luận: vì sao Dog 'là một' Animal?
-# Khi nào việc kế thừa là không cần thiết?
+# Dog là một Animal nên có thể kế thừa thuộc tính name từ Animal.
+# Không nên kế thừa nếu quan hệ giữa hai lớp chỉ là "có một".
