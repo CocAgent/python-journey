@@ -1,28 +1,45 @@
 """Bài 2: thay chiến lược Bot bằng composition thay vì kế thừa."""
 
 
+from collections.abc import Callable
+
+Strategy = Callable[[dict[str, int]], str]
+
+
 class Bot:
-    def __init__(self, strategy) -> None:
-        # TODO: lưu hàm chiến lược vào self.strategy.
-        raise NotImplementedError("TODO: lưu strategy")
+    """Bot quản lý hành vi thông qua việc ủy nhiệm cho strategy (composition)."""
+
+    def __init__(self, strategy: Strategy) -> None:
+        self.strategy = strategy
 
     def choose_action(self, state: dict[str, int]) -> str:
-        # TODO: gọi chính strategy đã nhận, không cố định một hành động.
-        raise NotImplementedError("TODO: ủy nhiệm choose_action")
+        """Ủy quyền quyết định hành động cho chiến lược hiện tại."""
+        return self.strategy(state)
+
+
+def move_toward_goal(state: dict[str, int]) -> str:
+    """Hàm phụ trợ: di chuyển về phía mục tiêu, đứng yên khi đã đến đích."""
+    if state["position"] < state["goal"]:
+        return "right"
+    if state["position"] > state["goal"]:
+        return "left"
+    return "wait"
 
 
 def defensive(state: dict[str, int]) -> str:
     """Đứng yên khi đối thủ ở cách tối đa 1 ô; nếu không thì hướng tới đích."""
-    # TODO: opponent_position có thể không tồn tại.
-    raise NotImplementedError("TODO: chiến lược defensive")
+    opponent = state.get("opponent_position")
+    if opponent is not None and abs(opponent - state["position"]) <= 1:
+        return "wait"
+    return move_toward_goal(state)
 
 
 def balanced(state: dict[str, int]) -> str:
     """Đi về goal ở cả hai chiều; tại goal thì đứng yên."""
-    raise NotImplementedError("TODO: chiến lược balanced")
+    return move_toward_goal(state)
 
 
 def aggressive(state: dict[str, int]) -> str:
     """Trong mô hình 1 chiều cơ bản, vẫn đi về đích như balanced."""
-    # TODO: chưa cần tạo chiến thuật tấn công phức tạp hoặc luật arena.
-    raise NotImplementedError("TODO: chiến lược aggressive")
+    return move_toward_goal(state)
+
