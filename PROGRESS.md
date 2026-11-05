@@ -150,13 +150,13 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 14 — OOP Essentials · Composition · Basic inheritance
 
-- [ ] Tạo class và object
-- [ ] Dùng `__init__`
-- [ ] Viết instance methods
-- [ ] Dùng `__str__`
-- [ ] Biết khi nào class có lợi
-- [ ] Hiểu composition
-- [ ] Chỉ dùng inheritance khi quan hệ mô hình phù hợp
+- [x] Tạo class và object
+- [x] Dùng `__init__`
+- [x] Viết instance methods
+- [x] Dùng `__str__`
+- [x] Biết khi nào class có lợi
+- [x] Hiểu composition
+- [x] Chỉ dùng inheritance khi quan hệ mô hình phù hợp
 
 ---
 

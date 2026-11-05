@@ -1,9 +1,8 @@
-"""Structural readiness check for a learner capstone submission.
+"""Mechanical readiness audit for a learner capstone.
 
-Canonical requirements and the only rubric live in FINAL_PROJECT.md. This check
-reports mechanical evidence — files present, tests collectable, no bare except —
-so a learner can self-audit before handoff. It does not grade design quality and
-it never replaces human review.
+FINAL_PROJECT.md owns requirements and the only rubric. This script checks
+mechanical evidence only. It does not grade design quality, feature quality or
+code understanding, and it intentionally does not impose function/class quotas.
 """
 
 from __future__ import annotations
@@ -15,13 +14,29 @@ import sys
 from pathlib import Path
 
 MIN_TESTS = 5
-MIN_FUNCTIONS = 4
-README_SECTIONS = ("setup", "usage", "test")
+
+README_REQUIREMENTS: dict[str, tuple[str, ...]] = {
+    "problem/scope": ("vấn đề", "phạm vi", "problem", "scope"),
+    "features": ("chức năng", "feature"),
+    "run/setup": ("cài đặt", "setup", "usage", "chạy", "run"),
+    "tests": ("test", "kiểm thử"),
+    "design/structure": ("thiết kế", "design", "cấu trúc", "structure"),
+}
 
 
 def python_files(root: Path) -> list[Path]:
-    """Return project Python files, skipping virtualenvs and caches."""
-    skip = {".venv", "venv", "env", "__pycache__", ".git", "build", "dist"}
+    """Return project Python files, skipping environments and generated dirs."""
+    skip = {
+        ".venv",
+        "venv",
+        "env",
+        "__pycache__",
+        ".git",
+        ".pytest_cache",
+        ".ruff_cache",
+        "build",
+        "dist",
+    }
     return [
         path
         for path in sorted(root.rglob("*.py"))
@@ -29,91 +44,122 @@ def python_files(root: Path) -> list[Path]:
     ]
 
 
-def parse(path: Path) -> ast.Module | None:
-    """Return the parsed module, or None when the file cannot be parsed."""
+def parse_python(path: Path) -> tuple[ast.Module | None, str | None]:
+    """Parse one Python file and preserve a readable syntax/encoding error."""
     try:
-        return ast.parse(path.read_text(encoding="utf-8"))
-    except (SyntaxError, UnicodeDecodeError):
-        return None
+        text = path.read_text(encoding="utf-8")
+        return ast.parse(text), None
+    except (SyntaxError, UnicodeDecodeError) as error:
+        return None, str(error)
 
 
 def check_documents(root: Path) -> list[str]:
-    """Report missing required documents and README sections."""
+    """Report missing core documents and README evidence areas."""
     problems: list[str] = []
     readme = root / "README.md"
+
     if not readme.is_file():
         problems.append("thiếu README.md")
     else:
         text = readme.read_text(encoding="utf-8", errors="replace").lower()
-        missing = [name for name in README_SECTIONS if name not in text]
-        if missing:
-            problems.append(f"README.md chưa nhắc tới: {', '.join(missing)}")
-    if not (root / "AI_USAGE.md").is_file():
+        for label, aliases in README_REQUIREMENTS.items():
+            if not any(alias in text for alias in aliases):
+                problems.append(f"README.md chưa có evidence cho: {label}")
+
+    ai_usage = root / "AI_USAGE.md"
+    if not ai_usage.is_file():
         problems.append("thiếu AI_USAGE.md")
+    elif not ai_usage.read_text(encoding="utf-8", errors="replace").strip():
+        problems.append("AI_USAGE.md đang rỗng")
+
     return problems
 
 
-def check_decomposition(files: list[Path]) -> list[str]:
-    """Report too few functions across the project."""
-    total = 0
+def check_source_and_syntax(files: list[Path]) -> list[str]:
+    """Require Python source and report every file that cannot be parsed."""
+    if not files:
+        return ["không tìm thấy Python source (*.py)"]
+
+    problems: list[str] = []
     for path in files:
-        tree = parse(path)
-        if tree is None:
-            continue
-        total += sum(
-            isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef)
-            for node in ast.walk(tree)
-        )
-    if total < MIN_FUNCTIONS:
-        return [f"chỉ tìm thấy {total} hàm, cần >= {MIN_FUNCTIONS}"]
-    return []
+        _tree, error = parse_python(path)
+        if error is not None:
+            problems.append(f"syntax/encoding lỗi tại {path}: {error}")
+    return problems
 
 
 def check_bare_except(files: list[Path]) -> list[str]:
-    """Report every bare except clause, which the course forbids."""
+    """Report bare except clauses forbidden by the canonical capstone spec."""
     problems: list[str] = []
     for path in files:
-        tree = parse(path)
-        if tree is None:
+        tree, error = parse_python(path)
+        if tree is None or error is not None:
             continue
         for node in ast.walk(tree):
             if isinstance(node, ast.ExceptHandler) and node.type is None:
-                problems.append(f"bare except tại {path.name}:{node.lineno}")
+                problems.append(f"bare except tại {path}:{node.lineno}")
     return problems
 
 
-def check_tests(root: Path, files: list[Path]) -> list[str]:
-    """Report a shortfall of test functions and any collection failure."""
-    problems: list[str] = []
-    test_functions = 0
-    test_files = [path for path in files if path.name.startswith("test_")]
+def test_files_and_count(files: list[Path]) -> tuple[list[Path], int]:
+    """Return test modules and the number of test functions."""
+    test_files = [
+        path
+        for path in files
+        if path.name.startswith("test_") or path.name.endswith("_test.py")
+    ]
+    count = 0
+
     for path in test_files:
-        tree = parse(path)
-        if tree is None:
+        tree, error = parse_python(path)
+        if tree is None or error is not None:
             continue
-        test_functions += sum(
-            isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef)
+        count += sum(
+            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
             and node.name.startswith("test_")
             for node in ast.walk(tree)
         )
+
+    return test_files, count
+
+
+def run_pytest(root: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
+    """Run pytest in the learner project."""
+    return subprocess.run(
+        [sys.executable, "-m", "pytest", *args],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+def check_tests(root: Path, files: list[Path], run_tests: bool) -> list[str]:
+    """Check test count, collection, and optionally execute the test suite."""
+    problems: list[str] = []
+    test_files, test_functions = test_files_and_count(files)
+
     if test_functions < MIN_TESTS:
         problems.append(f"chỉ tìm thấy {test_functions} test, cần >= {MIN_TESTS}")
 
-    if test_files:
-        collected = subprocess.run(
-            [sys.executable, "-m", "pytest", "--collect-only", "-q"],
-            cwd=root,
-            capture_output=True,
-            text=True,
-        )
-        if collected.returncode != 0:
-            problems.append("pytest không collect được test (xem lỗi import/syntax)")
+    if not test_files:
+        return problems
+
+    collected = run_pytest(root, ["--collect-only", "-q"])
+    if collected.returncode != 0:
+        problems.append("pytest không collect được test (xem lỗi import/syntax)")
+        return problems
+
+    if run_tests:
+        executed = run_pytest(root, ["-q"])
+        if executed.returncode != 0:
+            problems.append("pytest chạy nhưng test suite chưa PASS")
+
     return problems
 
 
 def main() -> int:
     """Audit a capstone directory and return a process exit code."""
-    # Console mặc định trên Windows không in được tiếng Việt.
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -122,6 +168,11 @@ def main() -> int:
         "project",
         type=Path,
         help="đường dẫn tới thư mục capstone của bạn",
+    )
+    parser.add_argument(
+        "--run-tests",
+        action="store_true",
+        help="chạy pytest thật; chỉ dùng với project/code bạn tin cậy",
     )
     args = parser.parse_args()
 
@@ -133,9 +184,9 @@ def main() -> int:
     files = python_files(root)
     problems = [
         *check_documents(root),
-        *check_decomposition(files),
+        *check_source_and_syntax(files),
         *check_bare_except(files),
-        *check_tests(root, files),
+        *check_tests(root, files, args.run_tests),
     ]
 
     if problems:
@@ -146,7 +197,11 @@ def main() -> int:
         return 1
 
     print("Week 15 capstone readiness: PASS")
-    print("Mechanical evidence đủ. Rubric và review do người chấm quyết định.")
+    if args.run_tests:
+        print("Mechanical evidence đủ và test suite PASS.")
+    else:
+        print("Mechanical evidence đủ; dùng --run-tests để chạy test suite.")
+    print("Rubric và review chất lượng vẫn do FINAL_PROJECT.md/người chấm quyết định.")
     return 0
 
 
