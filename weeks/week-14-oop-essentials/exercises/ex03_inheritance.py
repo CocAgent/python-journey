@@ -3,15 +3,15 @@
 
 class Animal:
     def __init__(self, name: str) -> None:
-        # TODO: lưu tên đối tượng.
-        raise NotImplementedError("TODO: lưu tên động vật")
+        self.name = name
 
 
 class Dog(Animal):
     def speak(self) -> str:
-        # TODO: dùng self.name được kế thừa; trả "Milo: woof".
-        raise NotImplementedError("TODO: tiếng sủa")
+        # Dog kế thừa thuộc tính name từ Animal.
+        return f"{self.name}: woof"
 
 
-# Câu hỏi tự luận: vì sao Dog 'là một' Animal?
-# Khi nào việc kế thừa là không cần thiết?
+# Dog là một Animal vì chó là một loại động vật.
+# Kế thừa không cần thiết khi hai lớp không có quan hệ "là một"
+# hoặc khi chỉ muốn tái sử dụng một vài hành vi không cùng bản chất.
