@@ -169,3 +169,29 @@ Với mỗi bài:
 3. thử normal case và boundary case;
 4. đọc lỗi, xác định bước sai và sửa;
 5. chạy lại rồi commit bằng chứng.
+
+## 10. Sổ tay dự đoán và kiểm thực chất hàm
+
+Trong [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md), hãy tự đoán
+`print` và giá trị `return` *khác nhau ra sao*,
+theo dấu một khoản tiền qua nhiều hàm nhỏ,
+và thấy rằng type annotation không ngăn `bool`
+lọt vào một tham số được khai báo `int`.
+
+Tiếp theo tự viết [4 lab tương tự](practice/README.md):
+chương trình mẫu ở `practice/solutions/` chỉ được xem
+**sau khi tự làm và chạy `--starter`**.
+
+Bộ checker mới dùng Python standard library **gọi trực tiếp**
+các hàm, không chỉ so output terminal. Đây là bài đệm trước
+kỹ thuật `pytest` Week12.
+
+**Lưu ý số tiền:** với ứng dụng tài chính thực cần quy tắc
+làm tròn rõ và kiểu số phù hợp. Một số ví dụ cơ bản Week07
+dùng `float` để minh họa `return`; lab tương tự dùng
+**số nguyên VND** và quy ước làm tròn xuống khi giảm giá,
+không tự nhận là nghiệp vụ thanh toán chuẩn.
+
+**Decision function course-local** chỉ minh họa
+`input → action`, không phải giao diện chính thức của
+VuaCóc và không gọi mạng hoặc điều khiển bot production.

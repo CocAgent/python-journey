@@ -42,3 +42,20 @@ Bạn có thể dùng state của riêng mình. Nếu dùng bot state, đó ch�
 COURSE TEACHING MODEL
 NOT VUACOC PRODUCTION CONTRACT
 ```
+
+## Bài đệm trước Decision Dashboard
+
+Để tránh nhầm `dict.get` với validation hoặc `set` với
+list có thứ tự, hãy xem [3 ví dụ có giải thích](../WORKED-EXAMPLES.md)
+và tự hoàn thiện [4 bài tương tự](../practice/README.md).
+Khi quay lại Dashboard, hãy vẽ:
+
+```text
+Required fields → Valid? → Summarize → Recommend → Explain
+```
+
+Với input không hợp lệ, đừng in một recommendation như thể
+schema đã được xác nhận. Các action và vị trí chỉ là
+**teaching model course-local**, không thuộc production VuaCóc.
+
+Bộ bổ sung không thay yêu cầu hoàn thành và thang điểm hiện hành.

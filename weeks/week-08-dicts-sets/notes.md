@@ -164,3 +164,29 @@ Với mỗi model:
 3. thử normal case, boundary case và key tùy chọn bị thiếu;
 4. kiểm tra output, sửa model hoặc behavior nếu cần;
 5. giải thích decision rồi commit evidence.
+
+## 10. Bài luyện có giải thích để chuẩn bị Week 09
+
+Xem [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) để dự đoán kết quả
+`dict.get`, so sánh set và đọc nested state từng tầng trước khi
+tự hoàn thiện [4 lab tương tự](practice/README.md).
+
+**Ba điểm cần hiểu kỹ:**
+
+- `dict.get("optional", default)` dùng cho **field tùy chọn**;
+  không biến key bắt buộc thiếu thành dữ liệu hợp lệ.
+- `{ }` là **dict rỗng**, không phải set rỗng: dùng `set()`.
+  Phép set không bảo đảm thứ tự duyệt, và loại trùng làm mất thông
+  tin về số lần xuất hiện. Dùng list nếu thứ tự quan trọng, dict
+  nếu cần tần suất.
+- `dict.copy()` sao chép **một lớp**. Khi value là nested mutable
+  object, không coi copy là bản sao sâu. Với field số/str trong
+  các bài đơn giản, shallow copy phù hợp.
+
+**Runtime schema:** type hints không tự validate. Field bắt buộc
+thiếu cần được từ chối, optional field sai kiểu cũng phải bị
+từ chối. `bool` là subtype của `int`; khi yêu cầu số nguyên
+không phải bool, có thể dùng `type(value) is int`.
+
+Bot state và action là **mô hình học lập trình course-local**,
+không phải hợp đồng API hoặc runtime VuaCóc.

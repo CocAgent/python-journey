@@ -45,6 +45,45 @@ README → notes → examples → exercises → hints
        → machine checks → mini-project → evidence
 ```
 
+## Xem ví dụ → dự đoán return → tự viết function
+
+Đọc [**WORKED-EXAMPLES.md**](WORKED-EXAMPLES.md) để luyện
+**Dự đoán → Chạy → Giải thích → Thử lỗi → Chuyển bài toán → Kiểm chứng**:
+
+| Ví dụ mới | Kỹ năng | Sai lầm cần phát hiện |
+|---|---|---|
+| `06_predict_return_and_default.py` | `return` vs `print`, default, early return | Caller nhận `None` dù terminal đã in đúng |
+| `07_scope_and_decomposition_trace.py` | validate → calculate → format, local scope | Copy logic và phụ thuộc global state |
+| `08_type_hints_and_decision.py` | type hints vs runtime guard, decision function | Nhầm `int` annotation với xác thực input |
+
+Chạy từ thư mục gốc repository:
+
+```bash
+python weeks/week-07-functions/examples/06_predict_return_and_default.py
+python weeks/week-07-functions/examples/07_scope_and_decomposition_trace.py
+python weeks/week-07-functions/examples/08_type_hints_and_decision.py
+```
+
+Tiếp đó tự làm [**4 bài tương tự**](practice/README.md):
+tính tiền bằng `return`, phân rã hóa đơn, quản lý ghi chú qua
+parameter và decision function được kiểm dữ liệu trước.
+`practice/starter/` chứa TODO; `practice/solutions/`
+chỉ mở để đối chiếu sau khi đã tự làm.
+
+```bash
+# Kiểm TRỰC TIẾP giá trị hàm trong code người học
+python weeks/week-07-functions/practice/checks/check_practice.py --starter
+
+# Chỉ kiểm lời giải mẫu, không thay kết quả code của sinh viên
+python weeks/week-07-functions/practice/checks/check_practice.py --solutions
+```
+
+**Starter chưa hoàn thiện phải FAIL (0/4)**. Checker mới kiểm
+giá trị `return`, input hợp lệ/không hợp lệ, local state và
+việc hàm lớn **gọi lại hàm nhỏ**; chỉ in sẵn một dòng kết quả
+không đủ để PASS. Bộ này tự chọn và không thay 4 bài
+trong `exercises/`, Utility Toolkit hay rubric gốc.
+
 ## Checklist
 
 - [ ] Tôi dùng `return` đúng.

@@ -6,7 +6,7 @@ có contract rõ.
 
 ## Yêu cầu
 
-Hoàn thành [`starter.py`](starter.py) với ít nhất năm functions:
+Hoàn thành [`starter.py`](starter.py) theo năm function gợi ý sau:
 
 1. `calculate_subtotal(price, quantity)` tính tạm tính;
 2. `calculate_discount(subtotal, percent=0)` tính tiền giảm;
@@ -23,7 +23,7 @@ price + quantity → subtotal → discount → final total → formatted output
 
 ## Constraints
 
-- Có ít nhất 4 functions nhỏ; starter đề xuất 5 functions.
+- Có ít nhất 4 functions nhỏ theo constraints hiện hành; starter đề xuất đủ 5 functions như danh sách trên.
 - Có basic type hints cho parameters và return values.
 - Không dùng global state không cần thiết.
 - Mỗi function làm một việc.
@@ -49,3 +49,16 @@ full solution để bạn tự thiết kế luồng cuối cùng.
 - Chụp hoặc lưu output của một lần chạy thành công.
 - Ghi lại một bug và cách bạn tìm ra bước gây lỗi.
 - Commit với message, ví dụ: `feat: complete week 07 utility toolkit`.
+
+## Bài đệm trước khi tự thiết kế Toolkit
+
+Nếu còn nhầm `return` với `print` hoặc chưa biết chia
+hóa đơn thành nhiều hàm nhỏ, hãy làm
+[Ví dụ 06–08](../WORKED-EXAMPLES.md) và
+[Lab 01–04](../practice/README.md). Bộ lab tự kiểm
+`return` và decomposition trực tiếp, không chỉ đọc
+dòng kết quả in trên terminal.
+
+Mốc 4 hàm trong constraints là mức tối thiểu hiện có;
+5 hàm là phương án thiết kế gợi ý cho starter. Không
+thay rubric hoặc tăng điều kiện hoàn thành dự án.

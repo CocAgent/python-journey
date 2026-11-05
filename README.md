@@ -247,6 +247,15 @@ weeks/week-01-hello-python/
 - [`STYLE_GUIDE.md`](STYLE_GUIDE.md) — quy tắc viết code.
 - [`FINAL_PROJECT.md`](FINAL_PROJECT.md) — yêu cầu capstone chính thức.
 
+## Học cùng AI và chú thích tiếng Việt
+
+- [Học Python với AI nhưng vẫn tự giải thích và kiểm chứng](docs/HOC_PYTHON_VOI_AI.md)
+- [Quy ước docstring và comment tiếng Việt](docs/QUY_UOC_CHU_THICH_TIENG_VIET.md)
+
+**Lưu ý về kết quả PASS:** Các lệnh `check_solutions.py` ở nhiều tuần kiểm tra lời giải mẫu của khóa, không chấm trực tiếp code sinh viên. Hãy chạy chương trình của chính mình và tự đối chiếu ít nhất một trường hợp bình thường, một trường hợp biên.
+
+---
+
 ## Câu chuyện mở đầu tùy chọn
 
 - [Giới thiệu Python qua câu chuyện Cóc và Dế](assets/Story-00-Giới%20thiệu%20Python.md)
@@ -257,3 +266,13 @@ weeks/week-01-hello-python/
 ---
 
 > **Learn it. Build it. Test it. Understand it. Improve it.**
+
+---
+
+## Ôn tập tổng hợp Week 01–11 (tự chọn)
+
+[**Bộ ôn tập Python Journey**](review/README.md) gồm kế hoạch bốn buổi,
+16 câu hỏi dự đoán, ba bài thực hành tích hợp có starter/solutions riêng,
+máy tự kiểm `--starter` và hướng dẫn sử dụng trên máy học từ xa.
+Bộ này không thay syllabus, rubric hoặc bài tập của từng tuần.
+

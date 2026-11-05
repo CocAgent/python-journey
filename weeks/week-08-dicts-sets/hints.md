@@ -71,3 +71,26 @@ Set phù hợp cho tags và membership; dict phù hợp cho field có tên.
 ### Hint 3
 
 Giải thích recommendation bằng chính field mà rule đã đọc.
+
+## Gợi ý — bốn lab bổ sung trước Week 09
+
+Đọc [sổ tay chi tiết](WORKED-EXAMPLES.md) và
+[practice/README.md](practice/README.md) trước khi xem reference.
+
+- **Lab 01 — Dictionary:** vòng `for` trên `text.lower().split()`;
+  `counts[word] = counts.get(word, 0) + 1`. Khi cập nhật điểm,
+  kiểm 0..10, dùng `scores.copy()`, đừng sửa dict gốc.
+- **Lab 02 — Nested learner:** yêu cầu `name` và `scores`
+  thực sự hợp lệ; `progress` có thể vắng mặt, nhưng nếu
+  có thì phải là dict; `week` nếu có cần int 1..15.
+  Đừng chia trung bình cho số lượng 0.
+- **Lab 03 — Set:** giao `&`, hợp `|`, hiệu `-`.
+  Để giữ thứ tự đầu tiên, dùng `seen: set` và
+  `result: list`, không dùng `list(set(items))`.
+- **Lab 04 — State:** kiểm key bắt buộc `position`, `goal`,
+  giới hạn 0..4; đối thủ optional nhưng nếu có phải đúng kiểu.
+  Invalid → `wait` fallback, **giải thích là invalid**;
+  đừng đánh tráo thành quyết định bình thường.
+
+Máy kiểm `--starter` gọi hàm sinh viên với các trường hợp
+thường/biên/sai; `--solutions` chỉ kiểm reference.

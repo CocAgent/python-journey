@@ -127,8 +127,8 @@ Viết code kiểm tra một từ có phải palindrome không
 ### Bài 3 — Đếm từ trong câu (Trung bình)
 ```
 Nhập câu: Python là ngôn ngữ lập trình tuyệt vời
-Số từ: 8
-Từ dài nhất: lập (3 ký tự) -> từ này sai, bài toán thú vị hơn
+Số từ: 8 (khi tách đơn giản bằng split())
+Từ dài nhất: Python (6 ký tự)
 Ký tự đầu mỗi từ: P l n n l t t v
 ```
 
@@ -159,3 +159,19 @@ print(valid)
 
 Prefix `r` tạo raw string để dấu `\` trong regex dễ đọc hơn. Các pattern này là
 mini-lab đơn giản, không phải chuẩn validation phổ quát.
+
+## 7. Dự đoán trước khi chạy — ba ví dụ có minh họa lỗi
+
+Đọc [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) rồi chạy ví dụ 04–06
+để thấy: vì sao index 99 lỗi nhưng slice `[:99]` không lỗi;
+vì sao `str.count("python")` đếm cả `pythonic`; và vì sao
+`re.search` không dùng để xác nhận *toàn bộ* mã hợp lệ.
+
+Khi đã giải thích được, làm [ba bài tương tự](practice/README.md),
+tự kiểm `--starter` và chỉ sau đó đối chiếu `--solutions`.
+
+**Giới hạn:** `len()`, indexing và slicing thao tác theo ký tự Unicode
+(code point) trong Python, có thể khác cách con người nhìn một chữ có
+dấu kết hợp; `split()` không tự phân tách ngữ nghĩa tiếng Việt và
+regex trong khóa học chỉ minh họa pattern, không phải kiểm tra dữ liệu
+sản xuất.

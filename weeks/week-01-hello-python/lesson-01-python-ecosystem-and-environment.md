@@ -53,7 +53,10 @@ Các tầng không thay thế lẫn nhau:
 - **GitHub** lưu repository và hỗ trợ cộng tác.
 - **Colab/Kaggle** cung cấp runtime trên cloud.
 - **Conda** quản lý package và environment.
-- **Codex** hỗ trợ công việc lập trình.
+- **Codex/Google Antigravity** có thể giúp đọc code, đề xuất sửa và
+  chạy kiểm tra trong môi trường/chế độ được cấp quyền.
+- **ChatGPT kết nối GitHub** hỗ trợ đọc, tìm và phân tích repository
+  đã được người dùng cho phép; việc kết nối không tự động push code.
 > **Understand the tool before installing the tool.**
 ## 2. Hai con đường công cụ
 ### STANDARD PATH — bắt buộc
@@ -90,6 +93,8 @@ Colab
 Kaggle
 Anaconda / Miniconda
 Codex
+Google Antigravity
+ChatGPT + GitHub (kết nối tự chọn)
 ```
 Bạn không cần cài tất cả trong Week 01. Công cụ tùy chọn chỉ nên được thêm khi
 bài toán cần notebook, dataset, scientific package, cloud runtime hoặc hỗ trợ AI.
@@ -280,8 +285,9 @@ Codex có thể hỗ trợ:
 - chạy test và đọc kết quả;
 - review diff;
 - hỗ trợ refactor có kiểm soát.
-Codex không phải Python interpreter, compiler, Git hoặc sự thay thế cho hiểu biết
-của người học.
+Codex hoặc Antigravity không phải Python interpreter, compiler, Git hay
+sự thay thế cho hiểu biết của người học. Nếu dùng ChatGPT với GitHub,
+việc cấp quyền đọc repository cũng khác với quyền viết hoặc merge code.
 
 ```text
 AI = tutor + reviewer + pair programmer
@@ -289,6 +295,18 @@ AI != replacement for understanding
 ```
 Cách dùng tốt là yêu cầu giải thích, gợi ý, review và kiểm chứng. Không nộp code
 do AI tạo ra nếu bạn không thể giải thích và tự kiểm tra nó.
+### AI hỗ trợ trong Tuần 01 (tự chọn)
+
+Có thể tìm hiểu hai quy trình minh họa, nhưng **không cần cài**
+để hoàn thành bài học:
+
+- [Google Antigravity: mở repo local, nhờ agent gợi ý, xem diff và chạy code](optional-tools/google-antigravity.md).
+- [Kết nối GitHub với ChatGPT: cấp quyền repo, hỏi về code và bảo vệ dữ liệu](optional-tools/chatgpt-github.md).
+
+Ba nguyên tắc: **không đưa token/mật khẩu lên chat**, **không để agent
+tự push/merge**, **tự chạy mã để kiểm chứng**. Đây là tùy chọn,
+không thay đổi standard path trong [SETUP.md](../../SETUP.md).
+
 ## 10. Chọn công cụ theo nhu cầu
 
 | Tôi muốn... | Công cụ phù hợp |
@@ -301,7 +319,8 @@ do AI tạo ra nếu bạn không thể giải thích và tự kiểm tra nó.
 | Mở notebook nhanh trên cloud | Colab |
 | Làm việc với dataset/ML/competition | Kaggle |
 | Quản lý scientific environment bằng conda | Miniconda hoặc Anaconda |
-| Nhờ AI đọc, review và test repository | Codex |
+| Nhờ AI đọc, review và test repository | Codex hoặc Google Antigravity (tự chọn) |
+| Giải thích repository đã cấp quyền trong ChatGPT | ChatGPT + GitHub (tự chọn) |
 Môi trường tốt không phải môi trường có nhiều công cụ nhất:
 
 ```text
@@ -422,7 +441,9 @@ Python
 │   └── Kaggle
 │
 └── AI-assisted development — optional
-    └── Codex
+    ├── Codex
+    ├── Google Antigravity
+    └── ChatGPT + GitHub (read/research, tùy quyền)
 ```
 ## Kết quả đầu ra
 

@@ -15,3 +15,12 @@ Chạy:
 ```bash
 python weeks/week-02-variables-types/mini-project/starter.py
 ```
+
+## Trước khi làm — thử bài tương tự nhỏ hơn
+
+Nếu chưa biết tách `input() → conversion → processing → output`,
+hãy xem [ví dụ 04–06 có giải thích](../WORKED-EXAMPLES.md)
+và [Lab 03 — bán vé](../practice/README.md).
+Thẻ sinh viên sử dụng một dạng dữ liệu khác: số năm thay cho số vé.
+Khi đã hoàn thành, thử nhập năm `abc` và giải thích vì sao chương
+trình không nên tính năm tốt nghiệp từ chuỗi chữ.
