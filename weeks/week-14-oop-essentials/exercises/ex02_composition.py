@@ -1,28 +1,43 @@
-"""Bài 2: thay chiến lược Bot bằng composition thay vì kế thừa."""
-
+# Bài 2: Composition - Bot sử dụng strategy
 
 class Bot:
-    def __init__(self, strategy) -> None:
-        # TODO: lưu hàm chiến lược vào self.strategy.
-        raise NotImplementedError("TODO: lưu strategy")
+    def __init__(self, strategy):
+        self.strategy = strategy
 
-    def choose_action(self, state: dict[str, int]) -> str:
-        # TODO: gọi chính strategy đã nhận, không cố định một hành động.
-        raise NotImplementedError("TODO: ủy nhiệm choose_action")
+    def choose_action(self, state):
+        return self.strategy(state)
 
 
-def defensive(state: dict[str, int]) -> str:
-    """Đứng yên khi đối thủ ở cách tối đa 1 ô; nếu không thì hướng tới đích."""
-    # TODO: opponent_position có thể không tồn tại.
-    raise NotImplementedError("TODO: chiến lược defensive")
+def di_ve_dich(state):
+    if state["position"] < state["goal"]:
+        return "right"
+    if state["position"] > state["goal"]:
+        return "left"
+    return "wait"
 
 
-def balanced(state: dict[str, int]) -> str:
-    """Đi về goal ở cả hai chiều; tại goal thì đứng yên."""
-    raise NotImplementedError("TODO: chiến lược balanced")
+def defensive(state):
+    doi_thu = state.get("opponent_position")
+    if doi_thu is not None and abs(doi_thu - state["position"]) <= 1:
+        return "wait"
+    return di_ve_dich(state)
 
 
-def aggressive(state: dict[str, int]) -> str:
-    """Trong mô hình 1 chiều cơ bản, vẫn đi về đích như balanced."""
-    # TODO: chưa cần tạo chiến thuật tấn công phức tạp hoặc luật arena.
-    raise NotImplementedError("TODO: chiến lược aggressive")
+def balanced(state):
+    return di_ve_dich(state)
+
+
+def aggressive(state):
+    return di_ve_dich(state)
+
+
+# Thử thay đổi chiến lược mà không sửa class Bot
+trang_thai = {"position": 1, "opponent_position": 4, "goal": 4}
+bot = Bot(defensive)
+print("Phòng thủ:", bot.choose_action(trang_thai))
+
+bot.strategy = balanced
+print("Cân bằng:", bot.choose_action(trang_thai))
+
+bot.strategy = aggressive
+print("Tấn công:", bot.choose_action(trang_thai))
