@@ -1,29 +1,23 @@
-# Kiểm tra Tuần 14 — Hai phạm vi riêng
+# Kiểm tra Tuần 14
 
-**1. Bài tập của sinh viên** (đây mới là lệnh kiểm tra mã của bạn):
+Chạy các lệnh từ thư mục gốc repository. Yêu cầu Python 3.12+ và pytest.
 
-```bash
-python weeks/week-14-oop-essentials/checks/check_student.py
-```
+## 1. Kiểm tra bốn bài tập
 
-Chạy `learner_tests/test_exercises.py` trên mã ở `exercises/`.
-Starter chưa làm **báo FAIL đúng thiết kế**. Khi hoàn thành đúng, test cần PASS;
-giảng viên vẫn phải đánh giá giải thích và chất lượng bài làm.
+    python weeks/week-14-oop-essentials/checks/check_student.py
 
-**2. Lời giải tham chiếu và ví dụ** (chỉ để kiểm tra chất lượng giáo trình):
+Lệnh này chạy learner_tests trên các tệp trong exercises/.
 
-```bash
-python weeks/week-14-oop-essentials/checks/check_week.py
-```
+## 2. Kiểm tra lời giải tham khảo và ví dụ
 
-Lệnh này chạy `tests/` với `solutions/` và các ví dụ. Kết quả PASS
-**không chứng minh bài sinh viên đúng**.
+    python weeks/week-14-oop-essentials/checks/check_week.py
 
-**3. Ví dụ Bot nhiều module**
+Lệnh này chạy tests/ với solutions/ và ví dụ Bot nhiều module. Đây là bộ test
+riêng, không thay thế việc đọc hiểu lời giải.
 
-```bash
-python -m pytest weeks/week-14-oop-essentials/examples/test_oop_team.py -q
-```
+## 3. Chạy riêng ví dụ Bot nhiều module
 
-Không thay đổi tên tệp bài tập chỉ để chạy check. Tất cả lệnh cần thực thi
-ở thư mục gốc repository; yêu cầu Python 3.12+ và pytest.
+    python -m pytest weeks/week-14-oop-essentials/examples/test_oop_team.py -q
+
+Kết quả PASS cho biết các test tự động đã chạy thành công. Hãy tự chạy lại,
+đọc test và giải thích được vì sao từng kết quả được mong đợi.
