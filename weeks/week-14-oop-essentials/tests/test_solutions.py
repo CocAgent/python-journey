@@ -1,6 +1,13 @@
 """Kiểm thử lời giải tham khảo; không dùng để chấm exercises/."""
 
+import sys
+from pathlib import Path
+
 import pytest
+
+WEEK_ROOT = Path(__file__).resolve().parents[1]
+if str(WEEK_ROOT) not in sys.path:
+    sys.path.insert(0, str(WEEK_ROOT))
 
 from solutions.ex01_classes import Progress
 from solutions.ex02_composition import Bot, aggressive, balanced, defensive
