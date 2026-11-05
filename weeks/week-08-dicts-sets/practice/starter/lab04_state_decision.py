@@ -1,9 +1,6 @@
-"""Lab 04 — Dict state -> guarded heuristic, COURSE-LOCAL ONLY.
+"""Reference 04 — structured state and deterministic heuristic.
 
-NOT VUACOC PRODUCTION CONTRACT.
-state yêu cầu position và goal là int trong [0..4]; opponent_position
-là optional int [0..4]. Data sai -> validate False, action "wait",
-mô tả "State không hợp lệ" (không nhận đó là quyết định bình thường).
+COURSE TEACHING MODEL — NOT VUACOC PRODUCTION CONTRACT.
 """
 
 
@@ -11,27 +8,42 @@ ACTIONS = {"left", "right", "wait"}
 
 
 def validate_state(state: dict[str, object]) -> bool:
-    """Kiểm keys bắt buộc, kiểu int (không bool), giới hạn 0..4."""
-    # TODO: position và goal phải tồn tại; đúng type và range.
-    # TODO: opponent_position nếu có phải là int 0..4; nếu vắng mặt thì OK.
-    raise NotImplementedError("Hoàn thành validate_state")
+    """Validate mandatory keys and optional opponent, each within 0..4."""
+    if not isinstance(state, dict):
+        return False
+    for key in ("position", "goal"):
+        if key not in state or type(state[key]) is not int or not 0 <= state[key] <= 4:
+            return False
+    if "opponent_position" in state:
+        opponent = state["opponent_position"]
+        if type(opponent) is not int or not 0 <= opponent <= 4:
+            return False
+    return True
 
 
 def choose_action(state: dict[str, object]) -> str:
-    """Trả action thuộc ACTIONS, không sửa state; invalid -> wait."""
-    # TODO: gọi validate_state trước; invalid hoặc đã tại goal -> wait.
-    # TODO: nếu đối thủ cách <=1 vị trí -> wait.
-    # TODO: chưa đạt goal thì đi right/left phù hợp.
-    raise NotImplementedError("Hoàn thành choose_action")
+    """Legal fallback for invalid data is wait; explanation distinguishes invalid."""
+    if not validate_state(state):
+        return "wait"
+    position = state["position"]
+    goal = state["goal"]
+    opponent = state.get("opponent_position")
+    if position == goal:
+        return "wait"
+    if opponent is not None and abs(position - opponent) <= 1:
+        return "wait"
+    if position < goal:
+        return "right"
+    return "left"
 
 
 def explain_decision(state: dict[str, object]) -> str:
-    """Trả thông báo rõ nếu invalid; otherwise giải thích position/goal/action."""
-    # TODO: invalid -> "State không hợp lệ".
-    # TODO: gọi choose_action(state) và trả:
-    # f"position={position}, goal={goal}, action={action}"
-    raise NotImplementedError("Hoàn thành explain_decision")
+    """Use a separate validation status to avoid claiming invalid state is fine."""
+    if not validate_state(state):
+        return "State không hợp lệ"
+    action = choose_action(state)
+    return f"position={state['position']}, goal={state['goal']}, action={action}"
 
 
 if __name__ == "__main__":
-    print("COURSE TEACHING MODEL — NOT VUACOC PRODUCTION CONTRACT")
+    print(explain_decision({"position": 1, "goal": 4, "opponent_position": 3}))

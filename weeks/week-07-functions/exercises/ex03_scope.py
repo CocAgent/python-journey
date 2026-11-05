@@ -3,8 +3,8 @@
 Goal:
     Truyền dữ liệu qua parameter thay vì để hàm phụ thuộc vào biến global.
 
-TODO:
-    1. Hoàn thành ``them_ghi_chu``.
+Covered functions:
+    1. Implemented ``them_ghi_chu``.
     2. Hoàn thành ``tim_ghi_chu``.
     3. Hoàn thành ``dem_ghi_chu``.
 
@@ -26,21 +26,36 @@ Self-check command:
 
 def them_ghi_chu(danh_sach: list[str], noi_dung: str) -> bool:
     """Thêm ghi chú hợp lệ và báo thao tác có thành công hay không."""
-    # TODO: Bỏ khoảng trắng hai đầu, từ chối nội dung rỗng, rồi append.
-    raise NotImplementedError("Hoàn thành hàm them_ghi_chu")
+    ghi_chu = noi_dung.strip()
+    if not ghi_chu:
+        return False
+    danh_sach.append(ghi_chu)
+    return True
 
 
 def tim_ghi_chu(danh_sach: list[str], tu_khoa: str) -> list[str]:
     """Trả về các ghi chú chứa từ khóa, không phân biệt hoa thường."""
-    # TODO: Tạo một result local rồi return result.
-    raise NotImplementedError("Hoàn thành hàm tim_ghi_chu")
+    tu_khoa_thuong = tu_khoa.lower()
+    ket_qua: list[str] = []
+    for ghi_chu in danh_sach:
+        if tu_khoa_thuong in ghi_chu.lower():
+            ket_qua.append(ghi_chu)
+    return ket_qua
 
 
 def dem_ghi_chu(danh_sach: list[str]) -> int:
     """Trả về số ghi chú trong list được truyền vào."""
-    # TODO: Không đọc một biến global.
-    raise NotImplementedError("Hoàn thành hàm dem_ghi_chu")
+    return len(danh_sach)
+
+
+def main() -> None:
+    """Chạy ví dụ với state local."""
+    ghi_chu_cua_toi: list[str] = []
+    them_ghi_chu(ghi_chu_cua_toi, "Học return")
+    them_ghi_chu(ghi_chu_cua_toi, "Luyện scope")
+    print(tim_ghi_chu(ghi_chu_cua_toi, "scope"))
+    print(f"Số ghi chú: {dem_ghi_chu(ghi_chu_cua_toi)}")
 
 
 if __name__ == "__main__":
-    print("Hoàn thành TODO và thử các hàm với một list local trong main.")
+    main()

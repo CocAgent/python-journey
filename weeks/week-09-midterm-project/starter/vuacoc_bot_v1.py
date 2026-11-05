@@ -1,38 +1,58 @@
-"""Starter for the course-local VuaCóc Bot V1 midterm track."""
+"""Course-local VuaCóc Bot V1 teaching model; not a production contract."""
 
 LOCAL_ACTIONS = {"left", "right", "wait"}
 
 
 def choose_action(state: dict[str, int]) -> str:
-    """Return a safe action while the learner implements 2–4 rules."""
-    # TODO: read position, goal and optional opponent_position.
-    # TODO: handle the goal boundary before movement rules.
-    # TODO: return only left, right or wait.
+    """Choose a legal action from structured course-local state."""
+    position = state.get("position", 0)
+    goal = state.get("goal", position)
+    min_position = state.get("min_position", 0)
+    max_position = state.get("max_position", goal)
+    opponent_position = state.get("opponent_position")
+
+    # Rule 1: do not move after reaching the goal or beyond the board.
+    if position == goal:
+        return "wait"
+    if position < min_position or position > max_position:
+        return "wait"
+
+    # Rule 2: avoid moving into a position occupied by the opponent.
+    next_position = position + 1 if position < goal else position - 1
+    if opponent_position is not None and next_position == opponent_position:
+        return "wait"
+
+    # Rule 3: otherwise move one step toward the goal.
+    if position < goal:
+        return "right"
+    if position > goal:
+        return "left"
     return "wait"
 
 
 def explain_action(state: dict[str, int], action: str) -> str:
-    """Explain which observed state values led to an action."""
-    # TODO: improve this explanation with the fields your rules use.
-    return f"state={state}, action={action}"
+    """Explain the chosen action using observed state fields."""
+    position = state.get("position", 0)
+    goal = state.get("goal", position)
+    opponent = state.get("opponent_position")
+    return (
+        f"position={position}, goal={goal}, opponent_position={opponent}; "
+        f"chosen action={action}"
+    )
 
 
 def main() -> None:
-    """Smoke-test one structured course-local state."""
-    state = {
-        "turn": 1,
-        "max_turns": 6,
-        "position": 0,
-        "opponent_position": 4,
-        "goal": 4,
-        "min_position": 0,
-        "max_position": 4,
-    }
-    action = choose_action(state)
-    print("COURSE TEACHING MODEL")
-    print("NOT VUACOC PRODUCTION CONTRACT")
-    print(explain_action(state, action))
-    print(f"legal={action in LOCAL_ACTIONS}")
+    """Smoke-test representative normal and boundary states."""
+    states = [
+        {"position": 0, "goal": 4, "opponent_position": 4, "min_position": 0, "max_position": 4},
+        {"position": 4, "goal": 4, "opponent_position": 0, "min_position": 0, "max_position": 4},
+        {"position": 2, "goal": 4, "opponent_position": 3, "min_position": 0, "max_position": 4},
+    ]
+    print("COURSE TEACHING MODEL — NOT VUACOC PRODUCTION CONTRACT")
+    for state in states:
+        action = choose_action(state)
+        print(explain_action(state, action))
+        print(f"legal={action in LOCAL_ACTIONS}")
 
 
 if __name__ == "__main__":

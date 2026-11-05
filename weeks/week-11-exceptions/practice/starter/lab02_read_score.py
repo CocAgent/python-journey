@@ -1,18 +1,24 @@
-"""Lab 02: isolate file I/O vs number parse errors (no broad except)."""
+"""Reference: file existence, numeric parsing, and range are separate."""
+
 
 from pathlib import Path
 
 
 def read_score(path: Path) -> int | None:
-    """Missing file / invalid content -> None; valid int 0..10 -> int.
+    try:
+        text = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return None
 
-    Keep other errors visible (e.g. path is the wrong object type).
-    """
-    # TODO: try path.read_text(encoding="utf-8"), except FileNotFoundError.
-    # TODO: try int(text), except ValueError.
-    # TODO: validate score 0..10, otherwise None.
-    raise NotImplementedError("Hoàn thiện read_score")
+    try:
+        value = int(text)
+    except ValueError:
+        return None
+
+    if not 0 <= value <= 10:
+        return None
+    return value
 
 
 if __name__ == "__main__":
-    print("Chạy self-check; không tạo file bên ngoài TemporaryDirectory.")
+    print("Use the self-check (isolated temporary files).")

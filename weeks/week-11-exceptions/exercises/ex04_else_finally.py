@@ -3,10 +3,14 @@
 
 def parse_score(raw: str, audit_log: list[str]) -> int | None:
     """Parse a score from 0 to 10 and always append one audit event."""
-    # TODO: chuyển raw trong try và chỉ bắt ValueError.
-    # TODO: validate range 0..10 trong else.
-    # TODO: append f"parsed={raw!r}" trong finally.
-    raise NotImplementedError("Complete parse_score")
+    try:
+        score = int(raw)
+    except ValueError:
+        return None
+    else:
+        return score if 0 <= score <= 10 else None
+    finally:
+        audit_log.append(f"parsed={raw!r}")
 
 
 if __name__ == "__main__":

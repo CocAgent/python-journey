@@ -6,8 +6,8 @@ NOT VUACOC RUNTIME CONTRACT
 Goal:
     Biến một state dạng chuỗi thành một action bằng function đơn giản.
 
-TODO:
-    Hoàn thành ``choose_action`` với tối đa ba rule dễ giải thích.
+Covered function:
+    Implemented ``choose_action`` với tối đa ba rule dễ giải thích.
 
 Examples and expected behavior:
     "danger" -> "defend"
@@ -24,9 +24,18 @@ Self-check command:
 
 def choose_action(state: str) -> str:
     """Return a deterministic teaching action for ``state``."""
-    # TODO: danger -> defend, opportunity -> advance, còn lại -> wait.
-    raise NotImplementedError("Hoàn thành hàm choose_action")
+    if state == "danger":
+        return "defend"
+    if state == "opportunity":
+        return "advance"
+    return "wait"
+
+
+def main() -> None:
+    """Print representative decisions."""
+    for state in ("danger", "opportunity", "neutral", ""):
+        print(f"{state!r} -> {choose_action(state)!r}")
 
 
 if __name__ == "__main__":
-    print("Hoàn thành TODO rồi thử danger, opportunity, neutral và chuỗi rỗng.")
+    main()

@@ -1,27 +1,34 @@
-"""Ôn tập 01 — Kết hợp list, dict, set, điều kiện, vòng lặp và hàm.
-
-Ví dụ: [{"name": " An ", "score": 8}, {"name": "Bình", "score": 4}]
--> {"count": 2, "average": 6.0, "passed": ["An"]}
-
-Đọc review/practice/README.md trước khi sửa TODO.
-"""
+"""Reference 01 — Kết hợp Week 02–08, không làm thay bài người học."""
 
 
 def summarize_students(records: list[dict[str, object]]) -> dict[str, object]:
-    """Tóm tắt điểm, không thay đổi list/dict do caller truyền vào.
-
-    - name: str không rỗng sau strip()
-    - score: int thực (không bool), trong [0, 10]
-    - tên trùng sau strip().casefold() -> ValueError
-    - pass khi score >= 5, giữ thứ tự nguồn
-    - list rỗng -> {"count": 0, "average": None, "passed": []}
-    """
-    # TODO: kiểm records là list; mỗi record là dict có name và score.
-    # TODO: dùng seen=set() phát hiện trùng tên; raise ValueError khi sai.
-    # TODO: vòng for tính tổng và xây passed; dùng return thay print.
-    # TODO: chống chia cho 0 khi danh sách rỗng.
-    raise NotImplementedError("Hãy hoàn thành Lab 01")
+    """Tóm tắt điểm, bảo toàn nguồn và thứ tự học viên đạt."""
+    if not isinstance(records, list):
+        raise ValueError("Cần list bản ghi")
+    seen: set[str] = set()
+    passed: list[str] = []
+    total = 0
+    for record in records:
+        if not isinstance(record, dict):
+            raise ValueError("Mỗi bản ghi phải là dict")
+        name = record.get("name")
+        score = record.get("score")
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("Tên học viên không hợp lệ")
+        if type(score) is not int or not 0 <= score <= 10:
+            raise ValueError("Điểm học viên không hợp lệ")
+        clean_name = name.strip()
+        key = clean_name.casefold()
+        if key in seen:
+            raise ValueError("Tên học viên bị trùng")
+        seen.add(key)
+        total += score
+        if score >= 5:
+            passed.append(clean_name)
+    count = len(records)
+    average = total / count if count else None
+    return {"count": count, "average": average, "passed": passed}
 
 
 if __name__ == "__main__":
-    print("Hãy hoàn thiện TODO rồi chạy review/practice/checks/check_review.py --starter")
+    print(summarize_students([{"name": "An", "score": 8}]))

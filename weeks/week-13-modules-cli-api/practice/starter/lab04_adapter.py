@@ -1,12 +1,21 @@
-"""Lab 4 — adapter chuyển form dict thành báo cáo.
+"""Lab 4 solution: form adapter, explicit fail-closed validation."""
 
-Nhớ kiểm dict, student là chuỗi không rỗng và score thuộc 0..10.
-"""
+from practice.study_core import status_for_score, validate_score
 
 
 def make_student_report(payload: dict[str, object]) -> dict[str, object]:
-    """TODO: validate và dùng hàm core; không copy quy tắc phân loại."""
-    return {"todo": "Lab 4 chưa xử lý form"}
+    if not isinstance(payload, dict):
+        raise ValueError("Form phải là dict")
+
+    name = payload.get("student")
+    if not isinstance(name, str) or not name.strip():
+        raise ValueError("student phải là tên không rỗng")
+
+    if "score" not in payload:
+        raise ValueError("Form thiếu score")
+
+    score = validate_score(payload["score"])
+    return {"student": name.strip(), "score": score, "status": status_for_score(score)}
 
 
 def main() -> None:

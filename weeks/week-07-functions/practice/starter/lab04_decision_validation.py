@@ -1,19 +1,23 @@
-"""Lab 04 — Decision function: input -> validate -> action.
+"""Lời giải 04 — Đơn giản, tất định, có runtime guard.
 
-MÔ HÌNH GIẢNG DẠY, KHÔNG PHẢI VUACOC PRODUCTION CONTRACT.
-minutes: int 0..60, confused: bool thật (không nhận chuỗi "False").
-Action: stop nếu minutes=0; review nếu confused; còn lại practice.
+TEACHING MODEL ONLY — NOT VUACOC PRODUCTION CONTRACT.
 """
 
 
 def choose_study_action(minutes: int, confused: bool) -> str:
-    """Trả stop/review/practice ổn định; invalid input -> ValueError."""
-    # TODO 1: kiểm type(minutes) is int, phạm vi 0..60;
-    #         type(confused) is bool. Không tin chỉ vào type hints.
-    # TODO 2: minutes == 0 => "stop" trước, kể cả confused=True.
-    # TODO 3: confused => "review"; còn lại => "practice".
-    raise NotImplementedError("Hoàn thành decision function")
+    """Chặn input sai trước khi chọn một trong ba action."""
+    if (
+        type(minutes) is not int
+        or not 0 <= minutes <= 60
+        or type(confused) is not bool
+    ):
+        raise ValueError("Thời gian hoặc trạng thái không hợp lệ")
+    if minutes == 0:
+        return "stop"
+    if confused:
+        return "review"
+    return "practice"
 
 
 if __name__ == "__main__":
-    print("Thử input (0, True), (15, True), (15, False), (61, False).")
+    print(choose_study_action(15, True))

@@ -1,18 +1,10 @@
-"""Lab 01 — Index, slice và chuỗi rỗng.
-
-Nhập từ khóa bất kỳ; ví dụ Python:
-Đầu: P
-Cuối: n
-Đảo: nohtyP
-Độ dài: 6
-
-Nếu chỉ nhập khoảng trắng: Từ khóa không được rỗng.
-Đọc practice/README.md và tự viết TODO, không mở solutions ngay.
-"""
+"""Lời giải Lab 01 — kiểm rỗng trước khi index."""
 
 keyword = input("Từ khóa: ").strip()
-
-# TODO 1: nếu keyword rỗng, in "Từ khóa không được rỗng".
-# TODO 2: ngược lại in ký tự đầu [0], cuối [-1], đảo [::-1].
-# TODO 3: in len(keyword) bằng f-string.
-print("TODO Lab 01: chưa hoàn thành")
+if not keyword:
+    print("Từ khóa không được rỗng")
+else:
+    print(f"Đầu: {keyword[0]}")
+    print(f"Cuối: {keyword[-1]}")
+    print(f"Đảo: {keyword[::-1]}")
+    print(f"Độ dài: {len(keyword)}")

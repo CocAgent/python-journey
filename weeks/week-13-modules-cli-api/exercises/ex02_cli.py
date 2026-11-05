@@ -1,18 +1,21 @@
-"""Bài 02 — thêm argparse --turn và kiểm lỗi người dùng."""
+"""Exercise 02: add one argparse option to a small CLI."""
 
 import argparse
 
 
 def parser() -> argparse.ArgumentParser:
-    result = argparse.ArgumentParser(description="Bộ đếm lượt học")
-    # TODO: thêm --turn, type=int, required=True.
+    """Build the command-line parser."""
+    result = argparse.ArgumentParser(description="Inspect a turn number")
+    result.add_argument("--turn", type=int, required=True, help="positive turn number")
     return result
 
 
 def main() -> None:
-    """TODO: parse và in ra số lượt; thử input thiếu và không phải số."""
+    """Parse learner arguments and display the resulting namespace."""
     args = parser().parse_args()
-    print("TODO 02: arguments =", args)
+    if args.turn < 1:
+        raise SystemExit("--turn must be a positive integer")
+    print(f"turn={args.turn}")
 
 
 if __name__ == "__main__":

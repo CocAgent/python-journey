@@ -1,32 +1,33 @@
-"""Lab 03 — Scope: caller sở hữu list ghi chú, hàm nhận qua parameter.
-
-Một hàm cố ý cập nhật list caller là add_note; hai hàm còn lại chỉ đọc.
-Không dùng biến global để giữ danh sách.
-"""
+"""Lời giải 03 — Truyền list qua parameter, không tạo global notebook."""
 
 
 def add_note(notes: list[str], text: str) -> bool:
-    """Strip và thêm nếu nội dung không rỗng; trả True nếu đã thêm."""
-    # TODO: stripped = text.strip(), nếu rỗng trả False;
-    #       notes.append(stripped), return True.
-    raise NotImplementedError("Hoàn thành add_note")
+    """Mutate list mà caller cung cấp, không giữ một list ẩn."""
+    clean = text.strip()
+    if not clean:
+        return False
+    notes.append(clean)
+    return True
 
 
 def count_notes(notes: list[str]) -> int:
-    """Đếm số ghi chú được caller truyền vào."""
-    # TODO: return len(notes), không đọc global state.
-    raise NotImplementedError("Hoàn thành count_notes")
+    """Chỉ đọc list từ parameter."""
+    return len(notes)
 
 
 def search_notes(notes: list[str], keyword: str) -> list[str]:
-    """Tìm ghi chú chứa keyword (không phân biệt hoa/thường).
-
-    Nếu keyword chỉ có khoảng trắng, trả [] và không sửa notes.
-    """
-    # TODO: dùng keyword.strip().lower() và loop for đơn giản;
-    #       tạo result local rồi return result.
-    raise NotImplementedError("Hoàn thành search_notes")
+    """Tạo list kết quả mới, không sửa list nguồn."""
+    search_text = keyword.strip().lower()
+    if not search_text:
+        return []
+    found: list[str] = []
+    for note in notes:
+        if search_text in note.lower():
+            found.append(note)
+    return found
 
 
 if __name__ == "__main__":
-    print("Thử tạo list local rồi gọi lần lượt ba hàm.")
+    notebook: list[str] = []
+    add_note(notebook, "  Học return  ")
+    print(f"Đang có {count_notes(notebook)} ghi chú")

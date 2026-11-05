@@ -1,19 +1,16 @@
-"""Lab 02 — Slice, alias, copy: dự đoán rồi tự kiểm.
-
-Dữ liệu ban đầu là một list phẳng, chưa cần deepcopy.
-"""
+"""Lời giải tham khảo Lab 02: alias là cùng list, copy là list khác."""
 
 numbers = [10, 20, 30, 40, 50]
+first_two = numbers[:2]
+last_two = numbers[-2:]
+alias = numbers
+snapshot = numbers.copy()
+alias.append(60)
+numbers[0] = 99
 
-# TODO 1: first_two = numbers[:2] và last_two = numbers[-2:].
-# TODO 2: alias = numbers; snapshot = numbers.copy().
-# TODO 3: alias.append(60), sau đó numbers[0] = 99.
-# TODO 4: in chính xác:
-# Đầu: [10, 20]
-# Cuối: [40, 50]
-# Gốc: [99, 20, 30, 40, 50, 60]
-# Alias: [99, 20, 30, 40, 50, 60]
-# Copy: [10, 20, 30, 40, 50]
-# Cùng đối tượng: True
-
-print("TODO Lab 02: chưa hoàn thiện")
+print(f"Đầu: {first_two}")
+print(f"Cuối: {last_two}")
+print(f"Gốc: {numbers}")
+print(f"Alias: {alias}")
+print(f"Copy: {snapshot}")
+print(f"Cùng đối tượng: {alias is numbers}")

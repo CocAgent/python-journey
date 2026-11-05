@@ -1,6 +1,11 @@
-"""Mini-project mức A: vẽ thẻ ASCII tĩnh bằng print(), chưa có đáp án."""
+"""Mini-project mức A: vẽ thẻ ASCII tĩnh bằng print()."""
 
-# TODO 1: In hàng viền trên bằng + và -.
-# TODO 2: In lời chào giữa hai dấu |, giữ đúng độ rộng.
-# TODO 3: In hàng viền dưới bằng hàng trên.
-# TODO 4 (tự chọn): Thêm hình trang trí.
+# Dùng cùng độ rộng cho cả ba dòng để viền trái/phải thẳng hàng.
+width = 24
+border = "+" + "-" * (width - 2) + "+"
+message = "|" + "Hello, Python!".center(width - 2) + "|"
+print(border)
+print(message)
+print(border)
+
+# Thử thách: thay lời chào hoặc thêm một dòng trang trí có cùng độ rộng.

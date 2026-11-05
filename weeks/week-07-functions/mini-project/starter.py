@@ -3,38 +3,47 @@
 
 def calculate_subtotal(price: float, quantity: int) -> float:
     """Return price multiplied by quantity."""
-    # TODO: Return 0 when quantity is not positive; otherwise calculate.
-    raise NotImplementedError("Complete calculate_subtotal")
+    if quantity <= 0:
+        return 0.0
+    return price * quantity
 
 
 def calculate_discount(subtotal: float, percent: float = 0) -> float:
     """Return the discount amount, not the final total."""
-    # TODO: Calculate a percentage of subtotal.
-    raise NotImplementedError("Complete calculate_discount")
+    return subtotal * percent / 100
 
 
 def calculate_average(scores: list[float]) -> float:
     """Return the average, or 0 for an empty list."""
-    # TODO: Handle the empty-list boundary before dividing.
-    raise NotImplementedError("Complete calculate_average")
+    if not scores:
+        return 0.0
+    return sum(scores) / len(scores)
 
 
 def classify_score(average: float) -> str:
     """Return a short classification for an average score."""
-    # TODO: Define a few clear ranges such as excellent, passed and practice more.
-    raise NotImplementedError("Complete classify_score")
+    if average >= 8:
+        return "excellent"
+    if average >= 5:
+        return "passed"
+    return "practice more"
 
 
 def format_currency(amount: float) -> str:
     """Return an amount formatted in đồng."""
-    # TODO: Use an f-string with thousands separators.
-    raise NotImplementedError("Complete format_currency")
+    return f"{amount:,.0f} đ"
 
 
 def main() -> None:
     """Compose the toolkit functions into a visible program flow."""
-    # TODO: Use outputs from calculation functions as later inputs.
-    print("Complete the toolkit, then replace this message with useful output.")
+    subtotal = calculate_subtotal(25_000, 2)
+    discount = calculate_discount(subtotal, 10)
+    total = subtotal - discount
+    average = calculate_average([8.5, 7.0, 9.0])
+    print(f"Subtotal: {format_currency(subtotal)}")
+    print(f"Discount: {format_currency(discount)}")
+    print(f"Total: {format_currency(total)}")
+    print(f"Average: {average:.1f} — {classify_score(average)}")
 
 
 if __name__ == "__main__":

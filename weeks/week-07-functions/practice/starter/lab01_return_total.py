@@ -1,19 +1,19 @@
-"""Lab 01 — Hàm RETURN giá trị, không chỉ print.
-
-calculate_total(12_000, 2) == 24_000
-calculate_total(12_000, 2, 5_000) == 29_000
-price âm, quantity <=0, shipping âm, bool thay số -> ValueError.
-Học theo PRACTICE/README.md trước khi mở solutions.
-"""
+"""Lời giải 01 — Return giá trị, không in trong logic."""
 
 
 def calculate_total(price: int, quantity: int, shipping: int = 0) -> int:
-    """Trả về thành tiền (VND) khi dữ liệu hợp lệ; ngược lại raise ValueError."""
-    # TODO: kiểm type(value) is int để bool không lọt qua;
-    #       price >= 0, quantity > 0, shipping >= 0.
-    # TODO: return price * quantity + shipping, KHÔNG print ở đây.
-    raise NotImplementedError("Hoàn thành Lab 01")
+    """Tính tổng tiền giả lập bằng số nguyên VND."""
+    if (
+        type(price) is not int
+        or type(quantity) is not int
+        or type(shipping) is not int
+        or price < 0
+        or quantity <= 0
+        or shipping < 0
+    ):
+        raise ValueError("Giá, số lượng hoặc phí không hợp lệ")
+    return price * quantity + shipping
 
 
 if __name__ == "__main__":
-    print("Tự làm TODO rồi thử calculate_total(12_000, 2).")
+    print(f"Thành tiền: {calculate_total(12_000, 2):,} VND")

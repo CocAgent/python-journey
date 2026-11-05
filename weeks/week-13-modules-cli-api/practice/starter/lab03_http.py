@@ -1,13 +1,15 @@
-"""Lab 3 — đọc HTTP response giả lập, KHÔNG gọi mạng.
+"""Lab 3 solution: parse status/JSON + business validation."""
 
-Dùng bot_course.http_foundation.parse_json_response và
-practice.study_core.status_for_score.
-"""
+from bot_course.http_foundation import parse_json_response
+from practice.study_core import status_for_score, validate_score
 
 
 def read_score_response(status: int, body: bytes) -> dict[str, object]:
-    """TODO: status + JSON object + score -> dict hoặc ValueError."""
-    return {"todo": "Lab 3 chưa xử lý HTTP response"}
+    data = parse_json_response(status, body)
+    if "score" not in data:
+        raise ValueError("Phản hồi thiếu trường score")
+    score = validate_score(data["score"])
+    return {"score": score, "status": status_for_score(score)}
 
 
 def main() -> None:
