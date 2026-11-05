@@ -1,6 +1,13 @@
 """Test bài sinh viên: starter chưa làm phải FAIL chứ không PASS giả."""
 
+import sys
+from pathlib import Path
+
 import pytest
+
+WEEK_ROOT = Path(__file__).resolve().parents[1]
+if str(WEEK_ROOT) not in sys.path:
+    sys.path.insert(0, str(WEEK_ROOT))
 
 from exercises.ex01_classes import Progress
 from exercises.ex02_composition import Bot, aggressive, balanced, defensive
@@ -62,7 +69,7 @@ def test_ex04_phone(capsys):
     assert phone.gia_ban == 28_990_000
     info = phone.thongtindienthoai()
     assert isinstance(info, str)
-    assert all(x in info for x in ["DT01", "iPhone 15 Pro", "Apple", "3274", "28990000"])
+    assert all(x in info for x in ["DT01", "iPhone 15 Pro", "Apple", "3274", "28,990,000"])
     assert capsys.readouterr().out == ""
 
 
