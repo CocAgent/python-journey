@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 from .report import grade_week01
-from .student_registry import REPO_ROOT, find, week_readme
+from .student_registry import find, week_readme
 from .student_selfcheck import selfcheck, write_report
 
 ROOT = Path(__file__).resolve().parents[2]
