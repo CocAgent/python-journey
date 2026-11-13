@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "week_id": "W01",
+  "title": "Week 01 — Hello Python",
+  "auto_max_points": 5,
+  "manual_max_points": 5,
+  "tasks": [
+    {
+      "id": "W01-EX01",
+      "path": "weeks/week-01-hello-python/exercises/ex01_hello.py",
+      "criteria": [
+        {
+          "id": "W01.HELLO",
+          "label": "In Hello, World!",
+          "points": 0.5,
+          "skill": "PY.PRINT.01",
+          "hint": "Thử print('Hello, World!') và đối chiếu dấu câu."
+        },
+        {
+          "id": "W01.NAME",
+          "label": "Tên trên một dòng riêng",
+          "points": 0.5,
+          "skill": "PY.PRINT.01",
+          "hint": "Viết thêm một dòng print() để giới thiệu tên bản thân."
+        },
+        {
+          "id": "W01.INTERESTS",
+          "label": "Ba sở thích",
+          "points": 0.5,
+          "skill": "PY.STRING.01",
+          "hint": "Tạo ba dòng khác nhau để mô tả ba sở thích."
+        },
+        {
+          "id": "W01.RECTANGLE",
+          "label": "Hình chữ nhật 5 × 4",
+          "points": 0.5,
+          "skill": "PY.PRINT.02",
+          "hint": "Đối chiếu đủ bốn dòng ***** / *   * / *   * / ***** và các khoảng trắng."
+        }
+      ]
+    },
+    {
+      "id": "W01-EX02",
+      "path": "weeks/week-01-hello-python/exercises/ex02_calculator.py",
+      "criteria": [
+        {
+          "id": "W01.SUM",
+          "label": "Phép cộng",
+          "points": 0.4,
+          "skill": "PY.ARITH.01",
+          "hint": "In giá trị biểu thức 2024 + 1000, đừng chỉ chép đáp số."
+        },
+        {
+          "id": "W01.BALANCE",
+          "label": "Trừ và nhân",
+          "points": 0.4,
+          "skill": "PY.ARITH.01",
+          "hint": "Dùng phép nhân để tính tổng chi phí, sau đó lấy tiền ban đầu trừ đi."
+        },
+        {
+          "id": "W01.AREA",
+          "label": "Diện tích và lũy thừa",
+          "points": 0.4,
+          "skill": "PY.ARITH.02",
+          "hint": "Dùng 3.14159 * 7 ** 2 và làm tròn 2 chữ số khi in."
+        },
+        {
+          "id": "W01.QUOTIENT",
+          "label": "Chia lấy phần nguyên",
+          "points": 0.4,
+          "skill": "PY.ARITH.03",
+          "hint": "Dùng toán tử // để tìm số kẹo mỗi người nhận."
+        },
+        {
+          "id": "W01.REMAINDER",
+          "label": "Chia lấy dư",
+          "points": 0.4,
+          "skill": "PY.ARITH.03",
+          "hint": "Dùng toán tử % để tìm số kẹo còn lại."
+        }
+      ]
+    },
+    {
+      "id": "W01-PROJECT",
+      "path": "weeks/week-01-hello-python/mini-project/starter_basic.py",
+      "criteria": [
+        {
+          "id": "W01.FRAME",
+          "label": "Ba dòng khung ASCII thẳng hàng",
+          "points": 0.5,
+          "skill": "PY.PRINT.02",
+          "hint": "Viền +---+ trên và dưới giống nhau, dòng giữa dài bằng viền."
+        },
+        {
+          "id": "W01.MESSAGE",
+          "label": "Thông điệp Xin chào trong khung",
+          "points": 0.5,
+          "skill": "PY.STRING.01",
+          "hint": "In một dòng bắt đầu và kết thúc bằng |, có lời Xin chào."
+        }
+      ]
+    }
+  ]
+}

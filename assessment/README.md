@@ -1,0 +1,41 @@
+# Python Journey AutoGrade — AG-01
+
+AutoGrade là **công cụ tự kiểm tại máy cá nhân**, không phải hệ thống chấm thi chính thức. Bản AG-01 chỉ hỗ trợ Week 01 và dùng thư viện chuẩn Python >=3.12.
+
+## Bắt đầu
+
+Ở thư mục gốc `python-journey`, sau khi đã tự sửa `weeks/week-01-hello-python/exercises/ex01_hello.py`, `ex02_calculator.py` và `mini-project/starter_basic.py`:
+
+```bash
+python -m assessment grade --week 01 --acknowledge-local-code
+python -m assessment grade --week 01 --acknowledge-local-code --json-out .learner-output/week01.json
+```
+
+Nếu chỉ muốn kiểm bộ bài mẫu **không phải mã sinh viên**:
+
+```bash
+python -m assessment grade --week 01 --mode reference
+```
+
+Có thể đặt `--submission /path/to/workspace` để đánh giá một bản copy địa phương có bố cục `weeks/` như repository. Điểm tự động tối đa **5/5**, năm điểm còn lại (môi trường/REPL, sửa lỗi có minh chứng, Git/evidence) do giảng viên đánh giá. `official_score` luôn `null`; bản này không đăng điểm hoặc nộp dữ liệu lên mạng.
+
+## Nguyên tắc kiểm định
+
+- `checks/check_week.py` và bộ pytest của Week 01 vẫn chỉ kiểm lời giải/ví dụ giảng viên, **không chuyển đổi thành điểm sinh viên**.
+- `ex03_input.py`, phần nhập tên của mini-project, và công cụ AI đều tùy chọn; **không trừ điểm W01**.
+- Kết quả dựa vào stdout và dấu hiệu phép toán có trong AST để phản hồi; **không khẳng định quyền tác giả, chống gian lận hoặc đúng với mọi trường hợp**. Tên, sở thích và các kết quả định dạng đa dạng có thể cần giảng viên xem xét lại.
+- File trong `assessment/fixtures/week01/reference/` là bài mẫu dành riêng để kiểm thử **máy chấm**, không phải bài nộp.
+- Chương trình của người học có quyền chạy mã tùy ý khi thực thi. Subprocess, timeout và thư mục tạm **không phải sandbox**. Không dùng CLI này để chấm bài nộp từ người lạ, đặc biệt trên máy có secrets, dữ liệu thật hoặc trong workflow GitHub có token. Nếu muốn chấm tập trung, phải xây runner cô lập về network, filesystem, CPU/RAM và quyền truy cập trước.
+
+## Mở rộng các tuần còn lại
+
+`assessment/engine/` tách cấu hình thang điểm (`rubric.json`), thực thi (`runner.py`), điều kiện kiểm tra (`evaluator.py`), và báo cáo máy đọc (`report.py`). Khi mở AG-02, bổ sung registry evaluator và rubric riêng cho Week 02. **Không tự nhận hệ thống hiện đã hỗ trợ 15 tuần**.
+
+## Tiêu chí nghiệm thu
+
+- Thư mục starter chưa hoàn thiện: tự kiểm `0/5`, báo `RETRY`, không báo PASS giả.
+- Bộ fixture chuẩn: `5/5`, đầy đủ 11 tiêu chí.
+- Một phép tính chỉ in kết quả cứng mà không có biểu thức: không đạt điều kiện phép toán tương ứng.
+- Lỗi cú pháp, timeout, thiếu file: kết quả 0 ở tiêu chí liên quan, không làm vỡ hệ thống.
+- JSON phân biệt `mode=student` và `mode=reference`; có mã kỹ năng, SHA-256 mã bài và rubric, điểm máy, chỗ chờ giảng viên; không chứa PII.
+- Không thay đổi rubric `exercises/README.md`, học liệu, bài thi chính thức hay production.
