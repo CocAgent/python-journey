@@ -1,5 +1,7 @@
 # Tuần 08 — Dict · Set · Nested Data · Data Modeling
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 08](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này bạn dùng cấu trúc dữ liệu để mô tả một trạng thái nhỏ, sau đó biến
 trạng thái đó thành một quyết định có thể giải thích. Learning loop tiếp tục:
 

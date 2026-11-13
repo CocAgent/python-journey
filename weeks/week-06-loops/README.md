@@ -1,5 +1,7 @@
 # Tuần 06 — Loops · enumerate · zip · comprehensions
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 06](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này bạn lặp qua dữ liệu rõ ràng, ghép các collection liên quan và dùng
 comprehension khi biểu thức vẫn dễ đọc.
 

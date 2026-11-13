@@ -1,5 +1,7 @@
 # Tuần 11 — Exceptions · Tracebacks · Debugging · Defensive coding
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 11](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này bạn đọc lỗi trước khi sửa, bắt đúng lỗi dự kiến và để programming bug
 tiếp tục hiện rõ.
 

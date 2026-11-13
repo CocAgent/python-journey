@@ -1,5 +1,7 @@
 # Tuần 15 — Capstone · Integrate · Prove · Defend
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 15](assessment/STUDENT-GUIDE.md). Capstone chỉ có readiness cơ học; FINAL_PROJECT.md là rubric duy nhất. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần cuối không phải lúc bắt đầu một project mới. Đây là lúc biến những gì bạn đã
 xây thành một sản phẩm **chạy được, kiểm chứng được và giải thích được**.
 

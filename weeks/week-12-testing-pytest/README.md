@@ -1,5 +1,7 @@
 # Tuần 12 — Kiểm thử chương trình với pytest
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 12](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 > **Mục tiêu:** Không chỉ thấy chương trình chạy, mà tự tạo được bằng chứng cho thấy chương trình xử lý đúng nhiều tình huống.
 
 ## Sau tuần này, sinh viên làm được gì?

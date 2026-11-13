@@ -1,6 +1,8 @@
-# Python Journey AutoGrade — AG-01
+# Python Journey AutoGrade — AG-01 + AG-02
 
-AutoGrade là **công cụ tự kiểm tại máy cá nhân**, không phải hệ thống chấm thi chính thức. Bản AG-01 chỉ hỗ trợ Week 01 và dùng thư viện chuẩn Python >=3.12.
+**Lộ trình sinh viên Week 01–15:** xem [Cổng tự kiểm](STUDENT-PORTAL.md). Week 01 có chấm 11 tiêu chí/5 điểm thực hành; Week 02–14 tái sử dụng checker sinh viên đã có (chưa quy đổi điểm), Week 15 readiness cơ học, Week 09 dự án giảng viên đánh giá.
+
+AutoGrade là **công cụ tự kiểm tại máy cá nhân**, không phải hệ thống chấm thi chính thức. Bộ chấm điểm số AG-01 chỉ hỗ trợ Week 01; AG-02 thêm lệnh `guide` và `selfcheck` các tuần sau (không tự phát điểm). Yêu cầu Python >=3.12.
 
 ## Hướng dẫn dành cho sinh viên
 
@@ -31,9 +33,21 @@ Có thể đặt `--submission /path/to/workspace` để đánh giá một bản
 - File trong `assessment/fixtures/week01/reference/` là bài mẫu dành riêng để kiểm thử **máy chấm**, không phải bài nộp.
 - Chương trình của người học có quyền chạy mã tùy ý khi thực thi. Subprocess, timeout và thư mục tạm **không phải sandbox**. Không dùng CLI này để chấm bài nộp từ người lạ, đặc biệt trên máy có secrets, dữ liệu thật hoặc trong workflow GitHub có token. Nếu muốn chấm tập trung, phải xây runner cô lập về network, filesystem, CPU/RAM và quyền truy cập trước.
 
-## Mở rộng các tuần còn lại
+## Tự kiểm các tuần còn lại
 
-`assessment/engine/` tách cấu hình thang điểm (`rubric.json`), thực thi (`runner.py`), điều kiện kiểm tra (`evaluator.py`), và báo cáo máy đọc (`report.py`). Khi mở AG-02, bổ sung registry evaluator và rubric riêng cho Week 02. **Không tự nhận hệ thống hiện đã hỗ trợ 15 tuần**.
+```bash
+python -m assessment guide --week 02
+python -m assessment selfcheck --week 02 --acknowledge-local-code
+python -m assessment selfcheck --week 02 --acknowledge-local-code --json-out .learner-output/week02.json
+```
+
+Week 09: không có checker chung; dùng rubric dự án. Week 15: `python -m assessment selfcheck --week 15 --project path/to/my-project --acknowledge-local-code`. Cảnh báo: readiness dùng pytest collect nên chỉ chạy dự án tin cậy.
+
+`selfcheck` chỉ gọi đúng checker STUDENT của tuần, `auto_score`/ `official_score` luôn `null`; không chấm thay bài tập gốc nằm ngoài phạm vi checker. Hướng dẫn và lệnh trực tiếp từng tuần: [cổng sinh viên](STUDENT-PORTAL.md).
+
+## Mở rộng bộ chấm điểm chính thức
+
+`assessment/engine/` tách cấu hình thang điểm (`rubric.json`), thực thi (`runner.py`), điều kiện kiểm tra (`evaluator.py`), và báo cáo máy đọc (`report.py`). Khi xây AG-03, cần bổ sung rubric điểm học phần được duyệt, test đa dạng và runner an toàn trước khi xem xét chấm tập trung. **Không tự nhận hệ thống hiện đã hỗ trợ 15 tuần**.
 
 ## Tiêu chí nghiệm thu
 
