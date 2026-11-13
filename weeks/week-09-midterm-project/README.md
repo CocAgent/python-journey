@@ -1,5 +1,7 @@
 # Tuần 09 — Midterm Project
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 09](assessment/STUDENT-GUIDE.md). Dự án giữa kỳ vẫn dùng rubric và demo giảng viên. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Midterm trả lời một câu hỏi: bạn có thể kết hợp nền tảng Week 01–08 thành một
 project Python nhỏ, chạy ổn định và giải thích được không?
 

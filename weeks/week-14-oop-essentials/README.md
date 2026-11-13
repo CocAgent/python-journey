@@ -1,5 +1,7 @@
 # Tuần 14 — OOP: Class, Object, Composition và Kế thừa cơ bản
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 14](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 > **Mục tiêu:** Biết khi nào nên dùng class để gom dữ liệu và hành vi,
 > biết thay đổi hành vi của Bot bằng composition, và biết kiểm thử bài OOP.
 

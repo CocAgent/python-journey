@@ -1,5 +1,7 @@
 # Tuần 10 — File · pathlib · CSV · JSON · Replay
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 10](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này dữ liệu sống lâu hơn một lần chạy: text cho nội dung đơn giản, CSV
 cho bảng và JSON cho dữ liệu có cấu trúc.
 

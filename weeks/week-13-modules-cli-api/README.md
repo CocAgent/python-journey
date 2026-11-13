@@ -1,5 +1,7 @@
 # Tuần 13 — Module · Package · Dependency · CLI · API/HTTP
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 13](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 > **Từ một file Python đến chương trình có cấu trúc, chạy được qua terminal và hiểu dữ liệu HTTP.**
 > Python >=3.12 · Không cần Internet/API key để học và làm bài.
 

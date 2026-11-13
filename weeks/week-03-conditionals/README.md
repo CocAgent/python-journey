@@ -1,5 +1,7 @@
 # Tuần 03 — Conditionals · Boolean · Input Validation
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 03](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này bạn biến điều kiện thành decision rõ ràng và từ chối input không hợp
 lệ trước khi xử lý.
 

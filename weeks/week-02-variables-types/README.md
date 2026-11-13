@@ -1,5 +1,7 @@
 # Tuần 02 — Variables · Types · Input/Output
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 02](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này bạn đặt tên cho dữ liệu, nhận input dạng text, chuyển kiểu có chủ đích
 và tạo output rõ bằng f-string.
 

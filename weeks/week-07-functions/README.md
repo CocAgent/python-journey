@@ -1,5 +1,7 @@
 # Tuần 07 — Functions · Decomposition · Scope · Type hints
 
+> **Sinh viên:** [Hướng dẫn tự kiểm, đọc PASS/RETRY, lưu minh chứng Week 07](assessment/STUDENT-GUIDE.md). Checker chỉ kiểm đúng phạm vi bài sinh viên (nhiều tuần là practice/starter); không tự chuyển PASS thành điểm học phần. Xem thêm [cổng tự kiểm toàn khóa](../../assessment/STUDENT-PORTAL.md).
+
 Tuần này dùng hàm để chia một vấn đề thành những phần nhỏ, nhận input và trả
 output rõ ràng. Đây là tuần thí điểm cho learning loop:
 
