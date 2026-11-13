@@ -2,6 +2,16 @@
 
 > Học công cụ đủ dùng, viết chương trình đầu tiên, kiểm chứng rồi lưu bằng chứng.
 
+## Bắt đầu tự chấm Week 01
+
+Sau khi hoàn thành hai bài cốt lõi và mini-project ASCII, xem **[Hướng dẫn sinh viên tự kiểm tra & đánh giá với AutoGrade](assessment/STUDENT-GUIDE.md)**. Lệnh chạy từ thư mục gốc `python-journey`:
+
+```bash
+python -m assessment grade --week 01 --acknowledge-local-code
+```
+
+AutoGrade chỉ chấm **5 điểm thực hành** từ mã em viết; giảng viên xác nhận **5 điểm minh chứng** còn lại. `check_week.py` bên dưới **không chấm bài sinh viên**.
+
 ## Mục tiêu tuần
 
 Sau Week 01, bạn có thể:
@@ -33,7 +43,8 @@ Nếu thích học qua câu chuyện, đọc tùy chọn
    [`mini-project/README.md`](mini-project/README.md); `input()` là phần nâng cao.
 7. **AI tools (tự chọn)** — xem [Antigravity và ChatGPT–GitHub](optional-tools/README.md)
    nếu muốn học với AI, không thay cho việc tự chạy Python.
-8. **Commit evidence** — review thay đổi, lưu [minh chứng](evidence-template.md),
+8. **AutoGrade tự kiểm** — theo [hướng dẫn từng bước](assessment/STUDENT-GUIDE.md), đọc gợi ý `RETRY` rồi sửa bài.
+9. **Commit evidence** — review thay đổi, lưu [minh chứng](evidence-template.md),
    commit trên nhánh học tập (không push trực tiếp vào `main`).
 
 > Đã có Python 3.12+ và Git? Bạn có thể bỏ qua thao tác cài đặt, nhưng vẫn cần
@@ -149,6 +160,7 @@ Không commit secret, `.venv`, `__pycache__` hay file tạm.
 - [ ] Tự chọn: chuẩn bị Tuần 02 với `ex03_input.py`.
 - [ ] Chạy các file trong `examples/`.
 - [ ] Hoàn thành mini-project.
+- [ ] Tự chấm bài thật bằng AutoGrade (STUDENT), sửa các tiêu chí RETRY và ghi điểm /5.
 - [ ] Ghi [minh chứng](evidence-template.md) và tự soát rubric 10 điểm.
 - [ ] Review thay đổi trước khi commit.
 - [ ] Commit và push bằng chứng lên GitHub.
