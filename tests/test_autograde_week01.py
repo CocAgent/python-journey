@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import json
 import shutil
+import sys
 from pathlib import Path
 
 import pytest
 
-from assessment.engine.cli import main
-from assessment.engine.report import grade_week01, load_rubric
-
 ROOT = Path(__file__).resolve().parents[1]
+# pytest's console entrypoint can omit the repository root from sys.path.
+# Keep this confined to this acceptance module, not the production package.
+sys.path.insert(0, str(ROOT))
+
+from assessment.engine.cli import main  # noqa: E402
+from assessment.engine.report import grade_week01, load_rubric  # noqa: E402
 RUBRIC = ROOT / "weeks/week-01-hello-python/assessment/rubric.json"
 REFERENCE = ROOT / "assessment/fixtures/week01/reference"
 WEEK = Path("weeks/week-01-hello-python")
