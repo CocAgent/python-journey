@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT))
 
 from assessment.engine.cli import main  # noqa: E402
 from assessment.engine.report import grade_week01, load_rubric  # noqa: E402
+
 RUBRIC = ROOT / "weeks/week-01-hello-python/assessment/rubric.json"
 REFERENCE = ROOT / "assessment/fixtures/week01/reference"
 WEEK = Path("weeks/week-01-hello-python")
