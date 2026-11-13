@@ -31,6 +31,10 @@ Bắt đầu từ [`starter.py`](starter.py); chỉ sau khi tự làm hãy xem
 độ rộng hiển thị trong terminal có thể khác `len()`; không cần giải quyết
 vấn đề Unicode nâng cao.
 
+## Tự chấm mini-project cùng hai bài cốt lõi
+
+AutoGrade kiểm `starter_basic.py` ở **mức A** (1 điểm) khi em chạy máy chấm Week 01. Xem [hướng dẫn tự đánh giá](../assessment/STUDENT-GUIDE.md); `starter.py` mức B không được tính trong điểm Week 01.
+
 ## Minh chứng
 
 Ghi lệnh chạy, output, một lỗi/sửa lỗi, branch và commit SHA vào

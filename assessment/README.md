@@ -2,6 +2,10 @@
 
 AutoGrade là **công cụ tự kiểm tại máy cá nhân**, không phải hệ thống chấm thi chính thức. Bản AG-01 chỉ hỗ trợ Week 01 và dùng thư viện chuẩn Python >=3.12.
 
+## Hướng dẫn dành cho sinh viên
+
+Mở [Hướng dẫn tự kiểm tra & đánh giá Week 01](../weeks/week-01-hello-python/assessment/STUDENT-GUIDE.md). Nội dung có quy trình Windows/macOS/Linux, cách đọc PASS/RETRY, báo cáo JSON, lỗi thường gặp và minh chứng 5 điểm chờ giảng viên.
+
 ## Bắt đầu
 
 Ở thư mục gốc `python-journey`, sau khi đã tự sửa `weeks/week-01-hello-python/exercises/ex01_hello.py`, `ex02_calculator.py` và `mini-project/starter_basic.py`:

@@ -1,5 +1,7 @@
 # Week 01 AutoGrade — tự đánh giá 5 điểm thực hành
 
+**Sinh viên mới học Python:** bắt đầu tại **[Hướng dẫn tự kiểm tra & đánh giá từng bước](STUDENT-GUIDE.md)** (tải code → làm bài → chạy máy tự chấm → đọc RETRY → xuất báo cáo → nộp minh chứng).
+
 Bản AG-01 dùng chính ba file starter sẵn có: `exercises/ex01_hello.py` (2 điểm), `exercises/ex02_calculator.py` (2 điểm), `mini-project/starter_basic.py` (1 điểm). Điều kiện được khai báo trong [`rubric.json`](rubric.json).
 
 Ở **thư mục gốc** `python-journey`, sau khi học viên viết code:

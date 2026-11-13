@@ -46,6 +46,14 @@ cho đầu vào sai vào thời điểm này.
 
 ## Tự kiểm tra và nộp
 
+Sau khi làm xong, dùng **[AutoGrade dành cho sinh viên](../assessment/STUDENT-GUIDE.md)** để chấm chính ba tệp bài em viết (gồm mini-project), xem từng tiêu chí PASS/RETRY và tự sửa. Lệnh chạy ở gốc repository:
+
+```bash
+python -m assessment grade --week 01 --acknowledge-local-code
+```
+
+AutoGrade chấm tối đa **5 điểm thực hành**, không bao gồm 5 điểm giảng viên duyệt.
+
 Chạy lại từng file, đối chiếu từng đầu ra, thay một con số để giải thích
 phép toán. Điền [mẫu minh chứng](../evidence-template.md), ghi một lỗi đã
 sửa và commit SHA. **`checks/check_week.py` chỉ kiểm tra giáo trình,
@@ -61,4 +69,4 @@ không chấm bài của bạn.**
 | Git commit, hướng dẫn chạy, evidence | 2 |
 | **Tổng** | **10** |
 
-Rubric dành cho giáo viên; không dùng kết quả test tham chiếu làm điểm tự động.
+Bảng trên giữ nguyên thang đánh giá 10 điểm của Week 01. AutoGrade chỉ tự kiểm 5 điểm thực hành và **không lấy PASS từ test tham chiếu làm điểm sinh viên**. Giảng viên duyệt các tiêu chí minh chứng còn lại.
