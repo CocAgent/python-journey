@@ -10,15 +10,15 @@ Chạy: python starter.py
 ten = input("Nhập tên của bạn: ")
 
 # Bước 2: Tính độ rộng khung
-# TODO: Tính width dựa trên len(ten)
+thong_diep = f"Xin chào {ten}!"
+width = max(len(thong_diep) + 4, 20)
 
 # Bước 3: In khung trên
-# TODO: In dòng trên bằng ╔═══╗
+print("╔" + "═" * width + "╗")
 
 # Bước 4: In nội dung
-# TODO: In tên trong khung, căn giữa
+# In thông điệp chứa tên người dùng trong khung, căn giữa bằng .center()
+print("║" + thong_diep.center(width) + "║")
 
 # Bước 5: In khung dưới
-# TODO: In dòng dưới bằng ╚═══╝
-
-# Gợi ý: Dùng str.center(width) để căn giữa
+print("╚" + "═" * width + "╝")
