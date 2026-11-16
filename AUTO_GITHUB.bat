@@ -1,75 +1,109 @@
 
 @echo off
 chcp 65001 >nul
-title THANH QUY TECH - AUTO GITHUB SYNC
-color 0B
+setlocal EnableExtensions
 
-cd /d "%~dp0"
+title THANH QUY TECH - GITHUB AUTO SYNC
+
+set "SOURCE=K:\Python"
+set "WORK=K:\Python_ThanhQuy"
+set "REPO=https://github.com/thanhquycoder/python-journey.git"
+set "BRANCH=ThanhQuy"
+set "DELAY=5"
 
 echo ==========================================
-echo       THANH QUY TECH - GITHUB AUTO
+echo       THANH QUY TECH - AUTO GITHUB
 echo ==========================================
-echo.
 
-where git >nul 2>&1
-if errorlevel 1 (
-    echo [ERROR] Git chua duoc cai dat!
+if not exist "%SOURCE%\.git" (
+    echo [ERROR] Khong tim thay repository goc!
     pause
-    exit /b
+    exit /b 1
 )
 
-if not exist ".git" (
-    echo [ERROR] Thu muc nay chua duoc khoi tao Git!
-    pause
-    exit /b
+if not exist "%WORK%\.git" (
+    if exist "%WORK%" (
+        echo [ERROR] Thu muc K:\Python_ThanhQuy da ton tai
+        echo nhung khong phai Git repository.
+        pause
+        exit /b 1
+    )
+
+    echo [1/4] Dang clone branch %BRANCH%...
+
+    git clone --branch "%BRANCH%" --single-branch "%REPO%" "%WORK%"
+
+    if errorlevel 1 (
+        echo [ERROR] Clone that bai!
+        pause
+        exit /b 1
+    )
 )
 
 :LOOP
+
 echo.
-echo [%date% %time%] Dang dong bo...
+echo ==========================================
+echo [%date% %time%]
+echo Dang sao chep code...
 
-if exist ".git\MERGE_HEAD" (
-    echo [ERROR] Ban dang co merge chua hoan tat.
-    echo Hay xu ly merge truoc khi chay lai file BAT.
+robocopy "%SOURCE%" "%WORK%" /E /XD "%SOURCE%\.git" "%SOURCE%\.venv" "%SOURCE%\venv" /R:1 /W:1 /NFL /NDL /NJH /NJS /NP
+
+if errorlevel 8 (
+    echo [ERROR] Sao chep that bai!
     pause
-    exit /b
+    exit /b 1
 )
 
-if exist ".git\rebase-merge" (
-    echo [ERROR] Dang co rebase chua hoan tat.
-    pause
-    exit /b
-)
+pushd "%WORK%"
 
-git pull --rebase --autostash origin main
-if errorlevel 1 goto ERROR
+echo [2/4] Kiem tra thay doi...
 
 git add -A
 
 git diff --cached --quiet
+
 if errorlevel 1 (
-    echo [INFO] Phat hien thay doi, dang commit...
+    echo [3/4] Dang commit...
+
     git commit --allow-empty-message -m ""
-    if errorlevel 1 goto ERROR
 
-    echo [INFO] Dang upload len GitHub...
-    git push origin main
-    if errorlevel 1 goto ERROR
-
-    echo [SUCCESS] Da dong bo GitHub!
+    if errorlevel 1 (
+        echo [ERROR] Commit that bai!
+        popd
+        pause
+        exit /b 1
+    )
 ) else (
-    echo [INFO] Khong co thay doi.
+    echo [OK] Khong co thay doi moi.
 )
 
-echo.
-echo [WAIT] Cho 30 giay de dong bo tiep...
-timeout /t 30 /nobreak >nul
-goto LOOP
+echo [4/4] Dang dong bo GitHub...
 
-:ERROR
-echo.
-echo [ERROR] Dong bo that bai!
-echo Hay kiem tra ket noi, conflict hoac quyen truy cap GitHub.
-echo.
-pause
-exit /b
+git pull --rebase origin "%BRANCH%"
+
+if errorlevel 1 (
+    echo [ERROR] Phat hien xung dot Git.
+    echo Hay xu ly thu cong trong %WORK%.
+    popd
+    pause
+    exit /b 1
+)
+
+git push origin "%BRANCH%"
+
+if errorlevel 1 (
+    echo [ERROR] Push that bai!
+    popd
+    pause
+    exit /b 1
+)
+
+echo [SUCCESS] Dong bo hoan tat!
+
+popd
+
+echo Cho %DELAY% giay...
+timeout /t %DELAY% /nobreak >nul
+
+goto LOOP
