@@ -39,4 +39,4 @@ print()
 # In ra kết quả dạng: "37°C = ???°F"
 a = 37
 F = a * 9/5 +32
-print(f"37°C = {F}°F")
+print(f"37°C = {F}°F") 
