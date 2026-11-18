@@ -45,6 +45,7 @@ def selfcheck(
     }
     environment["PYTHONNOUSERSITE"] = "1"
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    environment["PYTHONUTF8"] = "1"
 
     try:
         process = subprocess.run(
