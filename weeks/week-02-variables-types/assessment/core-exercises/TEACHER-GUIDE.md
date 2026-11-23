@@ -20,6 +20,12 @@ Không dùng đề mới 5 câu / 10 ý. Bộ chấm dựa vào chính ba file g
 
 Các TODO được nhận diện bằng dòng `# TODO N` **vốn đã có**. Không thay thế tên hàm, không chuyển chương trình thành kiểu return như đề mock-exam (vì học viên đang ở Week 02). Các phần bắt buộc trong từng TODO được chạy riêng với stdin mẫu; điểm phần nhập số đánh giá bằng hai bộ giá trị, hỗ trợ điểm một phần. Phần kiểm AST giúp kiểm `type()`, `int()`, phép toán và thao tác gán. Điểm trên máy chỉ là **ước lượng công khai**, có thể nhận nhầm hoặc không nhận diện được cách viết đúng; giảng viên phải phản biện khi có khiếu nại.
 
+## Hành trình sinh viên và quy trình phản biện
+
+`student_journey.py --student` chạy cùng rubric `grade()`, sinh báo cáo HTML tự chứa ở `.learner-output/week02-journey.html`. Trang có ba chặng, chỉ số TODO, điểm /10 và ba gợi ý mở dần cho TODO cần sửa. Mọi gợi ý chỉ phục vụ tự học, **không làm thay đổi điểm**. Báo cáo không đưa stdout, biến cá nhân hoặc mã bài vào HTML/JSON.
+
+Với mã thay thế đúng nhưng checker không chấp nhận, giảng viên xem code và output thủ công. **Không lấy kết quả AutoGrade làm điểm cuối kỳ**. Không tự chạy bài học viên chưa tin cậy trên VPS, GitHub Actions có secrets hoặc máy tính giảng viên; phải có sandbox đúng nghĩa nếu tổ chức chấm tập trung.
+
 ## Kiểm chuẩn
 
 ```bash
