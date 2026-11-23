@@ -6,20 +6,11 @@ import json
 import sys
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).resolve().parents[1]
 CHECKER = ROOT / "weeks/week-02-variables-types/assessment/core-exercises"
 sys.path.insert(0, str(CHECKER))
 
-from autograde_w02 import (  # noqa: E402
-    ROOT as GRADER_ROOT,
-    RUBRIC,
-    check_one,
-    grade,
-    main,
-    split_todos,
-)
+from autograde_w02 import RUBRIC, check_one, grade, main, split_todos  # noqa: E402
 
 REFERENCE = CHECKER / "fixtures/reference"
 
@@ -104,7 +95,7 @@ def test_splitting_uses_existing_todo_markers() -> None:
 
 def test_rubric_tracks_exact_original_todos() -> None:
     rubric = json.loads(RUBRIC.read_text(encoding="utf-8"))
-    assert GRADER_ROOT == CHECKER
+    assert RUBRIC.parent == CHECKER
     assert [item["file"] for item in rubric["tasks"]] == [
         "ex01_variables.py",
         "ex02_type_conversion.py",
