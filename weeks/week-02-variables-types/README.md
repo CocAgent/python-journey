@@ -5,6 +5,16 @@
 Tuần này bạn đặt tên cho dữ liệu, nhận input dạng text, chuyển kiểu có chủ đích
 và tạo output rõ bằng f-string.
 
+## Chấm tự động đúng **ba bài tập gốc trong exercises/**
+
+**[Mở bộ chấm Week 02 theo TODO có sẵn](assessment/core-exercises/README.md)** — 3 file gốc, 10 TODO bắt buộc, tối đa 10 điểm **tự luyện**. Các mục `(Thử thách)`, `practice/` và `mini-project/` **không tính vào điểm bộ này**.
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student
+```
+
+Bộ tự kiểm `python -m assessment selfcheck --week 02` ở phần hướng dẫn khác **chỉ chạy lab `practice/starter/`**, không tính điểm này. Điểm tự luyện không thay rubric và đánh giá của giảng viên.
+
 ## Outcomes
 
 - dùng biến với tên `snake_case`;
