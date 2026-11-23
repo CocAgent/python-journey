@@ -109,16 +109,21 @@ def output_numbers(text: str) -> list[float]:
 
 
 def contains_all_numbers(text: str, expected: list[float], tol: float = 0.016) -> bool:
+    """Find numeric outputs in expected order without matching substrings.
+
+    Other numeric labels may appear before/between answers. This remains a
+    formative heuristic; instructors handle valid alternate output formats.
+    """
     available = output_numbers(text)
-    for value in expected:
-        found = next(
-            (i for i, actual in enumerate(available)
-             if math.isclose(actual, value, abs_tol=tol, rel_tol=0)),
-            None,
-        )
-        if found is None:
+    cursor = 0
+    for wanted in expected:
+        while cursor < len(available) and not math.isclose(
+            available[cursor], wanted, abs_tol=tol, rel_tol=0
+        ):
+            cursor += 1
+        if cursor == len(available):
             return False
-        available.pop(found)
+        cursor += 1
     return True
 
 
@@ -170,18 +175,27 @@ def check_one(cid: str, code: str) -> tuple[float, str, list[dict]]:
         return 0.0, f"SyntaxError trong TODO: dòng {error.lineno}.", []
 
     samples: dict[str, list[tuple[str, list[float]]]] = {
-        "W02.EX02.BMI": [("1.75\n70\n", [22.9]), ("1.8\n72\n", [22.2])],
+        "W02.EX02.BMI": [
+            ("1.75\n70\n", [22.9]), ("1.8\n72\n", [22.2]),
+            ("1.6\n64\n", [25.0]), ("2\n80\n", [20.0]),
+        ],
         "W02.EX03.FOUR": [
             ("8\n2\n", [10, 6, 16, 4]),
             ("7.5\n2.5\n", [10, 5, 18.75, 3]),
+            ("-6\n3\n", [-3, -9, -18, -2]),
+            ("0\n5\n", [5, -5, 0, 0]),
         ],
         "W02.EX03.CIRCLE": [
             ("1\n", [3.14159, 6.28318]),
             ("2.5\n", [19.6349375, 15.70795]),
+            ("0\n", [0, 0]),
+            ("4\n", [50.26544, 25.13272]),
         ],
         "W02.EX03.DISCOUNT": [
             ("500000\n20\n", [400000]),
             ("200000\n12.5\n", [175000]),
+            ("75000\n0\n", [75000]),
+            ("120000\n25\n", [90000]),
         ],
     }
     observations = []
@@ -259,18 +273,36 @@ def check_one(cid: str, code: str) -> tuple[float, str, list[dict]]:
                 and all(has_operator(tree, kind) for kind in (ast.Add, ast.Sub, ast.Mult, ast.Div))
             )
         elif cid == "W02.EX03.CIRCLE":
-            structural = len(call_nodes(tree, "input")) >= 1
+            structural = (
+                len(call_nodes(tree, "input")) >= 1
+                and has_operator(tree, ast.Mult)
+            )
         elif cid == "W02.EX03.DISCOUNT":
-            structural = len(call_nodes(tree, "input")) >= 2
-        if not structural:
-            return 0.0, "Thiếu input() hoặc phép toán của TODO gốc.", observations
+            structural = (
+                len(call_nodes(tree, "input")) >= 2
+                and has_operator(tree, ast.Mult)
+                and has_operator(tree, ast.Sub)
+            )
         good = 0
         for response, (_stdin, expected) in zip(observations, samples[cid]):
             if response.get("ok") and contains_all_numbers(
                 str(response.get("stdout", "")), expected
             ):
                 good += 1
-        return good / len(samples[cid]), f"Đạt {good}/{len(samples[cid])} bộ input thử công khai.", observations
+        if not structural:
+            if good:
+                return (
+                    0.0,
+                    "REVIEW: Có kết quả trùng mẫu nhưng chưa nhận diện được "
+                    "phép toán/input theo yêu cầu; nhờ giảng viên xem mã.",
+                    observations,
+                )
+            return 0.0, "Thiếu input() hoặc phép toán của TODO gốc.", observations
+        return (
+            good / len(samples[cid]),
+            f"Đạt {good}/{len(samples[cid])} bộ input kiểm thử đa dạng.",
+            observations,
+        )
     else:
         return 0.0, f"Chưa có tiêu chí chấm cho {cid}", observations
     return float(valid), "Đạt tiêu chí." if valid else reason, observations
@@ -296,7 +328,10 @@ def grade(source_folder: Path, mode: str) -> dict:
                 "id": criterion["id"], "todo": criterion["source_todo"],
                 "passed": fraction == 1.0, "earned": earned,
                 "maximum": criterion["points"], "reason": reason,
-                "observations": observations,
+                "observations": [
+                    {"ok": bool(item.get("ok")), "error": item.get("error")}
+                    for item in observations
+                ],
             })
         tasks.append({
             "file": task["file"], "title": task["title"],
@@ -335,7 +370,10 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     for task in result["tasks"]:
         for check in task["criteria"]:
-            status = "PASS" if check["passed"] else "RETRY"
+            status = (
+                "PASS" if check["passed"] else
+                "REVIEW" if check["reason"].startswith("REVIEW:") else "RETRY"
+            )
             print(
                 f"{status} {check['id']}: "
                 f"{check['earned']:.2f}/{check['maximum']:.2f} — {check['reason']}"
