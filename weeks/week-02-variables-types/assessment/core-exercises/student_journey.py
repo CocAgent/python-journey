@@ -80,7 +80,11 @@ def safe(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
-def render_report(result: dict) -> str:
+def render_report(
+    result: dict,
+    *,
+    exercise_href_prefix: str | None = "../weeks/week-02-variables-types/exercises/",
+) -> str:
     """Render a single self-contained, offline HTML page with no JS/network."""
     reference = result["mode"] == "reference"
     completed = sum(
@@ -122,6 +126,11 @@ def render_report(result: dict) -> str:
                 '<p>' + safe(item["reason"]) + '</p>' + hints + '</article>'
             )
         filename = safe(task["file"])
+        source_label = (
+            '<a href="' + safe(exercise_href_prefix) + filename + '">'
+            + filename + '</a>'
+            if exercise_href_prefix is not None else filename
+        )
         cards.append(
             '<section class="stage" aria-label="Chặng ' + number + '">'
             '<header class="stage-head"><div class="number">' + number + '</div>'
@@ -130,8 +139,7 @@ def render_report(result: dict) -> str:
             + safe(stage_state) + ' · ' + str(done) + '/' + str(len(criteria))
             + ' TODO</span><strong>' + f'{earned:.2f}/{maximum:.2f}'
             + ' điểm</strong></div>'
-            '<p class="path">Bài gốc: <a href="../weeks/week-02-variables-types/exercises/'
-            + filename + '">' + filename + '</a></p>'
+            '<p class="path">Bài gốc: ' + source_label + '</p>'
             + "".join(detail_rows) + '</section>'
         )
 
