@@ -7,7 +7,7 @@ title THANH QUY TECH - GITHUB AUTO SYNC
 set "SOURCE=K:\Python"
 set "WORK=K:\Python_ThanhQuy"
 set "REPO=https://github.com/thanhquycoder/python-journey.git"
-set "BRANCH=main"
+set "BRANCH=ThanhQuy-Weeks-2"
 set "DELAY=5"
 
 echo ==========================================
@@ -32,7 +32,7 @@ if not exist "%WORK%\.git" (
     git clone --branch "%BRANCH%" --single-branch "%REPO%" "%WORK%"
 
     if errorlevel 1 (
-        echo [ERROR] Clone that bai! Kiem tra lai ten nhanh "%BRANCH%" tren GitHub.
+        echo [ERROR] Clone that bai! Kiem tra lai quyen truy cap hoac ten nhanh "%BRANCH%".
         pause
         exit /b 1
     )
@@ -44,7 +44,7 @@ echo ==========================================
 echo [%date% %time%]
 echo Dang sao chep code tu %SOURCE%...
 
-robocopy "%SOURCE%" "%WORK%" /MIR /XD ".git" ".venv" "venv" "__pycache__" /R:1 /W:1 /NFL /NDL /NJH /NJS /NP
+robocopy "%SOURCE%" "%WORK%" /E /XD ".git" ".venv" "venv" "__pycache__" /R:1 /W:1 /NFL /NDL /NJH /NJS /NP
 
 if errorlevel 8 (
     echo [ERROR] Sao chep that bai!
@@ -78,7 +78,7 @@ if errorlevel 1 (
         exit /b 1
     )
 
-    git push origin "%BRANCH%"
+    git push origin HEAD:"%BRANCH%"
     if errorlevel 1 (
         echo [ERROR] Push that bai!
         popd
