@@ -5,6 +5,10 @@
 Tuần này bạn đặt tên cho dữ liệu, nhận input dạng text, chuyển kiểu có chủ đích
 và tạo output rõ bằng f-string.
 
+## Ví dụ bài nộp sinh viên được tách đúng vị trí
+
+[**Mẫu tích hợp có kiểm soát từ PR #251**](submissions/pr-251/README.md): lưu ba file bài làm nguyên gốc trong `submissions/pr-251/exercises/`, **không ghi đè các TODO giáo trình**, không chạy bài chưa tin cậy trong CI, và không coi đó là đáp án chuẩn. [Quy tắc thư mục bài nộp](submissions/README.md).
+
 ## Bộ chấm Week 02 với test tách riêng
 
 **Sinh viên (chỉ cần Python):**

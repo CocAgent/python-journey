@@ -1,0 +1,40 @@
+"""
+Bài tập 01: Biến trong Python 📦
+=================================
+Mục tiêu: Hiểu cách khai báo và sử dụng biến
+"""
+
+# TODO 1: Tạo 4 biến lưu thông tin cá nhân
+ten = "Quy"
+tuoi = 20
+diem_tb = 8.5
+dang_hoc = True
+
+print(f"ten = {ten}, type = {type(ten)}")
+print(f"tuoi = {tuoi}, type = {type(tuoi)}")
+print(f"diem_tb = {diem_tb}, type = {type(diem_tb)}")
+print(f"dang_hoc = {dang_hoc}, type = {type(dang_hoc)}")
+
+
+# TODO 2: Hoán đổi giá trị 2 biến KHÔNG dùng biến tạm
+a = 10
+b = 20
+a, b = b, a
+print(f"Sau hoan doi: a = {a}, b = {b}")
+
+
+# TODO 3: Augmented assignment
+x = 100
+x += 50
+print(f"x += 50 -> {x}")
+x -= 30
+print(f"x -= 30 -> {x}")
+x *= 2
+print(f"x *= 2  -> {x}")
+x //= 4
+print(f"x //= 4 -> {x}")
+
+
+# TODO 4 (Thử thách): Multiple assignment
+ho, ten_rieng, tuoi_sv = "Phan", "Thanh Quy", 20
+print(f"Ho ten: {ho} {ten_rieng}, {tuoi_sv} tuoi")
