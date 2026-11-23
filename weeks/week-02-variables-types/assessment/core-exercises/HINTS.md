@@ -1,5 +1,8 @@
 # Gợi ý theo đúng TODO — ba bài exercises Week 02
 
+**Mới:** Để nhận gợi ý theo **ba mức mở dần**, hãy dùng [Hành trình tự luyện](START-HERE.md) và mở `.learner-output/week02-journey.html`. Trang chỉ hiển thị gợi ý cho những TODO chưa đạt; sinh viên chủ động mở từng mức, không bị tự trừ điểm.
+
+
 Chỉ đọc gợi ý sau khi đã tự thử. Mỗi dòng dưới đây tương ứng **một TODO bắt buộc đang có**, không phải câu hỏi mới.
 
 | Bài / TODO | Gợi ý |
