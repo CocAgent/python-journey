@@ -634,6 +634,9 @@
       <button class="tab-btn" data-tab="playground" role="tab" aria-selected="false">
         07 · Code &amp; Chạy Python <span class="tab-badge">Live IDE</span>
       </button>
+      <button class="tab-btn" data-tab="errorlab" role="tab" aria-selected="false">
+        08 · Lỗi phổ biến &amp; Sửa lỗi <span class="tab-badge">6 lỗi</span>
+      </button>
     </nav>
 
     <!-- ===================== TAB 00: HƯỚNG DẪN ===================== -->
@@ -1290,6 +1293,118 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       </div>
     </section>
 
+    <!-- ===================== TAB 08: ERROR LAB ===================== -->
+    <section id="errorlab" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">08</div>
+          <div>
+            <h2>Phòng Lab Lỗi phổ biến &amp; Cách xử lý (Tuần 02)</h2>
+            <p>Thử chạy từng lỗi hay gặp nhất khi học Biến, Kiểu dữ liệu &amp; <code>input()</code>, xem cách sửa đúng hoặc mở thẳng sang Live IDE để tự sửa</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="openTab('playground')">Mở Live IDE Python →</button>
+      </header>
+
+      <div class="todo-grid">
+        <!-- Lỗi 1: ValueError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">ValueError</span>
+            <h3>1. Ép kiểu chữ sang số: <code>int("ba")</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> <code>int()</code> chỉ hiểu chuỗi chứa chữ số nguyên (<code>"42"</code>). Gặp chữ <code>"ba"</code> hoặc số thập phân <code>"3.14"</code> sẽ văng <code>ValueError</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Kiểm tra <code>text.isdigit()</code> trước khi gọi <code>int()</code>; nếu là số thập phân thì dùng <code>float()</code>.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('val_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('val_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('val_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_val_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 2: TypeError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">TypeError</span>
+            <h3>2. Cộng chuỗi với số: <code>"18" + 1</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Python không tự đổi <code>str</code> sang <code>int</code> khi dùng dấu <code>+</code>. Cộng <code>"Tuổi: " + 20</code> hoặc <code>"18" + 1</code> đều báo <code>TypeError</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Ép sang số <code>int("18") + 1</code> khi cần tính toán, hoặc dùng <code>f-string</code> (<code>f"Tuổi: {20}"</code>) khi cần in.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('type_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('type_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('type_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_type_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 3: Logic Bug nối chuỗi -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fef3c7;color:#92400e;">Logic Bug</span>
+            <h3>3. Quên ép kiểu <code>input()</code>: <code>"12" + "3" == "123"</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> <code>input()</code> luôn trả về <code>str</code>. Nếu cộng trực tiếp 2 kết quả <code>input()</code>, chương trình không báo lỗi nhưng lại <strong>nối chuỗi</strong> thành <code>"123"</code> thay vì <code>15</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Luôn bọc <code>int(input(...))</code> hoặc <code>float(input(...))</code> trước khi tính toán.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('concat_bug', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('concat_bug', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('concat_bug')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_concat_bug">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 4: ZeroDivisionError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">ZeroDivisionError</span>
+            <h3>4. Chia cho 0 (Máy tính / BMI / Đổi tiền)</h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Người dùng nhập số chia, tỷ giá hoặc chiều cao bằng <code>0</code> khiến phép <code>/</code> hoặc <code>//</code> làm sập chương trình.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Kiểm tra điều kiện <code>if b != 0:</code> (hoặc <code>if chieu_cao &gt; 0:</code>) trước khi thực hiện phép chia.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('zero_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('zero_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('zero_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_zero_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 5: NameError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">NameError</span>
+            <h3>5. Sai tên biến / Phân biệt hoa-thường</h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Khai báo <code>diem_tb</code> nhưng lúc in lại gõ <code>diem_TB</code> hoặc <code>diemtb</code>. Python phân biệt chữ hoa/chữ thường.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Thống nhất đặt tên <code>snake_case</code> toàn chữ thường và kiểm tra kỹ tên biến trong dòng báo lỗi Traceback.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('name_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('name_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('name_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_name_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 6: Bẫy bool("False") và int(3.99) -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fef3c7;color:#92400e;">Bẫy hay gặp</span>
+            <h3>6. <code>bool("False")</code> là <code>True</code> &amp; <code>int(3.99)</code> là <code>3</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Mọi chuỗi <em>không rỗng</em> (kể cả <code>"False"</code>, <code>"0"</code>) khi ép <code>bool()</code> đều là <code>True</code>; còn <code>int(3.99)</code> cắt phần thập phân chứ không làm tròn.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> So sánh trực tiếp <code>text.lower() == "true"</code> cho boolean, và dùng <code>round(3.99)</code> nếu muốn làm tròn.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('gotcha', 'bad')">✕ Chạy bản DỄ NHẦM</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('gotcha', 'fix')">✓ Chạy bản ĐÚNG CHUẨN</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('gotcha')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_gotcha">Bấm nút bên trên để so sánh bản dễ nhầm và bản đúng chuẩn.</div>
+        </article>
+      </div>
+    </section>
+
     <footer class="footer">
       Vòng tự học: Đọc yêu cầu → Dự đoán → Viết mã → Chạy tự kiểm → Thử nhập dữ liệu biên &amp; sai → Lưu minh chứng.<br>
       Rubric Week 02: <code>bbc9a354833a</code> · <code>official_score: null</code>
@@ -1897,6 +2012,71 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
           pyEditorEl.selectionStart = pyEditorEl.selectionEnd = start + 4;
         }
       });
+    }
+
+    // ===== ERROR LAB DATA & HANDLERS =====
+    const ERROR_CASES = {
+      val_err: {
+        badCode: 'so_luong_text = "ba"\nso_luong = int(so_luong_text)  # LỖI!\nprint(so_luong * 25000)',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nValueError: invalid literal for int() with base 10: \'ba\'',
+        fixCode: 'so_luong_text = "ba"\nif so_luong_text.isdigit():\n    print(int(so_luong_text) * 25000)\nelse:\n    print("Lỗi: Số lượng phải là chữ số nguyên!")',
+        fixOut: 'Lỗi: Số lượng phải là chữ số nguyên! (Chương trình không bị crash ✓)'
+      },
+      type_err: {
+        badCode: 'age_text = "18"\nprint("Tuổi năm sau:", age_text + 1)  # LỖI!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nTypeError: can only concatenate str (not "int") to str',
+        fixCode: 'age_text = "18"\nage = int(age_text)\nprint(f"Tuổi năm sau: {age + 1}")',
+        fixOut: 'Tuổi năm sau: 19'
+      },
+      concat_bug: {
+        badCode: 'a = "12"  # kết quả từ input()\nb = "3"   # kết quả từ input()\nprint("Tổng:", a + b)  # Sai logic!',
+        badOut: 'Tổng: 123   <-- SAI! Python nối 2 chuỗi "12" và "3" thay vì cộng số.',
+        fixCode: 'a = int("12")\nb = int("3")\nprint("Tổng:", a + b)',
+        fixOut: 'Tổng: 15   (Đúng kết quả cộng số học ✓)'
+      },
+      zero_err: {
+        badCode: 'a = 10\nb = 0\nprint("Thương:", a / b)  # LỖI!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 3, in <module>\nZeroDivisionError: division by zero',
+        fixCode: 'a = 10\nb = 0\nif b != 0:\n    print(f"Thương: {a / b:.2f}")\nelse:\n    print("Không thể chia cho 0!")',
+        fixOut: 'Không thể chia cho 0! (Đã xử lý an toàn ✓)'
+      },
+      name_err: {
+        badCode: 'diem_tb = 8.5\nprint("Điểm:", diem_TB)  # Sai chữ hoa/thường!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nNameError: name \'diem_TB\' is not defined. Did you mean: \'diem_tb\'?',
+        fixCode: 'diem_tb = 8.5\nprint(f"Điểm: {diem_tb}")',
+        fixOut: 'Điểm: 8.5'
+      },
+      gotcha: {
+        badCode: 'print("bool(\'False\') =", bool("False"))\nprint("int(3.99)     =", int(3.99))',
+        badOut: 'bool(\'False\') = True   <-- BẪY! Chuỗi không rỗng luôn là True\nint(3.99)     = 3      <-- BẪY! int() cắt đuôi, không làm tròn',
+        fixCode: 'flag_text = "False"\nis_active = flag_text.strip().lower() == "true"\nprint("is_active   =", is_active)\nprint("round(3.99) =", round(3.99))',
+        fixOut: 'is_active   = False\nround(3.99) = 4'
+      }
+    };
+
+    function runErrorDemo(key, mode) {
+      const item = ERROR_CASES[key];
+      const out = document.getElementById('out_err_' + key);
+      if (!item || !out) return;
+      if (mode === 'bad') {
+        out.innerHTML =
+          '<span class="hl"># Code LỖI:</span>\n' + esc(item.badCode) + '\n\n' +
+          '<span class="err">' + esc(item.badOut) + '</span>';
+      } else {
+        out.innerHTML =
+          '<span class="hl"># Code ĐÃ SỬA:</span>\n' + esc(item.fixCode) + '\n\n' +
+          '<span class="ok">' + esc(item.fixOut) + '</span>';
+      }
+    }
+
+    function openErrorInIde(key) {
+      const item = ERROR_CASES[key];
+      if (!item) return;
+      document.getElementById('pyCode').value =
+        '# Thử chạy để xem lỗi thật, sau đó tự sửa lại cho đúng!\n' + item.badCode + '\n';
+      document.getElementById('pyStdin').value = '';
+      openTab('playground');
+      showToast('Đã nạp code lỗi vào Live IDE — bấm ▶ Chạy để quan sát!');
     }
 
     loadPyTemplate('ex02');
