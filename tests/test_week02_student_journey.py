@@ -136,3 +136,31 @@ def test_student_report_from_blank_exercises_is_not_fake_success(
         not item["passed"] for task in data["tasks"]
         for item in task["criteria"]
     )
+
+
+
+def test_student_cli_with_blank_exercises_creates_report(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    import student_journey  # noqa: PLC0415
+
+    fake_week = tmp_path / "week-02"
+    exercises = fake_week / "exercises"
+    exercises.mkdir(parents=True)
+    for filename, count in (
+        ("ex01_variables.py", 4),
+        ("ex02_type_conversion.py", 5),
+        ("ex03_input_calc.py", 4),
+    ):
+        (exercises / filename).write_text(
+            "\\n".join(f"# TODO {n}: chưa làm" for n in range(1, count + 1))
+            + "\\n",
+            encoding="utf-8",
+        )
+    monkeypatch.setattr(student_journey, "WEEK", fake_week)
+    target = tmp_path / "student.html"
+    assert student_journey.main(["--student", "--report", str(target)]) == 1
+    page = target.read_text(encoding="utf-8")
+    assert "KẾT QUẢ TỰ LUYỆN TRÊN MÁY CÁ NHÂN" in page
+    assert "0.00/10" in page
+    assert page.count('class="stage"') == 3
