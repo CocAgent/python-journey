@@ -11,15 +11,14 @@ import pytest
 CORE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CORE))
 
-import autograde_w02  # noqa: E402
-from autograde_w02 import grade, test_suite_audit as audit_suite  # noqa: E402
+import autograde_w02 as ag  # noqa: E402
 from grader import main as grader_main  # noqa: E402
 
 REFERENCE = CORE / "fixtures" / "reference"
 
 
 def test_full_bank_matches_all_rubric_criteria() -> None:
-    audit = audit_suite()
+    audit = ag.test_suite_audit()
     assert audit["exercises_count"] == 3
     assert audit["criteria_count"] == 10
     assert audit["dynamic_case_count"] == 24
@@ -29,15 +28,15 @@ def test_full_bank_matches_all_rubric_criteria() -> None:
 
 
 def test_full_bank_and_golden_reference_score_ten() -> None:
-    result = grade(REFERENCE, "reference")
+    result = ag.grade(REFERENCE, "reference")
     assert result["auto_score"] == 10
     assert result["official_score"] is None
-    assert result["test_suite_sha256"] == audit_suite()["test_suite_sha256"]
+    assert result["test_suite_sha256"] == ag.test_suite_audit()["test_suite_sha256"]
     assert [len(task["criteria"]) for task in result["tasks"]] == [3, 4, 3]
 
 
 def test_bank_rejects_missing_criterion(tmp_path: Path, monkeypatch) -> None:
-    for source in autograde_w02.TEST_CASE_DIR.glob("cases_ex*.json"):
+    for source in ag.TEST_CASE_DIR.glob("cases_ex*.json"):
         (tmp_path / source.name).write_bytes(source.read_bytes())
     filename = tmp_path / "cases_ex02_type_conversion.json"
     data = json.loads(filename.read_text(encoding="utf-8"))
@@ -45,11 +44,11 @@ def test_bank_rejects_missing_criterion(tmp_path: Path, monkeypatch) -> None:
     filename.write_text(json.dumps(data), encoding="utf-8")
     monkeypatch.setattr(autograde_w02, "TEST_CASE_DIR", tmp_path)
     with pytest.raises(ValueError, match="TEST_SUITE_MISMATCH"):
-        audit_suite()
+        ag.test_suite_audit()
 
 
 def test_bank_rejects_missing_dynamic_cases(tmp_path: Path, monkeypatch) -> None:
-    for source in autograde_w02.TEST_CASE_DIR.glob("cases_ex*.json"):
+    for source in ag.TEST_CASE_DIR.glob("cases_ex*.json"):
         (tmp_path / source.name).write_bytes(source.read_bytes())
     filename = tmp_path / "cases_ex03_input_calc.json"
     data = json.loads(filename.read_text(encoding="utf-8"))
@@ -57,7 +56,7 @@ def test_bank_rejects_missing_dynamic_cases(tmp_path: Path, monkeypatch) -> None
     filename.write_text(json.dumps(data), encoding="utf-8")
     monkeypatch.setattr(autograde_w02, "TEST_CASE_DIR", tmp_path)
     with pytest.raises(ValueError, match="TEST_SUITE_INCOMPLETE"):
-        audit_suite()
+        ag.test_suite_audit()
 
 
 def test_full_suite_audit_cli_does_not_run_student_code(
@@ -116,7 +115,7 @@ def test_student_cli_blank_workspace_creates_private_reports(
 
 def test_learner_solutions_and_grader_fixtures_stay_separate() -> None:
     assert REFERENCE != CORE.parent.parent / "exercises"
-    audit = audit_suite()
+    audit = ag.test_suite_audit()
     assert all(
         item["exercise"].startswith("ex0")
         for item in audit["tasks"]
