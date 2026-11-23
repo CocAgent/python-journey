@@ -1,27 +1,42 @@
+<div align="center">
+
 # 🐍 Python Journey
 
-Hành trình tự học và thực hành lập trình Python theo từng tuần.
+**Nhật ký tự học, thực hành và chinh phục ngôn ngữ lập trình Python từ con số 0.**
 
-## 🚀 Truy cập nhanh (Live Demo)
+[![Live Demo](https://img.shields.io/badge/🚀_Truy_Cập_Web-Live_Demo-2ea44f?style=for-the-badge)](https://thanhquycoder.github.io/python-journey/)
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?style=for-the-badge&logo=github)](https://thanhquycoder.github.io/python-journey/)
 
-Bấm vào nút bên dưới để xem phiên bản web trực tiếp:
-
-[![Xem Web Trực Tiếp](https://img.shields.io/badge/Live_Demo-Truy_cập_ngay-2ea44f?style=for-the-badge&logo=github)](https://thanhquycoder.github.io/python-journey/)
-
-Hoặc truy cập qua đường dẫn: 👉 [https://thanhquycoder.github.io/python-journey/](https://thanhquycoder.github.io/python-journey/)
+</div>
 
 ---
 
-## 📚 Mục lục các tuần
+## 🌐 Xem nhanh trực tuyến
 
-| Tuần | Chủ đề | Xem trực tiếp |
-| :--- | :--- | :--- |
-| **Week 02** | Variables & Types | [Mở trang Week 02](https://thanhquycoder.github.io/python-journey/weeks/week-02-variables-types/html/week02-journey.html) |
+Không cần cài đặt, bấm trực tiếp vào đường dẫn bên dưới để xem giao diện tổng hợp kiến thức:
+
+> 👉 **[https://thanhquycoder.github.io/python-journey/](https://thanhquycoder.github.io/python-journey/)**
 
 ---
 
-## 🛠️ Cách chạy trên máy cá nhân (Local)
+## 🗺️ Lộ trình & Tiến độ học tập
 
-1. Clone repository về máy:
-   ```bash
-   git clone [https://github.com/thanhquycoder/python-journey.git](https://github.com/thanhquycoder/python-journey.git)
+| Tuần | Chủ đề chính | Trạng thái | Xem bài học |
+| :---: | :--- | :---: | :---: |
+| **Week 01** | *Cài đặt & Làm quen Python* | ⏳ Đang cập nhật | — |
+| **Week 02** | **Variables & Data Types** *(Biến & Kiểu dữ liệu)* | ✅ Hoàn thành | [🔗 Mở trang](https://thanhquycoder.github.io/python-journey/weeks/week-02-variables-types/html/week02-journey.html) |
+| **Week 03** | *Control Flow (If/Else, Loops)* | 🔜 Sắp tới | — |
+
+---
+
+## 📂 Cấu trúc thư mục
+
+```text
+python-journey/
+├── index.html                  # Trang điều hướng chính
+├── README.md                   # Giới thiệu dự án
+└── weeks/
+    └── week-02-variables-types/
+        └── html/
+            └── week02-journey.html
