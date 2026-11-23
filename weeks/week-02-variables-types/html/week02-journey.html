@@ -1247,11 +1247,15 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       </header>
 
       <div class="actions" style="margin-bottom: 14px;">
-        <button class="btn btn-ghost" onclick="loadPyTemplate('ex01')">Nạp mẫu ex01</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('ex02')">Nạp mẫu ex02 (BMI + Giây)</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('ex03')">Nạp mẫu ex03 (Máy tính)</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Nạp mẫu Thẻ SV</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống tự code</button>
+        <select id="gradeTarget" class="btn btn-ghost" style="padding: 8px 12px;" aria-label="Chọn bài để chấm điểm">
+          <option value="ex01">Bài 01 · ex01_variables.py (3.00đ · 3 TODO)</option>
+          <option value="ex02" selected>Bài 02 · ex02_type_conversion.py (3.50đ · 4 TODO · 6 input)</option>
+          <option value="ex03">Bài 03 · ex03_input_calc.py (3.50đ · 3 TODO · 18 input)</option>
+        </select>
+        <button class="btn btn-ghost" onclick="loadStarterForGrade()">Nạp khung TODO trống (tự code)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate(document.getElementById('gradeTarget').value)">Nạp mẫu chuẩn bài đang chọn</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Mẫu Thẻ SV</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống</button>
       </div>
 
       <div class="todo-grid">
@@ -1264,6 +1268,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
           <textarea id="pyCode" class="py-editor" spellcheck="false"></textarea>
           <div class="actions">
             <button class="btn btn-primary" id="btnRunPy" onclick="runLivePython()">▶ Chạy Code Python</button>
+            <button class="btn btn-primary" id="btnGradePy" style="background: #059669;" onclick="gradeLivePython()">🎯 Chấm điểm tự động (Rubric W02)</button>
             <button class="btn btn-ghost" onclick="copyText(document.getElementById('pyCode').value)">Copy Code</button>
             <button class="btn btn-ghost" onclick="document.getElementById('pyOutput').textContent='Đã xóa màn hình kết quả.'">Xóa Output</button>
           </div>
@@ -1289,6 +1294,16 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
             <label>Kết quả Terminal (stdout / stderr)</label>
             <div class="console" id="pyOutput" style="min-height: 215px;">Bấm "▶ Chạy Code Python" — khi code gặp lệnh input(), trình duyệt sẽ hiện ô để bạn nhập trực tiếp từng giá trị!</div>
           </div>
+        </article>
+
+        <article class="todo-card full">
+          <div class="todo-top">
+            <span class="tag passed">AUTO-GRADER W02</span>
+            <h3>Kết quả tự chấm điểm theo Rubric Week 02 (10 TODO · 24 bộ input động)</h3>
+            <span class="points" id="liveTotalScore">Tổng tự chấm: 0.00 / 10.00</span>
+          </div>
+          <p class="todo-desc">Giữ các dòng đánh dấu <code># TODO 1</code>, <code># TODO 2</code>, <code># TODO 3</code>... khi tự viết code để máy chấm đúng từng tiêu chí. <strong>Lưu ý:</strong> Điểm tự luyện (<code>official_score: null</code>), không thay thế điểm chính thức của giảng viên.</p>
+          <div class="console" id="pyGradeOutput" style="min-height: 110px;">Chọn bài ở danh sách trên (ex01 / ex02 / ex03), viết code rồi bấm "🎯 Chấm điểm tự động (Rubric W02)" để kiểm tra ngay!</div>
         </article>
       </div>
     </section>
@@ -2079,6 +2094,305 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       showToast('Đã nạp code lỗi vào Live IDE — bấm ▶ Chạy để quan sát!');
     }
 
+    // ===== IN-BROWSER AUTO-GRADER (RUBRIC WEEK 02: 10 TODO / 24 DYNAMIC CASES) =====
+    const GRADE_STARTERS = {
+      ex01: [
+        '# TODO 1: Tạo 4 biến ten (str), tuoi (int), diem_tb (float), dang_hoc (bool) và in kèm type()',
+        '',
+        '',
+        '# TODO 2: Hoán đổi a = 10, b = 20 KHÔNG dùng biến tạm (a, b = b, a)',
+        '',
+        '',
+        '# TODO 3: Cho x = 100, dùng đủ +=, -=, *=, //= qua 4 bước và in x sau mỗi bước',
+        ''
+      ].join('\n'),
+      ex02: [
+        '# TODO 1: Cho so_text = "42", chuyển sang int, cộng 8 và in kết quả',
+        'so_text = "42"',
+        '',
+        '# TODO 2: Cho pi = 3.14159, chuyển sang int và in kết quả',
+        'pi = 3.14159',
+        '',
+        '# TODO 3: In bool() của 0, 1, "", "hello", [], [1, 2]',
+        '',
+        '# TODO 4: Nhập chiều cao (m) rồi cân nặng (kg), tính BMI và in 1 chữ số thập phân',
+        ''
+      ].join('\n'),
+      ex03: [
+        '# TODO 1: Nhập 2 số, in lần lượt tổng, hiệu, tích, thương',
+        '',
+        '# TODO 2: Nhập bán kính, dùng pi = 3.14159 tính và in diện tích, chu vi',
+        '',
+        '# TODO 3: Nhập giá gốc và % giảm giá, tính và in giá sau giảm',
+        ''
+      ].join('\n')
+    };
+
+    // Đồng bộ mẫu chuẩn có đủ # TODO để test tự chấm ngay
+    PY_TEMPLATES.ex01.code = [
+      '# TODO 1: Tạo 4 biến lưu thông tin cá nhân + type()',
+      'ten = "Quy"',
+      'tuoi = 20',
+      'diem_tb = 8.5',
+      'dang_hoc = True',
+      'print(ten, type(ten))',
+      'print(tuoi, type(tuoi))',
+      'print(diem_tb, type(diem_tb))',
+      'print(dang_hoc, type(dang_hoc))',
+      '',
+      '# TODO 2: Hoán đổi giá trị 2 biến KHÔNG dùng biến tạm',
+      'a = 10',
+      'b = 20',
+      'a, b = b, a',
+      'print(f"Sau hoán đổi: a = {a}, b = {b}")',
+      '',
+      '# TODO 3: Augmented assignment (+=, -=, *=, //=)',
+      'x = 100',
+      'x += 50; print(x)',
+      'x -= 30; print(x)',
+      'x *= 2;  print(x)',
+      'x //= 4; print(x)'
+    ].join('\n');
+
+    PY_TEMPLATES.ex02.code = [
+      '# TODO 1: Chuyển so_text = "42" sang int và cộng 8',
+      'so_text = "42"',
+      'print(int(so_text) + 8)',
+      '',
+      '# TODO 2: Chuyển pi = 3.14159 sang int',
+      'pi = 3.14159',
+      'print(int(pi))',
+      '',
+      '# TODO 3: Kiểm tra bool() của 6 giá trị',
+      'print(bool(0))',
+      'print(bool(1))',
+      'print(bool(""))',
+      'print(bool("hello"))',
+      'print(bool([]))',
+      'print(bool([1, 2]))',
+      '',
+      '# TODO 4: Tính BMI',
+      'chieu_cao = float(input("Nhập chiều cao (m): "))',
+      'can_nang = float(input("Nhập cân nặng (kg): "))',
+      'bmi = can_nang / (chieu_cao ** 2)',
+      'print(f"BMI: {bmi:.1f}")'
+    ].join('\n');
+    PY_TEMPLATES.ex02.stdin = '1.75\n70';
+
+    PY_TEMPLATES.ex03.code = [
+      '# TODO 1: Tổng, hiệu, tích, thương 2 số',
+      'so_1 = float(input("Số thứ nhất: "))',
+      'so_2 = float(input("Số thứ hai: "))',
+      'print("Tổng:", so_1 + so_2)',
+      'print("Hiệu:", so_1 - so_2)',
+      'print("Tích:", so_1 * so_2)',
+      'print("Thương:", f"{so_1 / so_2:.2f}" if so_2 != 0 else "Không chia được cho 0")',
+      '',
+      '# TODO 2: Diện tích & chu vi hình tròn',
+      'pi = 3.14159',
+      'r = float(input("Bán kính: "))',
+      'print(f"Diện tích: {pi * r ** 2:.2f}")',
+      'print(f"Chu vi: {2 * pi * r:.2f}")',
+      '',
+      '# TODO 3: Tính giá sau giảm',
+      'gia_goc = float(input("Giá gốc: "))',
+      'giam = float(input("Giảm giá (%): "))',
+      'print(f"Giá sau giảm: {gia_goc * (1 - giam / 100):.2f}")'
+    ].join('\n');
+    PY_TEMPLATES.ex03.stdin = '10\n4\n5\n500000\n20';
+
+    function loadStarterForGrade() {
+      const target = document.getElementById('gradeTarget').value;
+      document.getElementById('pyCode').value = GRADE_STARTERS[target] || '';
+      showToast('Đã nạp khung TODO trống cho ' + target + ' — hãy tự viết code rồi bấm Chấm điểm!');
+    }
+
+    let liveScores = { ex01: 0, ex02: 0, ex03: 0 };
+    try {
+      const saved = JSON.parse(localStorage.getItem('w02_live_scores') || 'null');
+      if (saved && typeof saved === 'object') liveScores = Object.assign(liveScores, saved);
+    } catch {}
+
+    function refreshLiveScoreHeader() {
+      const total = (liveScores.ex01 || 0) + (liveScores.ex02 || 0) + (liveScores.ex03 || 0);
+      const el = document.getElementById('liveTotalScore');
+      if (el) {
+        el.textContent =
+          'Tổng tự chấm: ' + total.toFixed(2) + ' / 10.00' +
+          ' (ex01: ' + (liveScores.ex01 || 0).toFixed(2) + '/3 · ex02: ' + (liveScores.ex02 || 0).toFixed(2) + '/3.5 · ex03: ' + (liveScores.ex03 || 0).toFixed(2) + '/3.5)';
+      }
+    }
+
+    async function gradeLivePython() {
+      const btn = document.getElementById('btnGradePy');
+      const out = document.getElementById('pyGradeOutput');
+      const target = document.getElementById('gradeTarget').value;
+      const code = document.getElementById('pyCode').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Đang chấm điểm...';
+      out.innerHTML = '<span class="hl">Đang chạy Python AST & bộ test động Week 02...</span>';
+
+      try {
+        const py = await ensurePyodide();
+        py.globals.set('__grade_code__', code);
+        py.globals.set('__grade_target__', target);
+
+        const graderPy = [
+          'import ast, builtins, io, json, math, re, sys',
+          'TODO_RE = re.compile(r"^\\s*#\\s*TODO\\s+([0-9]+)\\b")',
+          'NUM_RE = re.compile(r"(?<![\\d.])[-+]?\\d+(?:\\.\\d+)?(?![\\d.])")',
+          'BOOL_RE = re.compile(r"\\b(?:True|False)\\b")',
+          'CASES = {',
+          '  "W02.EX02.BMI": [("1.75\\n70\\n",[22.9]),("1.8\\n72\\n",[22.2]),("1.6\\n64\\n",[25]),("2\\n80\\n",[20]),("1.5\\n45\\n",[20]),("1.9\\n90.25\\n",[25])],',
+          '  "W02.EX03.FOUR": [("8\\n2\\n",[10,6,16,4]),("7.5\\n2.5\\n",[10,5,18.75,3]),("-6\\n3\\n",[-3,-9,-18,-2]),("0\\n5\\n",[5,-5,0,0]),("6\\n1.5\\n",[7.5,4.5,9,4]),("-8\\n-2\\n",[-10,-6,16,4])],',
+          '  "W02.EX03.CIRCLE": [("1\\n",[3.14159,6.28318]),("2.5\\n",[19.6349375,15.70795]),("0\\n",[0,0]),("4\\n",[50.26544,25.13272]),("3\\n",[28.27431,18.84954]),("0.5\\n",[0.7853975,3.14159])],',
+          '  "W02.EX03.DISCOUNT": [("500000\\n20\\n",[400000]),("200000\\n12.5\\n",[175000]),("75000\\n0\\n",[75000]),("120000\\n25\\n",[90000]),("800\\n50\\n",[400]),("999\\n10\\n",[899.1])]',
+          '}',
+          'def split_todos(src):',
+          '    idx, secs = None, {}',
+          '    for line in src.splitlines():',
+          '        m = TODO_RE.match(line)',
+          '        if m:',
+          '            idx = int(m.group(1)); secs[idx] = []',
+          '        elif idx is not None:',
+          '            secs[idx].append(line)',
+          '    return {k: "\\n".join(v) + "\\n" for k, v in secs.items()}',
+          'def run_frag(frag, stdin_txt=""):',
+          '    buf = io.StringIO()',
+          '    old_out, old_err, old_in = sys.stdout, sys.stderr, sys.stdin',
+          '    sys.stdout = sys.stderr = buf',
+          '    sys.stdin = io.StringIO(stdin_txt)',
+          '    ns = {}',
+          '    try:',
+          '        exec(compile(frag, "<student_todo.py>", "exec"), ns)',
+          '        return True, buf.getvalue(), ns, ""',
+          '    except Exception as e:',
+          '        return False, buf.getvalue(), ns, f"{type(e).__name__}: {e}"',
+          '    finally:',
+          '        sys.stdout, sys.stderr, sys.stdin = old_out, old_err, old_in',
+          'def has_call(tree, fn):',
+          '    return any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == fn for n in ast.walk(tree))',
+          'def match_nums(text, expected, tol=0.06):',
+          '    avail = [float(x) for x in NUM_RE.findall(text.replace(",", ""))]',
+          '    cur = 0',
+          '    for w in expected:',
+          '        while cur < len(avail) and not math.isclose(avail[cur], w, rel_tol=0.005, abs_tol=tol):',
+          '            cur += 1',
+          '        if cur >= len(avail): return False',
+          '        cur += 1',
+          '    return True',
+          'def grade(target, src):',
+          '    secs = split_todos(src)',
+          '    results = []',
+          '    def add(cid, todo, max_p, ok, reason):',
+          '        results.append({"id": cid, "todo": todo, "earned": max_p if ok else 0.0, "max": max_p, "ok": ok, "reason": reason})',
+          '    def parse_sec(todo):',
+          '        frag = secs.get(todo, "")',
+          '        if not frag.strip(): return None, None, "Chưa có code dưới # TODO " + str(todo)',
+          '        try: return frag, ast.parse(frag), None',
+          '        except SyntaxError as e: return None, None, f"SyntaxError: {e.msg}"',
+          '    if target == "ex01":',
+          '        frag, tree, err = parse_sec(1)',
+          '        if err: add("W02.EX01.PROFILE", 1, 1.0, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            types_ok = ok and isinstance(ns.get("ten"), str) and type(ns.get("tuoi")) is int and isinstance(ns.get("diem_tb"), float) and type(ns.get("dang_hoc")) is bool',
+          '            if types_ok and has_call(tree, "type"):',
+          '                add("W02.EX01.PROFILE", 1, 1.0, True, "Đạt tiêu chí (4 biến đúng kiểu + type()).")',
+          '            else:',
+          '                add("W02.EX01.PROFILE", 1, 1.0, False, rerr or "Cần đủ ten(str), tuoi(int), diem_tb(float), dang_hoc(bool) và gọi type().")',
+          '        frag, tree, err = parse_sec(2)',
+          '        if err: add("W02.EX01.SWAP", 2, 1.0, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            has_tuple_swap = any(isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Tuple) and isinstance(n.value, ast.Tuple) for n in ast.walk(tree))',
+          '            if ok and ns.get("a") == 20 and ns.get("b") == 10 and has_tuple_swap:',
+          '                add("W02.EX01.SWAP", 2, 1.0, True, "Đạt tiêu chí (hoán đổi a, b = b, a chuẩn Python).")',
+          '            else:',
+          '                add("W02.EX01.SWAP", 2, 1.0, False, rerr or "Cần a=10, b=20 rồi hoán đổi bằng a, b = b, a để ra a=20, b=10.")',
+          '        frag, tree, err = parse_sec(3)',
+          '        if err: add("W02.EX01.AUG", 3, 1.0, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            ops = {type(n.op) for n in ast.walk(tree) if isinstance(n, ast.AugAssign)}',
+          '            need = {ast.Add, ast.Sub, ast.Mult, ast.FloorDiv}',
+          '            if ok and need.issubset(ops) and len(out.strip().splitlines()) >= 4:',
+          '                add("W02.EX01.AUG", 3, 1.0, True, "Đạt tiêu chí (đủ 4 phép +=, -=, *=, //= và in 4 bước).")',
+          '            else:',
+          '                add("W02.EX01.AUG", 3, 1.0, False, rerr or "Cần dùng đủ cả 4 toán tử +=, -=, *=, //= và in x sau mỗi bước.")',
+          '    elif target == "ex02":',
+          '        frag, tree, err = parse_sec(1)',
+          '        if err: add("W02.EX02.TEXT", 1, 0.75, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            if ok and has_call(tree, "int") and match_nums(out, [50]):',
+          '                add("W02.EX02.TEXT", 1, 0.75, True, "Đạt tiêu chí (int(\\"42\\") + 8 = 50).")',
+          '            else: add("W02.EX02.TEXT", 1, 0.75, False, rerr or "Cần dùng int() chuyển \\"42\\" rồi cộng 8 ra 50.")',
+          '        frag, tree, err = parse_sec(2)',
+          '        if err: add("W02.EX02.PI", 2, 0.75, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            if ok and has_call(tree, "int") and match_nums(out, [3]):',
+          '                add("W02.EX02.PI", 2, 0.75, True, "Đạt tiêu chí (int(3.14159) = 3).")',
+          '            else: add("W02.EX02.PI", 2, 0.75, False, rerr or "Cần dùng int(pi) và in ra 3.")',
+          '        frag, tree, err = parse_sec(3)',
+          '        if err: add("W02.EX02.BOOL", 3, 0.75, False, err)',
+          '        else:',
+          '            ok, out, ns, rerr = run_frag(frag)',
+          '            got = BOOL_RE.findall(out)',
+          '            want = ["False", "True", "False", "True", "False", "True"]',
+          '            if ok and has_call(tree, "bool") and got[:6] == want:',
+          '                add("W02.EX02.BOOL", 3, 0.75, True, "Đạt tiêu chí (đúng 6 giá trị bool()).")',
+          '            else: add("W02.EX02.BOOL", 3, 0.75, False, rerr or "Cần in đúng thứ tự: False, True, False, True, False, True.")',
+          '        frag, tree, err = parse_sec(4)',
+          '        if err: add("W02.EX02.BMI", 4, 1.25, False, err)',
+          '        else:',
+          '            passed = 0; last_err = ""',
+          '            for inp, exp in CASES["W02.EX02.BMI"]:',
+          '                ok, out, ns, rerr = run_frag(frag, inp)',
+          '                if ok and match_nums(out, exp): passed += 1',
+          '                elif rerr: last_err = rerr',
+          '            add("W02.EX02.BMI", 4, 1.25, passed == 6, f"Đạt {passed}/6 bộ input kiểm thử đa dạng." + (f" ({last_err})" if last_err else ""))',
+          '    elif target == "ex03":',
+          '        for cid, todo, max_p in [("W02.EX03.FOUR", 1, 1.5), ("W02.EX03.CIRCLE", 2, 1.0), ("W02.EX03.DISCOUNT", 3, 1.0)]:',
+          '            frag, tree, err = parse_sec(todo)',
+          '            if err: add(cid, todo, max_p, False, err)',
+          '            else:',
+          '                passed = 0; last_err = ""',
+          '                for inp, exp in CASES[cid]:',
+          '                    ok, out, ns, rerr = run_frag(frag, inp)',
+          '                    if ok and match_nums(out, exp): passed += 1',
+          '                    elif rerr: last_err = rerr',
+          '                add(cid, todo, max_p, passed == 6, f"Đạt {passed}/6 bộ input kiểm thử đa dạng." + (f" ({last_err})" if last_err else ""))',
+          '    earned = sum(r["earned"] for r in results)',
+          '    max_total = sum(r["max"] for r in results)',
+          '    return json.dumps({"earned": earned, "max": max_total, "items": results}, ensure_ascii=False)',
+          'grade(__grade_target__, __grade_code__)'
+        ].join('\n');
+
+        const data = JSON.parse(py.runPython(graderPy));
+        liveScores[target] = data.earned;
+        try { localStorage.setItem('w02_live_scores', JSON.stringify(liveScores)); } catch {}
+        refreshLiveScoreHeader();
+
+        const lines = data.items.map((it) => {
+          const badge = it.ok ? '<span class="ok">[PASS]</span>' : '<span class="err">[RETRY]</span>';
+          return badge + ' TODO ' + it.todo + ' (' + it.id + '): ' + it.earned.toFixed(2) + '/' + it.max.toFixed(2) + ' — ' + esc(it.reason);
+        });
+        lines.push('');
+        lines.push('<span class="hl">Điểm bài ' + target + ': ' + data.earned.toFixed(2) + ' / ' + data.max.toFixed(2) + ' (Tự luyện · official_score: null)</span>');
+        out.innerHTML = lines.join('\n');
+        showToast('Đã chấm xong ' + target + ': ' + data.earned.toFixed(2) + '/' + data.max.toFixed(2) + ' điểm!');
+      } catch (err) {
+        out.innerHTML = '<span class="err">Lỗi chấm tự động: ' + esc(err.message) + '</span>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🎯 Chấm điểm tự động (Rubric W02)';
+      }
+    }
+
+    refreshLiveScoreHeader();
     loadPyTemplate('ex02');
     runAll();
   </script>
