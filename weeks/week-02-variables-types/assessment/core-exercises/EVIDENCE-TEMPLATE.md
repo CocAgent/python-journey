@@ -3,6 +3,7 @@
 - Mã bài: `ex01_variables.py` / `ex02_type_conversion.py` / `ex03_input_calc.py`
 - Phiên bản Python:
 - Branch/commit SHA (nếu nộp bằng Git):
+- File hành trình HTML tự luyện (trên máy cá nhân): `.learner-output/week02-journey.html`
 - Lệnh tự chấm: `python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student`
 - Điểm **tự luyện** /10 (không phải điểm chính thức):
 - `official_score`: chưa có / chờ giảng viên
