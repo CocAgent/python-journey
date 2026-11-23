@@ -2,6 +2,26 @@
 
 > Hướng dẫn tự học dùng **mã của chính sinh viên**. PASS của bài mẫu không phải điểm của bạn. Checker chỉ kiểm phần ghi bên dưới; giảng viên vẫn quyết định điểm học phần.
 
+## Bắt đầu nhanh — hành trình 3 chặng, 1 lệnh, báo cáo HTML
+
+**[START-HERE.md — hướng dẫn tải và thực hiện Week 02](core-exercises/START-HERE.md)**. Sau khi em sửa ba bài `exercises/` gốc, chạy từ gốc repository:
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --student
+```
+
+Mở `.learner-output/week02-journey.html` để xem phản hồi theo TODO và gợi ý mở dần. Máy không tự gửi bài hoặc điểm lên Internet. **Điểm tự luyện không phải điểm học phần.**
+
+## Chấm **exercises/** gốc (khác checker practice)
+
+Bộ chấm điểm tự luyện bám trực tiếp ba file `exercises/`, không yêu cầu sinh viên viết đề mới. Hãy xem **[Hướng dẫn chấm tự động ba bài tập gốc Week 02](core-exercises/STUDENT-GUIDE.md)** và chạy:
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student
+```
+
+Thang điểm /10 này chỉ là phản hồi thực hành, không phải điểm học phần. **Phần còn lại của tài liệu này** nói về `practice/starter/` và checker `selfcheck` cũ, không cộng chung hai kết quả.
+
 ## 1. Chuẩn bị
 
 Mở [README của tuần](../README.md), đọc notes, ví dụ và yêu cầu bài tập. Cài Python >=3.12 và mở Terminal ở thư mục gốc `python-journey`. Trên Windows có thể dùng `py`, trên macOS/Linux thường dùng `python3` thay cho `python`. Tải toàn bộ repository (ZIP hoặc Git), không chỉ một tệp `.py`.

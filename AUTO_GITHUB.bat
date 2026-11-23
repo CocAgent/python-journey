@@ -8,7 +8,7 @@ title THANH QUY TECH - GITHUB AUTO SYNC
 set "SOURCE=K:\Python"
 set "WORK=K:\Python_ThanhQuy"
 set "REPO=https://github.com/thanhquycoder/python-journey.git"
-set "BRANCH=ThanhQuy"
+set "BRANCH=ThanhQuy Weeks 2"
 set "DELAY=5"
 
 echo ==========================================
