@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "exercise": "ex03_input_calc.py",
+  "cases": {
+    "W02.EX03.FOUR": [
+      {
+        "input": "8\n2\n",
+        "expected": [
+          10,
+          6,
+          16,
+          4
+        ]
+      },
+      {
+        "input": "7.5\n2.5\n",
+        "expected": [
+          10,
+          5,
+          18.75,
+          3
+        ]
+      },
+      {
+        "input": "-6\n3\n",
+        "expected": [
+          -3,
+          -9,
+          -18,
+          -2
+        ]
+      },
+      {
+        "input": "0\n5\n",
+        "expected": [
+          5,
+          -5,
+          0,
+          0
+        ]
+      },
+      {
+        "input": "6\n1.5\n",
+        "expected": [
+          7.5,
+          4.5,
+          9,
+          4
+        ]
+      },
+      {
+        "input": "-8\n-2\n",
+        "expected": [
+          -10,
+          -6,
+          16,
+          4
+        ]
+      }
+    ],
+    "W02.EX03.CIRCLE": [
+      {
+        "input": "1\n",
+        "expected": [
+          3.14159,
+          6.28318
+        ]
+      },
+      {
+        "input": "2.5\n",
+        "expected": [
+          19.6349375,
+          15.70795
+        ]
+      },
+      {
+        "input": "0\n",
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "input": "4\n",
+        "expected": [
+          50.26544,
+          25.13272
+        ]
+      },
+      {
+        "input": "3\n",
+        "expected": [
+          28.27431,
+          18.84954
+        ]
+      },
+      {
+        "input": "0.5\n",
+        "expected": [
+          0.7853975,
+          3.14159
+        ]
+      }
+    ],
+    "W02.EX03.DISCOUNT": [
+      {
+        "input": "500000\n20\n",
+        "expected": [
+          400000
+        ]
+      },
+      {
+        "input": "200000\n12.5\n",
+        "expected": [
+          175000
+        ]
+      },
+      {
+        "input": "75000\n0\n",
+        "expected": [
+          75000
+        ]
+      },
+      {
+        "input": "120000\n25\n",
+        "expected": [
+          90000
+        ]
+      },
+      {
+        "input": "800\n50\n",
+        "expected": [
+          400
+        ]
+      },
+      {
+        "input": "999\n10\n",
+        "expected": [
+          899.1
+        ]
+      }
+    ]
+  }
+}

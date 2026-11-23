@@ -163,6 +163,100 @@ def bool_args(tree: ast.AST) -> set[str]:
     return result
 
 
+TEST_CASE_FILES = {
+    "ex01_variables.py": "cases_ex01_variables.json",
+    "ex02_type_conversion.py": "cases_ex02_type_conversion.json",
+    "ex03_input_calc.py": "cases_ex03_input_calc.json",
+}
+TEST_CASE_DIR = ROOT / "tests"
+INPUT_CRITERIA = {
+    "W02.EX02.BMI", "W02.EX03.FOUR",
+    "W02.EX03.CIRCLE", "W02.EX03.DISCOUNT",
+}
+
+
+def load_test_cases() -> dict[str, list[tuple[str, list[float]]]]:
+    """Read the independent exercise test bank, fail closed on mismatched rubric.
+
+    This is a PUBLIC formative case bank, not protected exam tests.
+    The tests do not import learner code; only the trusted local grader runs it.
+    """
+    rubric = json.loads(RUBRIC.read_text(encoding="utf-8"))
+    by_file = {
+        task["file"]: {item["id"] for item in task["criteria"]}
+        for task in rubric["tasks"]
+    }
+    if set(by_file) != set(TEST_CASE_FILES):
+        raise ValueError("TEST_SUITE_MISMATCH: unexpected exercises in rubric")
+    collected: dict[str, list[tuple[str, list[float]]]] = {}
+    for exercise, filename in TEST_CASE_FILES.items():
+        document = json.loads((TEST_CASE_DIR / filename).read_text(encoding="utf-8"))
+        if (
+            document.get("schema_version") != "1.0"
+            or document.get("exercise") != exercise
+            or set(document.get("cases", {})) != by_file[exercise]
+        ):
+            raise ValueError(f"TEST_SUITE_MISMATCH: {filename} criteria/rubric")
+        for cid, scenarios in document["cases"].items():
+            if not isinstance(scenarios, list):
+                raise ValueError(f"TEST_SUITE_INVALID: {cid} must be a list")
+            if cid in INPUT_CRITERIA and len(scenarios) < 4:
+                raise ValueError(f"TEST_SUITE_INCOMPLETE: {cid}")
+            if cid not in INPUT_CRITERIA and scenarios:
+                raise ValueError(f"TEST_SUITE_INVALID: {cid} has unexpected stdin tests")
+            if not scenarios:
+                continue
+            normalized = []
+            for scenario in scenarios:
+                if (
+                    not isinstance(scenario, dict)
+                    or set(scenario) != {"input", "expected"}
+                    or not isinstance(scenario["input"], str)
+                    or not isinstance(scenario["expected"], list)
+                    or not scenario["expected"]
+                    or any(type(n) not in (int, float) for n in scenario["expected"])
+                ):
+                    raise ValueError(f"TEST_SUITE_INVALID: bad scenario for {cid}")
+                normalized.append((scenario["input"], scenario["expected"]))
+            collected[cid] = normalized
+    return collected
+
+
+def test_suite_audit() -> dict:
+    """Enumerate EVERY rubric criterion and every case file, without executing code."""
+    rubric = json.loads(RUBRIC.read_text(encoding="utf-8"))
+    loaded = load_test_cases()
+    tasks = []
+    for task in rubric["tasks"]:
+        tasks.append({
+            "exercise": task["file"],
+            "criteria": [
+                {
+                    "id": item["id"],
+                    "todo": item["source_todo"],
+                    "points": item["points"],
+                    "input_cases": len(loaded.get(item["id"], [])),
+                }
+                for item in task["criteria"]
+            ],
+        })
+    digest = hashlib.sha256()
+    for name in TEST_CASE_FILES.values():
+        digest.update((TEST_CASE_DIR / name).read_bytes())
+    return {
+        "week": "W02",
+        "criteria_count": sum(len(item["criteria"]) for item in tasks),
+        "exercises_count": len(tasks),
+        "dynamic_case_count": sum(map(len, loaded.values())),
+        "rubric_points": sum(
+            item["points"] for task in tasks for item in task["criteria"]
+        ),
+        "test_suite_sha256": digest.hexdigest(),
+        "tasks": tasks,
+        "official_score": None,
+    }
+
+
 def check_one(cid: str, code: str) -> tuple[float, str, list[dict]]:
     """A fraction from 0..1; each result is formative, never official."""
     if not code.strip() or not any(
@@ -174,30 +268,7 @@ def check_one(cid: str, code: str) -> tuple[float, str, list[dict]]:
     except SyntaxError as error:
         return 0.0, f"SyntaxError trong TODO: dòng {error.lineno}.", []
 
-    samples: dict[str, list[tuple[str, list[float]]]] = {
-        "W02.EX02.BMI": [
-            ("1.75\n70\n", [22.9]), ("1.8\n72\n", [22.2]),
-            ("1.6\n64\n", [25.0]), ("2\n80\n", [20.0]),
-        ],
-        "W02.EX03.FOUR": [
-            ("8\n2\n", [10, 6, 16, 4]),
-            ("7.5\n2.5\n", [10, 5, 18.75, 3]),
-            ("-6\n3\n", [-3, -9, -18, -2]),
-            ("0\n5\n", [5, -5, 0, 0]),
-        ],
-        "W02.EX03.CIRCLE": [
-            ("1\n", [3.14159, 6.28318]),
-            ("2.5\n", [19.6349375, 15.70795]),
-            ("0\n", [0, 0]),
-            ("4\n", [50.26544, 25.13272]),
-        ],
-        "W02.EX03.DISCOUNT": [
-            ("500000\n20\n", [400000]),
-            ("200000\n12.5\n", [175000]),
-            ("75000\n0\n", [75000]),
-            ("120000\n25\n", [90000]),
-        ],
-    }
+    samples = load_test_cases()
     observations = []
     for input_text, _ in samples.get(cid, [("", [])]):
         observations.append(run_fragment(code, input_text))
@@ -345,6 +416,7 @@ def grade(source_folder: Path, mode: str) -> dict:
         "mode": mode,
         "assessment_type": "formative_original_exercises",
         "rubric_sha256": hashlib.sha256(rubric_bytes).hexdigest(),
+        "test_suite_sha256": test_suite_audit()["test_suite_sha256"],
         "auto_score": round(score, 2),
         "auto_max_points": rubric["auto_max_points"],
         "official_score": None,
