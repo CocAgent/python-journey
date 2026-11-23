@@ -10,20 +10,14 @@ from pathlib import Path
 CORE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CORE))
 
-from autograde_w02 import (  # noqa: E402
-    check_one,
-    grade,
-    load_test_cases,
-    split_todos,
-    test_suite_audit as audit_suite,
-)
+import autograde_w02 as ag  # noqa: E402
 
 REFERENCE = CORE / "fixtures" / "reference" / "ex01_variables.py"
 CRITERIA = ("W02.EX01.PROFILE", "W02.EX01.SWAP", "W02.EX01.AUG")
 
 
 def test_ex01_bank_covers_all_three_todos_without_stdin() -> None:
-    audit = audit_suite()
+    audit = ag.test_suite_audit()
     assert audit["criteria_count"] == 10
     assert audit["exercises_count"] == 3
     assert audit["dynamic_case_count"] == 24
@@ -32,15 +26,15 @@ def test_ex01_bank_covers_all_three_todos_without_stdin() -> None:
     assert [case["id"] for case in first["criteria"]] == list(CRITERIA)
     assert sum(case["points"] for case in first["criteria"]) == 3
     assert all(case["input_cases"] == 0 for case in first["criteria"])
-    assert all(name not in load_test_cases() for name in CRITERIA)
+    assert all(name not in ag.load_test_cases() for name in CRITERIA)
 
 
 def test_ex01_all_reference_todos_pass_individually() -> None:
-    source = split_todos(REFERENCE.read_text(encoding="utf-8"))
+    source = ag.split_todos(REFERENCE.read_text(encoding="utf-8"))
     for cid, todo in zip(CRITERIA, (1, 2, 3)):
-        fraction, reason, _observations = check_one(cid, source[todo])
+        fraction, reason, _observations = ag.check_one(cid, source[todo])
         assert fraction == 1, (cid, reason)
-    result = grade(REFERENCE.parent, "reference")
+    result = ag.grade(REFERENCE.parent, "reference")
     assert sum(c["earned"] for c in result["tasks"][0]["criteria"]) == 3
 
 
@@ -53,24 +47,24 @@ def test_ex01_wrong_profile_variable_type_is_rejected() -> None:
         "for var in [ten, tuoi, diem_tb, dang_hoc]:\n"
         "    print(var, type(var))\n"
     )
-    fraction, _reason, _observations = check_one("W02.EX01.PROFILE", code)
+    fraction, _reason, _observations = ag.check_one("W02.EX01.PROFILE", code)
     assert fraction == 0
 
 
 def test_ex01_swap_with_forbidden_temporary_variable_is_not_pass() -> None:
     code = "a = 10\nb = 20\ntam = a\na = b\nb = tam\nprint(a, b)\n"
-    fraction, _reason, _observations = check_one("W02.EX01.SWAP", code)
+    fraction, _reason, _observations = ag.check_one("W02.EX01.SWAP", code)
     assert fraction == 0
 
 
 def test_ex01_augmentation_without_all_four_operators_fails() -> None:
     code = "x = 100\nx += 1\nprint(x)\nx -= 1\nprint(x)\n"
-    fraction, _reason, _observations = check_one("W02.EX01.AUG", code)
+    fraction, _reason, _observations = ag.check_one("W02.EX01.AUG", code)
     assert fraction == 0
 
 
 def test_ex01_blank_and_syntax_errors_do_not_pass() -> None:
-    assert check_one("W02.EX01.PROFILE", "# chưa làm\n")[0] == 0
-    fraction, reason, _ = check_one("W02.EX01.AUG", "x = (\n")
+    assert ag.check_one("W02.EX01.PROFILE", "# chưa làm\n")[0] == 0
+    fraction, reason, _ = ag.check_one("W02.EX01.AUG", "x = (\n")
     assert fraction == 0
     assert "SyntaxError" in reason
