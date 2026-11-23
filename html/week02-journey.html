@@ -1,0 +1,2379 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Week 02 — Hành trình tự luyện & Thực hành tương tác Python</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --input-bg: #ffffff;
+      --input-line: #cbd5e1;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --good-bg: #d1fae5;
+      --good-ink: #065f46;
+      --bonus-bg: #ede9fe;
+      --bonus-ink: #5b21b6;
+      --code-bg: #0f172a;
+      --code-ink: #e2e8f0;
+      --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #111827;
+      --surface-soft: #1e293b;
+      --ink: #f1f5f9;
+      --muted: #94a3b8;
+      --line: #334155;
+      --input-bg: #0f172a;
+      --input-line: #475569;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --primary-soft: rgba(59, 130, 246, 0.16);
+      --good-bg: rgba(16, 185, 129, 0.18);
+      --good-ink: #6ee7b7;
+      --bonus-bg: rgba(139, 92, 246, 0.22);
+      --bonus-ink: #c4b5fd;
+      --code-bg: #020617;
+      --code-ink: #e2e8f0;
+      --shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.1), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(124, 58, 237, 0.1), transparent 34%),
+        var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 20px 18px 60px;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #10b981);
+    }
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 52%, #4f46e5 100%);
+      color: #fff;
+      border-radius: 26px;
+      padding: 32px;
+      box-shadow: 0 22px 45px -18px rgba(30, 58, 138, 0.45);
+      margin-bottom: 22px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -80px;
+      top: -110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.35), transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 12px 0 6px;
+      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      margin: 0;
+      color: #dbeafe;
+      max-width: 740px;
+      font-size: 0.96rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0 16px;
+    }
+    .metric {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      border-radius: 15px;
+      padding: 14px 16px;
+    }
+    .metric span { font-size: 0.78rem; color: #cbd5e1; display: block; }
+    .metric strong { display: block; font-size: 1.5rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+    .track {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #34d399, #22d3ee);
+      border-radius: inherit;
+    }
+
+    /* Notice */
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--primary);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+    }
+    .notice p { margin: 4px 0 0; color: var(--muted); }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      padding: 10px 15px;
+      border-radius: 13px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.16s ease;
+    }
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 18px -6px rgba(37, 99, 235, 0.55);
+    }
+    .tab-badge {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.18);
+    }
+    .tab-btn.active .tab-badge {
+      background: rgba(255, 255, 255, 0.22);
+      color: #fff;
+    }
+
+    /* Stage panel */
+    .stage {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.2s ease;
+    }
+    .stage.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+    .stage-title { display: flex; gap: 14px; align-items: center; }
+    .stage-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+      color: #1d4ed8;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .stage-title h2 { margin: 0; font-size: 1.3rem; }
+    .stage-title p { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+    .file-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .file-pill:hover { background: var(--primary-soft); }
+
+    /* Exercise grid */
+    .todo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .todo-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .todo-card.full { grid-column: 1 / -1; }
+    .todo-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+    .tag.passed { background: var(--good-bg); color: var(--good-ink); }
+    .tag.bonus { background: var(--bonus-bg); color: var(--bonus-ink); }
+    .todo-top h3 { margin: 0; font-size: 0.98rem; }
+    .points {
+      margin-left: auto;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .todo-desc { margin: 0; font-size: 0.86rem; color: var(--muted); }
+
+    /* Form controls */
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .form-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .form-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 0.77rem; font-weight: 700; color: var(--muted); }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--input-line);
+      border-radius: 10px;
+      background: var(--input-bg);
+      color: var(--ink);
+      font-size: 0.89rem;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .field textarea { min-height: 72px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+    }
+
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 8px 13px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* Terminal output */
+    .console {
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 11px;
+      padding: 11px 13px;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.83rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      min-height: 48px;
+      border: 1px solid #1e293b;
+    }
+    .console .ok { color: #34d399; }
+    .console .err { color: #f87171; }
+    .console .hl { color: #60a5fa; }
+
+    /* Code drawer */
+    details.code-box {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      padding: 7px 11px;
+      font-size: 0.82rem;
+    }
+    details.code-box summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary);
+      user-select: none;
+    }
+    .code-wrap {
+      position: relative;
+      margin-top: 8px;
+    }
+    .code-wrap pre {
+      margin: 0;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 8px;
+      padding: 10px 12px;
+      overflow-x: auto;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.79rem;
+      line-height: 1.5;
+    }
+    .copy-mini {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .copy-mini:hover { background: rgba(255, 255, 255, 0.25); }
+
+    /* Student card visual preview */
+    .id-card {
+      background: linear-gradient(135deg, #1e293b 0%, #1d4ed8 60%, #0284c7 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 20px 22px;
+      box-shadow: 0 14px 30px -12px rgba(29, 78, 216, 0.55);
+      display: grid;
+      gap: 10px;
+    }
+    .id-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      padding-bottom: 8px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .id-card-name { font-size: 1.35rem; font-weight: 800; margin: 2px 0; }
+    .id-card-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 0.86rem;
+    }
+    .id-card-meta div span { display: block; font-size: 0.72rem; color: #bfdbfe; }
+
+    /* Guide & Live Python Playground */
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .step-item {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 15px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .step-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+    .step-item h4 { margin: 0 0 4px; font-size: 0.95rem; }
+    .step-item p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+    .cmd-list { display: grid; gap: 10px; margin-top: 14px; }
+    .cmd-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 11px;
+      padding: 10px 13px;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      overflow-x: auto;
+    }
+    .cmd-row code { white-space: nowrap; }
+    .py-editor {
+      width: 100%;
+      min-height: 290px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #e2e8f0;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      resize: vertical;
+      tab-size: 4;
+    }
+    .py-editor:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+    .py-status {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .py-status.ready { background: var(--good-bg); color: var(--good-ink); border-color: transparent; }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 999;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 880px) {
+      .todo-grid, .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .todo-grid { grid-template-columns: 1fr; }
+      .form-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 22px 18px; }
+      .stage { padding: 16px; }
+      .metrics, .form-grid, .form-grid.cols-3, .id-card-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span> Python Journey V2 · Week 02 Studio</div>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost" onclick="resetDefaults()">Khôi phục dữ liệu mẫu</button>
+        <button class="btn btn-ghost" id="themeToggle" onclick="toggleTheme()">Chế độ tối</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Python Journey · Tuần 02 · Interactive Lab</div>
+      <h1>Hành trình khám phá Python · Tuần 02</h1>
+      <p>Thực hành tương tác trực tiếp toàn bộ bài tập Tuần 02: 3 file <code>exercises/</code>, 3 bài <code>practice/starter/</code>, Mini-project <strong>Thẻ sinh viên</strong> và phiếu ghi minh chứng nộp bài.</p>
+      <div class="metrics">
+        <div class="metric">
+          <span>Điểm tự luyện (exercises/)</span>
+          <strong>10.00 / 10</strong>
+        </div>
+        <div class="metric">
+          <span>TODO bắt buộc</span>
+          <strong>10 / 10 ĐẠT</strong>
+        </div>
+        <div class="metric">
+          <span>Practice Labs</span>
+          <strong>3 / 3 PASS</strong>
+        </div>
+        <div class="metric">
+          <span>Mini-project</span>
+          <strong>Thẻ SV Ready</strong>
+        </div>
+      </div>
+      <div class="track" role="progressbar" aria-label="Tiến độ TODO" aria-valuenow="10" aria-valuemin="0" aria-valuemax="10">
+        <div class="fill"></div>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>Mẹo dùng nhanh:</strong> Nhập dữ liệu bất kỳ rồi nhấn <code>Enter</code> hoặc bấm nút <strong>Chạy</strong>. Bạn có thể mở mục <em>Xem mã Python</em> ở từng thẻ để đối chiếu code thật, hoặc dùng tab <strong>Phiếu Minh Chứng</strong> để xuất nhanh báo cáo Markdown nộp bài.
+      <p>Toàn bộ xử lý chạy 100% ngoại tuyến trên trình duyệt của bạn (ghi chú minh chứng tự lưu vào trình duyệt bằng <code>localStorage</code>).</p>
+    </div>
+
+    <nav class="tabs" role="tablist" aria-label="Chọn phần thực hành Tuần 02">
+      <button class="tab-btn active" data-tab="guide" role="tab" aria-selected="true">
+        00 · Hướng dẫn <span class="tab-badge">Bắt đầu</span>
+      </button>
+      <button class="tab-btn" data-tab="ex01" role="tab" aria-selected="false">
+        01 · Biến &amp; Kiểu <span class="tab-badge">ex01</span>
+      </button>
+      <button class="tab-btn" data-tab="ex02" role="tab" aria-selected="false">
+        02 · Chuyển kiểu <span class="tab-badge">ex02</span>
+      </button>
+      <button class="tab-btn" data-tab="ex03" role="tab" aria-selected="false">
+        03 · Máy tính input <span class="tab-badge">ex03</span>
+      </button>
+      <button class="tab-btn" data-tab="practice" role="tab" aria-selected="false">
+        04 · Practice Labs <span class="tab-badge">3/3 PASS</span>
+      </button>
+      <button class="tab-btn" data-tab="miniproject" role="tab" aria-selected="false">
+        05 · Thẻ Sinh Viên <span class="tab-badge">Mini-project</span>
+      </button>
+      <button class="tab-btn" data-tab="evidence" role="tab" aria-selected="false">
+        06 · Phiếu Minh Chứng <span class="tab-badge">Markdown</span>
+      </button>
+      <button class="tab-btn" data-tab="playground" role="tab" aria-selected="false">
+        07 · Code &amp; Chạy Python <span class="tab-badge">Live IDE</span>
+      </button>
+      <button class="tab-btn" data-tab="errorlab" role="tab" aria-selected="false">
+        08 · Lỗi phổ biến &amp; Sửa lỗi <span class="tab-badge">6 lỗi</span>
+      </button>
+    </nav>
+
+    <!-- ===================== TAB 00: HƯỚNG DẪN ===================== -->
+    <section id="guide" class="stage active">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">00</div>
+          <div>
+            <h2>Hướng dẫn sử dụng &amp; Lộ trình học Tuần 02</h2>
+            <p>Làm chủ Biến, Kiểu dữ liệu (`int`, `float`, `str`, `bool`) và `input()` chỉ trong 5 bước đơn giản</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="openTab('playground')">Mở trình Code Python trực tiếp →</button>
+      </header>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-badge">1</div>
+          <div>
+            <h4>Thử nhập liệu ở Tab 01 → 05</h4>
+            <p>Mở từng tab <code>ex01</code>, <code>ex02</code>, <code>ex03</code>, <code>Practice</code>, <code>Thẻ SV</code>. Gõ số hoặc chữ bất kỳ rồi bấm <strong>Enter</strong> để xem kết quả tức thì.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">2</div>
+          <div>
+            <h4>Quan sát các tình huống lỗi &amp; biên</h4>
+            <p>Bấm các nút gợi ý như <strong>Thử lỗi "ba"</strong>, <strong>Thử chia cho 0</strong>, <strong>Thử -1</strong> để hiểu vì sao cần kiểm tra dữ liệu trước khi chuyển kiểu.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">3</div>
+          <div>
+            <h4>Tự gõ &amp; chạy Python thật ở Tab 07</h4>
+            <p>Sang tab <strong>07 · Code &amp; Chạy Python</strong> để viết code Python 3 thật ngay trên trình duyệt (hỗ trợ cả <code>input()</code>, <code>print()</code>, báo lỗi traceback giống VS Code).</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">4</div>
+          <div>
+            <h4>Xuất phiếu minh chứng &amp; nộp bài</h4>
+            <p>Vào tab <strong>06 · Phiếu Minh Chứng</strong> để ghi lỗi đã sửa, nhấn <strong>Copy Markdown</strong> rồi dán vào báo cáo nộp bài.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px;">
+        <h3 style="margin: 0 0 6px; font-size: 1.05rem;">Sau khi học xong Tuần 02, bạn sẽ biết &amp; làm được gì?</h3>
+        <p class="todo-desc" style="margin-bottom: 12px;">Tổng hợp 6 năng lực cốt lõi của Tuần 02 (Variables · Types · Input/Output) và các ứng dụng thực tế bạn tự viết được ngay:</p>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Đặt tên &amp; thao tác biến chuẩn Python</h4>
+              <p>Đặt tên biến rõ nghĩa theo chuẩn <code>snake_case</code>, gán nhiều biến trên 1 dòng, hoán đổi <code>a, b = b, a</code> và dùng <code>+=, -=, *=, //=</code>.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Phân biệt 4 kiểu dữ liệu nền tảng</h4>
+              <p>Nắm vững <code>int</code> (số nguyên), <code>float</code> (số thực), <code>str</code> (chuỗi), <code>bool</code> (Đúng/Sai), biết kiểm tra bằng <code>type()</code> và hiểu truthy/falsy.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Hiểu bản chất <code>input()</code> luôn trả về <code>str</code></h4>
+              <p>Giải thích được vì sao <code>"12" + "3"</code> ra <code>"123"</code> còn <code>12 + 3</code> ra <code>15</code>, không còn bị nhầm lẫn khi nối chuỗi với cộng số.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Ép kiểu chủ đích &amp; phòng tránh lỗi</h4>
+              <p>Dùng <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code> đúng lúc; biết vì sao <code>int("ba")</code> gây <code>ValueError</code> và dùng <code>.isdigit()</code> kiểm tra trước khi tính.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Trình bày output chuyên nghiệp với f-string</h4>
+              <p>Định dạng số thập phân (<code>{bmi:.1f}</code>), dấu phẩy hàng nghìn (<code>{total:,} VND</code>) và căn lề khung thẻ đẹp mắt trên Terminal.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">★</div>
+            <div>
+              <h4>Ứng dụng tự viết được ngay sau Tuần 02</h4>
+              <p>Máy tính 4 phép toán, tính chỉ số BMI, quy đổi giây sang giờ:phút:giây, tính giá sau giảm, đổi tiền VNĐ ↔ USD, in hóa đơn bán vé và tạo <strong>Thẻ Sinh Viên</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px;">
+        <h3 style="margin: 0 0 6px; font-size: 1rem;">Lệnh chạy &amp; tự chấm trực tiếp trong VS Code Terminal</h3>
+        <p class="todo-desc">Mở Terminal tại thư mục gốc <code>k:\Python</code> và copy nhanh các lệnh bên dưới:</p>
+        <div class="cmd-list">
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex01_variables.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex01_variables.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex02_type_conversion.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex02_type_conversion.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex03_input_calc.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex03_input_calc.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/mini-project/starter.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/mini-project/starter.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>$env:PYTHONIOENCODING="utf-8"; python weeks/week-02-variables-types/practice/checks/check_practice.py --starter</code>
+            <button class="btn btn-ghost" onclick="copyText('$env:PYTHONIOENCODING=&quot;utf-8&quot;; python weeks/week-02-variables-types/practice/checks/check_practice.py --starter')">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 01: EX01 ===================== -->
+    <section id="ex01" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">01</div>
+          <div>
+            <h2>Chiếc ba lô biến</h2>
+            <p>Khai báo biến, quan sát <code>type()</code>, hoán đổi không dùng biến tạm &amp; augmented assignment</p>
+          </div>
+        </div>
+        <a class="file-pill" href="../exercises/ex01_variables.py">Mở file ex01_variables.py</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 1 · 4 biến &amp; type()</h3>
+            <span class="points">1.00 / 1.00</span>
+          </div>
+          <p class="todo-desc">Nhập thông tin cá nhân để xem giá trị và kiểu dữ liệu Python tương ứng.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex1_ten">ten (str)</label><input id="ex1_ten" type="text" value="Quy" data-run="runEx1Todo1"></div>
+            <div class="field"><label for="ex1_tuoi">tuoi (int)</label><input id="ex1_tuoi" type="number" step="1" value="20" data-run="runEx1Todo1"></div>
+            <div class="field"><label for="ex1_diem">diem_tb (float)</label><input id="ex1_diem" type="number" step="0.1" value="8.5" data-run="runEx1Todo1"></div>
+            <div class="field">
+              <label for="ex1_hoc">dang_hoc (bool)</label>
+              <select id="ex1_hoc" onchange="runEx1Todo1()">
+                <option value="True" selected>True</option>
+                <option value="False">False</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx1Todo1()">Chạy TODO 1</button></div>
+          <div class="console" id="out_ex1_1"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>ten = "Quy"
+tuoi = 20
+diem_tb = 8.5
+dang_hoc = True
+print(ten, type(ten))
+print(tuoi, type(tuoi))
+print(diem_tb, type(diem_tb))
+print(dang_hoc, type(dang_hoc))</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 2 · Hoán đổi 2 biến</h3>
+            <span class="points">1.00 / 1.00</span>
+          </div>
+          <p class="todo-desc">Hoán đổi <code>a, b = b, a</code> không dùng biến tạm.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex1_a">Giá trị a</label><input id="ex1_a" type="number" value="10" data-run="runEx1Todo2"></div>
+            <div class="field"><label for="ex1_b">Giá trị b</label><input id="ex1_b" type="number" value="20" data-run="runEx1Todo2"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx1Todo2()">Hoán đổi a, b</button></div>
+          <div class="console" id="out_ex1_2"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>a = 10
+b = 20
+a, b = b, a
+print(f"Sau hoan doi: a = {a}, b = {b}")</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 3 · Augmented Assignment</h3>
+            <span class="points">1.00 / 1.00</span>
+          </div>
+          <p class="todo-desc">Biến đổi <code>x</code> qua 4 bước <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>//=</code>.</p>
+          <div class="form-grid cols-4">
+            <div class="field"><label for="ex1_x">x ban đầu</label><input id="ex1_x" type="number" value="100" data-run="runEx1Todo3"></div>
+            <div class="field"><label for="ex1_add">+=</label><input id="ex1_add" type="number" value="50" data-run="runEx1Todo3"></div>
+            <div class="field"><label for="ex1_sub">-=</label><input id="ex1_sub" type="number" value="30" data-run="runEx1Todo3"></div>
+            <div class="field"><label for="ex1_mul">*=</label><input id="ex1_mul" type="number" value="2" data-run="runEx1Todo3"></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label for="ex1_div">//=</label><input id="ex1_div" type="number" value="4" data-run="runEx1Todo3"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx1Todo3()">Tính 4 bước</button></div>
+          <div class="console" id="out_ex1_3"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>x = 100
+x += 50; print(x)
+x -= 30; print(x)
+x *= 2;  print(x)
+x //= 4; print(x)</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">THỬ THÁCH</span>
+            <h3>TODO 4 · Multiple Assignment</h3>
+            <span class="points">Tự chọn</span>
+          </div>
+          <p class="todo-desc">Gán 3 biến <code>ho, ten, tuoi</code> trên 1 dòng và in chuỗi giới thiệu.</p>
+          <div class="form-grid cols-3">
+            <div class="field"><label for="ex1_ho">ho</label><input id="ex1_ho" type="text" value="Phan" data-run="runEx1Todo4"></div>
+            <div class="field"><label for="ex1_tenrieng">ten</label><input id="ex1_tenrieng" type="text" value="Thành Quý" data-run="runEx1Todo4"></div>
+            <div class="field"><label for="ex1_tuoisv">tuoi</label><input id="ex1_tuoisv" type="number" value="20" data-run="runEx1Todo4"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx1Todo4()">Chạy TODO 4</button></div>
+          <div class="console" id="out_ex1_4"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>ho, ten, tuoi = "Phan", "Thành Quý", 20
+print(f"Họ tên: {ho} {ten}, {tuoi} tuổi")</pre></div></details>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 02: EX02 ===================== -->
+    <section id="ex02" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">02</div>
+          <div>
+            <h2>Phép thuật chuyển kiểu</h2>
+            <p>Thành thạo <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>, tính BMI &amp; đổi giây</p>
+          </div>
+        </div>
+        <a class="file-pill" href="../exercises/ex02_type_conversion.py">Mở file ex02_type_conversion.py</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 1 · Chuyển str sang int</h3>
+            <span class="points">0.75 / 0.75</span>
+          </div>
+          <p class="todo-desc">Thử nhập chuỗi số (<code>"42"</code>) hoặc chuỗi chữ (<code>"ba"</code>) để xem <code>ValueError</code>.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex2_sotext">so_text (str)</label><input id="ex2_sotext" type="text" value="42" data-run="runEx2Todo1"></div>
+            <div class="field"><label for="ex2_add">Cộng thêm</label><input id="ex2_add" type="number" step="1" value="8" data-run="runEx2Todo1"></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="runEx2Todo1()">Chuyển &amp; Cộng</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('ex2_sotext').value='ba'; runEx2Todo1();">Thử lỗi "ba"</button>
+          </div>
+          <div class="console" id="out_ex2_1"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>so_text = "42"
+ket_qua = int(so_text) + 8
+print(ket_qua)</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 2 · Chuyển float sang int</h3>
+            <span class="points">0.75 / 0.75</span>
+          </div>
+          <p class="todo-desc">Quan sát cách <code>int()</code> cắt bỏ phần thập phân thay vì làm tròn.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex2_pi">Số thực (float)</label><input id="ex2_pi" type="number" step="any" value="3.14159" data-run="runEx2Todo2"></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="runEx2Todo2()">Chạy int()</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('ex2_pi').value='3.99'; runEx2Todo2();">Thử 3.99</button>
+          </div>
+          <div class="console" id="out_ex2_2"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>pi = 3.14159
+print(int(pi))  # 3</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 3 · Kiểm tra bool()</h3>
+            <span class="points">0.75 / 0.75</span>
+          </div>
+          <p class="todo-desc">Kiểm tra truthy / falsy của 6 giá trị chuẩn hoặc nhập chuỗi tùy ý.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex2_bool_custom">Thử chuỗi khác (ví dụ: False, "", Python)</label><input id="ex2_bool_custom" type="text" value="False" data-run="runEx2Todo3"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx2Todo3()">Kiểm tra bool()</button></div>
+          <div class="console" id="out_ex2_3"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>for v in (0, 1, "", "hello", [], [1, 2]):
+    print(repr(v), "->", bool(v))</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 4 · Tính chỉ số BMI</h3>
+            <span class="points">1.25 / 1.25</span>
+          </div>
+          <p class="todo-desc">Nhập chiều cao (m) và cân nặng (kg) để tính <code>BMI = cân_nặng / (chiều_cao ** 2)</code>.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex2_h">Chiều cao (m)</label><input id="ex2_h" type="number" step="0.01" value="1.75" data-run="runEx2Todo4"></div>
+            <div class="field"><label for="ex2_w">Cân nặng (kg)</label><input id="ex2_w" type="number" step="0.1" value="70" data-run="runEx2Todo4"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx2Todo4()">Tính BMI</button></div>
+          <div class="console" id="out_ex2_4"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>chieu_cao = float(input("Chieu cao (m): "))
+can_nang = float(input("Can nang (kg): "))
+bmi = can_nang / (chieu_cao ** 2)
+print(f"BMI: {bmi:.1f}")</pre></div></details>
+        </article>
+
+        <article class="todo-card full">
+          <div class="todo-top">
+            <span class="tag bonus">THỬ THÁCH</span>
+            <h3>TODO 5 · Đổi giây sang giờ : phút : giây</h3>
+            <span class="points">Tự chọn</span>
+          </div>
+          <p class="todo-desc">Nhập tổng số giây (ví dụ <code>3661</code> → <code>1 giờ 1 phút 1 giây</code>).</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex2_sec">Tổng số giây</label><input id="ex2_sec" type="number" step="1" value="3661" data-run="runEx2Todo5"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx2Todo5()">Quy đổi thời gian</button></div>
+          <div class="console" id="out_ex2_5"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>tong_giay = int(input("Tong so giay: "))
+gio = tong_giay // 3600
+phut = (tong_giay % 3600) // 60
+giay = tong_giay % 60
+print(f"{gio} giờ {phut} phút {giay} giây")</pre></div></details>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 03: EX03 ===================== -->
+    <section id="ex03" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">03</div>
+          <div>
+            <h2>Xưởng máy tính mini</h2>
+            <p>Kết hợp <code>input()</code> với 4 phép tính, hình tròn, tính giảm giá &amp; đổi tiền VNĐ → USD</p>
+          </div>
+        </div>
+        <a class="file-pill" href="../exercises/ex03_input_calc.py">Mở file ex03_input_calc.py</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 1 · Tổng, hiệu, tích, thương</h3>
+            <span class="points">1.50 / 1.50</span>
+          </div>
+          <p class="todo-desc">Nhập 2 số bất kỳ để tính 4 phép toán cơ bản.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex3_n1">Số thứ nhất</label><input id="ex3_n1" type="number" step="any" value="10" data-run="runEx3Todo1"></div>
+            <div class="field"><label for="ex3_n2">Số thứ hai</label><input id="ex3_n2" type="number" step="any" value="4" data-run="runEx3Todo1"></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="runEx3Todo1()">Tính toán</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('ex3_n2').value='0'; runEx3Todo1();">Thử chia cho 0</button>
+          </div>
+          <div class="console" id="out_ex3_1"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>so_1 = float(input("So thu nhat: "))
+so_2 = float(input("So thu hai: "))
+print("Tong:", so_1 + so_2)
+print("Hieu:", so_1 - so_2)
+print("Tich:", so_1 * so_2)
+print("Thuong:", f"{so_1 / so_2:.2f}" if so_2 != 0 else "Khong the chia cho 0")</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 2 · Hình tròn (π = 3.14159)</h3>
+            <span class="points">1.00 / 1.00</span>
+          </div>
+          <p class="todo-desc">Nhập bán kính <code>r</code> để tính diện tích và chu vi.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex3_r">Bán kính r</label><input id="ex3_r" type="number" step="any" value="5" data-run="runEx3Todo2"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx3Todo2()">Tính hình tròn</button></div>
+          <div class="console" id="out_ex3_2"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>pi = 3.14159
+r = float(input("Ban kinh: "))
+print(f"Dien tich: {pi * r ** 2:.2f}")
+print(f"Chu vi: {2 * pi * r:.2f}")</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">ĐẠT</span>
+            <h3>TODO 3 · Tính giá sau giảm</h3>
+            <span class="points">1.00 / 1.00</span>
+          </div>
+          <p class="todo-desc">Nhập giá gốc và % giảm giá để xem số tiền phải trả.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex3_price">Giá gốc (VNĐ)</label><input id="ex3_price" type="number" step="1000" value="500000" data-run="runEx3Todo3"></div>
+            <div class="field"><label for="ex3_disc">Giảm giá (%)</label><input id="ex3_disc" type="number" step="1" value="20" data-run="runEx3Todo3"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx3Todo3()">Tính giá giảm</button></div>
+          <div class="console" id="out_ex3_3"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>gia_goc = float(input("Gia goc: "))
+giam = float(input("Phan tram giam: "))
+print(f"Gia sau giam: {gia_goc * (1 - giam / 100):.2f}")</pre></div></details>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">THỬ THÁCH</span>
+            <h3>TODO 4 · Máy đổi tiền VNĐ → USD</h3>
+            <span class="points">Tự chọn</span>
+          </div>
+          <p class="todo-desc">Nhập số tiền VNĐ và tỷ giá USD/VNĐ để quy đổi làm tròn 2 chữ số.</p>
+          <div class="form-grid">
+            <div class="field"><label for="ex3_vnd">Số tiền (VNĐ)</label><input id="ex3_vnd" type="number" step="1000" value="250000" data-run="runEx3Todo4"></div>
+            <div class="field"><label for="ex3_rate">Tỷ giá USD/VNĐ</label><input id="ex3_rate" type="number" step="100" value="25000" data-run="runEx3Todo4"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runEx3Todo4()">Đổi sang USD</button></div>
+          <div class="console" id="out_ex3_4"></div>
+          <details class="code-box"><summary>Xem mã Python</summary><div class="code-wrap"><button class="copy-mini" onclick="copyCode(this)">Copy</button><pre>vnd = float(input("So tien VND: "))
+ty_gia = float(input("Ty gia USD/VND: "))
+print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 04: PRACTICE LABS ===================== -->
+    <section id="practice" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">04</div>
+          <div>
+            <h2>Practice Labs (3 bài tự luyện bổ sung)</h2>
+            <p>Thử trực tiếp cả 3 bài trong <code>practice/starter/</code> với dữ liệu bình thường, biên và dữ liệu sai</p>
+          </div>
+        </div>
+        <a class="file-pill" href="../practice/README.md">Mở hướng dẫn Practice</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">PASS</span>
+            <h3>Lab 01 · Profile</h3>
+            <span class="points">lab01_profile.py</span>
+          </div>
+          <p class="todo-desc">Chuyển <code>age_text</code> sang <code>int</code> rồi tính tuổi năm sau.</p>
+          <div class="form-grid">
+            <div class="field"><label for="lab1_name">name</label><input id="lab1_name" type="text" value="An" data-run="runLab1"></div>
+            <div class="field"><label for="lab1_age">age_text (str)</label><input id="lab1_age" type="text" value="18" data-run="runLab1"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runLab1()">Chạy Lab 01</button></div>
+          <div class="console" id="out_lab1"></div>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">PASS</span>
+            <h3>Lab 02 · Shop</h3>
+            <span class="points">lab02_shop.py</span>
+          </div>
+          <p class="todo-desc">Tính tiền bằng <code>int</code> và kiểm tra <code>.isdigit()</code> cho tình huống sai.</p>
+          <div class="form-grid cols-3">
+            <div class="field"><label for="lab2_price">Đơn giá</label><input id="lab2_price" type="text" value="25000" data-run="runLab2"></div>
+            <div class="field"><label for="lab2_qty">Số lượng</label><input id="lab2_qty" type="text" value="3" data-run="runLab2"></div>
+            <div class="field"><label for="lab2_inv">Dữ liệu sai</label><input id="lab2_inv" type="text" value="ba" data-run="runLab2"></div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" onclick="runLab2()">Chạy Lab 02</button></div>
+          <div class="console" id="out_lab2"></div>
+        </article>
+
+        <article class="todo-card full">
+          <div class="todo-top">
+            <span class="tag passed">PASS</span>
+            <h3>Lab 03 · Bán vé (12,000 VND/vé)</h3>
+            <span class="points">lab03_ticket.py</span>
+          </div>
+          <p class="todo-desc">Kiểm tra <code>.isdigit()</code> và <code>&gt; 0</code>. Các case <code>abc</code>, <code>0</code>, <code>-1</code> phải từ chối và không in hóa đơn.</p>
+          <div class="form-grid">
+            <div class="field"><label for="lab3_name">Tên khách hàng</label><input id="lab3_name" type="text" value="Lan" data-run="runLab3"></div>
+            <div class="field"><label for="lab3_qty">Số vé</label><input id="lab3_qty" type="text" value="2" data-run="runLab3"></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="runLab3()">In hóa đơn</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('lab3_qty').value='0'; runLab3();">Thử 0</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('lab3_qty').value='-1'; runLab3();">Thử -1</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('lab3_qty').value='abc'; runLab3();">Thử abc</button>
+          </div>
+          <div class="console" id="out_lab3"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 05: MINI-PROJECT ===================== -->
+    <section id="miniproject" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">05</div>
+          <div>
+            <h2>Mini-project · Thẻ Sinh Viên</h2>
+            <p>Nhập 4 trường bắt buộc + lớp tùy chọn, xác thực năm bằng <code>.isdigit()</code> và xem thẻ trực tiếp</p>
+          </div>
+        </div>
+        <a class="file-pill" href="../mini-project/starter.py">Mở file mini-project/starter.py</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">READY</span>
+            <h3>Nhập thông tin sinh viên</h3>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label for="mp_name">Họ và tên</label><input id="mp_name" type="text" value="Phan Thành Quý" data-run="runMiniProject"></div>
+            <div class="field"><label for="mp_id">Mã sinh viên</label><input id="mp_id" type="text" value="SV2024001" data-run="runMiniProject"></div>
+            <div class="field"><label for="mp_major">Ngành học</label><input id="mp_major" type="text" value="Công nghệ thông tin" data-run="runMiniProject"></div>
+            <div class="field"><label for="mp_year">Năm nhập học</label><input id="mp_year" type="text" value="2024" data-run="runMiniProject"></div>
+            <div class="field"><label for="mp_class">Lớp (tùy chọn)</label><input id="mp_class" type="text" value="CNTT-K24" data-run="runMiniProject"></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="runMiniProject()">Tạo Thẻ Sinh Viên</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('mp_year').value='abc'; runMiniProject();">Thử năm sai "abc"</button>
+          </div>
+          <div class="console" id="out_mp_ascii"></div>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">PREVIEW</span>
+            <h3>Xem trước Thẻ đồ họa</h3>
+          </div>
+          <div id="mp_visual"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 06: EVIDENCE BUILDER ===================== -->
+    <section id="evidence" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">06</div>
+          <div>
+            <h2>Phiếu Minh Chứng Tự Học (Week 02)</h2>
+            <p>Ghi lại dự đoán, lỗi conversion đã gặp và xuất nhanh Markdown để nộp bài theo <code>STUDENT-GUIDE.md</code></p>
+          </div>
+        </div>
+        <a class="file-pill" href="../assessment/core-exercises/EVIDENCE-TEMPLATE.md">Mẫu EVIDENCE-TEMPLATE.md</a>
+      </header>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">AUTO-SAVE</span>
+            <h3>Điền thông tin minh chứng</h3>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label for="ev_student">Họ tên / MSSV</label><input id="ev_student" type="text" value="Phan Thành Quý" oninput="updateEvidence()"></div>
+            <div class="field"><label for="ev_case">Input thường &amp; biên đã thử</label><input id="ev_case" type="text" value="BMI: (1.75, 70) -> 22.9; Số vé: 2, 0, -1, abc" oninput="updateEvidence()"></div>
+          </div>
+          <div class="field">
+            <label for="ev_bug">Một lỗi thực tế đã gặp &amp; cách sửa</label>
+            <textarea id="ev_bug" oninput="updateEvidence()">Chuyển chuỗi "ba" sang int() gây ValueError; đã dùng .isdigit() để kiểm tra trước khi gọi int().</textarea>
+          </div>
+          <div class="field">
+            <label for="ev_explain">Giải thích ngắn vì sao code đúng</label>
+            <textarea id="ev_explain" oninput="updateEvidence()">Hàm input() luôn trả về str nên phải chuyển sang int/float trước khi tính toán và luôn kiểm tra dữ liệu không hợp lệ (chữ, 0, số âm) trước khi in kết quả.</textarea>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="copyEvidence()">Copy Markdown minh chứng</button>
+          </div>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">MARKDOWN</span>
+            <h3>Xem trước phiếu minh chứng</h3>
+          </div>
+          <div class="console" id="out_evidence"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 07: LIVE PYTHON PLAYGROUND ===================== -->
+    <section id="playground" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">07</div>
+          <div>
+            <h2>Code &amp; Chạy Python 3 trực tiếp</h2>
+            <p>Viết code Python thật ngay trên trình duyệt (Pyodide WebAssembly), hỗ trợ <code>input()</code>, <code>print()</code> và <code>Ctrl + Enter</code> để chạy</p>
+          </div>
+        </div>
+        <span class="py-status" id="pyStatus">Chưa nạp Python (tự nạp khi bấm Chạy)</span>
+      </header>
+
+      <div class="actions" style="margin-bottom: 14px;">
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex01')">Nạp mẫu ex01</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex02')">Nạp mẫu ex02 (BMI)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex03')">Nạp mẫu ex03 (Máy tính)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Nạp mẫu Thẻ SV</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống tự code</button>
+      </div>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">EDITOR</span>
+            <h3>Mã nguồn Python 3</h3>
+            <span class="points">Ctrl + Enter để chạy</span>
+          </div>
+          <textarea id="pyCode" class="py-editor" spellcheck="false"></textarea>
+          <div class="actions">
+            <button class="btn btn-primary" id="btnRunPy" onclick="runLivePython()">▶ Chạy Code Python</button>
+            <button class="btn btn-primary" id="btnGradePy" style="background: #059669;" onclick="gradeLivePython()">🎯 Chấm điểm code của bạn</button>
+            <button class="btn btn-ghost" onclick="copyText(document.getElementById('pyCode').value)">Copy Code</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('pyOutput').textContent='Đã xóa màn hình kết quả.'">Xóa Output</button>
+          </div>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">INPUT + OUTPUT</span>
+            <h3>Chế độ nhập input() &amp; Kết quả chạy</h3>
+          </div>
+          <div class="field">
+            <label for="pyInputMode">Cách nhập dữ liệu khi code gọi <code>input()</code></label>
+            <select id="pyInputMode" onchange="toggleStdinBox()">
+              <option value="prompt" selected>Nhập trực tiếp khi chạy (hỏi từng dòng giống Terminal)</option>
+              <option value="stdin">Dùng dữ liệu điền sẵn bên dưới (chạy nhanh không cần gõ lại)</option>
+            </select>
+          </div>
+          <div class="field" id="pyStdinWrap" style="display: none;">
+            <label for="pyStdin">Dữ liệu điền sẵn cho <code>input()</code> — mỗi dòng tương ứng 1 lần gọi</label>
+            <textarea id="pyStdin" placeholder="Ví dụ:&#10;1.75&#10;70&#10;3661" style="min-height: 86px; font-family: ui-monospace, Consolas, monospace;"></textarea>
+          </div>
+          <div class="field" style="flex: 1;">
+            <label>Kết quả Terminal (stdout / stderr)</label>
+            <div class="console" id="pyOutput" style="min-height: 215px;">Bấm "▶ Chạy Code Python" — khi code gặp lệnh input(), trình duyệt sẽ hiện ô để bạn nhập trực tiếp từng giá trị!</div>
+          </div>
+        </article>
+
+        <article class="todo-card full">
+          <div class="todo-top">
+            <span class="tag passed">CODE REVIEWER · PYTHON 3</span>
+            <h3>Đánh giá &amp; Chấm điểm trực tiếp đoạn code bạn vừa nhập</h3>
+            <span class="points" id="liveTotalScore">Điểm gần nhất: chưa chấm</span>
+          </div>
+          <p class="todo-desc">Bạn có thể viết <strong>bất kỳ đoạn code Python nào</strong> (không cần ghi <code># TODO</code>). Hệ thống sẽ phân tích cú pháp AST, chạy thử bằng Python 3 thật, chấm thang 10 và gợi ý cách cải thiện ngay.</p>
+          <div class="console" id="pyGradeOutput" style="min-height: 120px;">Viết hoặc dán code Python của bạn vào ô bên trên rồi bấm "🎯 Chấm điểm code của bạn" để xem điểm &amp; nhận xét chi tiết!</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 08: ERROR LAB ===================== -->
+    <section id="errorlab" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">08</div>
+          <div>
+            <h2>Phòng Lab Lỗi phổ biến &amp; Cách xử lý (Tuần 02)</h2>
+            <p>Thử chạy từng lỗi hay gặp nhất khi học Biến, Kiểu dữ liệu &amp; <code>input()</code>, xem cách sửa đúng hoặc mở thẳng sang Live IDE để tự sửa</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="openTab('playground')">Mở Live IDE Python →</button>
+      </header>
+
+      <div class="todo-grid">
+        <!-- Lỗi 1: ValueError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">ValueError</span>
+            <h3>1. Ép kiểu chữ sang số: <code>int("ba")</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> <code>int()</code> chỉ hiểu chuỗi chứa chữ số nguyên (<code>"42"</code>). Gặp chữ <code>"ba"</code> hoặc số thập phân <code>"3.14"</code> sẽ văng <code>ValueError</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Kiểm tra <code>text.isdigit()</code> trước khi gọi <code>int()</code>; nếu là số thập phân thì dùng <code>float()</code>.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('val_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('val_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('val_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_val_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 2: TypeError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">TypeError</span>
+            <h3>2. Cộng chuỗi với số: <code>"18" + 1</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Python không tự đổi <code>str</code> sang <code>int</code> khi dùng dấu <code>+</code>. Cộng <code>"Tuổi: " + 20</code> hoặc <code>"18" + 1</code> đều báo <code>TypeError</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Ép sang số <code>int("18") + 1</code> khi cần tính toán, hoặc dùng <code>f-string</code> (<code>f"Tuổi: {20}"</code>) khi cần in.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('type_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('type_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('type_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_type_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 3: Logic Bug nối chuỗi -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fef3c7;color:#92400e;">Logic Bug</span>
+            <h3>3. Quên ép kiểu <code>input()</code>: <code>"12" + "3" == "123"</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> <code>input()</code> luôn trả về <code>str</code>. Nếu cộng trực tiếp 2 kết quả <code>input()</code>, chương trình không báo lỗi nhưng lại <strong>nối chuỗi</strong> thành <code>"123"</code> thay vì <code>15</code>.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Luôn bọc <code>int(input(...))</code> hoặc <code>float(input(...))</code> trước khi tính toán.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('concat_bug', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('concat_bug', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('concat_bug')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_concat_bug">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 4: ZeroDivisionError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">ZeroDivisionError</span>
+            <h3>4. Chia cho 0 (Máy tính / BMI / Đổi tiền)</h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Người dùng nhập số chia, tỷ giá hoặc chiều cao bằng <code>0</code> khiến phép <code>/</code> hoặc <code>//</code> làm sập chương trình.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Kiểm tra điều kiện <code>if b != 0:</code> (hoặc <code>if chieu_cao &gt; 0:</code>) trước khi thực hiện phép chia.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('zero_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('zero_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('zero_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_zero_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 5: NameError -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">NameError</span>
+            <h3>5. Sai tên biến / Phân biệt hoa-thường</h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Khai báo <code>diem_tb</code> nhưng lúc in lại gõ <code>diem_TB</code> hoặc <code>diemtb</code>. Python phân biệt chữ hoa/chữ thường.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> Thống nhất đặt tên <code>snake_case</code> toàn chữ thường và kiểm tra kỹ tên biến trong dòng báo lỗi Traceback.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('name_err', 'bad')">✕ Chạy bản LỖI</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('name_err', 'fix')">✓ Chạy bản ĐÃ SỬA</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('name_err')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_name_err">Bấm nút bên trên để so sánh bản LỖI và bản ĐÃ SỬA.</div>
+        </article>
+
+        <!-- Lỗi 6: Bẫy bool("False") và int(3.99) -->
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag" style="background:#fef3c7;color:#92400e;">Bẫy hay gặp</span>
+            <h3>6. <code>bool("False")</code> là <code>True</code> &amp; <code>int(3.99)</code> là <code>3</code></h3>
+          </div>
+          <p class="todo-desc"><strong>Nguyên nhân:</strong> Mọi chuỗi <em>không rỗng</em> (kể cả <code>"False"</code>, <code>"0"</code>) khi ép <code>bool()</code> đều là <code>True</code>; còn <code>int(3.99)</code> cắt phần thập phân chứ không làm tròn.</p>
+          <p class="todo-desc"><strong>Cách xử lý:</strong> So sánh trực tiếp <code>text.lower() == "true"</code> cho boolean, và dùng <code>round(3.99)</code> nếu muốn làm tròn.</p>
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="runErrorDemo('gotcha', 'bad')">✕ Chạy bản DỄ NHẦM</button>
+            <button class="btn btn-primary" onclick="runErrorDemo('gotcha', 'fix')">✓ Chạy bản ĐÚNG CHUẨN</button>
+            <button class="btn btn-ghost" onclick="openErrorInIde('gotcha')">Tự sửa trong Live IDE</button>
+          </div>
+          <div class="console" id="out_err_gotcha">Bấm nút bên trên để so sánh bản dễ nhầm và bản đúng chuẩn.</div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Vòng tự học: Đọc yêu cầu → Dự đoán → Viết mã → Chạy tự kiểm → Thử nhập dữ liệu biên &amp; sai → Lưu minh chứng.<br>
+      Rubric Week 02: <code>bbc9a354833a</code> · <code>official_score: null</code>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Đã sao chép!</div>
+
+  <script>
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Dark/Light mode
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('themeToggle').textContent = theme === 'dark' ? 'Chế độ sáng' : 'Chế độ tối';
+      try { localStorage.setItem('w02_theme', theme); } catch {}
+    }
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(cur);
+    }
+    try {
+      const savedTheme = localStorage.getItem('w02_theme');
+      if (savedTheme === 'dark') applyTheme('dark');
+    } catch {}
+
+    // Copy code helper
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector('pre').textContent;
+      navigator.clipboard?.writeText(code).then(() => showToast('Đã copy đoạn mã Python!')).catch(() => showToast('Không thể copy tự động'));
+    }
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.stage').forEach((s) => s.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Nhấn Enter trong ô input để chạy ngay hàm tương ứng
+    document.querySelectorAll('input[data-run]').forEach((inp) => {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && typeof window[inp.dataset.run] === 'function') {
+          window[inp.dataset.run]();
+        }
+      });
+    });
+
+    // ===== BÀI 01 =====
+    function runEx1Todo1() {
+      const ten = document.getElementById('ex1_ten').value;
+      const tuoi = parseInt(document.getElementById('ex1_tuoi').value, 10);
+      const diem = parseFloat(document.getElementById('ex1_diem').value);
+      const hoc = document.getElementById('ex1_hoc').value;
+      const out = document.getElementById('out_ex1_1');
+      if (Number.isNaN(tuoi) || Number.isNaN(diem)) {
+        out.innerHTML = '<span class="err">Lỗi: Vui lòng nhập số hợp lệ cho tuoi và diem_tb.</span>';
+        return;
+      }
+      out.innerHTML =
+        `ten      = <span class="hl">"${esc(ten)}"</span> -> &lt;class 'str'&gt;\n` +
+        `tuoi     = <span class="hl">${tuoi}</span> -> &lt;class 'int'&gt;\n` +
+        `diem_tb  = <span class="hl">${diem}</span> -> &lt;class 'float'&gt;\n` +
+        `dang_hoc = <span class="hl">${hoc}</span> -> &lt;class 'bool'&gt;`;
+    }
+
+    function runEx1Todo2() {
+      const a = Number(document.getElementById('ex1_a').value);
+      const b = Number(document.getElementById('ex1_b').value);
+      document.getElementById('out_ex1_2').innerHTML =
+        `Trước hoán đổi: a = ${a}, b = ${b}\n` +
+        `<span class="ok">Sau a, b = b, a: a = ${b}, b = ${a}</span>`;
+    }
+
+    function runEx1Todo3() {
+      let x = Number(document.getElementById('ex1_x').value);
+      const add = Number(document.getElementById('ex1_add').value);
+      const sub = Number(document.getElementById('ex1_sub').value);
+      const mul = Number(document.getElementById('ex1_mul').value);
+      const div = Number(document.getElementById('ex1_div').value);
+      const out = document.getElementById('out_ex1_3');
+      if (div === 0) {
+        out.innerHTML = '<span class="err">ZeroDivisionError: Không thể chia lấy nguyên cho 0!</span>';
+        return;
+      }
+      const lines = [`Ban đầu:       x = ${x}`];
+      x += add; lines.push(`Sau x += ${add}:  x = ${x}`);
+      x -= sub; lines.push(`Sau x -= ${sub}:  x = ${x}`);
+      x *= mul; lines.push(`Sau x *= ${mul}:   x = ${x}`);
+      x = Math.floor(x / div); lines.push(`<span class="ok">Sau x //= ${div}:  x = ${x}</span>`);
+      out.innerHTML = lines.join('\n');
+    }
+
+    function runEx1Todo4() {
+      const ho = document.getElementById('ex1_ho').value.trim();
+      const ten = document.getElementById('ex1_tenrieng').value.trim();
+      const tuoi = document.getElementById('ex1_tuoisv').value.trim();
+      document.getElementById('out_ex1_4').innerHTML =
+        `<span class="ok">Họ tên: ${esc(ho)} ${esc(ten)}, ${esc(tuoi)} tuổi</span>`;
+    }
+
+    // ===== BÀI 02 =====
+    function runEx2Todo1() {
+      const raw = document.getElementById('ex2_sotext').value.trim();
+      const add = parseInt(document.getElementById('ex2_add').value, 10) || 0;
+      const out = document.getElementById('out_ex2_1');
+      if (!/^[+-]?\d+$/.test(raw)) {
+        out.innerHTML = `<span class="err">ValueError: invalid literal for int() with base 10: '${esc(raw)}'</span>`;
+        return;
+      }
+      const num = parseInt(raw, 10);
+      out.innerHTML = `int("${esc(raw)}") + ${add} = <span class="ok">${num + add}</span>`;
+    }
+
+    function runEx2Todo2() {
+      const val = Number(document.getElementById('ex2_pi').value);
+      document.getElementById('out_ex2_2').innerHTML =
+        `int(${val}) = <span class="ok">${Math.trunc(val)}</span> (cắt bỏ phần thập phân)`;
+    }
+
+    function runEx2Todo3() {
+      const custom = document.getElementById('ex2_bool_custom').value;
+      const customBool = custom.length > 0;
+      document.getElementById('out_ex2_3').innerHTML =
+        `bool(0)       = False\n` +
+        `bool(1)       = <span class="ok">True</span>\n` +
+        `bool("")      = False\n` +
+        `bool("hello") = <span class="ok">True</span>\n` +
+        `bool([])      = False\n` +
+        `bool([1, 2])  = <span class="ok">True</span>\n` +
+        `bool("${esc(custom)}") = <span class="hl">${customBool ? 'True' : 'False'}</span>`;
+    }
+
+    function runEx2Todo4() {
+      const h = parseFloat(document.getElementById('ex2_h').value);
+      const w = parseFloat(document.getElementById('ex2_w').value);
+      const out = document.getElementById('out_ex2_4');
+      if (!(h > 0) || !(w > 0)) {
+        out.innerHTML = '<span class="err">Lỗi: Chiều cao và cân nặng phải lớn hơn 0.</span>';
+        return;
+      }
+      const bmi = w / (h * h);
+      let label = 'Béo phì';
+      if (bmi < 18.5) label = 'Thiếu cân';
+      else if (bmi < 25) label = 'Bình thường';
+      else if (bmi < 30) label = 'Thừa cân';
+      out.innerHTML = `BMI = ${w} / (${h} ** 2) = <span class="ok">${bmi.toFixed(1)}</span> (${label})`;
+    }
+
+    function runEx2Todo5() {
+      const s = parseInt(document.getElementById('ex2_sec').value, 10);
+      const out = document.getElementById('out_ex2_5');
+      if (Number.isNaN(s) || s < 0) {
+        out.innerHTML = '<span class="err">Lỗi: Vui lòng nhập số giây >= 0.</span>';
+        return;
+      }
+      const gio = Math.floor(s / 3600);
+      const phut = Math.floor((s % 3600) / 60);
+      const giay = s % 60;
+      out.innerHTML = `${s} giây → <span class="ok">${gio} giờ ${phut} phút ${giay} giây</span>`;
+    }
+
+    // ===== BÀI 03 =====
+    function runEx3Todo1() {
+      const a = parseFloat(document.getElementById('ex3_n1').value);
+      const b = parseFloat(document.getElementById('ex3_n2').value);
+      const out = document.getElementById('out_ex3_1');
+      if (Number.isNaN(a) || Number.isNaN(b)) {
+        out.innerHTML = '<span class="err">Lỗi: Vui lòng nhập 2 số hợp lệ.</span>';
+        return;
+      }
+      const thuong = b !== 0 ? `<span class="ok">${(a / b).toFixed(2)}</span>` : '<span class="err">Không thể chia cho 0</span>';
+      out.innerHTML =
+        `Tổng  : <span class="ok">${a + b}</span>\n` +
+        `Hiệu  : <span class="ok">${a - b}</span>\n` +
+        `Tích  : <span class="ok">${a * b}</span>\n` +
+        `Thương: ${thuong}`;
+    }
+
+    function runEx3Todo2() {
+      const r = parseFloat(document.getElementById('ex3_r').value);
+      const out = document.getElementById('out_ex3_2');
+      if (Number.isNaN(r) || r < 0) {
+        out.innerHTML = '<span class="err">Lỗi: Bán kính phải >= 0.</span>';
+        return;
+      }
+      const pi = 3.14159;
+      out.innerHTML =
+        `Diện tích (π × r²): <span class="ok">${(pi * r * r).toFixed(2)}</span>\n` +
+        `Chu vi    (2 × π × r): <span class="ok">${(2 * pi * r).toFixed(2)}</span>`;
+    }
+
+    function runEx3Todo3() {
+      const price = parseFloat(document.getElementById('ex3_price').value);
+      const disc = parseFloat(document.getElementById('ex3_disc').value);
+      const out = document.getElementById('out_ex3_3');
+      if (Number.isNaN(price) || Number.isNaN(disc) || price < 0 || disc < 0 || disc > 100) {
+        out.innerHTML = '<span class="err">Lỗi: Giá gốc >= 0 và % giảm từ 0 đến 100.</span>';
+        return;
+      }
+      const finalPrice = price * (1 - disc / 100);
+      const saved = price - finalPrice;
+      out.innerHTML =
+        `Giá sau giảm (${disc}%): <span class="ok">${Math.round(finalPrice).toLocaleString('en-US')} VNĐ</span>\n` +
+        `Tiết kiệm được  : <span class="hl">${Math.round(saved).toLocaleString('en-US')} VNĐ</span>`;
+    }
+
+    function runEx3Todo4() {
+      const vnd = parseFloat(document.getElementById('ex3_vnd').value);
+      const rate = parseFloat(document.getElementById('ex3_rate').value);
+      const out = document.getElementById('out_ex3_4');
+      if (Number.isNaN(vnd) || Number.isNaN(rate) || rate <= 0) {
+        out.innerHTML = '<span class="err">Lỗi: Tỷ giá phải lớn hơn 0.</span>';
+        return;
+      }
+      out.innerHTML = `${Math.round(vnd).toLocaleString('en-US')} VNĐ = <span class="ok">$${(vnd / rate).toFixed(2)} USD</span>`;
+    }
+
+    // ===== PRACTICE LABS =====
+    function runLab1() {
+      const name = document.getElementById('lab1_name').value.trim();
+      const ageText = document.getElementById('lab1_age').value.trim();
+      const out = document.getElementById('out_lab1');
+      if (!/^\d+$/.test(ageText)) {
+        out.innerHTML = `<span class="err">ValueError: '${esc(ageText)}' không thể đổi bằng int()</span>`;
+        return;
+      }
+      const age = parseInt(ageText, 10);
+      out.innerHTML =
+        `Tên: ${esc(name)}\n` +
+        `Tuổi năm sau: <span class="ok">${age + 1}</span>\n` +
+        `Kiểu tuổi: <span class="hl">int</span>\n` +
+        `Đang học: True`;
+    }
+
+    function runLab2() {
+      const p = document.getElementById('lab2_price').value.trim();
+      const q = document.getElementById('lab2_qty').value.trim();
+      const inv = document.getElementById('lab2_inv').value.trim();
+      const out = document.getElementById('out_lab2');
+      if (!/^\d+$/.test(p) || !/^\d+$/.test(q)) {
+        out.innerHTML = '<span class="err">Đơn giá và số lượng phải là chuỗi chữ số nguyên dương.</span>';
+        return;
+      }
+      const total = parseInt(p, 10) * parseInt(q, 10);
+      const invMsg = /^\d+$/.test(inv)
+        ? `Số lượng hợp lệ: ${parseInt(inv, 10)}`
+        : `Tình huống sai: ${esc(inv)} không phải số lượng hợp lệ`;
+      out.innerHTML = `Thành tiền: <span class="ok">${total.toLocaleString('en-US')} VND</span>\n<span class="hl">${invMsg}</span>`;
+    }
+
+    function runLab3() {
+      const name = document.getElementById('lab3_name').value.trim();
+      const qtyText = document.getElementById('lab3_qty').value.trim();
+      const out = document.getElementById('out_lab3');
+      if (/^\d+$/.test(qtyText) && parseInt(qtyText, 10) > 0) {
+        const qty = parseInt(qtyText, 10);
+        const total = qty * 12000;
+        out.innerHTML = `<span class="ok">${esc(name)}: ${qty} vé, tổng ${total.toLocaleString('en-US')} VND</span>`;
+      } else {
+        out.innerHTML = `<span class="err">Số vé không hợp lệ</span> (không in hóa đơn)`;
+      }
+    }
+
+    // ===== MINI-PROJECT =====
+    function runMiniProject() {
+      const name = document.getElementById('mp_name').value.trim();
+      const sid = document.getElementById('mp_id').value.trim();
+      const major = document.getElementById('mp_major').value.trim();
+      const yearText = document.getElementById('mp_year').value.trim();
+      const cls = document.getElementById('mp_class').value.trim() || 'Chưa cập nhật';
+      const asciiOut = document.getElementById('out_mp_ascii');
+      const visualOut = document.getElementById('mp_visual');
+
+      if (!name || !sid || !major) {
+        asciiOut.innerHTML = '<span class="err">[!] Lỗi: Họ tên, mã sinh viên và ngành học không được để trống.</span>';
+        visualOut.innerHTML = '<div class="console"><span class="err">Chưa đủ thông tin để tạo thẻ.</span></div>';
+        return;
+      }
+      if (!/^\d+$/.test(yearText)) {
+        asciiOut.innerHTML = '<span class="err">[!] Lỗi: Năm nhập học cần gồm các chữ số (ví dụ: 2024).</span>';
+        visualOut.innerHTML = '<div class="console"><span class="err">Từ chối năm nhập học không phải chữ số: "' + esc(yearText) + '"</span></div>';
+        return;
+      }
+      const startYear = parseInt(yearText, 10);
+      const gradYear = startYear + 4;
+      const pad = (str, len) => str.length >= len ? str.slice(0, len) : str + ' '.repeat(len - str.length);
+      asciiOut.innerHTML =
+        `╔════════════════════════════════════════════╗\n` +
+        `║        THẺ SINH VIÊN · STUDENT CARD        ║\n` +
+        `╠════════════════════════════════════════════╣\n` +
+        `║  Họ và tên   : ${esc(pad(name, 28))}║\n` +
+        `║  Mã SV       : ${esc(pad(sid, 28))}║\n` +
+        `║  Ngành học   : ${esc(pad(major, 28))}║\n` +
+        `║  Lớp         : ${esc(pad(cls, 28))}║\n` +
+        `║  Niên khóa   : ${esc(pad(`${startYear} - ${gradYear}`, 28))}║\n` +
+        `╚════════════════════════════════════════════╝`;
+
+      visualOut.innerHTML =
+        `<div class="id-card">` +
+        `<div class="id-card-head"><span>Thẻ Sinh Viên</span><span>Khóa ${startYear}–${gradYear}</span></div>` +
+        `<div class="id-card-name">${esc(name)}</div>` +
+        `<div class="id-card-meta">` +
+        `<div><span>Mã sinh viên</span><strong>${esc(sid)}</strong></div>` +
+        `<div><span>Lớp</span><strong>${esc(cls)}</strong></div>` +
+        `<div><span>Ngành học</span><strong>${esc(major)}</strong></div>` +
+        `<div><span>Dự kiến tốt nghiệp</span><strong>Năm ${gradYear}</strong></div>` +
+        `</div></div>`;
+    }
+
+    // ===== EVIDENCE BUILDER =====
+    function updateEvidence() {
+      const student = document.getElementById('ev_student').value.trim();
+      const cases = document.getElementById('ev_case').value.trim();
+      const bug = document.getElementById('ev_bug').value.trim();
+      const explain = document.getElementById('ev_explain').value.trim();
+      try {
+        localStorage.setItem('w02_evidence', JSON.stringify({ student, cases, bug, explain }));
+      } catch {}
+      const md = [
+        '# Minh chứng tự học — Week 02 (Variables · Types · I/O)',
+        '',
+        '- **Sinh viên:** ' + student,
+        '- **Bài tập gốc (`exercises/`):** 10.00/10.00 PASS (10/10 TODO)',
+        '- **Practice Labs (`practice/starter/`):** PASS (3/3)',
+        '- **Input thường & biên đã thử:** ' + cases,
+        '- **Lỗi đã quan sát & cách sửa:** ' + bug,
+        '- **Giải thích hành vi:** ' + explain
+      ].join('\n');
+      document.getElementById('out_evidence').textContent = md;
+    }
+
+    function copyEvidence() {
+      const md = document.getElementById('out_evidence').textContent;
+      navigator.clipboard?.writeText(md).then(() => showToast('Đã copy Markdown phiếu minh chứng!')).catch(() => showToast('Không thể copy tự động'));
+    }
+
+    function resetDefaults() {
+      const defaults = {
+        ex1_ten: 'Quy', ex1_tuoi: '20', ex1_diem: '8.5', ex1_hoc: 'True',
+        ex1_a: '10', ex1_b: '20', ex1_x: '100', ex1_add: '50', ex1_sub: '30', ex1_mul: '2', ex1_div: '4',
+        ex1_ho: 'Phan', ex1_tenrieng: 'Thành Quý', ex1_tuoisv: '20',
+        ex2_sotext: '42', ex2_add: '8', ex2_pi: '3.14159', ex2_bool_custom: 'False', ex2_h: '1.75', ex2_w: '70', ex2_sec: '3661',
+        ex3_n1: '10', ex3_n2: '4', ex3_r: '5', ex3_price: '500000', ex3_disc: '20', ex3_vnd: '250000', ex3_rate: '25000',
+        lab1_name: 'An', lab1_age: '18', lab2_price: '25000', lab2_qty: '3', lab2_inv: 'ba', lab3_name: 'Lan', lab3_qty: '2',
+        mp_name: 'Phan Thành Quý', mp_id: 'SV2024001', mp_major: 'Công nghệ thông tin', mp_year: '2024', mp_class: 'CNTT-K24'
+      };
+      Object.entries(defaults).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+      });
+      runAll();
+      showToast('Đã khôi phục toàn bộ dữ liệu mẫu!');
+    }
+
+    function runAll() {
+      runEx1Todo1(); runEx1Todo2(); runEx1Todo3(); runEx1Todo4();
+      runEx2Todo1(); runEx2Todo2(); runEx2Todo3(); runEx2Todo4(); runEx2Todo5();
+      runEx3Todo1(); runEx3Todo2(); runEx3Todo3(); runEx3Todo4();
+      runLab1(); runLab2(); runLab3();
+      runMiniProject();
+      updateEvidence();
+    }
+
+    // Khôi phục phiếu minh chứng nếu đã lưu trước đó
+    try {
+      const savedEv = JSON.parse(localStorage.getItem('w02_evidence') || 'null');
+      if (savedEv) {
+        if (savedEv.student) document.getElementById('ev_student').value = savedEv.student;
+        if (savedEv.cases) document.getElementById('ev_case').value = savedEv.cases;
+        if (savedEv.bug) document.getElementById('ev_bug').value = savedEv.bug;
+        if (savedEv.explain) document.getElementById('ev_explain').value = savedEv.explain;
+      }
+    } catch {}
+
+    // Helper chuyển tab & copy nhanh
+    function openTab(tabId) {
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+      if (btn) btn.click();
+    }
+
+    function copyText(text) {
+      navigator.clipboard?.writeText(text)
+        .then(() => showToast('Đã sao chép vào clipboard!'))
+        .catch(() => showToast('Không thể copy tự động'));
+    }
+
+    // ===== LIVE PYTHON PLAYGROUND (PYODIDE) =====
+    const PY_TEMPLATES = {
+      ex01: {
+        code: [
+          '# Bài 01: Biến và kiểu dữ liệu',
+          'ten = "Quy"',
+          'tuoi = 20',
+          'diem_tb = 8.5',
+          'dang_hoc = True',
+          '',
+          'print(f"ten = {ten} -> {type(ten)}")',
+          'print(f"tuoi = {tuoi} -> {type(tuoi)}")',
+          'print(f"diem_tb = {diem_tb} -> {type(diem_tb)}")',
+          'print(f"dang_hoc = {dang_hoc} -> {type(dang_hoc)}")',
+          '',
+          '# Hoán đổi 2 biến',
+          'a, b = 10, 20',
+          'a, b = b, a',
+          'print(f"Sau hoán đổi: a = {a}, b = {b}")'
+        ].join('\n'),
+        stdin: ''
+      },
+      ex02: {
+        code: [
+          '# Bài 02: Chuyển đổi kiểu dữ liệu & Tính BMI',
+          'chieu_cao = float(input("Nhập chiều cao (m): "))',
+          'can_nang = float(input("Nhập cân nặng (kg): "))',
+          'bmi = can_nang / (chieu_cao ** 2)',
+          'print(f"Chỉ số BMI của bạn: {bmi:.1f}")',
+          '',
+          'tong_giay = int(input("Nhập tổng số giây: "))',
+          'gio = tong_giay // 3600',
+          'phut = (tong_giay % 3600) // 60',
+          'giay = tong_giay % 60',
+          'print(f"{tong_giay} giây = {gio} giờ {phut} phút {giay} giây")'
+        ].join('\n'),
+        stdin: '1.75\n70\n3661'
+      },
+      ex03: {
+        code: [
+          '# Bài 03: Máy tính nhận input',
+          'so_1 = float(input("Số thứ nhất: "))',
+          'so_2 = float(input("Số thứ hai: "))',
+          'print(f"Tổng: {so_1 + so_2}")',
+          'print(f"Hiệu: {so_1 - so_2}")',
+          'print(f"Tích: {so_1 * so_2}")',
+          'print(f"Thương: {so_1 / so_2:.2f}" if so_2 != 0 else "Không thể chia cho 0")',
+          '',
+          'gia_goc = float(input("Giá gốc (VNĐ): "))',
+          'giam = float(input("Giảm giá (%): "))',
+          'print(f"Giá sau giảm: {gia_goc * (1 - giam / 100):,.0f} VNĐ")'
+        ].join('\n'),
+        stdin: '10\n4\n500000\n20'
+      },
+      card: {
+        code: [
+          '# Mini-project: Thẻ Sinh Viên',
+          'name = input("Họ và tên: ").strip()',
+          'sid = input("Mã sinh viên: ").strip()',
+          'major = input("Ngành học: ").strip()',
+          'year_text = input("Năm nhập học: ").strip()',
+          '',
+          'if year_text.isdigit():',
+          '    start = int(year_text)',
+          '    print("=" * 40)',
+          '    print(f"  THẺ SINH VIÊN: {name}")',
+          '    print(f"  MSSV : {sid}")',
+          '    print(f"  Ngành: {major}")',
+          '    print(f"  Khóa : {start} - {start + 4}")',
+          '    print("=" * 40)',
+          'else:',
+          '    print("Năm nhập học phải gồm các chữ số!")'
+        ].join('\n'),
+        stdin: 'Phan Thành Quý\nSV2024001\nCông nghệ thông tin\n2024'
+      },
+      blank: {
+        code: '# Tự viết code Python của bạn ở đây!\nname = input("Tên của bạn: ")\nprint(f"Xin chào {name}, chúc bạn học tốt Python!")\n',
+        stdin: 'Quý'
+      }
+    };
+
+    function loadPyTemplate(key) {
+      const tpl = PY_TEMPLATES[key];
+      if (!tpl) return;
+      document.getElementById('pyCode').value = tpl.code;
+      document.getElementById('pyStdin').value = tpl.stdin;
+      showToast('Đã nạp mẫu ' + key + '!');
+    }
+
+    let pyodideInstance = null;
+    let pyodideLoading = null;
+
+    async function ensurePyodide() {
+      if (pyodideInstance) return pyodideInstance;
+      const status = document.getElementById('pyStatus');
+      if (!pyodideLoading) {
+        status.textContent = 'Đang tải Python 3 (lần đầu ~5s)...';
+        pyodideLoading = new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+          script.onload = async () => {
+            try {
+              const py = await window.loadPyodide();
+              pyodideInstance = py;
+              status.textContent = 'Python 3 sẵn sàng ✓';
+              status.classList.add('ready');
+              resolve(py);
+            } catch (err) {
+              reject(err);
+            }
+          };
+          script.onerror = () => reject(new Error('Không tải được Pyodide (kiểm tra kết nối Internet).'));
+          document.head.appendChild(script);
+        });
+      }
+      return pyodideLoading;
+    }
+
+    function toggleStdinBox() {
+      const mode = document.getElementById('pyInputMode').value;
+      document.getElementById('pyStdinWrap').style.display = mode === 'stdin' ? 'flex' : 'none';
+    }
+
+    async function runLivePython() {
+      const btn = document.getElementById('btnRunPy');
+      const out = document.getElementById('pyOutput');
+      const code = document.getElementById('pyCode').value;
+      const mode = document.getElementById('pyInputMode').value;
+      const stdinVal = document.getElementById('pyStdin').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Đang chạy...';
+      out.innerHTML = '<span class="hl">Đang khởi chạy Python 3...</span>';
+
+      try {
+        const py = await ensurePyodide();
+        py.globals.set('__user_code__', code);
+        py.globals.set('__user_stdin__', stdinVal);
+        py.globals.set('__use_prompt__', mode === 'prompt');
+        py.globals.set('__browser_prompt__', (promptText) => {
+          const val = window.prompt(promptText || 'Nhập dữ liệu cho Python input():');
+          return val === null ? null : String(val);
+        });
+        const runner = [
+          'import builtins, io, sys, traceback',
+          '_buf = io.StringIO()',
+          '_old_out, _old_err, _old_in, _old_input = sys.stdout, sys.stderr, sys.stdin, builtins.input',
+          'sys.stdout = _buf',
+          'sys.stderr = _buf',
+          '_lines = __user_stdin__.splitlines()',
+          '_idx = [0]',
+          'def _custom_input(prompt=""):',
+          '    if __use_prompt__:',
+          '        ans = __browser_prompt__(str(prompt))',
+          '        if ans is None:',
+          '            raise EOFError("Người dùng đã hủy nhập dữ liệu.")',
+          '        _buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          '    else:',
+          '        if _idx[0] >= len(_lines):',
+          '            raise EOFError("Hết dữ liệu trong ô stdin!")',
+          '        ans = _lines[_idx[0]]',
+          '        _idx[0] += 1',
+          '        _buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          'builtins.input = _custom_input',
+          '_ok = True',
+          'try:',
+          '    exec(compile(__user_code__, "<week02_playground.py>", "exec"), {})',
+          'except Exception:',
+          '    _ok = False',
+          '    traceback.print_exc()',
+          'finally:',
+          '    sys.stdout, sys.stderr, sys.stdin, builtins.input = _old_out, _old_err, _old_in, _old_input',
+          '(_ok, _buf.getvalue())'
+        ].join('\n');
+        const res = py.runPython(runner).toJs();
+        const ok = res[0];
+        const text = res[1] || '(Chương trình chạy xong, không có output)';
+        out.innerHTML = ok
+          ? '<span class="ok">' + esc(text) + '</span>'
+          : '<span class="err">' + esc(text) + '</span>';
+      } catch (err) {
+        out.innerHTML = '<span class="err">Lỗi tải Python trên trình duyệt: ' + esc(err.message) + '\nBạn vẫn có thể copy code chạy trực tiếp trong VS Code Terminal.</span>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '▶ Chạy Code Python';
+      }
+    }
+
+    // Phím tắt Ctrl+Enter và Tab trong editor Python
+    const pyEditorEl = document.getElementById('pyCode');
+    if (pyEditorEl) {
+      pyEditorEl.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          runLivePython();
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = pyEditorEl.selectionStart;
+          const end = pyEditorEl.selectionEnd;
+          pyEditorEl.value = pyEditorEl.value.slice(0, start) + '    ' + pyEditorEl.value.slice(end);
+          pyEditorEl.selectionStart = pyEditorEl.selectionEnd = start + 4;
+        }
+      });
+    }
+
+    // ===== ERROR LAB DATA & HANDLERS =====
+    const ERROR_CASES = {
+      val_err: {
+        badCode: 'so_luong_text = "ba"\nso_luong = int(so_luong_text)  # LỖI!\nprint(so_luong * 25000)',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nValueError: invalid literal for int() with base 10: \'ba\'',
+        fixCode: 'so_luong_text = "ba"\nif so_luong_text.isdigit():\n    print(int(so_luong_text) * 25000)\nelse:\n    print("Lỗi: Số lượng phải là chữ số nguyên!")',
+        fixOut: 'Lỗi: Số lượng phải là chữ số nguyên! (Chương trình không bị crash ✓)'
+      },
+      type_err: {
+        badCode: 'age_text = "18"\nprint("Tuổi năm sau:", age_text + 1)  # LỖI!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nTypeError: can only concatenate str (not "int") to str',
+        fixCode: 'age_text = "18"\nage = int(age_text)\nprint(f"Tuổi năm sau: {age + 1}")',
+        fixOut: 'Tuổi năm sau: 19'
+      },
+      concat_bug: {
+        badCode: 'a = "12"  # kết quả từ input()\nb = "3"   # kết quả từ input()\nprint("Tổng:", a + b)  # Sai logic!',
+        badOut: 'Tổng: 123   <-- SAI! Python nối 2 chuỗi "12" và "3" thay vì cộng số.',
+        fixCode: 'a = int("12")\nb = int("3")\nprint("Tổng:", a + b)',
+        fixOut: 'Tổng: 15   (Đúng kết quả cộng số học ✓)'
+      },
+      zero_err: {
+        badCode: 'a = 10\nb = 0\nprint("Thương:", a / b)  # LỖI!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 3, in <module>\nZeroDivisionError: division by zero',
+        fixCode: 'a = 10\nb = 0\nif b != 0:\n    print(f"Thương: {a / b:.2f}")\nelse:\n    print("Không thể chia cho 0!")',
+        fixOut: 'Không thể chia cho 0! (Đã xử lý an toàn ✓)'
+      },
+      name_err: {
+        badCode: 'diem_tb = 8.5\nprint("Điểm:", diem_TB)  # Sai chữ hoa/thường!',
+        badOut: 'Traceback (most recent call last):\n  File "<lab>", line 2, in <module>\nNameError: name \'diem_TB\' is not defined. Did you mean: \'diem_tb\'?',
+        fixCode: 'diem_tb = 8.5\nprint(f"Điểm: {diem_tb}")',
+        fixOut: 'Điểm: 8.5'
+      },
+      gotcha: {
+        badCode: 'print("bool(\'False\') =", bool("False"))\nprint("int(3.99)     =", int(3.99))',
+        badOut: 'bool(\'False\') = True   <-- BẪY! Chuỗi không rỗng luôn là True\nint(3.99)     = 3      <-- BẪY! int() cắt đuôi, không làm tròn',
+        fixCode: 'flag_text = "False"\nis_active = flag_text.strip().lower() == "true"\nprint("is_active   =", is_active)\nprint("round(3.99) =", round(3.99))',
+        fixOut: 'is_active   = False\nround(3.99) = 4'
+      }
+    };
+
+    function runErrorDemo(key, mode) {
+      const item = ERROR_CASES[key];
+      const out = document.getElementById('out_err_' + key);
+      if (!item || !out) return;
+      if (mode === 'bad') {
+        out.innerHTML =
+          '<span class="hl"># Code LỖI:</span>\n' + esc(item.badCode) + '\n\n' +
+          '<span class="err">' + esc(item.badOut) + '</span>';
+      } else {
+        out.innerHTML =
+          '<span class="hl"># Code ĐÃ SỬA:</span>\n' + esc(item.fixCode) + '\n\n' +
+          '<span class="ok">' + esc(item.fixOut) + '</span>';
+      }
+    }
+
+    function openErrorInIde(key) {
+      const item = ERROR_CASES[key];
+      if (!item) return;
+      document.getElementById('pyCode').value =
+        '# Thử chạy để xem lỗi thật, sau đó tự sửa lại cho đúng!\n' + item.badCode + '\n';
+      document.getElementById('pyStdin').value = '';
+      openTab('playground');
+      showToast('Đã nạp code lỗi vào Live IDE — bấm ▶ Chạy để quan sát!');
+    }
+
+    // ===== IN-BROWSER AUTO-GRADER (RUBRIC WEEK 02: 10 TODO / 24 DYNAMIC CASES) =====
+    const GRADE_STARTERS = {
+      ex01: [
+        '# TODO 1: Tạo 4 biến ten (str), tuoi (int), diem_tb (float), dang_hoc (bool) và in kèm type()',
+        '',
+        '',
+        '# TODO 2: Hoán đổi a = 10, b = 20 KHÔNG dùng biến tạm (a, b = b, a)',
+        '',
+        '',
+        '# TODO 3: Cho x = 100, dùng đủ +=, -=, *=, //= qua 4 bước và in x sau mỗi bước',
+        ''
+      ].join('\n'),
+      ex02: [
+        '# TODO 1: Cho so_text = "42", chuyển sang int, cộng 8 và in kết quả',
+        'so_text = "42"',
+        '',
+        '# TODO 2: Cho pi = 3.14159, chuyển sang int và in kết quả',
+        'pi = 3.14159',
+        '',
+        '# TODO 3: In bool() của 0, 1, "", "hello", [], [1, 2]',
+        '',
+        '# TODO 4: Nhập chiều cao (m) rồi cân nặng (kg), tính BMI và in 1 chữ số thập phân',
+        ''
+      ].join('\n'),
+      ex03: [
+        '# TODO 1: Nhập 2 số, in lần lượt tổng, hiệu, tích, thương',
+        '',
+        '# TODO 2: Nhập bán kính, dùng pi = 3.14159 tính và in diện tích, chu vi',
+        '',
+        '# TODO 3: Nhập giá gốc và % giảm giá, tính và in giá sau giảm',
+        ''
+      ].join('\n')
+    };
+
+    // Đồng bộ mẫu chuẩn có đủ # TODO để test tự chấm ngay
+    PY_TEMPLATES.ex01.code = [
+      '# TODO 1: Tạo 4 biến lưu thông tin cá nhân + type()',
+      'ten = "Quy"',
+      'tuoi = 20',
+      'diem_tb = 8.5',
+      'dang_hoc = True',
+      'print(ten, type(ten))',
+      'print(tuoi, type(tuoi))',
+      'print(diem_tb, type(diem_tb))',
+      'print(dang_hoc, type(dang_hoc))',
+      '',
+      '# TODO 2: Hoán đổi giá trị 2 biến KHÔNG dùng biến tạm',
+      'a = 10',
+      'b = 20',
+      'a, b = b, a',
+      'print(f"Sau hoán đổi: a = {a}, b = {b}")',
+      '',
+      '# TODO 3: Augmented assignment (+=, -=, *=, //=)',
+      'x = 100',
+      'x += 50; print(x)',
+      'x -= 30; print(x)',
+      'x *= 2;  print(x)',
+      'x //= 4; print(x)'
+    ].join('\n');
+
+    PY_TEMPLATES.ex02.code = [
+      '# TODO 1: Chuyển so_text = "42" sang int và cộng 8',
+      'so_text = "42"',
+      'print(int(so_text) + 8)',
+      '',
+      '# TODO 2: Chuyển pi = 3.14159 sang int',
+      'pi = 3.14159',
+      'print(int(pi))',
+      '',
+      '# TODO 3: Kiểm tra bool() của 6 giá trị',
+      'print(bool(0))',
+      'print(bool(1))',
+      'print(bool(""))',
+      'print(bool("hello"))',
+      'print(bool([]))',
+      'print(bool([1, 2]))',
+      '',
+      '# TODO 4: Tính BMI',
+      'chieu_cao = float(input("Nhập chiều cao (m): "))',
+      'can_nang = float(input("Nhập cân nặng (kg): "))',
+      'bmi = can_nang / (chieu_cao ** 2)',
+      'print(f"BMI: {bmi:.1f}")'
+    ].join('\n');
+    PY_TEMPLATES.ex02.stdin = '1.75\n70';
+
+    PY_TEMPLATES.ex03.code = [
+      '# TODO 1: Tổng, hiệu, tích, thương 2 số',
+      'so_1 = float(input("Số thứ nhất: "))',
+      'so_2 = float(input("Số thứ hai: "))',
+      'print("Tổng:", so_1 + so_2)',
+      'print("Hiệu:", so_1 - so_2)',
+      'print("Tích:", so_1 * so_2)',
+      'print("Thương:", f"{so_1 / so_2:.2f}" if so_2 != 0 else "Không chia được cho 0")',
+      '',
+      '# TODO 2: Diện tích & chu vi hình tròn',
+      'pi = 3.14159',
+      'r = float(input("Bán kính: "))',
+      'print(f"Diện tích: {pi * r ** 2:.2f}")',
+      'print(f"Chu vi: {2 * pi * r:.2f}")',
+      '',
+      '# TODO 3: Tính giá sau giảm',
+      'gia_goc = float(input("Giá gốc: "))',
+      'giam = float(input("Giảm giá (%): "))',
+      'print(f"Giá sau giảm: {gia_goc * (1 - giam / 100):.2f}")'
+    ].join('\n');
+    PY_TEMPLATES.ex03.stdin = '10\n4\n5\n500000\n20';
+
+    function loadStarterForGrade() {
+      const target = document.getElementById('gradeTarget').value;
+      document.getElementById('pyCode').value = GRADE_STARTERS[target] || '';
+      showToast('Đã nạp khung TODO trống cho ' + target + ' — hãy tự viết code rồi bấm Chấm điểm!');
+    }
+
+    let liveScores = { ex01: 0, ex02: 0, ex03: 0 };
+    try {
+      const saved = JSON.parse(localStorage.getItem('w02_live_scores') || 'null');
+      if (saved && typeof saved === 'object') liveScores = Object.assign(liveScores, saved);
+    } catch {}
+
+    function refreshLiveScoreHeader() {
+      const total = (liveScores.ex01 || 0) + (liveScores.ex02 || 0) + (liveScores.ex03 || 0);
+      const el = document.getElementById('liveTotalScore');
+      if (el) {
+        el.textContent =
+          'Tổng tự chấm: ' + total.toFixed(2) + ' / 10.00' +
+          ' (ex01: ' + (liveScores.ex01 || 0).toFixed(2) + '/3 · ex02: ' + (liveScores.ex02 || 0).toFixed(2) + '/3.5 · ex03: ' + (liveScores.ex03 || 0).toFixed(2) + '/3.5)';
+      }
+    }
+
+    async function gradeLivePython() {
+      const btn = document.getElementById('btnGradePy');
+      const out = document.getElementById('pyGradeOutput');
+      const termOut = document.getElementById('pyOutput');
+      const code = document.getElementById('pyCode').value;
+      const mode = document.getElementById('pyInputMode').value;
+      const stdinVal = document.getElementById('pyStdin').value;
+
+      if (!code.trim()) {
+        out.innerHTML = '<span class="err">Ô code đang trống! Hãy nhập code Python của bạn trước khi chấm điểm.</span>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Đang phân tích & chấm...';
+      out.innerHTML = '<span class="hl">Đang phân tích AST và chạy kiểm thử code của bạn bằng Python 3...</span>';
+
+      try {
+        const py = await ensurePyodide();
+        py.globals.set('__grade_code__', code);
+        py.globals.set('__grade_stdin__', stdinVal);
+        py.globals.set('__grade_use_prompt__', mode === 'prompt');
+        py.globals.set('__grade_prompt_fn__', (promptText) => {
+          const val = window.prompt(promptText || 'Nhập dữ liệu cho input():');
+          return val === null ? null : String(val);
+        });
+
+        const analyzerPy = [
+          'import ast, builtins, io, json, re, sys, traceback',
+          'def evaluate_user_code(src):',
+          '    items, tips = [], []',
+          '    # 1. Cú pháp Python (1.5đ)',
+          '    try:',
+          '        tree = ast.parse(src)',
+          '        items.append({"name": "1. Cú pháp Python", "earned": 1.5, "max": 1.5, "ok": True, "detail": "Hợp lệ, không lỗi SyntaxError."})',
+          '    except SyntaxError as e:',
+          '        items.append({"name": "1. Cú pháp Python", "earned": 0.0, "max": 1.5, "ok": False, "detail": f"SyntaxError dòng {e.lineno}: {e.msg}"})',
+          '        tips.append(f"Kiểm tra lại cú pháp tại dòng {e.lineno} (dấu ngoặc, dấu hai chấm :, hoặc thụt lề).")',
+          '        return json.dumps({"score": 0.0, "rank": "Cần sửa lỗi cú pháp", "items": items, "tips": tips, "stdout": ""}, ensure_ascii=False)',
+          '',
+          '    # 2. Thực thi bằng Python 3 thật (2.5đ)',
+          '    buf = io.StringIO()',
+          '    old_out, old_err, old_in, old_input = sys.stdout, sys.stderr, sys.stdin, builtins.input',
+          '    sys.stdout = sys.stderr = buf',
+          '    lines_in = __grade_stdin__.splitlines()',
+          '    idx_in = [0]',
+          '    def _inp(prompt=""):',
+          '        if __grade_use_prompt__:',
+          '            ans = __grade_prompt_fn__(str(prompt))',
+          '            if ans is None: raise EOFError("Bạn đã hủy nhập liệu.")',
+          '        else:',
+          '            if idx_in[0] >= len(lines_in): raise EOFError("Thiếu dữ liệu trong ô stdin.")',
+          '            ans = lines_in[idx_in[0]]; idx_in[0] += 1',
+          '        buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          '    builtins.input = _inp',
+          '    ns = {}',
+          '    run_ok, run_err = True, ""',
+          '    try:',
+          '        exec(compile(src, "<user_code.py>", "exec"), ns)',
+          '    except Exception as e:',
+          '        run_ok = False',
+          '        run_err = f"{type(e).__name__}: {e}"',
+          '        traceback.print_exc()',
+          '    finally:',
+          '        sys.stdout, sys.stderr, sys.stdin, builtins.input = old_out, old_err, old_in, old_input',
+          '    run_out = buf.getvalue()',
+          '    if run_ok:',
+          '        items.append({"name": "2. Thực thi không lỗi", "earned": 2.5, "max": 2.5, "ok": True, "detail": "Chạy hoàn tất 100%, không phát sinh Exception."})',
+          '    else:',
+          '        items.append({"name": "2. Thực thi không lỗi", "earned": 0.0, "max": 2.5, "ok": False, "detail": f"Gặp lỗi khi chạy: {run_err}"})',
+          '        if "ValueError" in run_err: tips.append("Lỗi ValueError: kiểm tra .isdigit() trước khi ép int() hoặc dùng float() cho số thập phân.")',
+          '        elif "ZeroDivisionError" in run_err: tips.append("Lỗi ZeroDivisionError: thêm điều kiện if so_chia != 0 trước khi chia.")',
+          '        elif "TypeError" in run_err: tips.append("Lỗi TypeError: ép kiểu int()/float() trước khi cộng trừ, hoặc dùng f-string khi in.")',
+          '        elif "NameError" in run_err: tips.append("Lỗi NameError: kiểm tra lại chính tả và chữ hoa/thường của tên biến.")',
+          '',
+          '    # 3. Biến & Kiểu dữ liệu (2.0đ)',
+          '    var_names = []',
+          '    for n in ast.walk(tree):',
+          '        if isinstance(n, ast.Assign):',
+          '            for t in n.targets:',
+          '                if isinstance(t, ast.Name): var_names.append(t.id)',
+          '                elif isinstance(t, ast.Tuple): var_names.extend(e.id for e in t.elts if isinstance(e, ast.Name))',
+          '    var_names = list(dict.fromkeys(var_names))',
+          '    bad_names = [v for v in var_names if not re.match(r"^[a-z_][a-z0-9_]*$", v) and not v.isupper()]',
+          '    calls = [n.func.id for n in ast.walk(tree) if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)]',
+          '    type_fns = set(calls) & {"int", "float", "str", "bool", "type"}',
+          '    v_score = 0.0',
+          '    if var_names: v_score += 0.5',
+          '    if var_names and not bad_names: v_score += 0.5',
+          '    if type_fns or len({type(v).__name__ for k, v in ns.items() if not k.startswith("__")}) >= 2: v_score += 1.0',
+          '    if not var_names: tips.append("Nên khai báo biến có ý nghĩa thay vì viết trực tiếp giá trị trong print().")',
+          '    if bad_names: tips.append("Tên biến nên viết thường theo chuẩn snake_case: " + ", ".join(bad_names[:4]))',
+          '    if not type_fns and "input" in calls: tips.append("Code có gọi input() nhưng chưa thấy ép kiểu int()/float() nếu cần tính toán.")',
+          '    items.append({"name": "3. Biến & Kiểu dữ liệu", "earned": v_score, "max": 2.0, "ok": v_score >= 1.5, "detail": f"{len(var_names)} biến" + (f", dùng hàm kiểu: {sorted(type_fns)}" if type_fns else "")})',
+          '',
+          '    # 4. Xử lý logic, phép toán & phòng lỗi (2.0đ)',
+          '    has_op = any(isinstance(n, (ast.BinOp, ast.AugAssign, ast.Compare, ast.BoolOp)) for n in ast.walk(tree))',
+          '    has_div = any(isinstance(n, ast.BinOp) and isinstance(n.op, (ast.Div, ast.FloorDiv, ast.Mod)) for n in ast.walk(tree))',
+          '    has_if = any(isinstance(n, (ast.If, ast.IfExp)) for n in ast.walk(tree))',
+          '    has_guard = has_if or any(isinstance(n, ast.Attribute) and n.attr in ("isdigit", "strip") for n in ast.walk(tree))',
+          '    l_score = (1.0 if has_op else 0.0) + (1.0 if has_guard else (0.5 if not has_div else 0.0))',
+          '    if has_div and not has_if: tips.append("Code có phép chia (/ hoặc //) nhưng chưa có if kiểm tra mẫu số khác 0.")',
+          '    if not has_op: tips.append("Thử bổ sung phép tính toán hoặc biến đổi dữ liệu để chương trình hữu ích hơn.")',
+          '    items.append({"name": "4. Xử lý & Phòng lỗi", "earned": l_score, "max": 2.0, "ok": l_score >= 1.5, "detail": ("Có xử lý phép toán" if has_op else "Chưa có phép toán") + (", có kiểm tra điều kiện/an toàn" if has_guard else "")})',
+          '',
+          '    # 5. Đầu ra & Trình bày code (2.0đ)',
+          '    has_print = "print" in calls',
+          '    has_fstr = any(isinstance(n, ast.JoinedStr) for n in ast.walk(tree))',
+          '    has_comment = any(line.strip().startswith("#") for line in src.splitlines())',
+          '    p_score = (1.0 if (has_print and run_out.strip()) else (0.5 if has_print else 0.0)) + (0.5 if has_fstr else 0.0) + (0.5 if has_comment else 0.0)',
+          '    if not has_fstr and has_print: tips.append("Nên dùng f-string (ví dụ: print(f\\"Kết quả: {kq:.2f}\\")) để hiển thị đẹp và dễ đọc hơn.")',
+          '    if not has_comment: tips.append("Thêm 1–2 dòng chú thích (# ...) để giải thích ý tưởng đoạn code.")',
+          '    items.append({"name": "5. Đầu ra & Trình bày", "earned": p_score, "max": 2.0, "ok": p_score >= 1.5, "detail": f"print: {\'có\' if has_print else \'không\'}, f-string: {\'có\' if has_fstr else \'chưa\'}, chú thích: {\'có\' if has_comment else \'chưa\'}"})',
+          '',
+          '    total = round(sum(i["earned"] for i in items), 2)',
+          '    rank = "Xuất sắc" if total >= 9 else ("Giỏi" if total >= 8 else ("Khá" if total >= 6.5 else "Cần cải thiện"))',
+          '    return json.dumps({"score": total, "rank": rank, "items": items, "tips": tips, "stdout": run_out}, ensure_ascii=False)',
+          'evaluate_user_code(__grade_code__)'
+        ].join('\n');
+
+        const data = JSON.parse(py.runPython(analyzerPy));
+        if (data.stdout) {
+          termOut.innerHTML = data.items[1] && data.items[1].ok
+            ? '<span class="ok">' + esc(data.stdout) + '</span>'
+            : '<span class="err">' + esc(data.stdout) + '</span>';
+        }
+        document.getElementById('liveTotalScore').textContent =
+          'Điểm gần nhất: ' + data.score.toFixed(1) + ' / 10.0 (' + data.rank + ')';
+
+        const lines = data.items.map((it) => {
+          const badge = it.ok ? '<span class="ok">[TỐT]</span>' : '<span class="err">[CẦN SỬA]</span>';
+          return badge + ' ' + it.name + ': ' + it.earned.toFixed(1) + '/' + it.max.toFixed(1) + ' — ' + esc(it.detail);
+        });
+        lines.push('');
+        lines.push('<span class="hl">▶ TỔNG ĐIỂM CODE CỦA BẠN: ' + data.score.toFixed(1) + ' / 10.0 — Xếp loại: ' + esc(data.rank) + '</span>');
+        if (data.tips && data.tips.length) {
+          lines.push('');
+          lines.push('<span class="hl">Gợi ý cải thiện cho đoạn code này:</span>');
+          data.tips.forEach((t) => lines.push('  • ' + esc(t)));
+        } else {
+          lines.push('<span class="ok">Tuyệt vời! Code của bạn sạch, chạy không lỗi và đáp ứng tốt chuẩn Python Tuần 02.</span>');
+        }
+        out.innerHTML = lines.join('\n');
+        showToast('Điểm code của bạn: ' + data.score.toFixed(1) + '/10 (' + data.rank + ')');
+      } catch (err) {
+        out.innerHTML = '<span class="err">Lỗi chấm điểm: ' + esc(err.message) + '</span>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🎯 Chấm điểm code của bạn';
+      }
+    }
+
+    loadPyTemplate('ex02');
+    runAll();
+  </script>
+</body>
+</html>

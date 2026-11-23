@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "week": "W02",
+  "mode": "student",
+  "assessment_type": "formative_original_exercises",
+  "rubric_sha256": "bbc9a354833a04ddf259424f44011e21161157116328da2cd49aebd1577435d1",
+  "auto_score": 10.0,
+  "auto_max_points": 10,
+  "official_score": null,
+  "optional_excluded": [
+    "ex01_variables.py TODO4 multiple assignment",
+    "ex02_type_conversion.py TODO5 seconds to hh:mm:ss",
+    "ex03_input_calc.py TODO4 VND to USD",
+    "mini-project/starter.py — mã mẫu đã có sẵn, minh chứng riêng"
+  ],
+  "tasks": [
+    {
+      "file": "ex01_variables.py",
+      "title": "Bài 01 — Biến",
+      "source_sha256": "f6ea1c2f3bda865d18bd37ab67675af6453986d22b2fb813902c1b14b04f6d30",
+      "criteria": [
+        {
+          "id": "W02.EX01.PROFILE",
+          "todo": 1,
+          "passed": true,
+          "earned": 1.0,
+          "maximum": 1,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX01.SWAP",
+          "todo": 2,
+          "passed": true,
+          "earned": 1.0,
+          "maximum": 1,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX01.AUG",
+          "todo": 3,
+          "passed": true,
+          "earned": 1.0,
+          "maximum": 1,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ex02_type_conversion.py",
+      "title": "Bài 02 — Chuyển kiểu",
+      "source_sha256": "c06c3e75ecc09ebdce36148337badb90b41373c9bfc34b2e34234330109e2f45",
+      "criteria": [
+        {
+          "id": "W02.EX02.TEXT",
+          "todo": 1,
+          "passed": true,
+          "earned": 0.75,
+          "maximum": 0.75,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX02.PI",
+          "todo": 2,
+          "passed": true,
+          "earned": 0.75,
+          "maximum": 0.75,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX02.BOOL",
+          "todo": 3,
+          "passed": true,
+          "earned": 0.75,
+          "maximum": 0.75,
+          "reason": "Đạt tiêu chí.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX02.BMI",
+          "todo": 4,
+          "passed": true,
+          "earned": 1.25,
+          "maximum": 1.25,
+          "reason": "Đạt 4/4 bộ input kiểm thử đa dạng.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ex03_input_calc.py",
+      "title": "Bài 03 — Input & phép tính",
+      "source_sha256": "176f4e3a8b540e896669eac9eba2c8a1600ccc9a983503a57c25a9d6ae030e52",
+      "criteria": [
+        {
+          "id": "W02.EX03.FOUR",
+          "todo": 1,
+          "passed": true,
+          "earned": 1.5,
+          "maximum": 1.5,
+          "reason": "Đạt 4/4 bộ input kiểm thử đa dạng.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX03.CIRCLE",
+          "todo": 2,
+          "passed": true,
+          "earned": 1.0,
+          "maximum": 1,
+          "reason": "Đạt 4/4 bộ input kiểm thử đa dạng.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        },
+        {
+          "id": "W02.EX03.DISCOUNT",
+          "todo": 3,
+          "passed": true,
+          "earned": 1.0,
+          "maximum": 1,
+          "reason": "Đạt 4/4 bộ input kiểm thử đa dạng.",
+          "observations": [
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            },
+            {
+              "ok": true,
+              "error": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "warning": "Chỉ đánh giá TODO bắt buộc của 3 exercises. Không phải điểm chính thức hay sandbox."
+}
