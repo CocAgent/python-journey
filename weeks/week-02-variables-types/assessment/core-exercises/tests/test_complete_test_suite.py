@@ -42,7 +42,7 @@ def test_bank_rejects_missing_criterion(tmp_path: Path, monkeypatch) -> None:
     data = json.loads(filename.read_text(encoding="utf-8"))
     del data["cases"]["W02.EX02.BMI"]
     filename.write_text(json.dumps(data), encoding="utf-8")
-    monkeypatch.setattr(autograde_w02, "TEST_CASE_DIR", tmp_path)
+    monkeypatch.setattr(ag, "TEST_CASE_DIR", tmp_path)
     with pytest.raises(ValueError, match="TEST_SUITE_MISMATCH"):
         ag.test_suite_audit()
 
@@ -54,7 +54,7 @@ def test_bank_rejects_missing_dynamic_cases(tmp_path: Path, monkeypatch) -> None
     data = json.loads(filename.read_text(encoding="utf-8"))
     data["cases"]["W02.EX03.DISCOUNT"] = data["cases"]["W02.EX03.DISCOUNT"][:2]
     filename.write_text(json.dumps(data), encoding="utf-8")
-    monkeypatch.setattr(autograde_w02, "TEST_CASE_DIR", tmp_path)
+    monkeypatch.setattr(ag, "TEST_CASE_DIR", tmp_path)
     with pytest.raises(ValueError, match="TEST_SUITE_INCOMPLETE"):
         ag.test_suite_audit()
 
