@@ -14,7 +14,7 @@ from autograde_w02 import (  # noqa: E402
     check_one,
     load_test_cases,
     split_todos,
-    test_suite_audit,
+    test_suite_audit as audit_suite,
 )
 
 REFERENCE = CORE / "fixtures" / "reference" / "ex02_type_conversion.py"
@@ -24,7 +24,7 @@ CRITERIA = (
 
 
 def test_ex02_bank_covers_all_four_todos_and_six_bmi_inputs() -> None:
-    audit = test_suite_audit()
+    audit = audit_suite()
     second = audit["tasks"][1]
     assert second["exercise"] == "ex02_type_conversion.py"
     assert [x["id"] for x in second["criteria"]] == list(CRITERIA)
