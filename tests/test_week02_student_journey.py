@@ -33,7 +33,7 @@ def test_reference_remains_full_score_with_more_cases() -> None:
                 "W02.EX03.CIRCLE",
                 "W02.EX03.DISCOUNT",
             }:
-                assert len(criterion["observations"]) == 4
+                assert len(criterion["observations"]) == 6
 
 
 def test_ordered_numbers_do_not_accept_rearranged_answers() -> None:

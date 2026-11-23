@@ -1,5 +1,14 @@
 # Week 02 — Sinh viên tự kiểm tra: Biến, kiểu dữ liệu, input và chuyển kiểu
 
+**Một lệnh tự chấm trên ba bài gốc (tập test riêng):**
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/grader.py --student
+```
+
+Mở `weeks/week-02-variables-types/assessment/core-exercises/reports/week02-journey.html`. Đây là điểm tự luyện, không phải điểm học phần. Các lệnh cũ trong tài liệu vẫn được hỗ trợ.
+
+
 > Hướng dẫn tự học dùng **mã của chính sinh viên**. PASS của bài mẫu không phải điểm của bạn. Checker chỉ kiểm phần ghi bên dưới; giảng viên vẫn quyết định điểm học phần.
 
 ## Bắt đầu nhanh — hành trình 3 chặng, 1 lệnh, báo cáo HTML
