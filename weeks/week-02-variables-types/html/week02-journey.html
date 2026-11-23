@@ -1810,10 +1810,16 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       return pyodideLoading;
     }
 
+    function toggleStdinBox() {
+      const mode = document.getElementById('pyInputMode').value;
+      document.getElementById('pyStdinWrap').style.display = mode === 'stdin' ? 'flex' : 'none';
+    }
+
     async function runLivePython() {
       const btn = document.getElementById('btnRunPy');
       const out = document.getElementById('pyOutput');
       const code = document.getElementById('pyCode').value;
+      const mode = document.getElementById('pyInputMode').value;
       const stdinVal = document.getElementById('pyStdin').value;
 
       btn.disabled = true;
@@ -1824,13 +1830,34 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
         const py = await ensurePyodide();
         py.globals.set('__user_code__', code);
         py.globals.set('__user_stdin__', stdinVal);
+        py.globals.set('__use_prompt__', mode === 'prompt');
+        py.globals.set('__browser_prompt__', (promptText) => {
+          const val = window.prompt(promptText || 'Nhập dữ liệu cho Python input():');
+          return val === null ? null : String(val);
+        });
         const runner = [
-          'import io, sys, traceback',
+          'import builtins, io, sys, traceback',
           '_buf = io.StringIO()',
-          '_old_out, _old_err, _old_in = sys.stdout, sys.stderr, sys.stdin',
+          '_old_out, _old_err, _old_in, _old_input = sys.stdout, sys.stderr, sys.stdin, builtins.input',
           'sys.stdout = _buf',
           'sys.stderr = _buf',
-          'sys.stdin = io.StringIO(__user_stdin__ + "\\n")',
+          '_lines = __user_stdin__.splitlines()',
+          '_idx = [0]',
+          'def _custom_input(prompt=""):',
+          '    if __use_prompt__:',
+          '        ans = __browser_prompt__(str(prompt))',
+          '        if ans is None:',
+          '            raise EOFError("Người dùng đã hủy nhập dữ liệu.")',
+          '        _buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          '    else:',
+          '        if _idx[0] >= len(_lines):',
+          '            raise EOFError("Hết dữ liệu trong ô stdin!")',
+          '        ans = _lines[_idx[0]]',
+          '        _idx[0] += 1',
+          '        _buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          'builtins.input = _custom_input',
           '_ok = True',
           'try:',
           '    exec(compile(__user_code__, "<week02_playground.py>", "exec"), {})',
@@ -1838,7 +1865,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
           '    _ok = False',
           '    traceback.print_exc()',
           'finally:',
-          '    sys.stdout, sys.stderr, sys.stdin = _old_out, _old_err, _old_in',
+          '    sys.stdout, sys.stderr, sys.stdin, builtins.input = _old_out, _old_err, _old_in, _old_input',
           '(_ok, _buf.getvalue())'
         ].join('\n');
         const res = py.runPython(runner).toJs();
