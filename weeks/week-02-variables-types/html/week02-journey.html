@@ -1247,15 +1247,11 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       </header>
 
       <div class="actions" style="margin-bottom: 14px;">
-        <select id="gradeTarget" class="btn btn-ghost" style="padding: 8px 12px;" aria-label="Chọn bài để chấm điểm">
-          <option value="ex01">Bài 01 · ex01_variables.py (3.00đ · 3 TODO)</option>
-          <option value="ex02" selected>Bài 02 · ex02_type_conversion.py (3.50đ · 4 TODO · 6 input)</option>
-          <option value="ex03">Bài 03 · ex03_input_calc.py (3.50đ · 3 TODO · 18 input)</option>
-        </select>
-        <button class="btn btn-ghost" onclick="loadStarterForGrade()">Nạp khung TODO trống (tự code)</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate(document.getElementById('gradeTarget').value)">Nạp mẫu chuẩn bài đang chọn</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Mẫu Thẻ SV</button>
-        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex01')">Nạp mẫu ex01</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex02')">Nạp mẫu ex02 (BMI)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex03')">Nạp mẫu ex03 (Máy tính)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Nạp mẫu Thẻ SV</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống tự code</button>
       </div>
 
       <div class="todo-grid">
@@ -1268,7 +1264,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
           <textarea id="pyCode" class="py-editor" spellcheck="false"></textarea>
           <div class="actions">
             <button class="btn btn-primary" id="btnRunPy" onclick="runLivePython()">▶ Chạy Code Python</button>
-            <button class="btn btn-primary" id="btnGradePy" style="background: #059669;" onclick="gradeLivePython()">🎯 Chấm điểm tự động (Rubric W02)</button>
+            <button class="btn btn-primary" id="btnGradePy" style="background: #059669;" onclick="gradeLivePython()">🎯 Chấm điểm code của bạn</button>
             <button class="btn btn-ghost" onclick="copyText(document.getElementById('pyCode').value)">Copy Code</button>
             <button class="btn btn-ghost" onclick="document.getElementById('pyOutput').textContent='Đã xóa màn hình kết quả.'">Xóa Output</button>
           </div>
@@ -1298,12 +1294,12 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
 
         <article class="todo-card full">
           <div class="todo-top">
-            <span class="tag passed">AUTO-GRADER W02</span>
-            <h3>Kết quả tự chấm điểm theo Rubric Week 02 (10 TODO · 24 bộ input động)</h3>
-            <span class="points" id="liveTotalScore">Tổng tự chấm: 0.00 / 10.00</span>
+            <span class="tag passed">CODE REVIEWER · PYTHON 3</span>
+            <h3>Đánh giá &amp; Chấm điểm trực tiếp đoạn code bạn vừa nhập</h3>
+            <span class="points" id="liveTotalScore">Điểm gần nhất: chưa chấm</span>
           </div>
-          <p class="todo-desc">Giữ các dòng đánh dấu <code># TODO 1</code>, <code># TODO 2</code>, <code># TODO 3</code>... khi tự viết code để máy chấm đúng từng tiêu chí. <strong>Lưu ý:</strong> Điểm tự luyện (<code>official_score: null</code>), không thay thế điểm chính thức của giảng viên.</p>
-          <div class="console" id="pyGradeOutput" style="min-height: 110px;">Chọn bài ở danh sách trên (ex01 / ex02 / ex03), viết code rồi bấm "🎯 Chấm điểm tự động (Rubric W02)" để kiểm tra ngay!</div>
+          <p class="todo-desc">Bạn có thể viết <strong>bất kỳ đoạn code Python nào</strong> (không cần ghi <code># TODO</code>). Hệ thống sẽ phân tích cú pháp AST, chạy thử bằng Python 3 thật, chấm thang 10 và gợi ý cách cải thiện ngay.</p>
+          <div class="console" id="pyGradeOutput" style="min-height: 120px;">Viết hoặc dán code Python của bạn vào ô bên trên rồi bấm "🎯 Chấm điểm code của bạn" để xem điểm &amp; nhận xét chi tiết!</div>
         </article>
       </div>
     </section>
