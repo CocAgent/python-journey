@@ -67,8 +67,8 @@ def test_constant_answer_fails_second_discount_case(tmp_path: Path) -> None:
     result = grade(tmp_path, "student")
     last = result["tasks"][-1]["criteria"][-1]
     assert last["id"] == "W02.EX03.DISCOUNT"
-    assert last["earned"] == 0.5
-    assert result["auto_score"] == 9.5
+    assert last["earned"] == 0.0
+    assert result["auto_score"] == 9.0
 
 
 def test_syntax_error_treated_as_retry() -> None:
