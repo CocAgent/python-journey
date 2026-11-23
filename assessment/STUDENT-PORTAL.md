@@ -27,6 +27,16 @@ python -m assessment selfcheck --week 02 --acknowledge-local-code --json-out .le
 
 **Week 09** dùng rubric dự án và giảng viên duyệt; **Week 15** chỉ có checker readiness cơ học cần `--project` trỏ đúng thư mục capstone.
 
+## Week 02 — Bắt đầu nhanh
+
+Dành cho ba bài `exercises/` gốc: **[tải, làm và xem hành trình tự luyện](../weeks/week-02-variables-types/assessment/core-exercises/START-HERE.md)**.
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --student
+```
+
+Báo cáo HTML ở `.learner-output/week02-journey.html`. Lệnh `selfcheck --week 02` phía trên vẫn chỉ chạy `practice/`, không chấm ba bài này.
+
 ## Chọn đúng tuần và đúng checker
 
 | Tuần | Nội dung | Lệnh AutoGrade | Phạm vi máy kiểm |
