@@ -153,8 +153,8 @@ def test_student_cli_with_blank_exercises_creates_report(
         ("ex03_input_calc.py", 4),
     ):
         (exercises / filename).write_text(
-            "\\n".join(f"# TODO {n}: chưa làm" for n in range(1, count + 1))
-            + "\\n",
+            "\n".join(f"# TODO {n}: chưa làm" for n in range(1, count + 1))
+            + "\n",
             encoding="utf-8",
         )
     monkeypatch.setattr(student_journey, "WEEK", fake_week)
