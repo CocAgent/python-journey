@@ -37,7 +37,7 @@ py weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --
 
 Máy sẽ báo chặng nào đạt, TODO nào cần thử lại, và ghi file:
 
-` .learner-output/week02-journey.html ` (không tính khoảng trắng bên ngoài).
+`.learner-output/week02-journey.html` (không tính khoảng trắng bên ngoài).
 
 **Mở `.learner-output/week02-journey.html` bằng Chrome, Edge hoặc Firefox.**
 Đọc từng chặng và bấm **Gợi ý mức 1 → 2 → 3** chỉ khi cần. Sửa code của mình rồi chạy lại cùng lệnh để cập nhật báo cáo.
