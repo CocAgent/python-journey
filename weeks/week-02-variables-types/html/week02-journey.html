@@ -680,7 +680,56 @@
         </div>
       </div>
 
-      <div style="margin-top: 20px;">
+      <div style="margin-top: 22px;">
+        <h3 style="margin: 0 0 6px; font-size: 1.05rem;">Sau khi học xong Tuần 02, bạn sẽ biết &amp; làm được gì?</h3>
+        <p class="todo-desc" style="margin-bottom: 12px;">Tổng hợp 6 năng lực cốt lõi của Tuần 02 (Variables · Types · Input/Output) và các ứng dụng thực tế bạn tự viết được ngay:</p>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Đặt tên &amp; thao tác biến chuẩn Python</h4>
+              <p>Đặt tên biến rõ nghĩa theo chuẩn <code>snake_case</code>, gán nhiều biến trên 1 dòng, hoán đổi <code>a, b = b, a</code> và dùng <code>+=, -=, *=, //=</code>.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Phân biệt 4 kiểu dữ liệu nền tảng</h4>
+              <p>Nắm vững <code>int</code> (số nguyên), <code>float</code> (số thực), <code>str</code> (chuỗi), <code>bool</code> (Đúng/Sai), biết kiểm tra bằng <code>type()</code> và hiểu truthy/falsy.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Hiểu bản chất <code>input()</code> luôn trả về <code>str</code></h4>
+              <p>Giải thích được vì sao <code>"12" + "3"</code> ra <code>"123"</code> còn <code>12 + 3</code> ra <code>15</code>, không còn bị nhầm lẫn khi nối chuỗi với cộng số.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Ép kiểu chủ đích &amp; phòng tránh lỗi</h4>
+              <p>Dùng <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code> đúng lúc; biết vì sao <code>int("ba")</code> gây <code>ValueError</code> và dùng <code>.isdigit()</code> kiểm tra trước khi tính.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">✓</div>
+            <div>
+              <h4>Trình bày output chuyên nghiệp với f-string</h4>
+              <p>Định dạng số thập phân (<code>{bmi:.1f}</code>), dấu phẩy hàng nghìn (<code>{total:,} VND</code>) và căn lề khung thẻ đẹp mắt trên Terminal.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-badge">★</div>
+            <div>
+              <h4>Ứng dụng tự viết được ngay sau Tuần 02</h4>
+              <p>Máy tính 4 phép toán, tính chỉ số BMI, quy đổi giây sang giờ:phút:giây, tính giá sau giảm, đổi tiền VNĐ ↔ USD, in hóa đơn bán vé và tạo <strong>Thẻ Sinh Viên</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px;">
         <h3 style="margin: 0 0 6px; font-size: 1rem;">Lệnh chạy &amp; tự chấm trực tiếp trong VS Code Terminal</h3>
         <p class="todo-desc">Mở Terminal tại thư mục gốc <code>k:\Python</code> và copy nhanh các lệnh bên dưới:</p>
         <div class="cmd-list">
@@ -1219,16 +1268,23 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
 
         <article class="todo-card">
           <div class="todo-top">
-            <span class="tag bonus">STDIN + OUTPUT</span>
-            <h3>Dữ liệu input() &amp; Kết quả chạy</h3>
+            <span class="tag bonus">INPUT + OUTPUT</span>
+            <h3>Chế độ nhập input() &amp; Kết quả chạy</h3>
           </div>
           <div class="field">
-            <label for="pyStdin">Dữ liệu cho hàm input() — mỗi dòng tương ứng 1 lần gọi input()</label>
-            <textarea id="pyStdin" placeholder="Ví dụ:&#10;1.75&#10;70&#10;3661" style="min-height: 92px; font-family: ui-monospace, Consolas, monospace;"></textarea>
+            <label for="pyInputMode">Cách nhập dữ liệu khi code gọi <code>input()</code></label>
+            <select id="pyInputMode" onchange="toggleStdinBox()">
+              <option value="prompt" selected>Nhập trực tiếp khi chạy (hỏi từng dòng giống Terminal)</option>
+              <option value="stdin">Dùng dữ liệu điền sẵn bên dưới (chạy nhanh không cần gõ lại)</option>
+            </select>
+          </div>
+          <div class="field" id="pyStdinWrap" style="display: none;">
+            <label for="pyStdin">Dữ liệu điền sẵn cho <code>input()</code> — mỗi dòng tương ứng 1 lần gọi</label>
+            <textarea id="pyStdin" placeholder="Ví dụ:&#10;1.75&#10;70&#10;3661" style="min-height: 86px; font-family: ui-monospace, Consolas, monospace;"></textarea>
           </div>
           <div class="field" style="flex: 1;">
             <label>Kết quả Terminal (stdout / stderr)</label>
-            <div class="console" id="pyOutput" style="min-height: 185px;">Bấm "▶ Chạy Code Python" để thực thi mã nguồn thật bằng Python 3!</div>
+            <div class="console" id="pyOutput" style="min-height: 215px;">Bấm "▶ Chạy Code Python" — khi code gặp lệnh input(), trình duyệt sẽ hiện ô để bạn nhập trực tiếp từng giá trị!</div>
           </div>
         </article>
       </div>
