@@ -12,7 +12,7 @@ from autograde_w02 import (  # noqa: E402
     contains_all_numbers,
     load_test_cases,
     split_todos,
-    test_suite_audit,
+    test_suite_audit as audit_suite,
 )
 
 REFERENCE = CORE / "fixtures" / "reference" / "ex03_input_calc.py"
@@ -20,7 +20,7 @@ CRITERIA = ("W02.EX03.FOUR", "W02.EX03.CIRCLE", "W02.EX03.DISCOUNT")
 
 
 def test_ex03_bank_covers_all_three_todos_with_six_inputs_each() -> None:
-    audit = test_suite_audit()
+    audit = audit_suite()
     third = audit["tasks"][2]
     assert third["exercise"] == "ex03_input_calc.py"
     assert [case["id"] for case in third["criteria"]] == list(CRITERIA)
