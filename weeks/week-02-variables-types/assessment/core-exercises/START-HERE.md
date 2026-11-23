@@ -23,6 +23,16 @@ Em nên đọc [notes](../../notes.md), chạy ví dụ và tự thử từng b�
 
 ## 3. Chạy một lệnh để nhận phản hồi
 
+**Cách mới — dùng bộ test tách riêng** (khuyến nghị):
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/grader.py --student
+```
+
+Kết quả ở `weeks/week-02-variables-types/assessment/core-exercises/reports/week02-journey.html` và `week02-result.json`. Đây là kết quả **tự luyện**; các file sinh ra không được commit.
+
+Nếu giáo trình đang dùng lệnh `student_journey.py --student`, lệnh cũ ở dưới vẫn hợp lệ; chỉ khác nơi lưu HTML. **Không cần pytest** khi chỉ tự luyện.
+
 Mở Terminal tại **thư mục gốc `python-journey`**, chạy:
 
 ```bash
