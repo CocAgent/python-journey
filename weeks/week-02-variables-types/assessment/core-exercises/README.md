@@ -1,5 +1,14 @@
 # Tự chấm Week 02 — bám ba bài tập gốc, không tạo đề mới
 
+> **BẮT ĐẦU DÀNH CHO SINH VIÊN:** Đọc [START-HERE.md](START-HERE.md), hoàn thành ba file `exercises/` gốc rồi chạy một lệnh để có [báo cáo HTML hành trình](student_journey.py) **ngoại tuyến**:
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --student
+```
+
+File kết quả: `.learner-output/week02-journey.html` (mở bằng trình duyệt). Hiện ba chặng, mức tiến bộ và gợi ý 1–3 theo từng TODO chưa đạt. Không cần cài thư viện ngoài hoặc tải bài lên Internet. Lệnh `autograde_w02.py --student` bên dưới **vẫn hoạt động** cho người muốn xem kết quả terminal/JSON.
+
+
 Bộ chấm này dùng **đúng các TODO đã có** trong:
 - [Bài 01 — Biến](../../exercises/ex01_variables.py)
 - [Bài 02 — Chuyển kiểu](../../exercises/ex02_type_conversion.py)

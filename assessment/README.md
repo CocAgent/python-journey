@@ -33,6 +33,16 @@ Có thể đặt `--submission /path/to/workspace` để đánh giá một bản
 - File trong `assessment/fixtures/week01/reference/` là bài mẫu dành riêng để kiểm thử **máy chấm**, không phải bài nộp.
 - Chương trình của người học có quyền chạy mã tùy ý khi thực thi. Subprocess, timeout và thư mục tạm **không phải sandbox**. Không dùng CLI này để chấm bài nộp từ người lạ, đặc biệt trên máy có secrets, dữ liệu thật hoặc trong workflow GitHub có token. Nếu muốn chấm tập trung, phải xây runner cô lập về network, filesystem, CPU/RAM và quyền truy cập trước.
 
+## Tự luyện Week 02 theo hành trình (HTML ngoại tuyến)
+
+Sinh viên bắt đầu từ **[START-HERE Week 02](../weeks/week-02-variables-types/assessment/core-exercises/START-HERE.md)**; sửa ba file bài tập gốc, chạy:
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --student
+```
+
+Mở `.learner-output/week02-journey.html`. Hỗ trợ gợi ý ba mức, điểm tự luyện /10; không gửi code lên máy chủ, không đòi thư viện ngoài. Lệnh terminal cũ `autograde_w02.py --student` vẫn dùng được.
+
 ## Tự chấm chính bài tập gốc Week 02
 
 **[Folder core-exercises Week 02](../weeks/week-02-variables-types/assessment/core-exercises/README.md)**: đọc ba file `exercises/` gốc và 10 TODO bắt buộc, cho tối đa 10 điểm tự luyện. Không tính `practice/`, mini-project hoặc thử thách; không thay rubric chính thức.
