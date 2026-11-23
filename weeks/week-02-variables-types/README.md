@@ -5,6 +5,16 @@
 Tuần này bạn đặt tên cho dữ liệu, nhận input dạng text, chuyển kiểu có chủ đích
 và tạo output rõ bằng f-string.
 
+## Bắt đầu hành trình tự luyện Week 02
+
+**[Tải và tự học theo hướng dẫn 5 bước](assessment/core-exercises/START-HERE.md)**. Hoàn thành 3 file `exercises/` gốc, rồi chạy:
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/student_journey.py --student
+```
+
+Mở báo cáo `.learner-output/week02-journey.html` trong trình duyệt để thấy ba chặng, tiến độ và gợi ý từ dễ đến cụ thể. Mọi đánh giá là **điểm tự luyện /10**, không phải điểm chính thức.
+
 ## Chấm tự động đúng **ba bài tập gốc trong exercises/**
 
 **[Mở bộ chấm Week 02 theo TODO có sẵn](assessment/core-exercises/README.md)** — 3 file gốc, 10 TODO bắt buộc, tối đa 10 điểm **tự luyện**. Các mục `(Thử thách)`, `practice/` và `mini-project/` **không tính vào điểm bộ này**.
