@@ -38,8 +38,8 @@ Mở trực tiếp trên trình duyệt để học, nhập dữ liệu thử ng
 | :---: | :--- | :--- | :---: | :---: |
 | **Week 01** | **Hello Python** | Cài đặt môi trường, `print()`, phép tính cơ bản | ✅ Hoàn thành | — |
 | **Week 02** | **Variables & Data Types** | Biến, `int/float/str/bool`, `input()`, ép kiểu, f-string, Thẻ SV | ✅ Hoàn thành | [🔗 Mở Lab](https://thanhquycoder.github.io/python-journey/weeks/week-02-variables-types/html/week02-journey.html) |
-| **Week 03** | **Conditionals & Logic** | `if / elif / else`, `and / or / not`, điều kiện lồng nhau | 🔄 Đang học | — |
-| **Week 04+** | **Strings, Loops & Functions** | Chuỗi, vòng lặp, hàm và cấu trúc dữ liệu | 🔜 Sắp tới | — |
+| **Week 03** | *Control Flow (If/Else, Logic)* | `if / elif / else`, `and / or / not`, điều kiện lồng nhau | 🔜 Sắp tới | — |
+| **Week 04+** | *Strings, Loops & Functions* | Chuỗi, vòng lặp, hàm và cấu trúc dữ liệu | 🔜 Sắp tới | — |
 
 ---
 
@@ -51,13 +51,12 @@ python-journey/
 ├── README.md                               # Giới thiệu dự án
 └── weeks/
     ├── week-01-hello-python/               # Bài tập & Mini-project Tuần 01
-    ├── week-02-variables-types/
-    │   ├── exercises/                      # 3 bài tập gốc (ex01 - ex03)
-    │   ├── practice/starter/               # 3 bài thực hành bổ sung (Lab 01 - 03)
-    │   ├── mini-project/starter.py         # Mini-project: Thẻ Sinh Viên
-    │   └── html/
-    │       └── week02-journey.html         # Giao diện học tương tác & Live Python IDE
-    └── week-03-conditionals/               # Bài tập điều kiện & logic Tuần 03
+    └── week-02-variables-types/
+        ├── exercises/                      # 3 bài tập gốc (ex01 - ex03)
+        ├── practice/starter/               # 3 bài thực hành bổ sung (Lab 01 - 03)
+        ├── mini-project/starter.py         # Mini-project: Thẻ Sinh Viên
+        └── html/
+            └── week02-journey.html         # Giao diện học tương tác & Live Python IDE
 ```
 
 ---
