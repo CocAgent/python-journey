@@ -32,7 +32,7 @@ python -m assessment selfcheck --week 02 --acknowledge-local-code --json-out .le
 | Tuần | Nội dung | Lệnh AutoGrade | Phạm vi máy kiểm |
 |---|---|---|---|
 | [01](../weeks/week-01-hello-python/assessment/STUDENT-GUIDE.md) | Hello Python | `grade --week 01` | 11 tiêu chí, 5 điểm tự động |
-| [02](../weeks/week-02-variables-types/assessment/core-exercises/README.md) | Biến và kiểu | `autograde_w02.py --student` | 3 exercises gốc /10 tự luyện; `selfcheck --week 02` chỉ kiểm practice |
+| [02](../weeks/week-02-variables-types/assessment/STUDENT-GUIDE.md) | Biến và kiểu | `autograde_w02.py --student` | 3 exercises gốc /10 tự luyện; `selfcheck --week 02` chỉ kiểm practice |
 | [03](../weeks/week-03-conditionals/assessment/STUDENT-GUIDE.md) | Điều kiện | `selfcheck --week 03` | Practice starter |
 | [04](../weeks/week-04-strings/assessment/STUDENT-GUIDE.md) | Chuỗi | `selfcheck --week 04` | Practice starter |
 | [05](../weeks/week-05-lists-tuples/assessment/STUDENT-GUIDE.md) | List và tuple | `selfcheck --week 05` | Practice starter |
