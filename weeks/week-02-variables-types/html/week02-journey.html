@@ -455,6 +455,80 @@
     }
     .id-card-meta div span { display: block; font-size: 0.72rem; color: #bfdbfe; }
 
+    /* Guide & Live Python Playground */
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .step-item {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 15px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .step-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+    .step-item h4 { margin: 0 0 4px; font-size: 0.95rem; }
+    .step-item p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+    .cmd-list { display: grid; gap: 10px; margin-top: 14px; }
+    .cmd-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 11px;
+      padding: 10px 13px;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      overflow-x: auto;
+    }
+    .cmd-row code { white-space: nowrap; }
+    .py-editor {
+      width: 100%;
+      min-height: 290px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #e2e8f0;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      resize: vertical;
+      tab-size: 4;
+    }
+    .py-editor:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+    .py-status {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .py-status.ready { background: var(--good-bg); color: var(--good-ink); border-color: transparent; }
+
     .toast {
       position: fixed;
       bottom: 20px;
@@ -536,7 +610,10 @@
     </div>
 
     <nav class="tabs" role="tablist" aria-label="Chọn phần thực hành Tuần 02">
-      <button class="tab-btn active" data-tab="ex01" role="tab" aria-selected="true">
+      <button class="tab-btn active" data-tab="guide" role="tab" aria-selected="true">
+        00 · Hướng dẫn <span class="tab-badge">Bắt đầu</span>
+      </button>
+      <button class="tab-btn" data-tab="ex01" role="tab" aria-selected="false">
         01 · Biến &amp; Kiểu <span class="tab-badge">ex01</span>
       </button>
       <button class="tab-btn" data-tab="ex02" role="tab" aria-selected="false">
@@ -554,10 +631,89 @@
       <button class="tab-btn" data-tab="evidence" role="tab" aria-selected="false">
         06 · Phiếu Minh Chứng <span class="tab-badge">Markdown</span>
       </button>
+      <button class="tab-btn" data-tab="playground" role="tab" aria-selected="false">
+        07 · Code &amp; Chạy Python <span class="tab-badge">Live IDE</span>
+      </button>
     </nav>
 
+    <!-- ===================== TAB 00: HƯỚNG DẪN ===================== -->
+    <section id="guide" class="stage active">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">00</div>
+          <div>
+            <h2>Hướng dẫn sử dụng &amp; Lộ trình học Tuần 02</h2>
+            <p>Làm chủ Biến, Kiểu dữ liệu (`int`, `float`, `str`, `bool`) và `input()` chỉ trong 5 bước đơn giản</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="openTab('playground')">Mở trình Code Python trực tiếp →</button>
+      </header>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-badge">1</div>
+          <div>
+            <h4>Thử nhập liệu ở Tab 01 → 05</h4>
+            <p>Mở từng tab <code>ex01</code>, <code>ex02</code>, <code>ex03</code>, <code>Practice</code>, <code>Thẻ SV</code>. Gõ số hoặc chữ bất kỳ rồi bấm <strong>Enter</strong> để xem kết quả tức thì.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">2</div>
+          <div>
+            <h4>Quan sát các tình huống lỗi &amp; biên</h4>
+            <p>Bấm các nút gợi ý như <strong>Thử lỗi "ba"</strong>, <strong>Thử chia cho 0</strong>, <strong>Thử -1</strong> để hiểu vì sao cần kiểm tra dữ liệu trước khi chuyển kiểu.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">3</div>
+          <div>
+            <h4>Tự gõ &amp; chạy Python thật ở Tab 07</h4>
+            <p>Sang tab <strong>07 · Code &amp; Chạy Python</strong> để viết code Python 3 thật ngay trên trình duyệt (hỗ trợ cả <code>input()</code>, <code>print()</code>, báo lỗi traceback giống VS Code).</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">4</div>
+          <div>
+            <h4>Xuất phiếu minh chứng &amp; nộp bài</h4>
+            <p>Vào tab <strong>06 · Phiếu Minh Chứng</strong> để ghi lỗi đã sửa, nhấn <strong>Copy Markdown</strong> rồi dán vào báo cáo nộp bài.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3 style="margin: 0 0 6px; font-size: 1rem;">Lệnh chạy &amp; tự chấm trực tiếp trong VS Code Terminal</h3>
+        <p class="todo-desc">Mở Terminal tại thư mục gốc <code>k:\Python</code> và copy nhanh các lệnh bên dưới:</p>
+        <div class="cmd-list">
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex01_variables.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex01_variables.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex02_type_conversion.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex02_type_conversion.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/exercises/ex03_input_calc.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/exercises/ex03_input_calc.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/mini-project/starter.py</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/mini-project/starter.py')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student</code>
+            <button class="btn btn-ghost" onclick="copyText('python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student')">Copy</button>
+          </div>
+          <div class="cmd-row">
+            <code>$env:PYTHONIOENCODING="utf-8"; python weeks/week-02-variables-types/practice/checks/check_practice.py --starter</code>
+            <button class="btn btn-ghost" onclick="copyText('$env:PYTHONIOENCODING=&quot;utf-8&quot;; python weeks/week-02-variables-types/practice/checks/check_practice.py --starter')">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== TAB 01: EX01 ===================== -->
-    <section id="ex01" class="stage active">
+    <section id="ex01" class="stage">
       <header class="stage-head">
         <div class="stage-title">
           <div class="stage-num">01</div>
@@ -1021,6 +1177,59 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
             <h3>Xem trước phiếu minh chứng</h3>
           </div>
           <div class="console" id="out_evidence"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 07: LIVE PYTHON PLAYGROUND ===================== -->
+    <section id="playground" class="stage">
+      <header class="stage-head">
+        <div class="stage-title">
+          <div class="stage-num">07</div>
+          <div>
+            <h2>Code &amp; Chạy Python 3 trực tiếp</h2>
+            <p>Viết code Python thật ngay trên trình duyệt (Pyodide WebAssembly), hỗ trợ <code>input()</code>, <code>print()</code> và <code>Ctrl + Enter</code> để chạy</p>
+          </div>
+        </div>
+        <span class="py-status" id="pyStatus">Chưa nạp Python (tự nạp khi bấm Chạy)</span>
+      </header>
+
+      <div class="actions" style="margin-bottom: 14px;">
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex01')">Nạp mẫu ex01</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex02')">Nạp mẫu ex02 (BMI + Giây)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('ex03')">Nạp mẫu ex03 (Máy tính)</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('card')">Nạp mẫu Thẻ SV</button>
+        <button class="btn btn-ghost" onclick="loadPyTemplate('blank')">File trống tự code</button>
+      </div>
+
+      <div class="todo-grid">
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag passed">EDITOR</span>
+            <h3>Mã nguồn Python 3</h3>
+            <span class="points">Ctrl + Enter để chạy</span>
+          </div>
+          <textarea id="pyCode" class="py-editor" spellcheck="false"></textarea>
+          <div class="actions">
+            <button class="btn btn-primary" id="btnRunPy" onclick="runLivePython()">▶ Chạy Code Python</button>
+            <button class="btn btn-ghost" onclick="copyText(document.getElementById('pyCode').value)">Copy Code</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('pyOutput').textContent='Đã xóa màn hình kết quả.'">Xóa Output</button>
+          </div>
+        </article>
+
+        <article class="todo-card">
+          <div class="todo-top">
+            <span class="tag bonus">STDIN + OUTPUT</span>
+            <h3>Dữ liệu input() &amp; Kết quả chạy</h3>
+          </div>
+          <div class="field">
+            <label for="pyStdin">Dữ liệu cho hàm input() — mỗi dòng tương ứng 1 lần gọi input()</label>
+            <textarea id="pyStdin" placeholder="Ví dụ:&#10;1.75&#10;70&#10;3661" style="min-height: 92px; font-family: ui-monospace, Consolas, monospace;"></textarea>
+          </div>
+          <div class="field" style="flex: 1;">
+            <label>Kết quả Terminal (stdout / stderr)</label>
+            <div class="console" id="pyOutput" style="min-height: 185px;">Bấm "▶ Chạy Code Python" để thực thi mã nguồn thật bằng Python 3!</div>
+          </div>
         </article>
       </div>
     </section>
