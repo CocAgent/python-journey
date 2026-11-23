@@ -722,7 +722,7 @@
             <p>Khai báo biến, quan sát <code>type()</code>, hoán đổi không dùng biến tạm &amp; augmented assignment</p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/exercises/ex01_variables.py">Mở file ex01_variables.py</a>
+        <a class="file-pill" href="../exercises/ex01_variables.py">Mở file ex01_variables.py</a>
       </header>
 
       <div class="todo-grid">
@@ -831,7 +831,7 @@ print(f"Họ tên: {ho} {ten}, {tuoi} tuổi")</pre></div></details>
             <p>Thành thạo <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>, tính BMI &amp; đổi giây</p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/exercises/ex02_type_conversion.py">Mở file ex02_type_conversion.py</a>
+        <a class="file-pill" href="../exercises/ex02_type_conversion.py">Mở file ex02_type_conversion.py</a>
       </header>
 
       <div class="todo-grid">
@@ -941,7 +941,7 @@ print(f"{gio} giờ {phut} phút {giay} giây")</pre></div></details>
             <p>Kết hợp <code>input()</code> với 4 phép tính, hình tròn, tính giảm giá &amp; đổi tiền VNĐ → USD</p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/exercises/ex03_input_calc.py">Mở file ex03_input_calc.py</a>
+        <a class="file-pill" href="../exercises/ex03_input_calc.py">Mở file ex03_input_calc.py</a>
       </header>
 
       <div class="todo-grid">
@@ -1035,7 +1035,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
             <p>Thử trực tiếp cả 3 bài trong <code>practice/starter/</code> với dữ liệu bình thường, biên và dữ liệu sai</p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/practice/README.md">Mở hướng dẫn Practice</a>
+        <a class="file-pill" href="../practice/README.md">Mở hướng dẫn Practice</a>
       </header>
 
       <div class="todo-grid">
@@ -1102,7 +1102,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
             <p>Nhập 4 trường bắt buộc + lớp tùy chọn, xác thực năm bằng <code>.isdigit()</code> và xem thẻ trực tiếp</p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/mini-project/starter.py">Mở file mini-project/starter.py</a>
+        <a class="file-pill" href="../mini-project/starter.py">Mở file mini-project/starter.py</a>
       </header>
 
       <div class="todo-grid">
@@ -1145,7 +1145,7 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
             <p>Ghi lại dự đoán, lỗi conversion đã gặp và xuất nhanh Markdown để nộp bài theo <code>STUDENT-GUIDE.md</code></p>
           </div>
         </div>
-        <a class="file-pill" href="../weeks/week-02-variables-types/assessment/core-exercises/EVIDENCE-TEMPLATE.md">Mẫu EVIDENCE-TEMPLATE.md</a>
+        <a class="file-pill" href="../assessment/core-exercises/EVIDENCE-TEMPLATE.md">Mẫu EVIDENCE-TEMPLATE.md</a>
       </header>
 
       <div class="todo-grid">
@@ -1624,6 +1624,199 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
       }
     } catch {}
 
+    // Helper chuyển tab & copy nhanh
+    function openTab(tabId) {
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+      if (btn) btn.click();
+    }
+
+    function copyText(text) {
+      navigator.clipboard?.writeText(text)
+        .then(() => showToast('Đã sao chép vào clipboard!'))
+        .catch(() => showToast('Không thể copy tự động'));
+    }
+
+    // ===== LIVE PYTHON PLAYGROUND (PYODIDE) =====
+    const PY_TEMPLATES = {
+      ex01: {
+        code: [
+          '# Bài 01: Biến và kiểu dữ liệu',
+          'ten = "Quy"',
+          'tuoi = 20',
+          'diem_tb = 8.5',
+          'dang_hoc = True',
+          '',
+          'print(f"ten = {ten} -> {type(ten)}")',
+          'print(f"tuoi = {tuoi} -> {type(tuoi)}")',
+          'print(f"diem_tb = {diem_tb} -> {type(diem_tb)}")',
+          'print(f"dang_hoc = {dang_hoc} -> {type(dang_hoc)}")',
+          '',
+          '# Hoán đổi 2 biến',
+          'a, b = 10, 20',
+          'a, b = b, a',
+          'print(f"Sau hoán đổi: a = {a}, b = {b}")'
+        ].join('\n'),
+        stdin: ''
+      },
+      ex02: {
+        code: [
+          '# Bài 02: Chuyển đổi kiểu dữ liệu & Tính BMI',
+          'chieu_cao = float(input("Nhập chiều cao (m): "))',
+          'can_nang = float(input("Nhập cân nặng (kg): "))',
+          'bmi = can_nang / (chieu_cao ** 2)',
+          'print(f"Chỉ số BMI của bạn: {bmi:.1f}")',
+          '',
+          'tong_giay = int(input("Nhập tổng số giây: "))',
+          'gio = tong_giay // 3600',
+          'phut = (tong_giay % 3600) // 60',
+          'giay = tong_giay % 60',
+          'print(f"{tong_giay} giây = {gio} giờ {phut} phút {giay} giây")'
+        ].join('\n'),
+        stdin: '1.75\n70\n3661'
+      },
+      ex03: {
+        code: [
+          '# Bài 03: Máy tính nhận input',
+          'so_1 = float(input("Số thứ nhất: "))',
+          'so_2 = float(input("Số thứ hai: "))',
+          'print(f"Tổng: {so_1 + so_2}")',
+          'print(f"Hiệu: {so_1 - so_2}")',
+          'print(f"Tích: {so_1 * so_2}")',
+          'print(f"Thương: {so_1 / so_2:.2f}" if so_2 != 0 else "Không thể chia cho 0")',
+          '',
+          'gia_goc = float(input("Giá gốc (VNĐ): "))',
+          'giam = float(input("Giảm giá (%): "))',
+          'print(f"Giá sau giảm: {gia_goc * (1 - giam / 100):,.0f} VNĐ")'
+        ].join('\n'),
+        stdin: '10\n4\n500000\n20'
+      },
+      card: {
+        code: [
+          '# Mini-project: Thẻ Sinh Viên',
+          'name = input("Họ và tên: ").strip()',
+          'sid = input("Mã sinh viên: ").strip()',
+          'major = input("Ngành học: ").strip()',
+          'year_text = input("Năm nhập học: ").strip()',
+          '',
+          'if year_text.isdigit():',
+          '    start = int(year_text)',
+          '    print("=" * 40)',
+          '    print(f"  THẺ SINH VIÊN: {name}")',
+          '    print(f"  MSSV : {sid}")',
+          '    print(f"  Ngành: {major}")',
+          '    print(f"  Khóa : {start} - {start + 4}")',
+          '    print("=" * 40)',
+          'else:',
+          '    print("Năm nhập học phải gồm các chữ số!")'
+        ].join('\n'),
+        stdin: 'Phan Thành Quý\nSV2024001\nCông nghệ thông tin\n2024'
+      },
+      blank: {
+        code: '# Tự viết code Python của bạn ở đây!\nname = input("Tên của bạn: ")\nprint(f"Xin chào {name}, chúc bạn học tốt Python!")\n',
+        stdin: 'Quý'
+      }
+    };
+
+    function loadPyTemplate(key) {
+      const tpl = PY_TEMPLATES[key];
+      if (!tpl) return;
+      document.getElementById('pyCode').value = tpl.code;
+      document.getElementById('pyStdin').value = tpl.stdin;
+      showToast('Đã nạp mẫu ' + key + '!');
+    }
+
+    let pyodideInstance = null;
+    let pyodideLoading = null;
+
+    async function ensurePyodide() {
+      if (pyodideInstance) return pyodideInstance;
+      const status = document.getElementById('pyStatus');
+      if (!pyodideLoading) {
+        status.textContent = 'Đang tải Python 3 (lần đầu ~5s)...';
+        pyodideLoading = new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+          script.onload = async () => {
+            try {
+              const py = await window.loadPyodide();
+              pyodideInstance = py;
+              status.textContent = 'Python 3 sẵn sàng ✓';
+              status.classList.add('ready');
+              resolve(py);
+            } catch (err) {
+              reject(err);
+            }
+          };
+          script.onerror = () => reject(new Error('Không tải được Pyodide (kiểm tra kết nối Internet).'));
+          document.head.appendChild(script);
+        });
+      }
+      return pyodideLoading;
+    }
+
+    async function runLivePython() {
+      const btn = document.getElementById('btnRunPy');
+      const out = document.getElementById('pyOutput');
+      const code = document.getElementById('pyCode').value;
+      const stdinVal = document.getElementById('pyStdin').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Đang chạy...';
+      out.innerHTML = '<span class="hl">Đang khởi chạy Python 3...</span>';
+
+      try {
+        const py = await ensurePyodide();
+        py.globals.set('__user_code__', code);
+        py.globals.set('__user_stdin__', stdinVal);
+        const runner = [
+          'import io, sys, traceback',
+          '_buf = io.StringIO()',
+          '_old_out, _old_err, _old_in = sys.stdout, sys.stderr, sys.stdin',
+          'sys.stdout = _buf',
+          'sys.stderr = _buf',
+          'sys.stdin = io.StringIO(__user_stdin__ + "\\n")',
+          '_ok = True',
+          'try:',
+          '    exec(compile(__user_code__, "<week02_playground.py>", "exec"), {})',
+          'except Exception:',
+          '    _ok = False',
+          '    traceback.print_exc()',
+          'finally:',
+          '    sys.stdout, sys.stderr, sys.stdin = _old_out, _old_err, _old_in',
+          '(_ok, _buf.getvalue())'
+        ].join('\n');
+        const res = py.runPython(runner).toJs();
+        const ok = res[0];
+        const text = res[1] || '(Chương trình chạy xong, không có output)';
+        out.innerHTML = ok
+          ? '<span class="ok">' + esc(text) + '</span>'
+          : '<span class="err">' + esc(text) + '</span>';
+      } catch (err) {
+        out.innerHTML = '<span class="err">Lỗi tải Python trên trình duyệt: ' + esc(err.message) + '\nBạn vẫn có thể copy code chạy trực tiếp trong VS Code Terminal.</span>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '▶ Chạy Code Python';
+      }
+    }
+
+    // Phím tắt Ctrl+Enter và Tab trong editor Python
+    const pyEditorEl = document.getElementById('pyCode');
+    if (pyEditorEl) {
+      pyEditorEl.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          runLivePython();
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = pyEditorEl.selectionStart;
+          const end = pyEditorEl.selectionEnd;
+          pyEditorEl.value = pyEditorEl.value.slice(0, start) + '    ' + pyEditorEl.value.slice(end);
+          pyEditorEl.selectionStart = pyEditorEl.selectionEnd = start + 4;
+        }
+      });
+    }
+
+    loadPyTemplate('ex02');
     runAll();
   </script>
 </body>
