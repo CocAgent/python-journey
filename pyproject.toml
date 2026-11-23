@@ -12,6 +12,7 @@ addopts = "-ra -q"
 testpaths = [
     "tests",
     "projects/vuacoc-bot-journey/tests",
+    "weeks/week-02-variables-types/assessment/core-exercises/tests",
 ]
 
 [tool.ruff]

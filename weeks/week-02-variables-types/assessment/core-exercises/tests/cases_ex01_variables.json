@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "exercise": "ex01_variables.py",
+  "cases": {
+    "W02.EX01.PROFILE": [],
+    "W02.EX01.SWAP": [],
+    "W02.EX01.AUG": []
+  }
+}

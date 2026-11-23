@@ -27,6 +27,23 @@ Không tạo lại cấu trúc 5 câu × 10 ý. Rubric phân bổ 10 **điểm t
 
 Máy đọc mã AST và chạy các file sinh viên với input mẫu khác nhau; các tiêu chí có thể cần người dạy xem xét khi cách viết hoặc trình bày khác mẫu. **Điểm tự động không phải điểm chính thức**.
 
+## Tự chấm bằng bộ test tách riêng
+
+Hệ thống nay chia tách đúng như thư mục Drive mẫu: **`grader.py`** là cửa vào chấm; **[`tests/`](tests/README.md)** là tập test độc lập từng bài gồm 3 file JSON (24 bộ input động, cộng kiểm tra AST/runtime cho 6 TODO không nhận stdin) và 3 file `test_ex*.py`; **[`reports/`](reports/README.md)** lưu HTML/JSON cục bộ, được Git bỏ qua.
+
+```bash
+# Sinh viên chấm đúng ba file bài tập gốc; không cần cài pytest
+python weeks/week-02-variables-types/assessment/core-exercises/grader.py --student
+
+# Agent/giảng viên KIỂM TRA TÍNH TOÀN VẸN CỦA TOÀN BỘ TEST, không thực thi code sinh viên
+python weeks/week-02-variables-types/assessment/core-exercises/grader.py --audit-tests
+
+# Maintainer: chạy 3 bộ kiểm từng bài và kiểm toán đầy đủ (yêu cầu pytest)
+python -m pytest -q weeks/week-02-variables-types/assessment/core-exercises/tests/
+```
+
+Kết quả sinh viên: `reports/week02-journey.html` và `reports/week02-result.json`. Đọc [prompt Antigravity/Codex kiểm toán toàn bộ tập test](AGENT-ASSESSMENT-PROMPT.md) trước khi chấm bài được gửi từ ngoài. **Chỉ chạy mã tin cậy tại máy cá nhân**; không có sandbox. Các lệnh `student_journey.py --student` và `autograde_w02.py --student` cũ vẫn hoạt động.
+
 ## Cách dùng — từ gốc `python-journey`
 
 ```bash

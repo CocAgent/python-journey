@@ -26,6 +26,15 @@ Các TODO được nhận diện bằng dòng `# TODO N` **vốn đã có**. Kh�
 
 Với mã thay thế đúng nhưng checker không chấp nhận, giảng viên xem code và output thủ công. **Không lấy kết quả AutoGrade làm điểm cuối kỳ**. Không tự chạy bài học viên chưa tin cậy trên VPS, GitHub Actions có secrets hoặc máy tính giảng viên; phải có sandbox đúng nghĩa nếu tổ chức chấm tập trung.
 
+## Kiểm toán toàn bộ tập test tách riêng
+
+- Dữ liệu nguồn: [`tests/cases_ex01_variables.json`](tests/cases_ex01_variables.json), [`tests/cases_ex02_type_conversion.json`](tests/cases_ex02_type_conversion.json), [`tests/cases_ex03_input_calc.json`](tests/cases_ex03_input_calc.json); 10 tiêu chí, 24 bộ stdin.
+- Kiểm thử độc lập: `tests/test_ex01_variables.py`, `tests/test_ex02_type_conversion.py`, `tests/test_ex03_input_calc.py`; kiểm toán tổng: `tests/test_complete_test_suite.py`.
+- Chạy `grader.py --audit-tests` trước (chỉ xác thực metadata/rubric, không chạy bài); chạy `python -m pytest -q weeks/week-02-variables-types/assessment/core-exercises/tests/` trong môi trường bảo trì (chỉ fixture mã tin cậy), rồi chạy regression toàn repository.
+- Sau khi test suite PASS, nếu đã xác nhận bài sinh viên **thực sự tin cậy**, chạy `grader.py --student --submission "[STUDENT_DIR]" --acknowledge-local-code`. Nếu mã nộp chưa tin cậy, **BLOCKED_EXECUTION** cho đến khi có sandbox thực sự.
+- Phải xem kết quả theo 10 TODO, trường hợp sai/đúng/giá trị biên, lỗi nhận diện false positive/false negative; không đánh đồng việc bộ test PASS với việc sinh viên đạt điểm chính thức.
+- [Prompt đầy đủ cho Codex/Antigravity](AGENT-ASSESSMENT-PROMPT.md) mô tả kiểm toán **cả tập test** trước khi chấm.
+
 ## Kiểm chuẩn
 
 ```bash

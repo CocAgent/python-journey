@@ -1,5 +1,8 @@
 # Python Journey — Cổng tự kiểm sinh viên Week 01–15
 
+**Week 02 (mới):** Bộ chấm tách riêng [`tests/`](../weeks/week-02-variables-types/assessment/core-exercises/tests/README.md) với 10 TODO; dùng `python weeks/week-02-variables-types/assessment/core-exercises/grader.py --student`. Báo cáo ở `assessment/core-exercises/reports/` trong Week 02, giữ `official_score=null`. Checker `selfcheck --week 02` vẫn chỉ chạy practice.
+
+
 > Đây là hướng dẫn tự luyện tại máy cá nhân, **không** phải nền tảng chấm bài tập trung. Mã sinh viên chỉ được chạy trên máy của chính em hoặc môi trường sandbox thật được giảng viên quản lý.
 
 ## Hướng dẫn bắt đầu

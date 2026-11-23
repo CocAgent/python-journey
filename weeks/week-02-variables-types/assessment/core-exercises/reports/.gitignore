@@ -1,0 +1,4 @@
+# Generated reports are private/local and must never be committed.
+*
+!.gitignore
+!README.md

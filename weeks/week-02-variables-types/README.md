@@ -5,6 +5,16 @@
 Tuần này bạn đặt tên cho dữ liệu, nhận input dạng text, chuyển kiểu có chủ đích
 và tạo output rõ bằng f-string.
 
+## Bộ chấm Week 02 với test tách riêng
+
+**Sinh viên (chỉ cần Python):**
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/grader.py --student
+```
+
+Báo cáo HTML/JSON trong `assessment/core-exercises/reports/`. Nguồn test được tổ chức trong [`assessment/core-exercises/tests/`](assessment/core-exercises/tests/README.md), nhưng sinh viên không cần cài `pytest`. [Hướng dẫn tải và thực hành](assessment/core-exercises/START-HERE.md).
+
 ## Bắt đầu hành trình tự luyện Week 02
 
 **[Tải và tự học theo hướng dẫn 5 bước](assessment/core-exercises/START-HERE.md)**. Hoàn thành 3 file `exercises/` gốc, rồi chạy:
