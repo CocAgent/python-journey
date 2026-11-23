@@ -15,7 +15,7 @@ from autograde_w02 import (  # noqa: E402
     grade,
     load_test_cases,
     split_todos,
-    test_suite_audit,
+    test_suite_audit as audit_suite,
 )
 
 REFERENCE = CORE / "fixtures" / "reference" / "ex01_variables.py"
@@ -23,7 +23,7 @@ CRITERIA = ("W02.EX01.PROFILE", "W02.EX01.SWAP", "W02.EX01.AUG")
 
 
 def test_ex01_bank_covers_all_three_todos_without_stdin() -> None:
-    audit = test_suite_audit()
+    audit = audit_suite()
     assert audit["criteria_count"] == 10
     assert audit["exercises_count"] == 3
     assert audit["dynamic_case_count"] == 24
