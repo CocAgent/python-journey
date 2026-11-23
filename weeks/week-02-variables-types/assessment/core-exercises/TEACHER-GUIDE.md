@@ -1,0 +1,42 @@
+# Hướng dẫn giảng viên — chấm tự luyện **exercises/ Week 02**
+
+## Nguồn đề và phạm vi duy nhất
+
+Không dùng đề mới 5 câu / 10 ý. Bộ chấm dựa vào chính ba file gốc:
+- `exercises/ex01_variables.py`: TODO 1–3; TODO 4 **Thử thách**, không chấm.
+- `exercises/ex02_type_conversion.py`: TODO 1–4; TODO 5 **Thử thách**, không chấm.
+- `exercises/ex03_input_calc.py`: TODO 1–3; TODO 4 **Thử thách**, không chấm.
+
+**Không** đọc hay tính điểm các file `practice/`, `mini-project/`, `solutions/` hoặc checker reference của giáo trình. Bản mini-project `starter.py` có mã sẵn nên PASS không được coi là thành tích cá nhân.
+
+## Rubric 10 điểm *tự luyện* (công khai)
+
+| File gốc | Tiêu chí bắt buộc | Điểm |
+|---|---|---:|
+| ex01 | Bốn biến và type(), hoán đổi, augmented assignment | 3,00 |
+| ex02 | Chuyển "42", int(pi), sáu bool(), BMI từ input | 3,50 |
+| ex03 | Bốn phép tính, diện tích/chu vi, giảm giá | 3,50 |
+| **Tổng** | **3 + 4 + 3 TODO có sẵn** | **10,00** |
+
+Các TODO được nhận diện bằng dòng `# TODO N` **vốn đã có**. Không thay thế tên hàm, không chuyển chương trình thành kiểu return như đề mock-exam (vì học viên đang ở Week 02). Các phần bắt buộc trong từng TODO được chạy riêng với stdin mẫu; điểm phần nhập số đánh giá bằng hai bộ giá trị, hỗ trợ điểm một phần. Phần kiểm AST giúp kiểm `type()`, `int()`, phép toán và thao tác gán. Điểm trên máy chỉ là **ước lượng công khai**, có thể nhận nhầm hoặc không nhận diện được cách viết đúng; giảng viên phải phản biện khi có khiếu nại.
+
+## Kiểm chuẩn
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --reference
+python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student
+```
+
+`--reference` chấm **fixtures/reference/** tin cậy, dự kiến 10/10. File exercises ở `main` chưa làm, dự kiến 0/10; đây chỉ là trạng thái trước khi học. **Không đưa mã sinh viên chưa tin cậy vào CI hoặc chạy trên máy có secrets.** Maintainer CI chỉ chạy fixture giáo viên/blank tạm, không chạy bài thu thập từ học viên.
+
+## Giới hạn kiểm chứng
+
+- Bộ chấm chia theo TODO và yêu cầu **giữ lại các dòng `# TODO N`** để xác định đúng đoạn mã. Sinh viên thay tên hoặc chuyển tất cả mã sang nơi khác có thể gây RETRY dù đúng; cần chấm thủ công.
+- Bài 02 TODO 4 tự kiểm thứ tự nhập chiều cao trước, cân nặng sau. Bài 03 TODO 1–3 nhận dữ liệu theo thứ tự các TODO tương ứng. Đầu ra có thể in kèm nhãn, checker tìm số chứ không bắt định dạng máy cứng.
+- `ex01` TODO3 không có con số tăng/giảm trong đề; checker chỉ kiểm các toán tử + thao tác in, không tự tạo đáp số duy nhất.
+- `official_score` trong báo cáo JSON luôn `null`. Không tự đưa 10 điểm này vào điểm cuối kỳ.
+- Subprocess, timeout và cwd tạm **không phải sandbox**, không cô lập quyền đọc tệp/network hoặc chống mã độc. Chỉ dùng mã đã tin cậy, không chạy trên VPS production hoặc CI có secrets.
+
+## Human gate trước merge
+
+Cần CI Python 3.12/3.14 PASS, verify_course PASS, pytest + Ruff PASS. Giữ Draft PR để rà soát độc lập độ bao phủ các TODO, sau đó mới quyết định merge. Không chỉnh sửa bài tập gốc khi thử bộ chấm.

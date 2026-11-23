@@ -1,6 +1,6 @@
 # Python Journey AutoGrade — AG-01 + AG-02
 
-**Lộ trình sinh viên Week 01–15:** xem [Cổng tự kiểm](STUDENT-PORTAL.md). Week 01 có chấm 11 tiêu chí/5 điểm thực hành; Week 02–14 tái sử dụng checker sinh viên đã có (chưa quy đổi điểm), Week 15 readiness cơ học, Week 09 dự án giảng viên đánh giá.
+**Lộ trình sinh viên Week 01–15:** xem [Cổng tự kiểm](STUDENT-PORTAL.md). Week 01 có chấm 11 tiêu chí/5 điểm thực hành; Week 02 có bộ chấm riêng 3 exercises gốc /10 tự luyện; selfcheck Week 02–14 vẫn là checker mức PASS/RETRY (không quy đổi điểm), Week 15 readiness cơ học, Week 09 dự án giảng viên đánh giá.
 
 AutoGrade là **công cụ tự kiểm tại máy cá nhân**, không phải hệ thống chấm thi chính thức. Bộ chấm điểm số AG-01 chỉ hỗ trợ Week 01; AG-02 thêm lệnh `guide` và `selfcheck` các tuần sau (không tự phát điểm). Yêu cầu Python >=3.12.
 
@@ -32,6 +32,14 @@ Có thể đặt `--submission /path/to/workspace` để đánh giá một bản
 - Kết quả dựa vào stdout và dấu hiệu phép toán có trong AST để phản hồi; **không khẳng định quyền tác giả, chống gian lận hoặc đúng với mọi trường hợp**. Tên, sở thích và các kết quả định dạng đa dạng có thể cần giảng viên xem xét lại.
 - File trong `assessment/fixtures/week01/reference/` là bài mẫu dành riêng để kiểm thử **máy chấm**, không phải bài nộp.
 - Chương trình của người học có quyền chạy mã tùy ý khi thực thi. Subprocess, timeout và thư mục tạm **không phải sandbox**. Không dùng CLI này để chấm bài nộp từ người lạ, đặc biệt trên máy có secrets, dữ liệu thật hoặc trong workflow GitHub có token. Nếu muốn chấm tập trung, phải xây runner cô lập về network, filesystem, CPU/RAM và quyền truy cập trước.
+
+## Tự chấm chính bài tập gốc Week 02
+
+**[Folder core-exercises Week 02](../weeks/week-02-variables-types/assessment/core-exercises/README.md)**: đọc ba file `exercises/` gốc và 10 TODO bắt buộc, cho tối đa 10 điểm tự luyện. Không tính `practice/`, mini-project hoặc thử thách; không thay rubric chính thức.
+
+```bash
+python weeks/week-02-variables-types/assessment/core-exercises/autograde_w02.py --student
+```
 
 ## Tự kiểm các tuần còn lại
 

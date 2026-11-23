@@ -32,7 +32,7 @@ python -m assessment selfcheck --week 02 --acknowledge-local-code --json-out .le
 | Tuần | Nội dung | Lệnh AutoGrade | Phạm vi máy kiểm |
 |---|---|---|---|
 | [01](../weeks/week-01-hello-python/assessment/STUDENT-GUIDE.md) | Hello Python | `grade --week 01` | 11 tiêu chí, 5 điểm tự động |
-| [02](../weeks/week-02-variables-types/assessment/STUDENT-GUIDE.md) | Biến và kiểu | `selfcheck --week 02` | Practice starter |
+| [02](../weeks/week-02-variables-types/assessment/core-exercises/README.md) | Biến và kiểu | `autograde_w02.py --student` | 3 exercises gốc /10 tự luyện; `selfcheck --week 02` chỉ kiểm practice |
 | [03](../weeks/week-03-conditionals/assessment/STUDENT-GUIDE.md) | Điều kiện | `selfcheck --week 03` | Practice starter |
 | [04](../weeks/week-04-strings/assessment/STUDENT-GUIDE.md) | Chuỗi | `selfcheck --week 04` | Practice starter |
 | [05](../weeks/week-05-lists-tuples/assessment/STUDENT-GUIDE.md) | List và tuple | `selfcheck --week 05` | Practice starter |
@@ -51,7 +51,7 @@ python -m assessment selfcheck --week 02 --acknowledge-local-code --json-out .le
 
 - **Bài sinh viên:** `--starter`, `check_student.py`, `check_student_tests.py` hoặc `selfcheck` gọi trực tiếp checker sinh viên hiện có. PASS chỉ cho biết phần kiểm đã đạt.
 - **Bài giáo trình:** `--solutions`, `check_solutions.py`, `check_week.py` hay CI reference PASS không chứng minh em làm xong.
-- **Điểm:** Week 01 tự chấm 5 điểm máy + 5 điểm giảng viên. Week 02–15 chưa có điểm số AutoGrade thống nhất; kết quả JSON trả `auto_score: null`, `official_score: null`, riêng Week 09 không có máy tự kiểm chung.
+- **Điểm:** Week 01 tự chấm 5 điểm máy + 5 điểm giảng viên. **Riêng Week 02** có [máy chấm ba file exercises gốc](../weeks/week-02-variables-types/assessment/core-exercises/README.md) với điểm **tự luyện /10**; khác với lệnh `selfcheck --week 02` cho practice trả `auto_score: null`. Các tuần khác dùng selfcheck chưa quy đổi điểm chính thức; mọi báo cáo giữ `official_score: null`.
 - **Phạm vi:** các lab `practice/starter/` nhiều tuần là **bổ sung**, không thay bài `exercises/` gốc hay mini-project. Week 12/14 có checker sinh viên trực tiếp bài exercises; Week 15 chỉ readiness, không thay yêu cầu của `FINAL_PROJECT.md`.
 - **An toàn:** checker có thể import/chạy code sinh viên; timeout/subprocess không phải sandbox. Không tự động chạy bài nộp chưa tin cậy trên CI có secrets hay server production.
 
