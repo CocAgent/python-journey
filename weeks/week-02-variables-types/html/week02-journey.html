@@ -2222,173 +2222,156 @@ print(f"USD: {vnd / ty_gia:.2f}")</pre></div></details>
     async function gradeLivePython() {
       const btn = document.getElementById('btnGradePy');
       const out = document.getElementById('pyGradeOutput');
-      const target = document.getElementById('gradeTarget').value;
+      const termOut = document.getElementById('pyOutput');
       const code = document.getElementById('pyCode').value;
+      const mode = document.getElementById('pyInputMode').value;
+      const stdinVal = document.getElementById('pyStdin').value;
+
+      if (!code.trim()) {
+        out.innerHTML = '<span class="err">Ô code đang trống! Hãy nhập code Python của bạn trước khi chấm điểm.</span>';
+        return;
+      }
 
       btn.disabled = true;
-      btn.textContent = 'Đang chấm điểm...';
-      out.innerHTML = '<span class="hl">Đang chạy Python AST & bộ test động Week 02...</span>';
+      btn.textContent = 'Đang phân tích & chấm...';
+      out.innerHTML = '<span class="hl">Đang phân tích AST và chạy kiểm thử code của bạn bằng Python 3...</span>';
 
       try {
         const py = await ensurePyodide();
         py.globals.set('__grade_code__', code);
-        py.globals.set('__grade_target__', target);
+        py.globals.set('__grade_stdin__', stdinVal);
+        py.globals.set('__grade_use_prompt__', mode === 'prompt');
+        py.globals.set('__grade_prompt_fn__', (promptText) => {
+          const val = window.prompt(promptText || 'Nhập dữ liệu cho input():');
+          return val === null ? null : String(val);
+        });
 
-        const graderPy = [
-          'import ast, builtins, io, json, math, re, sys',
-          'TODO_RE = re.compile(r"^\\s*#\\s*TODO\\s+([0-9]+)\\b")',
-          'NUM_RE = re.compile(r"(?<![\\d.])[-+]?\\d+(?:\\.\\d+)?(?![\\d.])")',
-          'BOOL_RE = re.compile(r"\\b(?:True|False)\\b")',
-          'CASES = {',
-          '  "W02.EX02.BMI": [("1.75\\n70\\n",[22.9]),("1.8\\n72\\n",[22.2]),("1.6\\n64\\n",[25]),("2\\n80\\n",[20]),("1.5\\n45\\n",[20]),("1.9\\n90.25\\n",[25])],',
-          '  "W02.EX03.FOUR": [("8\\n2\\n",[10,6,16,4]),("7.5\\n2.5\\n",[10,5,18.75,3]),("-6\\n3\\n",[-3,-9,-18,-2]),("0\\n5\\n",[5,-5,0,0]),("6\\n1.5\\n",[7.5,4.5,9,4]),("-8\\n-2\\n",[-10,-6,16,4])],',
-          '  "W02.EX03.CIRCLE": [("1\\n",[3.14159,6.28318]),("2.5\\n",[19.6349375,15.70795]),("0\\n",[0,0]),("4\\n",[50.26544,25.13272]),("3\\n",[28.27431,18.84954]),("0.5\\n",[0.7853975,3.14159])],',
-          '  "W02.EX03.DISCOUNT": [("500000\\n20\\n",[400000]),("200000\\n12.5\\n",[175000]),("75000\\n0\\n",[75000]),("120000\\n25\\n",[90000]),("800\\n50\\n",[400]),("999\\n10\\n",[899.1])]',
-          '}',
-          'def split_todos(src):',
-          '    idx, secs = None, {}',
-          '    for line in src.splitlines():',
-          '        m = TODO_RE.match(line)',
-          '        if m:',
-          '            idx = int(m.group(1)); secs[idx] = []',
-          '        elif idx is not None:',
-          '            secs[idx].append(line)',
-          '    return {k: "\\n".join(v) + "\\n" for k, v in secs.items()}',
-          'def run_frag(frag, stdin_txt=""):',
-          '    buf = io.StringIO()',
-          '    old_out, old_err, old_in = sys.stdout, sys.stderr, sys.stdin',
-          '    sys.stdout = sys.stderr = buf',
-          '    sys.stdin = io.StringIO(stdin_txt)',
-          '    ns = {}',
+        const analyzerPy = [
+          'import ast, builtins, io, json, re, sys, traceback',
+          'def evaluate_user_code(src):',
+          '    items, tips = [], []',
+          '    # 1. Cú pháp Python (1.5đ)',
           '    try:',
-          '        exec(compile(frag, "<student_todo.py>", "exec"), ns)',
-          '        return True, buf.getvalue(), ns, ""',
+          '        tree = ast.parse(src)',
+          '        items.append({"name": "1. Cú pháp Python", "earned": 1.5, "max": 1.5, "ok": True, "detail": "Hợp lệ, không lỗi SyntaxError."})',
+          '    except SyntaxError as e:',
+          '        items.append({"name": "1. Cú pháp Python", "earned": 0.0, "max": 1.5, "ok": False, "detail": f"SyntaxError dòng {e.lineno}: {e.msg}"})',
+          '        tips.append(f"Kiểm tra lại cú pháp tại dòng {e.lineno} (dấu ngoặc, dấu hai chấm :, hoặc thụt lề).")',
+          '        return json.dumps({"score": 0.0, "rank": "Cần sửa lỗi cú pháp", "items": items, "tips": tips, "stdout": ""}, ensure_ascii=False)',
+          '',
+          '    # 2. Thực thi bằng Python 3 thật (2.5đ)',
+          '    buf = io.StringIO()',
+          '    old_out, old_err, old_in, old_input = sys.stdout, sys.stderr, sys.stdin, builtins.input',
+          '    sys.stdout = sys.stderr = buf',
+          '    lines_in = __grade_stdin__.splitlines()',
+          '    idx_in = [0]',
+          '    def _inp(prompt=""):',
+          '        if __grade_use_prompt__:',
+          '            ans = __grade_prompt_fn__(str(prompt))',
+          '            if ans is None: raise EOFError("Bạn đã hủy nhập liệu.")',
+          '        else:',
+          '            if idx_in[0] >= len(lines_in): raise EOFError("Thiếu dữ liệu trong ô stdin.")',
+          '            ans = lines_in[idx_in[0]]; idx_in[0] += 1',
+          '        buf.write(f"{prompt}{ans}\\n")',
+          '        return ans',
+          '    builtins.input = _inp',
+          '    ns = {}',
+          '    run_ok, run_err = True, ""',
+          '    try:',
+          '        exec(compile(src, "<user_code.py>", "exec"), ns)',
           '    except Exception as e:',
-          '        return False, buf.getvalue(), ns, f"{type(e).__name__}: {e}"',
+          '        run_ok = False',
+          '        run_err = f"{type(e).__name__}: {e}"',
+          '        traceback.print_exc()',
           '    finally:',
-          '        sys.stdout, sys.stderr, sys.stdin = old_out, old_err, old_in',
-          'def has_call(tree, fn):',
-          '    return any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == fn for n in ast.walk(tree))',
-          'def match_nums(text, expected, tol=0.06):',
-          '    avail = [float(x) for x in NUM_RE.findall(text.replace(",", ""))]',
-          '    cur = 0',
-          '    for w in expected:',
-          '        while cur < len(avail) and not math.isclose(avail[cur], w, rel_tol=0.005, abs_tol=tol):',
-          '            cur += 1',
-          '        if cur >= len(avail): return False',
-          '        cur += 1',
-          '    return True',
-          'def grade(target, src):',
-          '    secs = split_todos(src)',
-          '    results = []',
-          '    def add(cid, todo, max_p, ok, reason):',
-          '        results.append({"id": cid, "todo": todo, "earned": max_p if ok else 0.0, "max": max_p, "ok": ok, "reason": reason})',
-          '    def parse_sec(todo):',
-          '        frag = secs.get(todo, "")',
-          '        if not frag.strip(): return None, None, "Chưa có code dưới # TODO " + str(todo)',
-          '        try: return frag, ast.parse(frag), None',
-          '        except SyntaxError as e: return None, None, f"SyntaxError: {e.msg}"',
-          '    if target == "ex01":',
-          '        frag, tree, err = parse_sec(1)',
-          '        if err: add("W02.EX01.PROFILE", 1, 1.0, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            types_ok = ok and isinstance(ns.get("ten"), str) and type(ns.get("tuoi")) is int and isinstance(ns.get("diem_tb"), float) and type(ns.get("dang_hoc")) is bool',
-          '            if types_ok and has_call(tree, "type"):',
-          '                add("W02.EX01.PROFILE", 1, 1.0, True, "Đạt tiêu chí (4 biến đúng kiểu + type()).")',
-          '            else:',
-          '                add("W02.EX01.PROFILE", 1, 1.0, False, rerr or "Cần đủ ten(str), tuoi(int), diem_tb(float), dang_hoc(bool) và gọi type().")',
-          '        frag, tree, err = parse_sec(2)',
-          '        if err: add("W02.EX01.SWAP", 2, 1.0, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            has_tuple_swap = any(isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Tuple) and isinstance(n.value, ast.Tuple) for n in ast.walk(tree))',
-          '            if ok and ns.get("a") == 20 and ns.get("b") == 10 and has_tuple_swap:',
-          '                add("W02.EX01.SWAP", 2, 1.0, True, "Đạt tiêu chí (hoán đổi a, b = b, a chuẩn Python).")',
-          '            else:',
-          '                add("W02.EX01.SWAP", 2, 1.0, False, rerr or "Cần a=10, b=20 rồi hoán đổi bằng a, b = b, a để ra a=20, b=10.")',
-          '        frag, tree, err = parse_sec(3)',
-          '        if err: add("W02.EX01.AUG", 3, 1.0, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            ops = {type(n.op) for n in ast.walk(tree) if isinstance(n, ast.AugAssign)}',
-          '            need = {ast.Add, ast.Sub, ast.Mult, ast.FloorDiv}',
-          '            if ok and need.issubset(ops) and len(out.strip().splitlines()) >= 4:',
-          '                add("W02.EX01.AUG", 3, 1.0, True, "Đạt tiêu chí (đủ 4 phép +=, -=, *=, //= và in 4 bước).")',
-          '            else:',
-          '                add("W02.EX01.AUG", 3, 1.0, False, rerr or "Cần dùng đủ cả 4 toán tử +=, -=, *=, //= và in x sau mỗi bước.")',
-          '    elif target == "ex02":',
-          '        frag, tree, err = parse_sec(1)',
-          '        if err: add("W02.EX02.TEXT", 1, 0.75, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            if ok and has_call(tree, "int") and match_nums(out, [50]):',
-          '                add("W02.EX02.TEXT", 1, 0.75, True, "Đạt tiêu chí (int(\\"42\\") + 8 = 50).")',
-          '            else: add("W02.EX02.TEXT", 1, 0.75, False, rerr or "Cần dùng int() chuyển \\"42\\" rồi cộng 8 ra 50.")',
-          '        frag, tree, err = parse_sec(2)',
-          '        if err: add("W02.EX02.PI", 2, 0.75, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            if ok and has_call(tree, "int") and match_nums(out, [3]):',
-          '                add("W02.EX02.PI", 2, 0.75, True, "Đạt tiêu chí (int(3.14159) = 3).")',
-          '            else: add("W02.EX02.PI", 2, 0.75, False, rerr or "Cần dùng int(pi) và in ra 3.")',
-          '        frag, tree, err = parse_sec(3)',
-          '        if err: add("W02.EX02.BOOL", 3, 0.75, False, err)',
-          '        else:',
-          '            ok, out, ns, rerr = run_frag(frag)',
-          '            got = BOOL_RE.findall(out)',
-          '            want = ["False", "True", "False", "True", "False", "True"]',
-          '            if ok and has_call(tree, "bool") and got[:6] == want:',
-          '                add("W02.EX02.BOOL", 3, 0.75, True, "Đạt tiêu chí (đúng 6 giá trị bool()).")',
-          '            else: add("W02.EX02.BOOL", 3, 0.75, False, rerr or "Cần in đúng thứ tự: False, True, False, True, False, True.")',
-          '        frag, tree, err = parse_sec(4)',
-          '        if err: add("W02.EX02.BMI", 4, 1.25, False, err)',
-          '        else:',
-          '            passed = 0; last_err = ""',
-          '            for inp, exp in CASES["W02.EX02.BMI"]:',
-          '                ok, out, ns, rerr = run_frag(frag, inp)',
-          '                if ok and match_nums(out, exp): passed += 1',
-          '                elif rerr: last_err = rerr',
-          '            add("W02.EX02.BMI", 4, 1.25, passed == 6, f"Đạt {passed}/6 bộ input kiểm thử đa dạng." + (f" ({last_err})" if last_err else ""))',
-          '    elif target == "ex03":',
-          '        for cid, todo, max_p in [("W02.EX03.FOUR", 1, 1.5), ("W02.EX03.CIRCLE", 2, 1.0), ("W02.EX03.DISCOUNT", 3, 1.0)]:',
-          '            frag, tree, err = parse_sec(todo)',
-          '            if err: add(cid, todo, max_p, False, err)',
-          '            else:',
-          '                passed = 0; last_err = ""',
-          '                for inp, exp in CASES[cid]:',
-          '                    ok, out, ns, rerr = run_frag(frag, inp)',
-          '                    if ok and match_nums(out, exp): passed += 1',
-          '                    elif rerr: last_err = rerr',
-          '                add(cid, todo, max_p, passed == 6, f"Đạt {passed}/6 bộ input kiểm thử đa dạng." + (f" ({last_err})" if last_err else ""))',
-          '    earned = sum(r["earned"] for r in results)',
-          '    max_total = sum(r["max"] for r in results)',
-          '    return json.dumps({"earned": earned, "max": max_total, "items": results}, ensure_ascii=False)',
-          'grade(__grade_target__, __grade_code__)'
+          '        sys.stdout, sys.stderr, sys.stdin, builtins.input = old_out, old_err, old_in, old_input',
+          '    run_out = buf.getvalue()',
+          '    if run_ok:',
+          '        items.append({"name": "2. Thực thi không lỗi", "earned": 2.5, "max": 2.5, "ok": True, "detail": "Chạy hoàn tất 100%, không phát sinh Exception."})',
+          '    else:',
+          '        items.append({"name": "2. Thực thi không lỗi", "earned": 0.0, "max": 2.5, "ok": False, "detail": f"Gặp lỗi khi chạy: {run_err}"})',
+          '        if "ValueError" in run_err: tips.append("Lỗi ValueError: kiểm tra .isdigit() trước khi ép int() hoặc dùng float() cho số thập phân.")',
+          '        elif "ZeroDivisionError" in run_err: tips.append("Lỗi ZeroDivisionError: thêm điều kiện if so_chia != 0 trước khi chia.")',
+          '        elif "TypeError" in run_err: tips.append("Lỗi TypeError: ép kiểu int()/float() trước khi cộng trừ, hoặc dùng f-string khi in.")',
+          '        elif "NameError" in run_err: tips.append("Lỗi NameError: kiểm tra lại chính tả và chữ hoa/thường của tên biến.")',
+          '',
+          '    # 3. Biến & Kiểu dữ liệu (2.0đ)',
+          '    var_names = []',
+          '    for n in ast.walk(tree):',
+          '        if isinstance(n, ast.Assign):',
+          '            for t in n.targets:',
+          '                if isinstance(t, ast.Name): var_names.append(t.id)',
+          '                elif isinstance(t, ast.Tuple): var_names.extend(e.id for e in t.elts if isinstance(e, ast.Name))',
+          '    var_names = list(dict.fromkeys(var_names))',
+          '    bad_names = [v for v in var_names if not re.match(r"^[a-z_][a-z0-9_]*$", v) and not v.isupper()]',
+          '    calls = [n.func.id for n in ast.walk(tree) if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)]',
+          '    type_fns = set(calls) & {"int", "float", "str", "bool", "type"}',
+          '    v_score = 0.0',
+          '    if var_names: v_score += 0.5',
+          '    if var_names and not bad_names: v_score += 0.5',
+          '    if type_fns or len({type(v).__name__ for k, v in ns.items() if not k.startswith("__")}) >= 2: v_score += 1.0',
+          '    if not var_names: tips.append("Nên khai báo biến có ý nghĩa thay vì viết trực tiếp giá trị trong print().")',
+          '    if bad_names: tips.append("Tên biến nên viết thường theo chuẩn snake_case: " + ", ".join(bad_names[:4]))',
+          '    if not type_fns and "input" in calls: tips.append("Code có gọi input() nhưng chưa thấy ép kiểu int()/float() nếu cần tính toán.")',
+          '    items.append({"name": "3. Biến & Kiểu dữ liệu", "earned": v_score, "max": 2.0, "ok": v_score >= 1.5, "detail": f"{len(var_names)} biến" + (f", dùng hàm kiểu: {sorted(type_fns)}" if type_fns else "")})',
+          '',
+          '    # 4. Xử lý logic, phép toán & phòng lỗi (2.0đ)',
+          '    has_op = any(isinstance(n, (ast.BinOp, ast.AugAssign, ast.Compare, ast.BoolOp)) for n in ast.walk(tree))',
+          '    has_div = any(isinstance(n, ast.BinOp) and isinstance(n.op, (ast.Div, ast.FloorDiv, ast.Mod)) for n in ast.walk(tree))',
+          '    has_if = any(isinstance(n, (ast.If, ast.IfExp)) for n in ast.walk(tree))',
+          '    has_guard = has_if or any(isinstance(n, ast.Attribute) and n.attr in ("isdigit", "strip") for n in ast.walk(tree))',
+          '    l_score = (1.0 if has_op else 0.0) + (1.0 if has_guard else (0.5 if not has_div else 0.0))',
+          '    if has_div and not has_if: tips.append("Code có phép chia (/ hoặc //) nhưng chưa có if kiểm tra mẫu số khác 0.")',
+          '    if not has_op: tips.append("Thử bổ sung phép tính toán hoặc biến đổi dữ liệu để chương trình hữu ích hơn.")',
+          '    items.append({"name": "4. Xử lý & Phòng lỗi", "earned": l_score, "max": 2.0, "ok": l_score >= 1.5, "detail": ("Có xử lý phép toán" if has_op else "Chưa có phép toán") + (", có kiểm tra điều kiện/an toàn" if has_guard else "")})',
+          '',
+          '    # 5. Đầu ra & Trình bày code (2.0đ)',
+          '    has_print = "print" in calls',
+          '    has_fstr = any(isinstance(n, ast.JoinedStr) for n in ast.walk(tree))',
+          '    has_comment = any(line.strip().startswith("#") for line in src.splitlines())',
+          '    p_score = (1.0 if (has_print and run_out.strip()) else (0.5 if has_print else 0.0)) + (0.5 if has_fstr else 0.0) + (0.5 if has_comment else 0.0)',
+          '    if not has_fstr and has_print: tips.append("Nên dùng f-string (ví dụ: print(f\\"Kết quả: {kq:.2f}\\")) để hiển thị đẹp và dễ đọc hơn.")',
+          '    if not has_comment: tips.append("Thêm 1–2 dòng chú thích (# ...) để giải thích ý tưởng đoạn code.")',
+          '    items.append({"name": "5. Đầu ra & Trình bày", "earned": p_score, "max": 2.0, "ok": p_score >= 1.5, "detail": f"print: {\'có\' if has_print else \'không\'}, f-string: {\'có\' if has_fstr else \'chưa\'}, chú thích: {\'có\' if has_comment else \'chưa\'}"})',
+          '',
+          '    total = round(sum(i["earned"] for i in items), 2)',
+          '    rank = "Xuất sắc" if total >= 9 else ("Giỏi" if total >= 8 else ("Khá" if total >= 6.5 else "Cần cải thiện"))',
+          '    return json.dumps({"score": total, "rank": rank, "items": items, "tips": tips, "stdout": run_out}, ensure_ascii=False)',
+          'evaluate_user_code(__grade_code__)'
         ].join('\n');
 
-        const data = JSON.parse(py.runPython(graderPy));
-        liveScores[target] = data.earned;
-        try { localStorage.setItem('w02_live_scores', JSON.stringify(liveScores)); } catch {}
-        refreshLiveScoreHeader();
+        const data = JSON.parse(py.runPython(analyzerPy));
+        if (data.stdout) {
+          termOut.innerHTML = data.items[1] && data.items[1].ok
+            ? '<span class="ok">' + esc(data.stdout) + '</span>'
+            : '<span class="err">' + esc(data.stdout) + '</span>';
+        }
+        document.getElementById('liveTotalScore').textContent =
+          'Điểm gần nhất: ' + data.score.toFixed(1) + ' / 10.0 (' + data.rank + ')';
 
         const lines = data.items.map((it) => {
-          const badge = it.ok ? '<span class="ok">[PASS]</span>' : '<span class="err">[RETRY]</span>';
-          return badge + ' TODO ' + it.todo + ' (' + it.id + '): ' + it.earned.toFixed(2) + '/' + it.max.toFixed(2) + ' — ' + esc(it.reason);
+          const badge = it.ok ? '<span class="ok">[TỐT]</span>' : '<span class="err">[CẦN SỬA]</span>';
+          return badge + ' ' + it.name + ': ' + it.earned.toFixed(1) + '/' + it.max.toFixed(1) + ' — ' + esc(it.detail);
         });
         lines.push('');
-        lines.push('<span class="hl">Điểm bài ' + target + ': ' + data.earned.toFixed(2) + ' / ' + data.max.toFixed(2) + ' (Tự luyện · official_score: null)</span>');
+        lines.push('<span class="hl">▶ TỔNG ĐIỂM CODE CỦA BẠN: ' + data.score.toFixed(1) + ' / 10.0 — Xếp loại: ' + esc(data.rank) + '</span>');
+        if (data.tips && data.tips.length) {
+          lines.push('');
+          lines.push('<span class="hl">Gợi ý cải thiện cho đoạn code này:</span>');
+          data.tips.forEach((t) => lines.push('  • ' + esc(t)));
+        } else {
+          lines.push('<span class="ok">Tuyệt vời! Code của bạn sạch, chạy không lỗi và đáp ứng tốt chuẩn Python Tuần 02.</span>');
+        }
         out.innerHTML = lines.join('\n');
-        showToast('Đã chấm xong ' + target + ': ' + data.earned.toFixed(2) + '/' + data.max.toFixed(2) + ' điểm!');
+        showToast('Điểm code của bạn: ' + data.score.toFixed(1) + '/10 (' + data.rank + ')');
       } catch (err) {
-        out.innerHTML = '<span class="err">Lỗi chấm tự động: ' + esc(err.message) + '</span>';
+        out.innerHTML = '<span class="err">Lỗi chấm điểm: ' + esc(err.message) + '</span>';
       } finally {
         btn.disabled = false;
-        btn.textContent = '🎯 Chấm điểm tự động (Rubric W02)';
+        btn.textContent = '🎯 Chấm điểm code của bạn';
       }
     }
 
-    refreshLiveScoreHeader();
     loadPyTemplate('ex02');
     runAll();
   </script>
