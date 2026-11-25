@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Week 02 — Phiếu chấm theo TODO · Tự động & thủ công</title>
+<style>
+  :root {
+    --bg: #f1f5f9; --surface: #ffffff; --surface-soft: #f8fafc; --ink: #0f172a; --muted: #64748b;
+    --line: #e2e8f0; --input-bg: #ffffff; --input-line: #cbd5e1;
+    --primary: #2563eb; --primary-hover: #1d4ed8; --primary-soft: #eff6ff;
+    --good-bg: #d1fae5; --good-ink: #065f46; --warn-bg: #fef3c7; --warn-ink: #92400e;
+    --bad-bg: #fee2e2; --bad-ink: #991b1b; --bonus-bg: #ede9fe; --bonus-ink: #5b21b6;
+    --code-bg: #0f172a; --code-ink: #e2e8f0;
+    --shadow: 0 10px 30px -10px rgba(15, 23, 42, .08);
+  }
+  [data-theme="dark"] {
+    --bg: #0b1120; --surface: #111827; --surface-soft: #1e293b; --ink: #f1f5f9; --muted: #94a3b8;
+    --line: #334155; --input-bg: #0f172a; --input-line: #475569;
+    --primary: #3b82f6; --primary-hover: #2563eb; --primary-soft: rgba(59, 130, 246, .16);
+    --good-bg: rgba(16, 185, 129, .18); --good-ink: #6ee7b7; --warn-bg: rgba(245, 158, 11, .18); --warn-ink: #fcd34d;
+    --bad-bg: rgba(239, 68, 68, .18); --bad-ink: #fca5a5; --bonus-bg: rgba(139, 92, 246, .22); --bonus-ink: #c4b5fd;
+    --code-bg: #020617; --code-ink: #e2e8f0;
+    --shadow: 0 14px 36px -12px rgba(0, 0, 0, .45);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); line-height: 1.6;
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: radial-gradient(circle at 12% 8%, rgba(37, 99, 235, .1), transparent 34%),
+                     radial-gradient(circle at 88% 12%, rgba(124, 58, 237, .1), transparent 34%), var(--bg);
+         transition: background .2s ease, color .2s ease; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .86em; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 20px 18px 60px; }
+
+  /* Top bar */
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .brand { font-weight: 800; font-size: .95rem; display: inline-flex; align-items: center; gap: 8px; }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #10b981);
+               animation: breathe 2.4s ease-in-out infinite; }
+  .topbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; color: #fff; border-radius: 26px; padding: 32px; margin-bottom: 22px;
+          background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 52%, #4f46e5 100%);
+          box-shadow: 0 22px 45px -18px rgba(30, 58, 138, .45); }
+  .hero::after { content: ""; position: absolute; width: 340px; height: 340px; right: -80px; top: -110px; border-radius: 50%;
+                 background: radial-gradient(circle, rgba(96, 165, 250, .35), transparent 70%); pointer-events: none;
+                 animation: float 9s ease-in-out infinite alternate; }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, .14);
+             border: 1px solid rgba(255, 255, 255, .22); padding: 5px 12px; border-radius: 999px;
+             font-size: .75rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+  .hero h1 { margin: 12px 0 6px; font-size: clamp(1.65rem, 3.6vw, 2.35rem); line-height: 1.2; letter-spacing: -.02em; }
+  .hero p { margin: 0; color: #dbeafe; max-width: 760px; font-size: .96rem; }
+  .hero code { background: rgba(255, 255, 255, .14); padding: 1px 6px; border-radius: 6px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 22px 0 16px; }
+  .metric { background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .18); backdrop-filter: blur(8px);
+            border-radius: 15px; padding: 14px 16px; }
+  .metric span { font-size: .78rem; color: #cbd5e1; display: block; }
+  .metric strong { display: block; font-size: 1.5rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .metric strong small { font-size: .9rem; color: #cbd5e1; font-weight: 600; }
+  .metric em { font-style: normal; font-size: .72rem; font-weight: 800; padding: 2px 8px; border-radius: 999px;
+               background: rgba(255, 255, 255, .18); margin-left: 6px; vertical-align: middle; }
+  .track { background: rgba(255, 255, 255, .2); border-radius: 999px; height: 10px; overflow: hidden; }
+  .fill { position: relative; height: 100%; width: 0; border-radius: inherit; overflow: hidden;
+          background: linear-gradient(90deg, #34d399, #22d3ee); transition: width .7s cubic-bezier(.2, .8, .2, 1); }
+  .fill::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .6), transparent);
+                 background-size: 200% 100%; animation: shine 2.2s ease-in-out infinite; }
+
+  /* Notice */
+  .notice { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--primary);
+            border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; box-shadow: var(--shadow); font-size: .9rem; }
+  .notice p { margin: 4px 0 0; color: var(--muted); }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tab-btn { appearance: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+             padding: 10px 15px; border-radius: 13px; font-weight: 700; font-size: .88rem; cursor: pointer;
+             display: inline-flex; align-items: center; gap: 7px; transition: all .16s ease; font-family: inherit; }
+  .tab-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+  .tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 8px 18px -6px rgba(37, 99, 235, .55); }
+  .tab-badge { font-size: .7rem; padding: 2px 7px; border-radius: 999px; background: rgba(148, 163, 184, .18);
+               font-variant-numeric: tabular-nums; }
+  .tab-btn.active .tab-badge { background: rgba(255, 255, 255, .22); color: #fff; }
+
+  /* Stage */
+  .stage { display: none; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; box-shadow: var(--shadow); }
+  .stage.active { display: block; animation: fadeIn .28s ease; }
+  .stage-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap;
+                padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+  .stage-title { display: flex; gap: 14px; align-items: center; }
+  .stage-num { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+               color: #1d4ed8; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
+  .stage-title h2 { margin: 0; font-size: 1.3rem; }
+  .stage-title p { margin: 2px 0 0; color: var(--muted); font-size: .88rem; }
+  .file-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px;
+               background: var(--surface-soft); border: 1px solid var(--line); color: var(--primary); font-size: .82rem; font-weight: 700;
+               font-variant-numeric: tabular-nums; }
+
+  /* TODO cards */
+  .todo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .todo-card { position: relative; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 16px;
+               padding: 16px 16px 16px 20px; display: flex; flex-direction: column; gap: 11px; transition: border-color .2s, box-shadow .2s; }
+  .todo-card.full { grid-column: 1 / -1; }
+  .todo-card[data-key]::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px;
+                                 border-radius: 0 4px 4px 0; background: var(--line); transition: background .25s; }
+  .todo-card[data-status=ok]::before { background: #10b981; } .todo-card[data-status=part]::before { background: #f59e0b; }
+  .todo-card[data-status=bad]::before { background: #ef4444; } .todo-card[data-status=opt]::before { background: #8b5cf6; }
+  .todo-card:hover { box-shadow: var(--shadow); }
+  .todo-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .todo-top h3 { margin: 0; font-size: .98rem; flex: 1 1 200px; }
+  .tag { font-size: .7rem; font-weight: 800; padding: 3px 9px; border-radius: 999px; letter-spacing: .03em; white-space: nowrap; }
+  .tag.ok, .tag.passed { background: var(--good-bg); color: var(--good-ink); }
+  .tag.part { background: var(--warn-bg); color: var(--warn-ink); }
+  .tag.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .tag.opt, .tag.bonus { background: var(--bonus-bg); color: var(--bonus-ink); }
+  .tag.none { background: rgba(148, 163, 184, .18); color: var(--muted); }
+  .points { margin-left: auto; font-size: .8rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .todo-desc { margin: 0; font-size: .86rem; color: var(--muted); }
+  .scorebox { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .scorebox input { width: 78px; text-align: right; font-weight: 800; }
+  .quick { display: inline-flex; gap: 4px; }
+  .quick button { font: inherit; font-size: .74rem; font-weight: 800; cursor: pointer; border: 1px solid var(--line);
+                  background: var(--surface); color: var(--muted); border-radius: 8px; padding: 4px 8px; }
+  .quick button:hover { color: var(--primary); border-color: var(--primary); }
+  .autoline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); }
+  .chip { font-size: .7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+  .chip.pass { background: var(--good-bg); color: var(--good-ink); } .chip.retry { background: var(--bad-bg); color: var(--bad-ink); }
+  .chip.review { background: var(--warn-bg); color: var(--warn-ink); } .chip.na { background: rgba(148, 163, 184, .18); color: var(--muted); }
+
+  /* Checklist */
+  .checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+  .checks label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; padding: 5px 6px; border-radius: 8px; font-size: .88rem; }
+  .checks label:hover { background: var(--primary-soft); }
+  .checks input { appearance: none; flex: none; width: 19px; height: 19px; margin: 2px 0 0; border-radius: 6px; border: 2px solid var(--input-line);
+                  background: var(--input-bg); cursor: pointer; display: grid; place-content: center; transition: background .15s, border-color .15s; }
+  .checks input::after { content: ""; width: 9px; height: 5px; border: solid #fff; border-width: 0 0 2.5px 2.5px;
+                         transform: rotate(-45deg) scale(0); margin-top: -2px; transition: transform .15s; }
+  .checks input:checked { background: #10b981; border-color: #10b981; animation: tick .3s cubic-bezier(.3, 1.6, .5, 1); }
+  .checks input:checked::after { transform: rotate(-45deg) scale(1); }
+  .checks input:checked + span { color: var(--muted); text-decoration: line-through; }
+
+  /* Forms */
+  .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .form-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: .77rem; font-weight: 700; color: var(--muted); }
+  input[type=text], input[type=date], input[type=number], textarea, select {
+    width: 100%; padding: 9px 11px; border: 1px solid var(--input-line); border-radius: 10px; background: var(--input-bg);
+    color: var(--ink); font-size: .89rem; font-family: inherit; transition: border-color .15s, box-shadow .15s; }
+  .scorebox input { width: 78px; }
+  textarea { min-height: 60px; resize: vertical; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, .16); }
+  ::placeholder { color: color-mix(in srgb, var(--muted) 65%, transparent); }
+
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .btn { appearance: none; border: 1px solid transparent; border-radius: 10px; padding: 8px 13px; font-size: .84rem; font-weight: 700;
+         cursor: pointer; transition: all .15s ease; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:disabled { opacity: .6; cursor: progress; transform: none; }
+  .btn-primary { background: var(--primary); color: #fff; } .btn-primary:hover { background: var(--primary-hover); }
+  .btn-green { background: #059669; color: #fff; } .btn-green:hover { background: #047857; }
+  .btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+  .btn input[type=file] { display: none; }
+  .spacer { flex: 1; }
+  .switch { display: inline-flex; align-items: center; gap: 8px; font-size: .84rem; font-weight: 600; cursor: pointer; }
+  .switch input { width: 18px; height: 18px; accent-color: var(--primary); }
+
+  /* Console & code */
+  .console { background: var(--code-bg); color: var(--code-ink); border-radius: 11px; padding: 11px 13px;
+             font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .83rem; line-height: 1.55;
+             white-space: pre-wrap; overflow-x: auto; min-height: 48px; border: 1px solid #1e293b; }
+  .console .ok { color: #34d399; } .console .err { color: #f87171; } .console .hl { color: #60a5fa; } .console .wa { color: #fbbf24; }
+  .py-editor { width: 100%; min-height: 230px; padding: 12px 14px; border-radius: 12px; border: 1px solid #334155;
+               background: #020617; color: #e2e8f0; font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+               font-size: .84rem; line-height: 1.55; resize: vertical; tab-size: 4; white-space: pre; }
+  .src-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .src-head { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; margin-bottom: 6px; }
+  .src-head span { color: var(--muted); font-weight: 600; }
+  .py-status { font-size: .8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--surface);
+               border: 1px solid var(--line); color: var(--muted); }
+  .py-status.ready { background: var(--good-bg); color: var(--good-ink); border-color: transparent; }
+  .py-status.busy { background: var(--primary-soft); color: var(--primary); border-color: transparent; animation: breathe 1.2s ease-in-out infinite; }
+  .cv { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .cv-label { font-size: .76rem; font-weight: 700; color: var(--muted); }
+  pre.code { margin: 0; background: var(--code-bg); color: var(--code-ink); border-radius: 10px; padding: 10px 12px; overflow-x: auto;
+             font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .79rem; line-height: 1.55; border: 1px solid #1e293b; }
+  pre.code .ln { display: inline-block; width: 2.4em; margin-right: 10px; text-align: right; color: #475569; user-select: none; }
+  .console.term { font-size: .79rem; min-height: 0; max-height: 260px; overflow: auto; border-left: 3px solid #10b981; }
+  .runbox { display: grid; gap: 6px; margin-top: 8px; }
+  .runbox textarea { min-height: 62px; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .8rem; }
+  .runbox .console { min-height: 90px; max-height: 340px; overflow: auto; font-size: .79rem; }
+  details.code-box { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 7px 11px; font-size: .82rem; }
+  details.code-box summary { cursor: pointer; font-weight: 700; color: var(--primary); user-select: none; }
+  details.code-box pre { margin: 8px 0 0; background: var(--code-bg); color: var(--code-ink); border-radius: 8px; padding: 10px 12px;
+                         overflow-x: auto; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .79rem; line-height: 1.5; }
+  .cases { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: .78rem; }
+  .cases th, .cases td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cases th { color: var(--muted); font-weight: 700; }
+  .cases code { white-space: pre; }
+
+  /* Summary */
+  table.sum { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  table.sum th, table.sum td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+  table.sum th { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  table.sum td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  table.sum tr.total td { font-size: 1rem; font-weight: 800; border-bottom: 0; }
+
+  .toast { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #fff; padding: 10px 16px; border-radius: 12px;
+           font-size: .86rem; font-weight: 600; box-shadow: 0 12px 26px rgba(0, 0, 0, .25); opacity: 0; transform: translateY(10px);
+           pointer-events: none; transition: all .2s ease; z-index: 999; max-width: 420px; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .footer { margin-top: 28px; text-align: center; color: var(--muted); font-size: .84rem; }
+  #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 998; }
+
+  /* Animation */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes float { to { transform: translate(-50px, 40px) scale(1.15); } }
+  @keyframes shine { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  @keyframes tick { 0% { transform: scale(.6); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+  .pop { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); display: inline-block; }
+  .stage.active .todo-card { animation: rise .4s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--d, 0s); }
+  body.intro .hero, body.intro .notice, body.intro .tabs { animation: rise .6s cubic-bezier(.2, .8, .2, 1) both; }
+  body.intro .notice { animation-delay: .08s; } body.intro .tabs { animation-delay: .14s; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  @media (max-width: 880px) {
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .todo-grid, .src-grid { grid-template-columns: 1fr; }
+    .form-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .hero { padding: 22px 18px; } .stage { padding: 16px; }
+    .metrics, .form-grid, .form-grid.cols-4 { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    .topbar, .notice, .tabs, .noprint, .quick, #stage-auto { display: none !important; }
+    .hero { box-shadow: none; }
+    .stage { display: block !important; box-shadow: none; break-inside: avoid-page; margin-bottom: 14px; }
+    .todo-card { break-inside: avoid; }
+    details.code-box { display: none; }
+  }
+</style>
+</head>
+<body class="intro">
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="brand-dot"></span> Python Journey V2 · Week 02 Grading Studio</div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="resetBtn">Xóa phiếu chấm</button>
+      <button class="btn btn-ghost" id="themeToggle">Chế độ tối</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Python Journey · Tuần 02 · Phiếu chấm giảng viên</div>
+    <h1>Chấm 10 TODO Tuần 02 · Tự động &amp; thủ công</h1>
+    <p>Dán hoặc nạp 3 file <code>exercises/</code> của sinh viên, bấm <strong>Tự động chấm</strong> để chạy đúng bộ test của
+      <code>autograde_w02.py</code> bằng Python 3 ngay trong trình duyệt, rồi rà từng TODO và chốt điểm.</p>
+    <div class="metrics">
+      <div class="metric"><span>Điểm giảng viên</span><strong><b id="m_total">0</b><small> / 10</small><em id="m_rank">Chưa chấm</em></strong></div>
+      <div class="metric"><span>Điểm máy (tự luyện)</span><strong id="m_auto">—</strong></div>
+      <div class="metric"><span>TODO bắt buộc đủ điểm</span><strong><b id="m_full">0</b><small> / 10</small></strong></div>
+      <div class="metric"><span>Thử thách đã làm</span><strong><b id="m_opt">0</b><small> / 3</small></strong></div>
+    </div>
+    <div class="track" role="progressbar" aria-label="Điểm giảng viên" aria-valuemin="0" aria-valuemax="10" id="m_track">
+      <div class="fill" id="m_fill"></div>
+    </div>
+  </section>
+
+  <div class="notice">
+    <strong>Cách dùng nhanh:</strong> Tab <strong>00</strong> nạp bài &amp; tự động chấm → tab <strong>01–03</strong> xem code từng TODO,
+    đánh dấu checklist, sửa điểm nếu máy nhận nhầm → tab <strong>04</strong> xem tổng kết, xuất JSON hoặc in PDF.
+    <p>Python chạy trong trình duyệt bằng Pyodide (cần Internet lần đầu để tải). Bài làm và phiếu chấm chỉ lưu trong trình duyệt này
+      (<code>localStorage</code>), không gửi đi đâu. Điểm máy là điểm tự luyện, không phải điểm chính thức.</p>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Các phần của phiếu chấm">
+    <button class="tab-btn active" data-tab="auto" role="tab">00 · Tự động chấm <span class="tab-badge" id="tb_auto">Pyodide</span></button>
+    <button class="tab-btn" data-tab="ex01_variables.py" role="tab">01 · Biến <span class="tab-badge" data-tabsub="ex01_variables.py">0/3</span></button>
+    <button class="tab-btn" data-tab="ex02_type_conversion.py" role="tab">02 · Chuyển kiểu <span class="tab-badge" data-tabsub="ex02_type_conversion.py">0/3,5</span></button>
+    <button class="tab-btn" data-tab="ex03_input_calc.py" role="tab">03 · Input &amp; tính toán <span class="tab-badge" data-tabsub="ex03_input_calc.py">0/3,5</span></button>
+    <button class="tab-btn" data-tab="summary" role="tab">04 · Tổng kết &amp; Xuất <span class="tab-badge">JSON</span></button>
+  </nav>
+
+  <!-- ===================== TAB 00: TỰ ĐỘNG CHẤM ===================== -->
+  <section id="stage-auto" class="stage active" data-stage="auto">
+    <header class="stage-head">
+      <div class="stage-title">
+        <div class="stage-num">00</div>
+        <div>
+          <h2>Nạp bài làm &amp; tự động chấm</h2>
+          <p>Cùng cách tách <code># TODO N</code>, kiểm AST và 24 bộ input như <code>autograde_w02.py</code></p>
+        </div>
+      </div>
+      <span class="py-status" id="pyStatus">Chưa nạp Python (tự nạp khi bấm chấm)</span>
+    </header>
+
+    <div class="todo-grid">
+      <article class="todo-card full">
+        <div class="todo-top"><span class="tag bonus">SINH VIÊN</span><h3>Thông tin phiếu chấm</h3></div>
+        <div class="form-grid cols-4">
+          <div class="field"><label for="student_name">Họ tên sinh viên</label><input id="student_name" type="text" placeholder="Nguyễn Văn A"></div>
+          <div class="field"><label for="student_id">Mã sinh viên</label><input id="student_id" type="text" placeholder="SV001"></div>
+          <div class="field"><label for="grader_name">Người chấm</label><input id="grader_name" type="text"></div>
+          <div class="field"><label for="graded_on">Ngày chấm</label><input id="graded_on" type="date"></div>
+        </div>
+      </article>
+
+      <article class="todo-card full">
+        <div class="todo-top">
+          <span class="tag passed">BÀI LÀM</span><h3>Mã nguồn 3 file <code>exercises/</code></h3>
+          <span class="points">Giữ nguyên các dòng <code># TODO N</code></span>
+        </div>
+        <div class="actions">
+          <label class="btn btn-ghost">📂 Chọn 3 file .py<input type="file" id="srcFiles" accept=".py,text/x-python" multiple></label>
+          <button class="btn btn-ghost" id="clearSrc">Xóa mã nguồn</button>
+          <span class="todo-desc">File được nhận theo tên: <code>ex01_variables.py</code>, <code>ex02_type_conversion.py</code>, <code>ex03_input_calc.py</code>.</span>
+        </div>
+        <div class="src-grid" id="srcGrid"></div>
+        <div class="actions">
+          <button class="btn btn-green" id="btnGrade">🎯 Tự động chấm 10 TODO</button>
+          <label class="switch"><input type="checkbox" id="autoApply" checked> Tự điền điểm máy vào điểm giảng viên</label>
+          <span class="spacer"></span>
+          <label class="btn btn-ghost">Nạp week02-result.json<input type="file" id="autoFile" accept=".json,application/json"></label>
+        </div>
+        <div class="console" id="gradeLog">Dán code hoặc chọn file rồi bấm "🎯 Tự động chấm 10 TODO". Kết quả từng TODO sẽ hiện ở đây và trong tab 01–03.</div>
+      </article>
+    </div>
+  </section>
+
+  <div id="exerciseStages"></div>
+
+  <!-- ===================== TAB 04: TỔNG KẾT ===================== -->
+  <section id="stage-summary" class="stage" data-stage="summary">
+    <header class="stage-head">
+      <div class="stage-title">
+        <div class="stage-num">04</div>
+        <div>
+          <h2>Tổng kết &amp; xuất phiếu chấm</h2>
+          <p>Điểm giảng viên là điểm nhập tay; điểm máy chỉ để đối chiếu</p>
+        </div>
+      </div>
+      <div class="actions noprint">
+        <label class="btn btn-ghost">Mở phiếu đã lưu<input type="file" id="importFile" accept=".json,application/json"></label>
+        <button class="btn btn-ghost" id="printBtn">In / PDF</button>
+        <button class="btn btn-primary" id="exportBtn">Xuất JSON phiếu chấm</button>
+      </div>
+    </header>
+    <div class="todo-grid">
+      <article class="todo-card full">
+        <div class="todo-top"><span class="tag passed">BẢNG ĐIỂM</span><h3 id="sumTitle">Bảng điểm theo TODO</h3></div>
+        <table class="sum" id="sumTable"></table>
+      </article>
+      <article class="todo-card full">
+        <div class="todo-top"><span class="tag bonus">NHẬN XÉT</span><h3>Nhận xét chung</h3></div>
+        <textarea id="general_note" placeholder="Điểm mạnh, lỗi conversion đã quan sát, việc cần cải thiện…"></textarea>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">Python Journey V2 · Week 02 — Variables · Types · Input/Output · Điểm máy không phải điểm chính thức</footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<!-- Rubric và test case: sinh từ rubric.json và tests/cases_*.json -->
+<script type="application/json" id="rubricData">{"schema_version":"1.0","week":"W02","source":"weeks/week-02-variables-types/exercises/","assessment_type":"formative","auto_max_points":10,"official_score":null,"rubric_policy":"Chỉ TODO bắt buộc của ba bài exercises hiện có. TODO thử thách và mini-project mã mẫu không cộng điểm tự động.","tasks":[{"file":"ex01_variables.py","title":"Bài 01 — Biến","points":3,"criteria":[{"id":"W02.EX01.PROFILE","source_todo":1,"description":"Bốn biến đúng kiểu và in được giá trị/kiểu","points":1},{"id":"W02.EX01.SWAP","source_todo":2,"description":"Hoán đổi a=10,b=20 không dùng biến tạm","points":1},{"id":"W02.EX01.AUG","source_todo":3,"description":"x khởi tạo 100; +=, -=, *=, //= và in từng bước","points":1}]},{"file":"ex02_type_conversion.py","title":"Bài 02 — Chuyển kiểu","points":3.5,"criteria":[{"id":"W02.EX02.TEXT","source_todo":1,"description":"int('42') cộng 8 và in 50","points":0.75},{"id":"W02.EX02.PI","source_todo":2,"description":"int(3.14159) và in kết quả 3","points":0.75},{"id":"W02.EX02.BOOL","source_todo":3,"description":"In bool của 6 giá trị đề bài","points":0.75},{"id":"W02.EX02.BMI","source_todo":4,"description":"Nhập chiều cao/cân nặng, BMI định dạng 1 số lẻ","points":1.25}]},{"file":"ex03_input_calc.py","title":"Bài 03 — Input & phép tính","points":3.5,"criteria":[{"id":"W02.EX03.FOUR","source_todo":1,"description":"Hai số nhập vào, tổng/hiệu/tích/thương","points":1.5},{"id":"W02.EX03.CIRCLE","source_todo":2,"description":"Bán kính, diện tích/chu vi với pi=3.14159","points":1},{"id":"W02.EX03.DISCOUNT","source_todo":3,"description":"Giá gốc và phần trăm giảm giá","points":1}]}],"optional_not_scored":["ex01_variables.py TODO4 multiple assignment","ex02_type_conversion.py TODO5 seconds to hh:mm:ss","ex03_input_calc.py TODO4 VND to USD","mini-project/starter.py — mã mẫu đã có sẵn, minh chứng riêng"]}</script>
+<script type="application/json" id="casesData">{"cases_ex01_variables.json":{"schema_version":"1.0","exercise":"ex01_variables.py","cases":{"W02.EX01.PROFILE":[],"W02.EX01.SWAP":[],"W02.EX01.AUG":[]}},"cases_ex02_type_conversion.json":{"schema_version":"1.0","exercise":"ex02_type_conversion.py","cases":{"W02.EX02.TEXT":[],"W02.EX02.PI":[],"W02.EX02.BOOL":[],"W02.EX02.BMI":[{"input":"1.75\n70\n","expected":[22.9]},{"input":"1.8\n72\n","expected":[22.2]},{"input":"1.6\n64\n","expected":[25]},{"input":"2\n80\n","expected":[20]},{"input":"1.5\n45\n","expected":[20]},{"input":"1.9\n90.25\n","expected":[25]}]}},"cases_ex03_input_calc.json":{"schema_version":"1.0","exercise":"ex03_input_calc.py","cases":{"W02.EX03.FOUR":[{"input":"8\n2\n","expected":[10,6,16,4]},{"input":"7.5\n2.5\n","expected":[10,5,18.75,3]},{"input":"-6\n3\n","expected":[-3,-9,-18,-2]},{"input":"0\n5\n","expected":[5,-5,0,0]},{"input":"6\n1.5\n","expected":[7.5,4.5,9,4]},{"input":"-8\n-2\n","expected":[-10,-6,16,4]}],"W02.EX03.CIRCLE":[{"input":"1\n","expected":[3.14159,6.28318]},{"input":"2.5\n","expected":[19.6349375,15.70795]},{"input":"0\n","expected":[0,0]},{"input":"4\n","expected":[50.26544,25.13272]},{"input":"3\n","expected":[28.27431,18.84954]},{"input":"0.5\n","expected":[0.7853975,3.14159]}],"W02.EX03.DISCOUNT":[{"input":"500000\n20\n","expected":[400000]},{"input":"200000\n12.5\n","expected":[175000]},{"input":"75000\n0\n","expected":[75000]},{"input":"120000\n25\n","expected":[90000]},{"input":"800\n50\n","expected":[400]},{"input":"999\n10\n","expected":[899.1]}]}}}</script>
+
+<!-- Bản chuyển sang trình duyệt của check_one()/grade() trong autograde_w02.py -->
+<script type="text/x-python" id="graderPy">
+import ast, builtins, io, json, linecache, math, re, sys, traceback
+
+TODO = re.compile(r"^\s*#\s*TODO\s+([0-9]+)\b")
+NUMBER = re.compile(r"(?<![\d.])[-+]?\d+(?:\.\d+)?(?![\d.])")
+BOOLEAN = re.compile(r"\b(?:True|False)\b")
+WATCHED = ("ten", "tuoi", "diem_tb", "dang_hoc", "a", "b", "x")
+
+
+def split_todos(source):
+    index = None
+    sections = {}
+    for line in source.splitlines():
+        marker = TODO.match(line)
+        if marker:
+            index = int(marker.group(1))
+            sections[index] = []
+        elif index is not None:
+            sections[index].append(line)
+    return {index: "\n".join(lines) + "\n" for index, lines in sections.items()}
+
+
+class Tee(io.TextIOBase):
+    """stdout ghi đồng thời vào bản chấm (giống runner) và bản Terminal để hiển thị."""
+
+    def __init__(self, *targets):
+        self.targets = targets
+
+    def writable(self):
+        return True
+
+    def write(self, text):
+        for target in self.targets:
+            target.write(text)
+        return len(text)
+
+
+def make_input(feed, out, transcript):
+    def fake_input(prompt=""):
+        out.write(str(prompt))
+        transcript.write(str(prompt))
+        line = feed.readline()
+        if not line:
+            raise EOFError("EOF when reading a line")
+        value = line[:-1] if line.endswith("\n") else line
+        transcript.write(value + "\n")  # Terminal hiện giá trị người dùng gõ; bản chấm thì không
+        return value
+    return fake_input
+
+
+def run_fragment(code, user_input):
+    feed = io.StringIO(user_input)
+    out = io.StringIO()
+    transcript = io.StringIO()
+    saved = (sys.stdout, sys.stdin, builtins.input)
+    try:
+        sys.stdout = Tee(out, transcript)
+        sys.stdin, builtins.input = feed, make_input(feed, out, transcript)
+        namespace = {"__name__": "__main__", "__builtins__": builtins}
+        exec(compile(code, "learner_todo.py", "exec"), namespace)
+        variables = {}
+        for name in WATCHED:
+            if name in namespace:
+                value = namespace[name]
+                if type(value) in (str, int, float, bool) and len(str(value)) <= 120:
+                    variables[name] = {"type": type(value).__name__, "value": value}
+        return {"ok": True, "stdout": out.getvalue()[:8000], "vars": variables,
+                "transcript": transcript.getvalue()[:8000]}
+    except BaseException as error:
+        return {"ok": False, "stdout": out.getvalue()[:8000],
+                "error": type(error).__name__, "message": str(error)[:180],
+                "transcript": transcript.getvalue()[:8000]}
+    finally:
+        sys.stdout, sys.stdin, builtins.input = saved
+
+
+def run_file(code, user_input, filename):
+    """Chạy cả file như `python <file>` trong Terminal, trả về màn hình kèm traceback."""
+    feed = io.StringIO(user_input)
+    transcript = io.StringIO()
+    linecache.cache[filename] = (len(code), None, code.splitlines(True), filename)
+    saved = (sys.stdout, sys.stdin, builtins.input)
+    ok, error_text = True, ""
+    try:
+        sys.stdout = transcript
+        sys.stdin, builtins.input = feed, make_input(feed, io.StringIO(), transcript)
+        exec(compile(code, filename, "exec"), {"__name__": "__main__", "__builtins__": builtins})
+    except BaseException as error:
+        ok = False
+        frames = [f for f in traceback.extract_tb(error.__traceback__) if f.filename == filename]
+        error_text = ("Traceback (most recent call last):\n" + "".join(traceback.format_list(frames))
+                      if frames else "") + "".join(traceback.format_exception_only(type(error), error))
+    finally:
+        sys.stdout, sys.stdin, builtins.input = saved
+    return json.dumps({"ok": ok, "transcript": transcript.getvalue()[:20000], "error": error_text},
+                      ensure_ascii=False)
+
+
+def call_nodes(tree, name):
+    return [n for n in ast.walk(tree)
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == name]
+
+
+def has_call_on(tree, fn, name):
+    return any(n.args and isinstance(n.args[0], ast.Name) and n.args[0].id == name
+               for n in call_nodes(tree, fn))
+
+
+def has_operator(tree, kind):
+    return any(isinstance(n, ast.BinOp) and isinstance(n.op, kind) for n in ast.walk(tree))
+
+
+def assignment(tree, name, number):
+    return any(
+        isinstance(n, ast.Assign)
+        and any(isinstance(t, ast.Name) and t.id == name for t in n.targets)
+        and isinstance(n.value, ast.Constant)
+        and type(n.value.value) in (int, float)
+        and n.value.value == number
+        for n in ast.walk(tree))
+
+
+def output_numbers(text):
+    return [float(part) for part in NUMBER.findall(text)]
+
+
+def contains_all_numbers(text, expected, tol=0.016):
+    available = output_numbers(text)
+    cursor = 0
+    for wanted in expected:
+        while cursor < len(available) and not math.isclose(available[cursor], wanted, abs_tol=tol, rel_tol=0):
+            cursor += 1
+        if cursor == len(available):
+            return False
+        cursor += 1
+    return True
+
+
+def printed(tree, name):
+    return sum(int(any(isinstance(n, ast.Name) and n.id == name for n in ast.walk(p)))
+               for p in call_nodes(tree, "print"))
+
+
+def swap_ast(tree):
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign) or len(node.targets) != 1:
+            continue
+        left, right = node.targets[0], node.value
+        if not isinstance(left, (ast.List, ast.Tuple)) or not isinstance(right, (ast.List, ast.Tuple)):
+            continue
+        if len(left.elts) != 2 or len(right.elts) != 2:
+            continue
+        if all(isinstance(n, ast.Name) for n in (*left.elts, *right.elts)):
+            if [n.id for n in left.elts] == ["a", "b"] and [n.id for n in right.elts] == ["b", "a"]:
+                return True
+    return False
+
+
+def bool_args(tree):
+    result = set()
+    for node in call_nodes(tree, "bool"):
+        if node.args:
+            try:
+                value = ast.literal_eval(node.args[0])
+                result.add(type(value).__name__ + ":" + repr(value))
+            except (ValueError, TypeError, SyntaxError):
+                pass
+    return result
+
+
+def check_one(cid, code, samples):
+    if not code.strip() or not any(
+            line.strip() and not line.lstrip().startswith("#") for line in code.splitlines()):
+        return 0.0, "TODO chưa làm.", [], []
+    try:
+        tree = ast.parse(code)
+    except SyntaxError as error:
+        return 0.0, f"SyntaxError trong TODO: dòng {error.lineno}.", [], []
+
+    scenarios = samples.get(cid, [("", [])])
+    observations = [run_fragment(code, stdin) for stdin, _ in scenarios]
+    first = observations[0]
+    if not first.get("ok"):
+        return 0.0, f"{first.get('error')}: {first.get('message', '')}", observations, scenarios
+    stdout = str(first.get("stdout", ""))
+    variables = first.get("vars", {})
+
+    if cid == "W02.EX01.PROFILE":
+        types = {"ten": "str", "tuoi": "int", "diem_tb": "float", "dang_hoc": "bool"}
+        good_vars = all(variables.get(n, {}).get("type") == t for n, t in types.items())
+        good_calls = all(has_call_on(tree, "type", n) for n in types)
+        good_output = (all(str(variables[n]["value"]) in stdout for n in types if n in variables)
+                       and all(t in stdout for t in types.values()) and bool(stdout.strip()))
+        valid = good_vars and good_calls and good_output
+        reason = "Cần bốn biến ten/tuoi/diem_tb/dang_hoc đúng kiểu và in giá trị, type()."
+    elif cid == "W02.EX01.SWAP":
+        valid = (assignment(tree, "a", 10) and assignment(tree, "b", 20) and swap_ast(tree)
+                 and variables.get("a", {}).get("value") == 20 and variables.get("b", {}).get("value") == 10)
+        reason = "Cần khởi tạo a=10, b=20 rồi hoán đổi a,b=b,a không dùng biến tạm."
+    elif cid == "W02.EX01.AUG":
+        operations = [type(n.op) for n in ast.walk(tree)
+                      if isinstance(n, ast.AugAssign) and isinstance(n.target, ast.Name) and n.target.id == "x"]
+        valid = (assignment(tree, "x", 100)
+                 and all(op in operations for op in (ast.Add, ast.Sub, ast.Mult, ast.FloorDiv))
+                 and printed(tree, "x") >= 4
+                 and variables.get("x", {}).get("type") in ("int", "float"))
+        reason = "Cần x=100; dùng +=, -=, *=, //= và in x sau từng bước. Giá trị tăng/giảm tự chọn."
+    elif cid == "W02.EX02.TEXT":
+        valid = ("50" in [str(int(n)) for n in output_numbers(stdout) if n.is_integer()]
+                 and has_call_on(tree, "int", "so_text") and has_operator(tree, ast.Add))
+        reason = "Chuyển so_text='42' bằng int(), cộng 8 rồi in 50."
+    elif cid == "W02.EX02.PI":
+        valid = (contains_all_numbers(stdout, [3]) and assignment(tree, "pi", 3.14159)
+                 and has_call_on(tree, "int", "pi"))
+        reason = "Dùng int(pi) với pi=3.14159 và in 3 (cắt, không làm tròn)."
+    elif cid == "W02.EX02.BOOL":
+        required = {"int:0", "int:1", "str:''", "str:'hello'", "list:[]", "list:[1, 2]"}
+        valid = (required.issubset(bool_args(tree))
+                 and BOOLEAN.findall(stdout) == ["False", "True", "False", "True", "False", "True"])
+        reason = "In sáu bool() theo thứ tự đề: 0,1,'','hello',[],[1,2]."
+    elif cid in samples:
+        structural = True
+        if cid == "W02.EX02.BMI":
+            structural = len(call_nodes(tree, "input")) >= 2 and has_operator(tree, ast.Div)
+        elif cid == "W02.EX03.FOUR":
+            structural = (len(call_nodes(tree, "input")) >= 2
+                          and all(has_operator(tree, k) for k in (ast.Add, ast.Sub, ast.Mult, ast.Div)))
+        elif cid == "W02.EX03.CIRCLE":
+            structural = len(call_nodes(tree, "input")) >= 1 and has_operator(tree, ast.Mult)
+        elif cid == "W02.EX03.DISCOUNT":
+            structural = (len(call_nodes(tree, "input")) >= 2 and has_operator(tree, ast.Mult)
+                          and has_operator(tree, ast.Sub))
+        good = sum(1 for resp, (_s, exp) in zip(observations, samples[cid])
+                   if resp.get("ok") and contains_all_numbers(str(resp.get("stdout", "")), exp))
+        if not structural:
+            if good:
+                return (0.0, "REVIEW: Có kết quả trùng mẫu nhưng chưa nhận diện được phép toán/input "
+                             "theo yêu cầu; nhờ giảng viên xem mã.", observations, scenarios)
+            return 0.0, "Thiếu input() hoặc phép toán của TODO gốc.", observations, scenarios
+        return (good / len(samples[cid]), f"Đạt {good}/{len(samples[cid])} bộ input kiểm thử đa dạng.",
+                observations, scenarios)
+    else:
+        return 0.0, f"Chưa có tiêu chí chấm cho {cid}", observations, scenarios
+    return float(valid), "Đạt tiêu chí." if valid else reason, observations, scenarios
+
+
+def grade_payload(payload_text):
+    payload = json.loads(payload_text)
+    rubric, cases, sources = payload["rubric"], payload["cases"], payload["sources"]
+    samples = {}
+    for doc in cases.values():
+        for cid, scenarios in doc["cases"].items():
+            if scenarios:
+                samples[cid] = [(s["input"], s["expected"]) for s in scenarios]
+    tasks, score = [], 0.0
+    for task in rubric["tasks"]:
+        bodies = split_todos(sources.get(task["file"], "") or "")
+        results = []
+        for criterion in task["criteria"]:
+            fraction, reason, observations, scenarios = check_one(
+                criterion["id"], bodies.get(criterion["source_todo"], ""), samples)
+            earned = round(criterion["points"] * fraction, 3)
+            score += earned
+            runs = []
+            for obs, sc in zip(observations, scenarios):
+                stdin, expected = sc
+                ok = bool(obs.get("ok")) and (not expected or contains_all_numbers(str(obs.get("stdout", "")), expected))
+                runs.append({"input": stdin, "expected": expected, "ok": ok,
+                             "stdout": str(obs.get("stdout", ""))[:1200],
+                             "transcript": str(obs.get("transcript", ""))[:3000], "error": obs.get("error"),
+                             "message": obs.get("message")})
+            status = "PASS" if fraction == 1.0 else ("REVIEW" if reason.startswith("REVIEW:") else "RETRY")
+            results.append({"id": criterion["id"], "todo": criterion["source_todo"], "passed": fraction == 1.0,
+                            "status": status, "earned": earned, "maximum": criterion["points"],
+                            "reason": reason, "runs": runs})
+        tasks.append({"file": task["file"], "title": task["title"], "criteria": results})
+    optional = []
+    for item in payload.get("optional", []):
+        body = split_todos(sources.get(item["file"], "") or "").get(item["todo"], "")
+        has_code = any(l.strip() and not l.lstrip().startswith("#") for l in body.splitlines())
+        res = run_fragment(body, item["input"]) if has_code else {"ok": False, "error": "EMPTY", "stdout": ""}
+        optional.append({"file": item["file"], "todo": item["todo"], "input": item["input"], "ok": bool(res.get("ok")),
+                         "stdout": str(res.get("stdout", ""))[:1200],
+                         "transcript": str(res.get("transcript", ""))[:3000], "error": res.get("error"),
+                         "message": res.get("message")})
+    return json.dumps({"week": "W02", "mode": "browser", "auto_score": round(score, 2),
+                       "auto_max_points": rubric["auto_max_points"], "official_score": None,
+                       "tasks": tasks, "optional": optional}, ensure_ascii=False)
+</script>
+
+<script>
+const RUBRIC = JSON.parse(document.getElementById("rubricData").textContent);
+const CASES = JSON.parse(document.getElementById("casesData").textContent);
+const GRADER_PY = document.getElementById("graderPy").textContent;
+const PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/";
+
+const STAGES = {
+  "ex01_variables.py": { num: "01", name: "Chiếc ba lô biến", sub: "Khai báo biến, <code>type()</code>, hoán đổi không dùng biến tạm &amp; augmented assignment" },
+  "ex02_type_conversion.py": { num: "02", name: "Phép thuật chuyển kiểu", sub: "<code>int()</code>, <code>float()</code>, <code>bool()</code> và BMI từ <code>input()</code>" },
+  "ex03_input_calc.py": { num: "03", name: "Xưởng máy tính mini", sub: "Kết hợp <code>input()</code> với 4 phép tính, hình tròn &amp; giảm giá" },
+};
+const TASKS = [
+  { file: "ex01_variables.py", todos: [
+    { id: "W02.EX01.PROFILE", todo: 1, title: "4 biến &amp; type()",
+      checks: ["Có ten (str), tuoi (int), diem_tb (float), dang_hoc (bool)", "In giá trị và kiểu của cả 4 biến bằng type()", "Tên biến dạng snake_case"] },
+    { id: "W02.EX01.SWAP", todo: 2, title: "Hoán đổi 2 biến",
+      checks: ["Dùng a, b = b, a (không có biến tạm)", "In ra a = 20, b = 10"] },
+    { id: "W02.EX01.AUG", todo: 3, title: "Augmented assignment",
+      checks: ["Khởi tạo x = 100", "Dùng đủ 4 toán tử +=, -=, *=, //=", "In x sau mỗi bước"] },
+    { todo: 4, optional: true, title: "Thử thách · Multiple assignment", input: "",
+      checks: ["ho, ten, tuoi = … trên một dòng", "In đúng mẫu \"Họ tên: [ho] [ten], [tuoi] tuổi\""] },
+  ]},
+  { file: "ex02_type_conversion.py", todos: [
+    { id: "W02.EX02.TEXT", todo: 1, title: "Chuyển str sang int",
+      checks: ["Đổi so_text bằng int() trước khi cộng", "In kết quả 50"] },
+    { id: "W02.EX02.PI", todo: 2, title: "Chuyển float sang int",
+      checks: ["Dùng int(pi)", "In 3 (int() cắt phần thập phân, không làm tròn)"] },
+    { id: "W02.EX02.BOOL", todo: 3, title: "Kiểm tra bool()",
+      checks: ["Đủ 6 giá trị: 0, 1, \"\", \"hello\", [], [1, 2]", "Kết quả False, True, False, True, False, True"] },
+    { id: "W02.EX02.BMI", todo: 4, title: "Tính chỉ số BMI",
+      checks: ["Nhập chiều cao trước, cân nặng sau, đổi bằng float()", "BMI = cân nặng / chiều cao ** 2", "In 1 chữ số thập phân (1.75, 70 → 22.9)"] },
+    { todo: 5, optional: true, title: "Thử thách · Giây → giờ:phút:giây", input: "3661\n",
+      checks: ["Dùng // và %", "3661 → \"1 giờ 1 phút 1 giây\""] },
+  ]},
+  { file: "ex03_input_calc.py", todos: [
+    { id: "W02.EX03.FOUR", todo: 1, title: "Tổng, hiệu, tích, thương",
+      checks: ["Đổi input sang số trước khi tính", "In đủ 4 kết quả (8, 2 → 10, 6, 16, 4)", "Chấp nhận số thực và số âm"] },
+    { id: "W02.EX03.CIRCLE", todo: 2, title: "Hình tròn (π = 3.14159)",
+      checks: ["Dùng pi = 3.14159", "Diện tích = pi × r²", "Chu vi = 2 × pi × r (r = 1 → 3.14159, 6.28318)"] },
+    { id: "W02.EX03.DISCOUNT", todo: 3, title: "Giá sau giảm",
+      checks: ["Nhập giá gốc trước, % giảm sau", "Giá sau giảm = giá × (1 − % / 100)", "500000, 20 → 400000"] },
+    { todo: 4, optional: true, title: "Thử thách · Đổi VNĐ → USD", input: "250000\n25000\n",
+      checks: ["Nhập số tiền VNĐ và tỷ giá", "In USD làm tròn 2 chữ số"] },
+  ]},
+];
+const MAX = {};
+for (const t of RUBRIC.tasks) for (const c of t.criteria) MAX[c.id] = c.points;
+for (const task of TASKS) for (const t of task.todos) if (t.id) t.max = MAX[t.id];
+
+const STORE_KEY = "python-journey-w02-todo-grading-v2";
+const META_FIELDS = ["student_name", "student_id", "grader_name", "graded_on", "general_note"];
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let state = blankState();
+let activeTab = "auto";
+const prevStatus = {};
+let prevTotal = null;
+
+const $ = (id) => document.getElementById(id);
+const keyOf = (task, t) => t.id || `${task.file}#TODO${t.todo}`;
+const fmt = (n) => (Math.round(n * 100) / 100).toLocaleString("vi-VN");
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function blankState() { return { meta: {}, items: {}, auto: null, sources: {}, stdins: {}, autoApply: true }; }
+function item(key) { return state.items[key] ??= { checks: [], score: "", note: "" }; }
+
+/* Tách # TODO N như split_todos(); giữ số dòng thật trong file để hiển thị */
+function todoBlocks(source) {
+  const out = {};
+  let idx = null;
+  String(source || "").split(/\r?\n/).forEach((line, i) => {
+    const m = line.match(/^\s*#\s*TODO\s+([0-9]+)\b/);
+    if (m) { idx = Number(m[1]); out[idx] = { start: i + 2, lines: [] }; } else if (idx !== null) out[idx].lines.push(line);
+  });
+  for (const k in out) {
+    while (out[k].lines.length && !out[k].lines[out[k].lines.length - 1].trim()) out[k].lines.pop();
+  }
+  return out;
+}
+const DEFAULT_STDIN = {
+  "ex01_variables.py": "",
+  "ex02_type_conversion.py": "1.75\n70\n3661",
+  "ex03_input_calc.py": "8\n2\n2.5\n500000\n20\n250000\n25000",
+};
+
+function autoFor(id) {
+  for (const task of state.auto?.tasks || []) for (const c of task.criteria || []) if (c.id === id) return c;
+  return null;
+}
+function optFor(file, todo) { return (state.auto?.optional || []).find((o) => o.file === file && o.todo === todo); }
+
+function statusOf(t, it) {
+  if (t.optional) {
+    const done = it.checks.filter(Boolean).length;
+    return done === t.checks.length ? ["ok", "ĐÃ LÀM"] : done ? ["part", "LÀM MỘT PHẦN"] : ["opt", "THỬ THÁCH"];
+  }
+  if (it.score === "") return ["none", "CHƯA CHẤM"];
+  const s = Number(it.score);
+  return s >= t.max ? ["ok", "ĐẠT"] : s > 0 ? ["part", "MỘT PHẦN"] : ["bad", "CHƯA ĐẠT"];
+}
+
+/* ---------- Animation helpers ---------- */
+function replay(el) { if (!el || REDUCED) return; el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop"); }
+function countTo(el, target, decimals = true) {
+  const from = el._v ?? 0;
+  el._v = target;
+  const show = (v) => { el.textContent = decimals ? fmt(v) : Math.round(v); };
+  if (REDUCED || from === target) { show(target); return; }
+  const start = performance.now();
+  const step = (now) => {
+    const p = Math.min(1, (now - start) / 650);
+    show(from + (target - from) * (1 - Math.pow(1 - p, 3)));
+    if (p < 1 && el._v === target) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+  replay(el);
+}
+function confetti() {
+  if (REDUCED) return;
+  const cv = $("confetti"), ctx = cv.getContext("2d"), dpr = devicePixelRatio || 1;
+  cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const colors = ["#2563eb", "#4f46e5", "#10b981", "#22d3ee", "#f59e0b", "#ec4899"];
+  const parts = Array.from({ length: 160 }, () => ({
+    x: innerWidth * (0.5 + (Math.random() - 0.5) * 0.3), y: innerHeight * 0.3,
+    vx: (Math.random() - 0.5) * 16, vy: -Math.random() * 15 - 5, g: 0.38 + Math.random() * 0.2,
+    w: 6 + Math.random() * 6, h: 8 + Math.random() * 8, r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.35,
+    c: colors[Math.floor(Math.random() * colors.length)] }));
+  const t0 = performance.now();
+  const frame = (now) => {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    const life = (now - t0) / 2600;
+    for (const p of parts) {
+      p.vy += p.g; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.globalAlpha = Math.max(0, 1 - life); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r * 2))); ctx.restore();
+    }
+    if (life < 1) requestAnimationFrame(frame); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  };
+  requestAnimationFrame(frame);
+}
+let toastTimer;
+function showToast(msg) {
+  const t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+/* ---------- Theme & tabs ---------- */
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  $("themeToggle").textContent = theme === "dark" ? "Chế độ sáng" : "Chế độ tối";
+}
+$("themeToggle").addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(next);
+  try { localStorage.setItem("w02_grading_theme", next); } catch (_) {}
+});
+function openTab(id) {
+  activeTab = id;
+  document.querySelectorAll(".tab-btn").forEach((b) => {
+    b.classList.toggle("active", b.dataset.tab === id);
+    b.setAttribute("aria-selected", String(b.dataset.tab === id));
+  });
+  document.querySelectorAll(".stage").forEach((s) => s.classList.toggle("active", s.dataset.stage === id));
+}
+document.querySelectorAll(".tab-btn").forEach((b) => b.addEventListener("click", () => openTab(b.dataset.tab)));
+
+/* ---------- Source editors (tab 00) ---------- */
+function renderSources() {
+  $("srcGrid").innerHTML = TASKS.map((task) => `
+    <div>
+      <div class="src-head"><code>${task.file}</code><span data-srcinfo="${task.file}"></span></div>
+      <textarea class="py-editor" spellcheck="false" data-src="${task.file}"
+        placeholder="# Dán nội dung ${task.file} vào đây&#10;# Giữ các dòng # TODO 1, # TODO 2, …"></textarea>
+      <div class="runbox">
+        <label class="cv-label" for="stdin_${task.file}">Dữ liệu cho <code>input()</code> — mỗi dòng là một lần nhập</label>
+        <textarea id="stdin_${task.file}" data-stdin="${task.file}" spellcheck="false" placeholder="(file này không gọi input())"></textarea>
+        <div class="actions"><button class="btn btn-primary" data-run="${task.file}">▶ Chạy cả file</button>
+          <span class="todo-desc">như <code>python ${task.file}</code></span></div>
+        <div class="console" data-out="${task.file}"><span class="hl">Bấm "▶ Chạy cả file" để xem màn hình Terminal.</span></div>
+      </div>
+    </div>`).join("");
+  document.querySelectorAll("[data-stdin]").forEach((ta) => {
+    const f = ta.dataset.stdin;
+    ta.value = state.stdins?.[f] ?? DEFAULT_STDIN[f];
+    ta.addEventListener("input", () => { (state.stdins ??= {})[f] = ta.value; save(); });
+  });
+  document.querySelectorAll("[data-run]").forEach((b) => b.addEventListener("click", () => runFile(b.dataset.run)));
+  document.querySelectorAll("[data-src]").forEach((ta) => {
+    ta.value = state.sources[ta.dataset.src] || "";
+    ta.addEventListener("input", () => { state.sources[ta.dataset.src] = ta.value; srcInfo(); save(); });
+    ta.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const s = ta.selectionStart;
+        ta.value = ta.value.slice(0, s) + "    " + ta.value.slice(ta.selectionEnd);
+        ta.selectionStart = ta.selectionEnd = s + 4;
+        ta.dispatchEvent(new Event("input"));
+      } else if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); autoGrade(); }
+    });
+  });
+  srcInfo();
+}
+function srcInfo() {
+  for (const task of TASKS) {
+    const src = state.sources[task.file] || "";
+    const todos = Object.keys(todoBlocks(src)).length;
+    const el = document.querySelector(`[data-srcinfo="${task.file}"]`);
+    if (el) el.textContent = src ? `${src.split(/\r?\n/).length} dòng · ${todos} TODO` : "trống";
+  }
+}
+
+/* ---------- Exercise stages (tabs 01–03) ---------- */
+function codeView(block) {
+  return block.lines.map((l, i) =>
+    `<span class="ln">${block.start + i}</span>${esc(l) || " "}`).join("\n");
+}
+function terminal(run) {
+  const err = run.error && run.error !== "EMPTY" ? `${run.error}: ${run.message || ""}` : "";
+  const text = run.transcript ?? run.stdout ?? "";
+  return `${esc(text)}${err ? `<span class="err">${text && !text.endsWith("\n") ? "\n" : ""}${esc(err)}</span>` : ""}` ||
+    '<span class="hl">(không in gì ra màn hình)</span>';
+}
+function codeBox(task, t) {
+  const block = todoBlocks(state.sources[task.file])[t.todo];
+  const auto = t.id ? autoFor(t.id) : null;
+  const opt = t.optional ? optFor(task.file, t.todo) : null;
+  const first = auto?.runs?.[0] || (opt && opt.error !== "EMPTY" ? opt : null);
+  let html = "";
+  if (block && block.lines.some((l) => l.trim())) {
+    html += `<div class="cv"><div class="cv-label">📄 Code TODO ${t.todo} · <code>${task.file}</code> dòng ${block.start}–${block.start + block.lines.length - 1}</div>
+      <pre class="code">${codeView(block)}</pre></div>`;
+  }
+  if (first) {
+    const stdin = first.input.trim().replace(/\n/g, " ⏎ ");
+    html += `<div class="cv"><div class="cv-label">▶ Kết quả chạy${stdin ? ` · nhập: <code>${esc(stdin)}</code>` : ""}
+        ${auto?.runs?.length > 1 ? ` · bộ input 1/${auto.runs.length}` : ""}</div>
+      <div class="console term">${terminal(first)}</div></div>`;
+  }
+  let runs = "";
+  if (auto?.runs?.length > 1) {
+    const rows = auto.runs.map((r) => `<tr>
+        <td>${r.ok ? "✅" : "❌"}</td>
+        <td><code>${esc(r.input.trim().replace(/\n/g, " ⏎ ")) || "—"}</code></td>
+        <td>${r.expected?.length ? esc(r.expected.join(", ")) : "AST + output"}</td>
+        <td><code>${esc(r.error ? `${r.error}: ${r.message || ""}` : (r.stdout || "").trim())}</code></td></tr>`).join("");
+    runs = `<table class="cases"><thead><tr><th></th><th>stdin</th><th>Cần có</th><th>Output của sinh viên</th></tr></thead><tbody>${rows}</tbody></table>`;
+    html += `<details class="code-box noprint"><summary>Xem cả ${auto.runs.length} bộ input máy đã chạy</summary>${runs}</details>`;
+  }
+  if (!html && opt?.error === "EMPTY") html = '<p class="todo-desc">Sinh viên chưa làm thử thách này.</p>';
+  return html;
+}
+
+function renderStages() {
+  const root = $("exerciseStages");
+  root.innerHTML = "";
+  for (const task of TASKS) {
+    const st = STAGES[task.file];
+    const maxSum = task.todos.filter((t) => !t.optional).reduce((a, t) => a + t.max, 0);
+    const sec = document.createElement("section");
+    sec.className = "stage" + (activeTab === task.file ? " active" : "");
+    sec.dataset.stage = task.file;
+    sec.innerHTML = `<header class="stage-head">
+        <div class="stage-title"><div class="stage-num">${st.num}</div>
+          <div><h2>${st.name}</h2><p>${st.sub}</p></div></div>
+        <span class="file-pill"><code>${task.file}</code> · <b data-subtotal="${task.file}">0</b> / ${fmt(maxSum)}</span>
+      </header><div class="todo-grid"></div>`;
+    const grid = sec.querySelector(".todo-grid");
+    task.todos.forEach((t, j) => {
+      const key = keyOf(task, t);
+      const it = item(key);
+      const auto = t.id ? autoFor(t.id) : null;
+      const card = document.createElement("article");
+      card.className = "todo-card" + (t.optional ? " full" : "");
+      card.dataset.key = key;
+      card.style.setProperty("--d", `${j * 0.06}s`);
+      const st2 = auto ? (auto.status || (auto.passed ? "PASS" : String(auto.reason).startsWith("REVIEW:") ? "REVIEW" : "RETRY")) : null;
+      const autoHtml = t.optional
+        ? `<span class="chip na">KHÔNG TÍNH ĐIỂM</span> Chỉ ghi nhận`
+        : auto ? `<span class="chip ${st2.toLowerCase()}">MÁY ${st2}</span> ${fmt(auto.earned)}/${fmt(auto.maximum)} · ${esc(auto.reason)}`
+        : `<span class="chip na">MÁY —</span> Chưa chấm tự động`;
+      card.innerHTML = `
+        <div class="todo-top">
+          <span class="tag" data-tag></span>
+          <h3>TODO ${t.todo} · ${t.title}</h3>
+          ${t.optional ? "" : `<span class="points">${t.id}</span>`}
+        </div>
+        <div class="autoline">${autoHtml}</div>
+        ${t.optional ? "" : `<div class="scorebox">
+          <input type="number" min="0" max="${t.max}" step="0.05" data-score placeholder="–" aria-label="Điểm TODO ${t.todo}">
+          <span class="points" style="margin:0">/ ${fmt(t.max)} điểm</span>
+          <span class="quick"><button type="button" data-q="0">0</button><button type="button" data-q="${t.max / 2}">½</button><button type="button" data-q="${t.max}">Đủ</button></span>
+        </div>`}
+        <ul class="checks">${t.checks.map((c, i) =>
+          `<li><label><input type="checkbox" data-check="${i}"><span>${esc(c)}</span></label></li>`).join("")}</ul>
+        ${codeBox(task, t)}
+        <textarea data-note placeholder="Ghi chú TODO ${t.todo} (lỗi gặp, cách viết khác máy không nhận…)"></textarea>`;
+      card.querySelectorAll("[data-check]").forEach((cb) => {
+        const i = Number(cb.dataset.check);
+        cb.checked = !!it.checks[i];
+        cb.addEventListener("change", () => { it.checks[i] = cb.checked; update(); });
+      });
+      const sc = card.querySelector("[data-score]");
+      if (sc) {
+        sc.value = it.score;
+        sc.addEventListener("input", () => {
+          let v = sc.value === "" ? "" : Math.min(t.max, Math.max(0, Number(sc.value)));
+          if (v !== "" && Number.isNaN(v)) v = "";
+          it.score = v; update();
+        });
+        sc.addEventListener("change", () => { sc.value = it.score; });
+        card.querySelectorAll("[data-q]").forEach((b) => b.addEventListener("click", () => {
+          it.score = Number(b.dataset.q); sc.value = it.score; update();
+        }));
+      }
+      const nt = card.querySelector("[data-note]");
+      nt.value = it.note;
+      nt.addEventListener("input", () => { it.note = nt.value; save(); });
+      grid.appendChild(card);
+    });
+    root.appendChild(sec);
+  }
+  update();
+}
+
+/* ---------- Totals ---------- */
+function teacherTotal() {
+  let s = 0;
+  for (const task of TASKS) for (const t of task.todos) {
+    const it = item(keyOf(task, t));
+    if (!t.optional && it.score !== "") s += Number(it.score);
+  }
+  return Math.round(s * 100) / 100;
+}
+function rankOf(total, graded) {
+  if (!graded) return "Chưa chấm";
+  return total >= 9 ? "Xuất sắc" : total >= 8 ? "Giỏi" : total >= 6.5 ? "Khá" : total >= 5 ? "Đạt" : "Cần cố gắng";
+}
+
+function update() {
+  let full = 0, graded = 0, optDone = 0;
+  const rows = [];
+  for (const task of TASKS) {
+    let sub = 0, max = 0;
+    for (const t of task.todos) {
+      const key = keyOf(task, t);
+      const it = item(key);
+      const [cls, label] = statusOf(t, it);
+      const auto = t.id ? autoFor(t.id) : null;
+      if (!t.optional) {
+        max += t.max;
+        if (it.score !== "") { graded++; sub += Number(it.score); if (Number(it.score) >= t.max) full++; }
+      } else if (cls === "ok") optDone++;
+      rows.push({ task, t, it, cls, label, auto });
+      const card = document.querySelector(`.todo-card[data-key="${CSS.escape(key)}"]`);
+      if (card) {
+        card.dataset.status = cls;
+        const tag = card.querySelector("[data-tag]");
+        tag.className = `tag ${cls}`;
+        tag.textContent = label;
+        if (prevStatus[key] !== undefined && prevStatus[key] !== cls) replay(tag);
+      }
+      prevStatus[key] = cls;
+    }
+    const subEl = document.querySelector(`[data-subtotal="${task.file}"]`);
+    if (subEl) countTo(subEl, Math.round(sub * 100) / 100);
+    const tb = document.querySelector(`[data-tabsub="${task.file}"]`);
+    if (tb) tb.textContent = `${fmt(sub)}/${fmt(max)}`;
+  }
+  const total = teacherTotal();
+  countTo($("m_total"), total);
+  countTo($("m_full"), full, false);
+  countTo($("m_opt"), optDone, false);
+  $("m_rank").textContent = rankOf(total, graded);
+  $("m_fill").style.width = `${Math.min(100, total * 10)}%`;
+  $("m_track").setAttribute("aria-valuenow", String(total));
+  const autoTxt = state.auto ? `${fmt(state.auto.auto_score ?? 0)}<small> / ${fmt(state.auto.auto_max_points ?? 10)}</small>` : "—";
+  if ($("m_auto").innerHTML !== autoTxt) { $("m_auto").innerHTML = autoTxt; replay($("m_auto")); }
+  $("tb_auto").textContent = state.auto ? `Máy ${fmt(state.auto.auto_score ?? 0)}/10` : "Pyodide";
+  if (prevTotal !== null && prevTotal < 10 && total >= 10) confetti();
+  prevTotal = total;
+  renderSummary(rows, total, graded);
+  save();
+}
+
+function renderSummary(rows, total, graded) {
+  const who = [state.meta.student_name, state.meta.student_id].filter(Boolean).join(" · ");
+  $("sumTitle").textContent = who ? `Bảng điểm — ${who}` : "Bảng điểm theo TODO";
+  $("sumTable").innerHTML = `<thead><tr><th>Bài</th><th>TODO</th><th>Nội dung</th><th>Máy</th><th>Giảng viên</th><th>Trạng thái</th></tr></thead><tbody>` +
+    rows.map(({ task, t, it, cls, label, auto }) => `<tr>
+      <td>${STAGES[task.file].num}</td><td>${t.todo}</td><td>${t.title}${it.note ? `<div class="todo-desc">${esc(it.note)}</div>` : ""}</td>
+      <td class="num">${t.optional ? "—" : auto ? `${fmt(auto.earned)}/${fmt(auto.maximum)}` : "—"}</td>
+      <td class="num">${t.optional ? "—" : it.score === "" ? "–" : `${fmt(Number(it.score))}/${fmt(t.max)}`}</td>
+      <td><span class="tag ${cls}">${label}</span></td></tr>`).join("") +
+    `<tr class="total"><td colspan="3">Tổng điểm giảng viên · ${rankOf(total, graded)}</td>
+      <td class="num">${state.auto ? fmt(state.auto.auto_score ?? 0) : "—"}</td><td class="num">${fmt(total)} / 10</td><td></td></tr></tbody>`;
+}
+
+/* ---------- Persistence ---------- */
+function save() {
+  for (const f of META_FIELDS) state.meta[f] = $(f).value;
+  state.autoApply = $("autoApply").checked;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {}
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) state = Object.assign(blankState(), JSON.parse(raw));
+  } catch (_) {}
+  for (const f of META_FIELDS) $(f).value = state.meta[f] || "";
+  if (!$("graded_on").value) $("graded_on").value = new Date().toISOString().slice(0, 10);
+  $("autoApply").checked = state.autoApply !== false;
+}
+
+/* ---------- Pyodide auto-grading ---------- */
+let pyodide = null, pyLoading = null, graderReady = false;
+function setPyStatus(text, cls) { const s = $("pyStatus"); s.textContent = text; s.className = "py-status" + (cls ? " " + cls : ""); }
+function ensurePyodide() {
+  if (pyodide) return Promise.resolve(pyodide);
+  if (!pyLoading) {
+    setPyStatus("Đang tải Python 3 (lần đầu ~5–10 giây)…", "busy");
+    pyLoading = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = PYODIDE_URL + "pyodide.js";
+      s.onload = async () => {
+        try {
+          pyodide = await window.loadPyodide({ indexURL: PYODIDE_URL });
+          setPyStatus(`Python ${pyodide.version ? "· Pyodide " + pyodide.version : "3"} sẵn sàng ✓`, "ready");
+          resolve(pyodide);
+        } catch (err) { reject(err); }
+      };
+      s.onerror = () => reject(new Error("Không tải được Pyodide (kiểm tra kết nối Internet)."));
+      document.head.appendChild(s);
+    }).catch((err) => { pyLoading = null; setPyStatus("Chưa tải được Python", ""); throw err; });
+  }
+  return pyLoading;
+}
+
+function ensureGrader(py) { if (!graderReady) { py.runPython(GRADER_PY); graderReady = true; } }
+
+async function runFile(file) {
+  const out = document.querySelector(`[data-out="${file}"]`);
+  const btn = document.querySelector(`[data-run="${file}"]`);
+  const code = state.sources[file] || "";
+  if (!code.trim()) { out.innerHTML = '<span class="err">Chưa có code cho file này.</span>'; return; }
+  btn.disabled = true; btn.textContent = "Đang chạy…";
+  out.innerHTML = '<span class="hl">Đang chuẩn bị Python 3…</span>';
+  try {
+    const py = await ensurePyodide();
+    ensureGrader(py);
+    py.globals.set("__run_code__", code);
+    py.globals.set("__run_stdin__", document.querySelector(`[data-stdin="${file}"]`).value);
+    py.globals.set("__run_name__", file);
+    const r = JSON.parse(py.runPython("run_file(__run_code__, __run_stdin__, __run_name__)"));
+    const text = r.transcript;
+    out.innerHTML = `<span class="hl">PS&gt; python ${esc(file)}</span>\n${esc(text)}` +
+      (r.error ? `<span class="err">${text && !text.endsWith("\n") ? "\n" : ""}${esc(r.error)}</span>`
+               : `${text.endsWith("\n") || !text ? "" : "\n"}<span class="ok">✓ Chạy xong, không lỗi</span>`);
+  } catch (err) {
+    out.innerHTML = `<span class="err">Không chạy được: ${esc(err.message || err)}</span>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "▶ Chạy cả file";
+  }
+}
+
+async function autoGrade() {
+  const btn = $("btnGrade"), log = $("gradeLog");
+  if (!TASKS.some((t) => (state.sources[t.file] || "").trim())) {
+    log.innerHTML = '<span class="err">Chưa có mã nguồn. Hãy dán code hoặc chọn 3 file .py trước khi chấm.</span>';
+    return;
+  }
+  btn.disabled = true; btn.textContent = "Đang chấm…";
+  log.innerHTML = '<span class="hl">Đang chuẩn bị Python 3 trong trình duyệt…</span>';
+  try {
+    const py = await ensurePyodide();
+    setPyStatus("Đang chạy 10 TODO…", "busy");
+    log.innerHTML = '<span class="hl">Đang tách # TODO, kiểm AST và chạy 24 bộ input…</span>';
+    await new Promise((r) => setTimeout(r, 40));
+    ensureGrader(py);
+    const optional = TASKS.flatMap((task) => task.todos.filter((t) => t.optional).map((t) => ({ file: task.file, todo: t.todo, input: t.input })));
+    py.globals.set("__payload__", JSON.stringify({ rubric: RUBRIC, cases: CASES, sources: state.sources, optional }));
+    const result = JSON.parse(py.runPython("grade_payload(__payload__)"));
+    setPyStatus("Python 3 sẵn sàng ✓", "ready");
+    state.auto = result;
+    if ($("autoApply").checked) {
+      for (const task of TASKS) for (const t of task.todos) {
+        const a = t.id && autoFor(t.id);
+        if (a) item(keyOf(task, t)).score = Number(a.earned);
+      }
+    }
+    const lines = [];
+    for (const task of result.tasks) {
+      lines.push(`<span class="hl">${esc(task.title)} · ${esc(task.file)}</span>`);
+      for (const c of task.criteria) {
+        const cls = c.status === "PASS" ? "ok" : c.status === "REVIEW" ? "wa" : "err";
+        lines.push(`  <span class="${cls}">${c.status.padEnd(6)}</span> TODO ${c.todo} · ${c.id}: ${c.earned.toFixed(2)}/${Number(c.maximum).toFixed(2)} — ${esc(c.reason)}`);
+      }
+    }
+    lines.push("", `<span class="hl">▶ ĐIỂM MÁY: ${result.auto_score.toFixed(2)} / ${Number(result.auto_max_points).toFixed(2)}</span> (tự luyện, không phải điểm chính thức)`);
+    lines.push($("autoApply").checked ? '<span class="ok">Đã điền điểm máy vào ô điểm giảng viên — hãy rà lại tab 01–03.</span>'
+                                      : "Điểm giảng viên giữ nguyên (đã tắt tự điền).");
+    log.innerHTML = lines.join("\n");
+    renderStages();
+    showToast(`Tự động chấm xong: ${fmt(result.auto_score)}/10`);
+  } catch (err) {
+    log.innerHTML = `<span class="err">Lỗi tự động chấm: ${esc(err.message || err)}</span>\nVẫn có thể chạy <code>autograde_w02.py --student</code> rồi nạp week02-result.json.`;
+    if (pyodide) setPyStatus("Python 3 sẵn sàng ✓", "ready");
+  } finally {
+    btn.disabled = false; btn.textContent = "🎯 Tự động chấm 10 TODO";
+  }
+}
+$("btnGrade").addEventListener("click", autoGrade);
+
+/* ---------- File loading ---------- */
+function readText(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result));
+    r.onerror = () => reject(r.error);
+    r.readAsText(file, "utf-8");
+  });
+}
+$("srcFiles").addEventListener("change", async (e) => {
+  const names = TASKS.map((t) => t.file), got = [], skipped = [];
+  for (const f of e.target.files) {
+    const match = names.find((n) => f.name.toLowerCase().endsWith(n));
+    if (match) { state.sources[match] = await readText(f); got.push(match); } else skipped.push(f.name);
+  }
+  e.target.value = "";
+  renderSources(); renderStages();
+  showToast(got.length ? `Đã nạp ${got.length} file${skipped.length ? ` · bỏ qua: ${skipped.join(", ")}` : ""}` : "Không có file nào trùng tên bài tập.");
+});
+$("clearSrc").addEventListener("click", () => {
+  if (!confirm("Xóa mã nguồn đã dán/nạp?")) return;
+  state.sources = {}; renderSources(); renderStages();
+});
+$("autoFile").addEventListener("change", async (e) => {
+  const f = e.target.files[0];
+  e.target.value = "";
+  if (!f) return;
+  try {
+    const data = JSON.parse(await readText(f));
+    if (data.week !== "W02" || !Array.isArray(data.tasks)) { showToast("File này không phải kết quả máy chấm Week 02."); return; }
+    state.auto = { auto_score: data.auto_score, auto_max_points: data.auto_max_points, mode: data.mode, optional: [],
+      tasks: data.tasks.map((t) => ({ file: t.file, title: t.title, criteria: (t.criteria || []).map((c) =>
+        ({ id: c.id, todo: c.todo, passed: c.passed, earned: c.earned, maximum: c.maximum, reason: c.reason })) })) };
+    if ($("autoApply").checked) for (const task of TASKS) for (const t of task.todos) {
+      const a = t.id && autoFor(t.id); if (a) item(keyOf(task, t)).score = Number(a.earned);
+    }
+    renderStages();
+    showToast(`Đã nạp kết quả máy: ${fmt(data.auto_score ?? 0)}/10`);
+  } catch (err) { showToast(`Không đọc được JSON: ${err.message}`); }
+});
+
+/* ---------- Export / import / print / reset ---------- */
+$("exportBtn").addEventListener("click", () => {
+  save();
+  const out = {
+    schema_version: "1.0", week: "W02", kind: "teacher_todo_grading",
+    student_name: state.meta.student_name, student_id: state.meta.student_id,
+    grader_name: state.meta.grader_name, graded_on: state.meta.graded_on, general_note: state.meta.general_note,
+    teacher_total: teacherTotal(), teacher_max: 10, auto_score: state.auto ? state.auto.auto_score : null, official_score: null,
+    todos: TASKS.flatMap((task) => task.todos.map((t) => {
+      const it = item(keyOf(task, t)), a = t.id ? autoFor(t.id) : null;
+      return { file: task.file, todo: t.todo, id: t.id || null, optional: !!t.optional,
+        max: t.optional ? 0 : t.max, auto: a ? a.earned : null, score: t.optional || it.score === "" ? null : it.score,
+        checks: t.checks.map((c, i) => ({ item: c, ok: !!it.checks[i] })), note: it.note };
+    })),
+    raw: state,
+  };
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `week02-phieu-cham-${(state.meta.student_id || state.meta.student_name || "sinh-vien").replace(/[^\w.-]+/g, "_")}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast("Đã xuất phiếu chấm ra JSON.");
+});
+$("importFile").addEventListener("change", async (e) => {
+  const f = e.target.files[0];
+  e.target.value = "";
+  if (!f) return;
+  try {
+    const data = JSON.parse(await readText(f));
+    if (data.kind !== "teacher_todo_grading" || !data.raw) { showToast("File này không phải phiếu chấm xuất từ trang này."); return; }
+    state = Object.assign(blankState(), data.raw);
+    for (const fld of META_FIELDS) $(fld).value = state.meta[fld] || "";
+    $("autoApply").checked = state.autoApply !== false;
+    renderSources(); renderStages();
+    showToast("Đã mở phiếu chấm đã lưu.");
+  } catch (err) { showToast(`Không đọc được JSON: ${err.message}`); }
+});
+$("printBtn").addEventListener("click", () => window.print());
+$("resetBtn").addEventListener("click", () => {
+  if (!confirm("Xóa toàn bộ phiếu chấm (điểm, ghi chú, mã nguồn)?")) return;
+  state = blankState();
+  try { localStorage.removeItem(STORE_KEY); } catch (_) {}
+  load(); renderSources(); renderStages();
+  showToast("Đã xóa phiếu chấm.");
+});
+META_FIELDS.forEach((f) => $(f).addEventListener("input", () => { save(); if (f !== "general_note") update(); }));
+$("autoApply").addEventListener("change", save);
+
+/* ---------- Start ---------- */
+let savedTheme = null;
+try { savedTheme = localStorage.getItem("w02_grading_theme"); } catch (_) {}
+applyTheme(savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+load();
+renderSources();
+renderStages();
+setTimeout(() => document.body.classList.remove("intro"), 1500);
+</script>
+</body>
+</html>
