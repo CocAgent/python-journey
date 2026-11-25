@@ -1,0 +1,10 @@
+assets/
+cheatsheets/
+docs/
+projects/
+review/
+templates/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/

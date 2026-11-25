@@ -27,6 +27,7 @@ def run_python(script: Path, *, timeout: float = 3.0) -> RunResult:
     }
     environment["PYTHONNOUSERSITE"] = "1"
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    environment["PYTHONUTF8"] = "1"
     try:
         with tempfile.TemporaryDirectory(prefix="ag01-run-") as workdir:
             process = subprocess.run(
