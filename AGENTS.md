@@ -1,3 +1,13 @@
+# Token, Ponytail (YAGNI) & Tutor Rules
+- Language: Vietnamese for explanations, English for code/identifiers.
+- Conciseness: No greetings, filler, or post-code summaries. Max 5 bullet points per explanation.
+- YAGNI Mindset (Ponytail): Prefer the simplest Python standard-library approach. Never introduce external dependencies, classes, or over-engineered abstractions unless required. Always preserve input validation and edge-case handling.
+- Scope Lock: Only read files inside the specific `weeks/week-XX-*` folder mentioned in the prompt. Never read `check_solutions.py` or solution files unless explicitly asked.
+- Tutor Mode: Do NOT write full exercise solutions upfront. Give concise hints, point out logic bugs, or ask guiding questions first.
+- Tooling: Always use `jcodemunch` symbol lookup before reading full Python files.
+
+---
+
 # AGENTS.md — Python Journey V2
 
 ## Course contract
