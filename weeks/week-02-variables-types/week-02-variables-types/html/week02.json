@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "assessment_type": "formative_student_selfcheck",
+  "mode": "student",
+  "week_id": "W02",
+  "scope": "practice/starter/ — bài luyện bổ sung, KHÔNG chấm toàn bộ exercises/.",
+  "status": "RETRY",
+  "checker_exit_code": 1,
+  "checker_stdout": "Lab 01: FAIL � AssertionError: Traceback (most recent call last):\n  File \"K:\\Python\\weeks\\week-02-variables-types\\practice\\starter\\lab01_profile.py\", line 19, in <module>\n    print(f\"Tu\\u1ed5i n\\u0103m sau: {age + 1}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u1ed5' in position 2: character maps to <undefined>\n\nLab 02: FAIL � AssertionError: Traceback (most recent call last):\n  File \"K:\\Python\\weeks\\week-02-variables-types\\practice\\starter\\lab02_shop.py\", line 14, in <module>\n    print(f\"Th�nh ti\\u1ec1n: {total_vnd:,} VND\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u1ec1' in position 8: character maps to <undefined>\n\nLab 03: FAIL � AssertionError: Traceback (most recent call last):\n  File \"K:\\Python\\weeks\\week-02-variables-types\\practice\\starter\\lab03_ticket.py\", line 13, in <module>\n    quantity_text = input(\"S\\u1ed1 v�: \").strip()\n                    ~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u1ed1' in position 1: character maps to <undefined>\n\nWeek 02 student practice: FAIL (0/3)\n",
+  "checker_stderr": "",
+  "auto_score": null,
+  "official_score": null,
+  "manual_review_required": true,
+  "limitations": [
+    "PASS chỉ xác nhận phạm vi checker công khai, không chấm toàn tuần.",
+    "Không dùng PASS reference làm kết quả sinh viên.",
+    "Đầu ra có thể chứa dữ liệu từ bài làm; báo cáo chỉ lưu tại máy.",
+    "Subprocess và timeout không phải security sandbox."
+  ]
+}

@@ -1,0 +1,79 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Week 02 — Bảng điểm tự luyện Python</title><style>
+:root{--bg:#f6f1e7;--card:#fffdf8;--ink:#1f2a2e;--muted:#6b6a60;--line:#e6dcc8;
+  --accent:#0f766e;--soft:#d9f0ec;--track:#e9e1cf;--ok:#15803d;--okbg:#dcfce7;
+  --retry:#b45309;--retrybg:#fef3c7;--review:#6d28d9;--reviewbg:#ede9fe}
+@media(prefers-color-scheme:dark){:root{--bg:#10181a;--card:#172326;--ink:#e8efe9;
+  --muted:#9db0aa;--line:#2a3b3d;--accent:#2dd4bf;--soft:#12332f;--track:#27393b;
+  --ok:#4ade80;--okbg:#14351f;--retry:#fbbf24;--retrybg:#3a2a0a;--review:#c4b5fd;--reviewbg:#2b2150}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55;
+  font-family:'Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;font-variant-numeric:lining-nums}
+h1,h2{font-weight:800;letter-spacing:-.02em;margin:0}
+.page{max-width:980px;margin:auto;padding:24px 18px 48px}
+.sheet{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:6px 28px 6px 28px;
+  padding:28px 32px;box-shadow:0 14px 34px -22px rgba(0,0,0,.35)}
+.stamp{font-size:.74rem;font-weight:800;letter-spacing:.12em;color:var(--accent)}
+.sheet h1{font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0}
+.sheet p{margin:4px 0;color:var(--muted)}
+@property --p{syntax:'<number>';inherits:false;initial-value:0}
+.ring{--p:0;animation:ringIn 1.2s ease-out both;box-shadow:0 10px 24px -14px var(--accent);width:180px;height:180px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(#0f766e,#14b8a6 60%,#f59e0b calc(var(--p)*1%),var(--track) 0)}@keyframes ringIn{from{--p:0}}
+.ring>div{width:140px;height:140px;border-radius:50%;background:var(--card);
+  display:grid;place-content:center;text-align:center}
+.ring strong{font-weight:800;font-size:2.4rem;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.ring span{font-size:.78rem;color:var(--muted)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.cell:hover{transform:translateY(-3px)}
+details.stage{transition:box-shadow .2s}details.stage:hover{box-shadow:0 14px 28px -20px rgba(15,60,55,.5)}
+.bar i{background:linear-gradient(90deg,#0f766e,#14b8a6)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.chip{background:var(--soft);color:var(--accent);border-radius:999px;padding:5px 13px;
+  font-size:.82rem;font-weight:700}
+.matrix{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 6px}
+.cell{transition:transform .15s;width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+  font-weight:800;font-size:.85rem;text-decoration:none;border:2px solid transparent}
+.cell.passed{background:var(--okbg);color:var(--ok)}
+.cell.retry{background:var(--retrybg);color:var(--retry)}
+.cell.review{background:var(--reviewbg);color:var(--review)}
+.legend{font-size:.8rem;color:var(--muted)}
+.note{margin:18px 0;padding:14px 18px;border-left:5px solid var(--accent);
+  background:var(--card);border-radius:0 12px 12px 0;border:1px solid var(--line);
+  border-left:5px solid var(--accent)}
+.note p{margin:4px 0;color:var(--muted);font-size:.9rem}
+details.stage{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  margin:14px 0;overflow:hidden}
+details.stage>summary{list-style:none;cursor:pointer;display:grid;
+  grid-template-columns:auto 1fr 170px;gap:16px;align-items:center;padding:16px 20px}
+details.stage>summary::-webkit-details-marker{display:none}
+.no{font-size:1.6rem;color:var(--accent);font-weight:800;font-variant-numeric:lining-nums}
+.stage h2{font-size:1.15rem}.stage small{color:var(--muted)}
+.bar{height:9px;border-radius:99px;background:var(--track);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:inherit}
+.sum-score{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.rows{margin:0;padding:0 20px 14px;list-style:none}
+.row{display:grid;grid-template-columns:96px 1fr 110px;gap:6px 14px;
+  padding:13px 0;border-top:1px dashed var(--line);align-items:center}
+.tag{font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:6px;text-align:center}
+.tag.passed{color:var(--ok);background:var(--okbg)}
+.tag.retry{color:var(--retry);background:var(--retrybg)}
+.tag.review{color:var(--review);background:var(--reviewbg)}
+.cid{font-size:.74rem;color:var(--muted);font-family:ui-monospace,Consolas,monospace}
+.pts{text-align:right;font-variant-numeric:tabular-nums}
+.why{grid-column:2/-1;margin:0;color:var(--muted);font-size:.9rem}
+.hints{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hints details{border:1px solid var(--line);border-radius:10px;padding:7px 11px;background:var(--bg)}
+.hints summary{cursor:pointer;font-weight:700;font-size:.84rem;color:var(--accent)}
+.hints p{margin:6px 0 2px;font-size:.88rem}
+.src{padding:0 20px 6px;font-size:.84rem;color:var(--muted)}
+a{color:var(--accent)}
+.next{background:var(--soft);border-radius:14px;padding:14px 18px;margin:18px 0}
+.next h2{font-size:1.05rem;margin-bottom:6px}
+.foot{color:var(--muted);font-size:.82rem;padding-top:14px}
+:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+@media(max-width:640px){.sheet{grid-template-columns:1fr;justify-items:center;text-align:center}
+  details.stage>summary{grid-template-columns:auto 1fr}.sum-score{grid-column:1/-1;text-align:left}
+  .row{grid-template-columns:80px 1fr}.pts{text-align:left}.why{grid-column:1/-1}
+  .hints{grid-template-columns:1fr}}
+@media print{body{background:#fff}details.stage{break-inside:avoid}.hints details{break-inside:avoid}}
+</style></head><body><main class="page"><header class="sheet"><div class="ring" style="--p:100" role="img" aria-label="Điểm 10.00 trên 10"><div><strong>10.00</strong><span>trên 10</span></div></div><div><div class="stamp">BẢNG ĐIỂM TỰ LUYỆN · CHẠY TRÊN MÁY CÁ NHÂN</div><h1>Bảng điểm Python · Tuần 02</h1><p>Ba bài tập gốc, mười TODO bắt buộc. Học từ lỗi sai, thử lại theo nhịp của mình.</p><div class="chips"><span class="chip">Xếp loại: Xuất sắc</span><span class="chip">10/10 TODO đạt</span><span class="chip">Chưa phải điểm học phần</span></div></div></header><div class="matrix" aria-label="Bản đồ mười TODO"><a class="cell passed" href="#t-01-1" title="W02.EX01.PROFILE">1.1</a><a class="cell passed" href="#t-01-2" title="W02.EX01.SWAP">1.2</a><a class="cell passed" href="#t-01-3" title="W02.EX01.AUG">1.3</a><a class="cell passed" href="#t-02-1" title="W02.EX02.TEXT">2.1</a><a class="cell passed" href="#t-02-2" title="W02.EX02.PI">2.2</a><a class="cell passed" href="#t-02-3" title="W02.EX02.BOOL">2.3</a><a class="cell passed" href="#t-02-4" title="W02.EX02.BMI">2.4</a><a class="cell passed" href="#t-03-1" title="W02.EX03.FOUR">3.1</a><a class="cell passed" href="#t-03-2" title="W02.EX03.CIRCLE">3.2</a><a class="cell passed" href="#t-03-3" title="W02.EX03.DISCOUNT">3.3</a></div><div class="legend">Bấm ô số để nhảy tới TODO · xanh = đạt · vàng = thử lại · tím = cần xem lại</div><div class="note"><strong>Đây là điểm tự luyện, không phải điểm học phần.</strong><p>Chỉ kiểm TODO bắt buộc trong 3 file exercises/. Phần thử thách, practice và mini-project không tính điểm. Khi mã đúng nhưng máy báo THỬ LẠI/CẦN XEM LẠI, nhờ giảng viên xem phương án giải.</p><p>Báo cáo lưu ngoại tuyến; không tự tải lên Internet, không chứa mã nguồn, tên hay đầu ra cá nhân của sinh viên.</p></div><details class="stage" id="stage-01" open><summary><span class="no">01</span><div><h2>Chiếc ba lô biến</h2><small>Đặt tên và quan sát dữ liệu · 3/3 TODO</small></div><div><div class="sum-score">3.00/3.00</div><div class="bar"><i style="width:100%"></i></div></div></summary><p class="src">Bài gốc: <a href="../../../exercises/ex01_variables.py">ex01_variables.py</a></p><ul class="rows"><li class="row" id="t-01-1"><span class="tag passed">ĐẠT</span><div><strong>TODO 1</strong> <span class="cid">W02.EX01.PROFILE</span></div><span class="pts">1.00/1.00</span><p class="why">Đạt tiêu chí.</p></li><li class="row" id="t-01-2"><span class="tag passed">ĐẠT</span><div><strong>TODO 2</strong> <span class="cid">W02.EX01.SWAP</span></div><span class="pts">1.00/1.00</span><p class="why">Đạt tiêu chí.</p></li><li class="row" id="t-01-3"><span class="tag passed">ĐẠT</span><div><strong>TODO 3</strong> <span class="cid">W02.EX01.AUG</span></div><span class="pts">1.00/1.00</span><p class="why">Đạt tiêu chí.</p></li></ul></details><details class="stage" id="stage-02" open><summary><span class="no">02</span><div><h2>Phép thuật chuyển kiểu</h2><small>Từ văn bản đến phép tính · 4/4 TODO</small></div><div><div class="sum-score">3.50/3.50</div><div class="bar"><i style="width:100%"></i></div></div></summary><p class="src">Bài gốc: <a href="../../../exercises/ex02_type_conversion.py">ex02_type_conversion.py</a></p><ul class="rows"><li class="row" id="t-02-1"><span class="tag passed">ĐẠT</span><div><strong>TODO 1</strong> <span class="cid">W02.EX02.TEXT</span></div><span class="pts">0.75/0.75</span><p class="why">Đạt tiêu chí.</p></li><li class="row" id="t-02-2"><span class="tag passed">ĐẠT</span><div><strong>TODO 2</strong> <span class="cid">W02.EX02.PI</span></div><span class="pts">0.75/0.75</span><p class="why">Đạt tiêu chí.</p></li><li class="row" id="t-02-3"><span class="tag passed">ĐẠT</span><div><strong>TODO 3</strong> <span class="cid">W02.EX02.BOOL</span></div><span class="pts">0.75/0.75</span><p class="why">Đạt tiêu chí.</p></li><li class="row" id="t-02-4"><span class="tag passed">ĐẠT</span><div><strong>TODO 4</strong> <span class="cid">W02.EX02.BMI</span></div><span class="pts">1.25/1.25</span><p class="why">Đạt 6/6 bộ input kiểm thử đa dạng.</p></li></ul></details><details class="stage" id="stage-03" open><summary><span class="no">03</span><div><h2>Xưởng máy tính mini</h2><small>Biến dữ liệu thành kết quả · 3/3 TODO</small></div><div><div class="sum-score">3.50/3.50</div><div class="bar"><i style="width:100%"></i></div></div></summary><p class="src">Bài gốc: <a href="../../../exercises/ex03_input_calc.py">ex03_input_calc.py</a></p><ul class="rows"><li class="row" id="t-03-1"><span class="tag passed">ĐẠT</span><div><strong>TODO 1</strong> <span class="cid">W02.EX03.FOUR</span></div><span class="pts">1.50/1.50</span><p class="why">Đạt 6/6 bộ input kiểm thử đa dạng.</p></li><li class="row" id="t-03-2"><span class="tag passed">ĐẠT</span><div><strong>TODO 2</strong> <span class="cid">W02.EX03.CIRCLE</span></div><span class="pts">1.00/1.00</span><p class="why">Đạt 6/6 bộ input kiểm thử đa dạng.</p></li><li class="row" id="t-03-3"><span class="tag passed">ĐẠT</span><div><strong>TODO 3</strong> <span class="cid">W02.EX03.DISCOUNT</span></div><span class="pts">1.00/1.00</span><p class="why">Đạt 6/6 bộ input kiểm thử đa dạng.</p></li></ul></details><div class="next"><h2>Hoàn thành mười TODO bắt buộc</h2>Có thể thử phần thử thách (TODO tùy chọn) và mini-project để luyện thêm.</div><div class="foot">Vòng tự học: Đọc yêu cầu → Dự đoán → Viết mã → Chạy tự kiểm → Mở gợi ý nếu cần → Sửa và thử lại.<br>Đã kiểm tự động: bbc9a354833a (mã kiểm tra rubric). official_score: null.</div></main></body></html>
