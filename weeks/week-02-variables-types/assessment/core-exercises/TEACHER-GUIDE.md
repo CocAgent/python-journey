@@ -20,6 +20,22 @@ Không dùng đề mới 5 câu / 10 ý. Bộ chấm dựa vào chính ba file g
 
 Các TODO được nhận diện bằng dòng `# TODO N` **vốn đã có**. Không thay thế tên hàm, không chuyển chương trình thành kiểu return như đề mock-exam (vì học viên đang ở Week 02). Các phần bắt buộc trong từng TODO được chạy riêng với stdin mẫu; điểm phần nhập số đánh giá bằng hai bộ giá trị, hỗ trợ điểm một phần. Phần kiểm AST giúp kiểm `type()`, `int()`, phép toán và thao tác gán. Điểm trên máy chỉ là **ước lượng công khai**, có thể nhận nhầm hoặc không nhận diện được cách viết đúng; giảng viên phải phản biện khi có khiếu nại.
 
+## Phiếu chấm HTML theo TODO
+
+Mở [`TODO-GRADING.html`](TODO-GRADING.html) bằng trình duyệt. Trang có 5 tab:
+
+- **00 · Tự động chấm:** dán hoặc chọn 3 file `exercises/` rồi bấm chấm. Trang chạy bản chuyển của
+  `check_one()`/`grade()` trong `autograde_w02.py` bằng Python 3 trong trình duyệt (Pyodide, cần Internet lần
+  đầu để tải). Rubric và 24 bộ input được nhúng từ `rubric.json` và `tests/cases_*.json`; nếu sửa các file này,
+  cần nhúng lại. Mã chạy trong WebAssembly của trình duyệt, không đọc được file trên máy. Có thể nạp
+  `reports/week02-result.json` thay cho việc chấm trong trình duyệt. Nút **▶ Chạy cả file** chạy từng file
+  như `python <file>` với dữ liệu `input()` tự nhập và hiện màn hình Terminal, kể cả traceback.
+- **01–03:** mỗi TODO có kết quả máy (PASS/RETRY/REVIEW), code của TODO đó, bảng từng bộ input và output,
+  checklist, ô điểm giảng viên và ghi chú. TODO thử thách được chạy thử với một input mẫu nhưng không tính điểm.
+- **04 · Tổng kết:** bảng điểm máy và điểm giảng viên, nhận xét chung, xuất JSON hoặc in PDF.
+
+Điểm máy có thể tự điền vào ô điểm giảng viên làm điểm khởi đầu; giảng viên phải rà lại trước khi chốt.
+
 ## Hành trình sinh viên và quy trình phản biện
 
 `student_journey.py --student` chạy cùng rubric `grade()`, sinh báo cáo HTML tự chứa ở `.learner-output/week02-journey.html`. Trang có ba chặng, chỉ số TODO, điểm /10 và ba gợi ý mở dần cho TODO cần sửa. Mọi gợi ý chỉ phục vụ tự học, **không làm thay đổi điểm**. Báo cáo không đưa stdout, biến cá nhân hoặc mã bài vào HTML/JSON.
